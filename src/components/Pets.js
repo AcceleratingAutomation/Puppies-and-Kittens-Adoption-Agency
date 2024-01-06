@@ -4,10 +4,10 @@ import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
-const url = "http://localhost:5000/books";
+const url = "http://localhost:5000/pets";
 
-export const Books = () => {
-  const [books, setBooks] = useState([]);
+export const Pets = () => {
+  const [pets, setPets] = useState([]);
   const history = useHistory();
 
   const redirect = () => {
@@ -21,10 +21,10 @@ export const Books = () => {
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          setBooks([...json.books]);
+          setPets([...json.pets]);
         }
       })
-      .catch((err) => console.log("Error fetching books ", err.message));
+      .catch((err) => console.log("Error fetching pets ", err.message));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -34,21 +34,23 @@ export const Books = () => {
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom>
-            Curated Books!
-            <span role="img" aria-label="books">
+            Rescue Puppies and Kittens!
+            <span role="img" aria-label="pets">
               📚
             </span>
           </Typography>
         </Grid>
         <Grid item container justify="center">
-          {books.map((book, key) => {
+          {pets.map((pet, key) => {
             return (
-              <Book
+              <Pet
                 key={key}
-                name={book.name}
-                id={book.id}
-                author={book.author}
-                color={book.color}
+                name={pet.name}
+                id={pet.id}
+                type={pet.type}
+                gender={pet.gender}
+                breed={pet.breed}
+                color={pet.color}
                 onClick={() => console.log("My Favorite")}
               />
             );
@@ -59,15 +61,21 @@ export const Books = () => {
   );
 };
 
-const Book = ({ name, id, author, onClick }) => {
+const Pet = ({ name, id, type, gender, breed, onClick }) => {
   return (
-    <Paper elevation={2} className="Book">
+    <Paper elevation={2} className="Pet">
       <Grid container direction="column">
         <Grid item xs={12}>
           <Typography variant="h6">{name}</Typography>
         </Grid>
         <Typography variant="subtitle1" gutterBottom>
-          {author}
+          {type}
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          {gender}
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          {breed}
         </Typography>
         <Button
           variant="contained"

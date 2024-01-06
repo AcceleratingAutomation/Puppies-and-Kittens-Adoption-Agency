@@ -1,6 +1,6 @@
 const jsonfile = require("jsonfile");
 const users = "./database/users.json";
-const inventory = "./database/books.json";
+const inventory = "./database/pets.json";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Constants = require("./constants");
@@ -23,11 +23,11 @@ exports.isPasswordCorrect = async function (key, password) {
   return bcrypt.compare(password, key).then((result) => result);
 };
 
-exports.getAllBooks = async function () {
+exports.getAllPets = async function () {
   try {
     return await jsonfile.readFile(inventory);
   } catch (err) {
-    console.log("Error reading books: ", err);
+    console.log("Error reading pets: ", err);
   }
 };
 
@@ -49,11 +49,11 @@ exports.getAllUsers = async function () {
   }
 };
 
-exports.addBook = async function (book) {
+exports.addPet = async function (pet) {
   try {
-    const allBooks = await jsonfile.readFile(inventory);
-    allBooks.push(book);
-    return await jsonfile.writeFile(inventory, allBooks);
+    const allPets = await jsonfile.readFile(inventory);
+    allPets.push(pet);
+    return await jsonfile.writeFile(inventory, allPets);
   } catch (err) {
     return err;
   }
@@ -96,15 +96,15 @@ exports.verifyToken = (req, res, next) => {
   }
 };
 
-exports.getFavoriteBooksForUser = async function (token) {
+exports.getFavoritePetsForUser = async function (token) {
   const username = getUsernameFromToken(token);
   const user = await getUserByUsername(username);
-  const favoriteBookIds = user["favorite"];
-  const favoriteBooks = [];
-  if (favoriteBookIds.length === 0) return favoriteBooks;
-  const allBooks = await jsonfile.readFile(inventory);
-  favoriteBookIds.forEach((id) =>
-    favoriteBooks.push(allBooks.filter((book) => id === book.id)[0])
+  const favoritePetIds = user["favorite"];
+  const favoritePets = [];
+  if (favoritePetIds.length === 0) return favoritePets;
+  const allPets = await jsonfile.readFile(inventory);
+  favoritePetIds.forEach((id) =>
+    favoritePets.push(allPets.filter((pet) => id === pet.id)[0])
   );
-  return favoriteBooks;
+  return favoritePets;
 };

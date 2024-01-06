@@ -2,9 +2,9 @@ import React from "react";
 import "./styles.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Login } from "./components/Login";
-import { Books } from "./components/Books";
+import { Pets } from "./components/Pets";
 import { Users } from "./components/Users";
-import { AddBook } from "./components/AddBook";
+import { AddPet } from "./components/AddPet";
 import { MyFavorite } from "./components/MyFavorite";
 
 export default function App() {
@@ -12,8 +12,8 @@ export default function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/books">
-            <Books />
+          <Route exact path="/pets">
+            <Pets />
           </Route>
           <Route exact path="/users">
             <Users />
@@ -21,8 +21,8 @@ export default function App() {
           <Route exact path="/favorite">
             <MyFavorite />
           </Route>
-          <Route exact path="/book">
-            <AddBook />
+          <Route exact path="/pet">
+            <AddPet />
           </Route>
           <Route path="/">
             <Login />

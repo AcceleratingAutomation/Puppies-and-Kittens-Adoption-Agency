@@ -12,7 +12,7 @@ export const isMember = () => {
   const token = localStorage.getItem("token");
   if (token) {
     const audience = jwtDecode(token)["aud"];
-    return !audience.includes("SHOW_USERS") && !audience.includes("ADD_BOOK");
+    return !audience.includes("SHOW_USERS") && !audience.includes("ADD_PET");
   }
 };
 

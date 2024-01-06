@@ -7,7 +7,7 @@ import { constructHeader, updateAppSettings } from "../util";
 const url = "http://localhost:5000/favorite";
 
 export const MyFavorite = () => {
-  const [favBooks, setFavBooks] = useState([]);
+  const [favPets, setFavPets] = useState([]);
   const history = useHistory();
 
   const redirect = () => {
@@ -21,11 +21,11 @@ export const MyFavorite = () => {
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          setFavBooks([...json.favorites]);
+          setFavPets([...json.favorites]);
         }
       })
       .catch((err) =>
-        console.log("Error getting favorite books ", err.message)
+        console.log("Error getting favorite pets ", err.message)
       );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -36,22 +36,28 @@ export const MyFavorite = () => {
       <Grid container direction="column" alignItems="center">
         <Grid item style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom>
-            Your Favorite Books!
-            <span role="img" aria-label="books">
+            Your Favorite Pets!
+            <span role="img" aria-label="pets">
               👍
             </span>
           </Typography>
         </Grid>
         <Grid item>
-          {favBooks.map((book, key) => {
+          {favPets.map((pet, key) => {
             return (
-              <Paper key={key} elevation={2} className="Book">
+              <Paper key={key} elevation={2} className="Pet">
                 <Grid container direction="column">
                   <Grid item xs={12}>
-                    <Typography variant="h6">{book.name}</Typography>
+                    <Typography variant="h6">{pet.name}</Typography>
                   </Grid>
                   <Typography variant="subtitle1" gutterBottom>
-                    {book.author}
+                    {pet.type}
+                  </Typography>
+                  <Typography variant="subtitle1" gutterBottom>
+                    {pet.gender}
+                  </Typography>
+                  <Typography variant="subtitle1" gutterBottom>
+                    {pet.breed}
                   </Typography>
                 </Grid>
               </Paper>

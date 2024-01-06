@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import {
-  Grid,
-  Typography,
   Button,
-  TextField,
+  Grid,
   Snackbar,
+  TextField,
+  Typography
 } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { useHistory } from "react-router-dom";
 import { constructHeader, isMember, updateAppSettings } from "../util";
 
-const url = "http://localhost:5000/book";
+const url = "http://localhost:5000/pet";
 
-export const AddBook = () => {
-  const [book, setBookName] = useState("");
-  const [author, setAuthorName] = useState("");
+export const AddPet = () => {
+  const [pet, setPetName] = useState("");
+  const [type, setPetType] = useState("");
+  const [gender, setPetGender] = useState("");
+  const [breed, setPetBreed] = useState("");
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const history = useHistory();
@@ -26,9 +28,10 @@ export const AddBook = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onChangeBookName = (book) => setBookName(book);
-
-  const onChangeAuthorName = (author) => setAuthorName(author);
+  const onChangePetName = (pet) => setPetName(pet);
+  const onChangePetType = (type) => setPetType(type);
+  const onChangePetGender = (gender) => setPetGender(gender);
+  const onChangePetBreed = (breed) => setPetBreed(breed);
 
   const redirect = () => {
     localStorage.clear();
@@ -36,16 +39,18 @@ export const AddBook = () => {
   };
 
   const clearTextFields = () => {
-    setBookName("");
-    setAuthorName("");
+    setPetName("");
+    setPetType("");
+    setPetGender("");
+    setPetBreed("");
   };
 
   const onClick = () => {
-    const bookData = { name: book, author: author };
+    const petData = { name: pet, type: type, gender: gender, breed: breed };
     fetch(url, {
       headers: constructHeader("application/json"),
       method: "POST",
-      body: JSON.stringify(bookData),
+      body: JSON.stringify(petData),
     })
       .then((res) => {
         if (res.status === 401) redirect();
@@ -61,42 +66,60 @@ export const AddBook = () => {
           setMessage(json.message || "");
         }
       })
-      .catch((err) => console.log("Error adding book ", err.message));
+      .catch((err) => console.log("Error adding pet ", err.message));
   };
 
   const handleClose = () => setOpen(false);
 
   return (
-    <div className="AddBook">
+    <div className="AddPet">
       <AppHeader tabValue={2} />
       {!showPage && <div />}
       {showPage && (
       <Grid container direction="column" alignItems="center">
         <Grid item style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom>
-            Add New Book!
-            <span role="img" aria-label="books">
+            Add New Pet!
+            <span role="img" aria-label="pets">
               📘
             </span>
           </Typography>
         </Grid>
         <Grid item style={{ marginBottom: "5vh" }}>
           <TextField
-            id="bookname-input"
+            id="petname-input"
             variant="outlined"
-            label="book"
-            value={book}
-            onChange={(e) => onChangeBookName(e.target.value)}
+            label="name"
+            value={pet}
+            onChange={(e) => onChangePetName(e.target.value)}
           />
         </Grid>
         <Grid item style={{ marginBottom: "5vh" }}>
           <TextField
-            id="authorname-input"
+            id="pettype-input"
             variant="outlined"
-            label="author"
-            value={author}
-            onChange={(e) => onChangeAuthorName(e.target.value)}
+            label="type"
+            value={type}
+            onChange={(e) => onChangePetType(e.target.value)}
           />
+        </Grid>
+        <Grid item style={{ marginBottom: "5vh" }}>
+          <TextField
+            id="petgender-input"
+            variant="outlined"
+            label="gender"
+            value={gender}
+            onChange={(e) => onChangePetGender(e.target.value)}
+            />
+        </Grid>
+        <Grid item style={{ marginBottom: "5vh" }}>
+          <TextField
+            id="petbreed-input"
+            variant="outlined"
+            label="breed"
+            value={breed}
+            onChange={(e) => onChangePetBreed(e.target.value)}
+            />
         </Grid>
         <Grid item style={{ marginBottom: "7vh" }}>
           <Button
@@ -106,7 +129,7 @@ export const AddBook = () => {
             color="primary"
             onClick={onClick}
           >
-            ADD BOOK
+            ADD PET
           </Button>
         </Grid>
         <Grid>

@@ -1,13 +1,13 @@
 module.exports.JWT_OPTIONS = {
-  MEMBER_AUDIENCE: ["SHOW_FAVORITE", "LOGIN", "SHOW_BOOKS"],
+  MEMBER_AUDIENCE: ["SHOW_FAVORITE", "LOGIN", "SHOW_PETS"],
   ADMIN_AUDIENCE: [
     "SHOW_FAVORITE",
     "LOGIN",
-    "SHOW_BOOKS",
-    "ADD_BOOK",
+    "SHOW_PETS",
+    "ADD_PET",
     "SHOW_USERS",
   ],
 };
 
-module.exports.ADD_BOOK = "ADD_BOOK";
+module.exports.ADD_PET = "ADD_PET";
 module.exports.SHOW_USERS = "SHOW_USERS";

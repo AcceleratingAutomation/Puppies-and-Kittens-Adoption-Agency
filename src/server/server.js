@@ -6,11 +6,11 @@ const {
   getUserByUsername,
   isEmptyObject,
   isPasswordCorrect,
-  getAllBooks,
+  getAllPets,
   getAllUsers,
-  addBook,
+  addPet,
   verifyToken,
-  getFavoriteBooksForUser,
+  getFavoritePetsForUser,
   getAudienceFromToken,
   generateToken,
 } = require("./shared");
@@ -37,14 +37,14 @@ app.get("/users", verifyToken, (req, res) => {
       .send({ message: "Not authorized to view users", token: token });
 });
 
-app.get("/books", verifyToken, (req, res) => {
+app.get("/pets", verifyToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
-  getAllBooks().then((books) => {
-    if (books && books.length > 0) {
+  getAllPets().then((pets) => {
+    if (pets && pets.length > 0) {
       generateToken(token, null).then((token) => {
-        res.status(200).send({ books: books, token: token });
+        res.status(200).send({ pets: pets, token: token });
       });
-    } else res.status(500).send({ books: [], token: token });
+    } else res.status(500).send({ pets: [], token: token });
   });
 });
 
@@ -79,24 +79,24 @@ app.get("/logout", verifyToken, (req, res) => {
 
 app.get("/favorite", verifyToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
-  getFavoriteBooksForUser(token).then((books) => {
+  getFavoritePetsForUser(token).then((pets) => {
     generateToken(token, null).then((token) => {
-      res.status(200).send({ favorites: books, token: token });
+      res.status(200).send({ favorites: pets, token: token });
     });
   });
 });
 
-app.post("/book", verifyToken, (req, res) => {
+app.post("/pet", verifyToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
-  if (getAudienceFromToken(token).includes(Constants.ADD_BOOK)) {
-    addBook({ name: req.body.name, author: req.body.author, id: uuid() }).then(
+  if (getAudienceFromToken(token).includes(Constants.ADD_PET)) {
+    addPet({ id: uuid(), name: req.body.name, type: req.body.type, gender: req.body.gender, breed: req.body.breed }).then(
       (err) => {
-        if (err) res.status(500).send({ message: "Cannot add this book" });
+        if (err) res.status(500).send({ message: "Cannot add this pet" });
         else {
           generateToken(token, null).then((token) => {
             res
               .status(200)
-              .send({ message: "Book added successfully", token: token });
+              .send({ message: "Pet added successfully", token: token });
           });
         }
       }
@@ -104,5 +104,5 @@ app.post("/book", verifyToken, (req, res) => {
   } else
     res
       .status(403)
-      .send({ message: "Not authorized to add a book", token: token });
+      .send({ message: "Not authorized to add a pet", token: token });
 });

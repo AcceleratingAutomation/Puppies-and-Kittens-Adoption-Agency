@@ -10,7 +10,7 @@
   margin-top: 12vh;
 }
 
-.Book {
+.Pet {
   padding: 2em;
   margin: 2em;
   border: 2px solid gray;
@@ -23,7 +23,7 @@
   border-radius: 10px;
 }
 
-.AddBook {
+.AddPet {
   display: flex;
   align-items: center;
   min-height: 20vh;

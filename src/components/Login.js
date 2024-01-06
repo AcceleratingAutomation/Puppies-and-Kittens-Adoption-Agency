@@ -26,7 +26,7 @@ export const Login = () => {
         if (json.message) setLoginError(json.message);
         else {
           updateAppSettings(json.token);
-          history.push("/books");
+          history.push("/pets");
         }
       })
       .catch((err) => console.log("Error logging into app ", err.message));
@@ -41,8 +41,8 @@ export const Login = () => {
     >
       <Grid item style={{ marginBottom: "10vh" }}>
         <Typography variant={"h3"}>
-          Welcome to Bookie!
-          <span role={"img"} aria-label={"books"}>
+          Welcome to Puppies and Kittens Adoption Agency!
+          <span role={"img"} aria-label={"pets"}>
             📚
           </span>
         </Typography>
