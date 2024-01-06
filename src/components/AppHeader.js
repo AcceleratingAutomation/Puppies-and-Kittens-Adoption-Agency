@@ -15,7 +15,7 @@ import { constructHeader, isMember } from "../util";
 const url = "http://localhost:5000/logout";
 
 export const AppHeader = ({ tabValue }) => {
-  const tabs = ["/pets", "/favorite", "/pet", "/users"];
+  const tabs = ["/favorite", "/pets", "/pet", "/users"];
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const history = useHistory();
@@ -41,8 +41,8 @@ export const AppHeader = ({ tabValue }) => {
       <AppBar position="fixed">
         <Toolbar>
           <Tabs value={tabValue} onChange={handleClick}>
+            <Tab label="Favorite" />  
             <Tab label="Pets" />
-            <Tab label="Favorite" />
             <Tab label="Add Pet" disabled={shouldDisable} />
             <Tab label="Users" disabled={shouldDisable} />
           </Tabs>

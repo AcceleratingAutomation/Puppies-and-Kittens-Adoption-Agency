@@ -30,7 +30,7 @@ export const Pets = () => {
 
   return (
     <div className="Content">
-      <AppHeader tabValue={0} />
+      <AppHeader tabValue={1} />
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom>

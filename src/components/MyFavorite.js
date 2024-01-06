@@ -32,7 +32,7 @@ export const MyFavorite = () => {
 
   return (
     <div className="Content">
-      <AppHeader tabValue={1} />
+      <AppHeader tabValue={0} />
       <Grid container direction="column" alignItems="center">
         <Grid item style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom>
