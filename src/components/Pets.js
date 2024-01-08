@@ -41,6 +41,27 @@ export const Pets = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const deletePet = async (id) => {
+    try {
+      const response = await fetch(`${url}/${id}`, {
+        method: 'DELETE',
+        headers: constructHeader(),
+      });
+
+      if (response.status === 200) {
+        // Remove the deleted pet from the state
+        dispatch({
+          type: 'setPets',
+          value: state.pets.filter((pet) => pet.id !== id),
+        });
+      } else {
+        console.error('Failed to delete pet');
+      }
+    } catch (err) {
+      console.error('Error deleting pet', err);
+    }
+  };
+
   return (
     <div className="Content">
       <AppHeader tabValue={1} />
@@ -65,6 +86,7 @@ export const Pets = () => {
                 breed={pet.breed}
                 color={pet.color}
                 onClick={() => console.log("My Favorite")}
+                onDelete={deletePet}
               />
             );
           })}
@@ -74,7 +96,7 @@ export const Pets = () => {
   );
 };
 
-const Pet = ({ name, id, type, gender, breed, onClick }) => {
+const Pet = ({ name, id, type, gender, breed, onClick, onDelete }) => {
   return (
     <Paper elevation={2} className="Pet">
       <Grid container direction="column">
@@ -97,6 +119,14 @@ const Pet = ({ name, id, type, gender, breed, onClick }) => {
           onClick={() => onClick(id)}
         >
           ADD TO FAVORITES
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          onClick={() => onDelete(id)} // Add onClick action to delete pet
+        >
+          DELETE PET
         </Button>
       </Grid>
     </Paper>

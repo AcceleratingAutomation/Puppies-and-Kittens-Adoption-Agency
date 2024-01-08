@@ -13,6 +13,7 @@ const {
   getFavoritePetsForUser,
   getAudienceFromToken,
   generateToken,
+  deletePet
 } = require("./shared");
 const Constants = require("./constants");
 const app = express();
@@ -105,4 +106,23 @@ app.post("/pet", verifyToken, (req, res) => {
     res
       .status(403)
       .send({ message: "Not authorized to add a pet", token: token });
+});
+
+app.delete("/pets/:id", verifyToken, (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+  if (getAudienceFromToken(token).includes(Constants.DELETE_PET)) {
+    deletePet(req.params.id).then((err) => {
+      if (err) res.status(500).send({ message: "Cannot delete this pet" });
+      else {
+        generateToken(token, null).then((token) => {
+          res
+            .status(200)
+            .send({ message: "Pet deleted successfully", token: token });
+        });
+      }
+    });
+  } else
+    res
+      .status(403)
+      .send({ message: "Not authorized to delete a pet", token: token });
 });

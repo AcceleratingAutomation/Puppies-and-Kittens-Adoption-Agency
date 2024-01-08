@@ -4,6 +4,8 @@ const inventory = "./database/pets.json";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Constants = require("./constants");
+const fs = require('fs');
+const path = require('path');
 
 var getUserByUsername = (exports.getUserByUsername = async function (username) {
   try {
@@ -107,4 +109,38 @@ exports.getFavoritePetsForUser = async function (token) {
     favoritePets.push(allPets.filter((pet) => id === pet.id)[0])
   );
   return favoritePets;
+};
+
+exports.deletePet = (id) => {
+  return new Promise((resolve, reject) => {
+    // Read the existing pets
+    fs.readFile(path.join(__dirname, 'database/pets.json'), 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      let pets = JSON.parse(data);
+
+      // Find the pet with the given id
+      const petIndex = pets.findIndex(pet => pet.id === id);
+      if (petIndex === -1) {
+        reject(new Error('Pet not found'));
+        return;
+      }
+
+      // Remove the pet from the array
+      pets.splice(petIndex, 1);
+
+      // Write the updated pets back to the file
+      fs.writeFile(path.join(__dirname, 'database/pets.json'), JSON.stringify(pets, null, 2), 'utf8', (err) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  });
 };
