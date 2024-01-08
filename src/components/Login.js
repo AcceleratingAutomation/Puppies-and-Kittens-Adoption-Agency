@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import { Grid, Typography, TextField, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { updateAppSettings } from "../util";
@@ -6,24 +6,41 @@ let base64 = require("base-64");
 let headers = new Headers();
 const url = "http://localhost:5000/login";
 
+const initialState = {
+  userName: "",
+  password: "",
+  loginError: "",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'setUserName':
+      return { ...state, userName: action.value };
+    case 'setPassword':
+      return { ...state, password: action.value };
+    case 'setLoginError':
+      return { ...state, loginError: action.value };
+    default:
+      throw new Error();
+  }
+}
+
 export const Login = () => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
 
-  const onChangeUsername = (username) => setUserName(username);
-  const onChangePassword = (password) => setPassword(password);
+  const onChangeUsername = (username) => dispatch({ type: 'setUserName', value: username });
+  const onChangePassword = (password) => dispatch({ type: 'setPassword', value: password });
 
   const onClickLogin = () => {
     headers.set(
       "Authorization",
-      "Basic " + base64.encode(userName + ":" + password)
+      "Basic " + base64.encode(state.userName + ":" + state.password)
     );
     fetch(url, { headers: headers, method: "POST" })
       .then((res) => res.json())
       .then((json) => {
-        if (json.message) setLoginError(json.message);
+        if (json.message) dispatch({ type: 'setLoginError', value: json.message });
         else {
           updateAppSettings(json.token);
           history.push("/pets");
@@ -51,7 +68,7 @@ export const Login = () => {
         <TextField
           id={"username-input"}
           label={"username"}
-          value={userName}
+          value={state.userName}
           onChange={(e) => onChangeUsername(e.target.value)}
         />
       </Grid>
@@ -60,7 +77,7 @@ export const Login = () => {
           id={"password-input"}
           label={"password"}
           type={"password"}
-          value={password}
+          value={state.password}
           onChange={(e) => onChangePassword(e.target.value)}
         />
       </Grid>
@@ -77,7 +94,7 @@ export const Login = () => {
       </Grid>
       <Grid item>
         <Typography variant={"body2"} color={"error"}>
-          {loginError}
+          {state.loginError}
         </Typography>
       </Grid>
     </Grid>

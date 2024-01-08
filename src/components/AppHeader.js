@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import "../styles.css";
 import {
   AppBar,
@@ -14,19 +14,32 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import { constructHeader, isMember } from "../util";
 const url = "http://localhost:5000/logout";
 
+const initialState = {
+  anchorEl: null,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'setAnchorEl':
+      return { ...state, anchorEl: action.value };
+    default:
+      throw new Error();
+  }
+}
+
 export const AppHeader = ({ tabValue }) => {
   const tabs = ["/favorite", "/pets", "/pet", "/users"];
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const open = Boolean(state.anchorEl);
   const history = useHistory();
   const shouldDisable = isMember();
 
   const handleClick = (event, newValue) => history.push(tabs[newValue]);
 
-  const handleMenu = (event) => setAnchorEl(event.currentTarget);
+  const handleMenu = (event) => dispatch({ type: 'setAnchorEl', value: event.currentTarget });
 
   const handleClose = () => {
-    setAnchorEl(null);
+    dispatch({ type: 'setAnchorEl', value: null });
   };
 
   const onClickLogout = () => {
@@ -58,7 +71,7 @@ export const AppHeader = ({ tabValue }) => {
           </IconButton>
           <Menu
             id="menu-appbar"
-            anchorEl={anchorEl}
+            anchorEl={state.anchorEl}
             open={open}
             onClose={handleClose}
           >

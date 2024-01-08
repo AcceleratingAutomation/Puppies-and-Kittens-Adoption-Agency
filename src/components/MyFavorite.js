@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import { Grid, Paper, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
@@ -6,8 +6,21 @@ import { useHistory } from "react-router-dom";
 import { constructHeader, updateAppSettings } from "../util";
 const url = "http://localhost:5000/favorite";
 
+const initialState = {
+  favPets: [],
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'setFavPets':
+      return { ...state, favPets: action.value };
+    default:
+      throw new Error();
+  }
+}
+
 export const MyFavorite = () => {
-  const [favPets, setFavPets] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
 
   const redirect = () => {
@@ -21,7 +34,7 @@ export const MyFavorite = () => {
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          setFavPets([...json.favorites]);
+          dispatch({ type: 'setFavPets', value: [...json.favorites] });
         }
       })
       .catch((err) =>
@@ -43,7 +56,7 @@ export const MyFavorite = () => {
           </Typography>
         </Grid>
         <Grid item>
-          {favPets.map((pet, key) => {
+          {state.favPets.map((pet, key) => {
             return (
               <Paper key={key} elevation={2} className="Pet">
                 <Grid container direction="column">

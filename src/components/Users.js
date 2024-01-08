@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import { Avatar, Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
@@ -6,8 +6,21 @@ import { constructHeader, isMember, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
 const url = "http://localhost:5000/users";
 
+const initialState = {
+  users: [],
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'setUsers':
+      return { ...state, users: action.value };
+    default:
+      throw new Error();
+  }
+}
+
 export const Users = () => {
-  const [users, setUsers] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
   const showPage = !isMember();
 
@@ -22,7 +35,7 @@ export const Users = () => {
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          setUsers([...json.users]);
+          dispatch({ type: 'setUsers', value: [...json.users] });
         }
       })
       .catch((err) => console.log("Error fetching users ", err.message));
@@ -44,7 +57,7 @@ export const Users = () => {
             </Typography>
           </Grid>
           <Grid item xs={4}>
-            {users.map((user, key) => {
+            {state.users.map((user, key) => {
               return (
                 <User
                   key={key}

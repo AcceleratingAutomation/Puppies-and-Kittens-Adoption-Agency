@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import { Button, Grid, Paper, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
@@ -6,8 +6,21 @@ import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
 const url = "http://localhost:5000/pets";
 
+const initialState = {
+  pets: [],
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'setPets':
+      return { ...state, pets: action.value };
+    default:
+      throw new Error();
+  }
+}
+
 export const Pets = () => {
-  const [pets, setPets] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
 
   const redirect = () => {
@@ -21,7 +34,7 @@ export const Pets = () => {
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          setPets([...json.pets]);
+          dispatch({ type: 'setPets', value: [...json.pets] });
         }
       })
       .catch((err) => console.log("Error fetching pets ", err.message));
@@ -41,7 +54,7 @@ export const Pets = () => {
           </Typography>
         </Grid>
         <Grid item container justify="center">
-          {pets.map((pet, key) => {
+          {state.pets.map((pet, key) => {
             return (
               <Pet
                 key={key}

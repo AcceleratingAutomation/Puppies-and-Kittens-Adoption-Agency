@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import {
   Button,
   Grid,
@@ -13,13 +13,38 @@ import { constructHeader, isMember, updateAppSettings } from "../util";
 
 const url = "http://localhost:5000/pet";
 
+const initialState = {
+  pet: "",
+  type: "",
+  gender: "",
+  breed: "",
+  open: false,
+  message: ""
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'setPetName':
+      return { ...state, pet: action.value };
+    case 'setPetType':
+      return { ...state, type: action.value };
+    case 'setPetGender':
+      return { ...state, gender: action.value };
+    case 'setPetBreed':
+      return { ...state, breed: action.value };
+    case 'setOpen':
+      return { ...state, open: action.value };
+    case 'setMessage':
+      return { ...state, message: action.value };
+    case 'clearFields':
+      return { ...state, pet: "", type: "", gender: "", breed: "" };
+    default:
+      throw new Error();
+  }
+}
+
 export const AddPet = () => {
-  const [pet, setPetName] = useState("");
-  const [type, setPetType] = useState("");
-  const [gender, setPetGender] = useState("");
-  const [breed, setPetBreed] = useState("");
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
   const showPage = !isMember();
 
@@ -28,25 +53,13 @@ export const AddPet = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onChangePetName = (pet) => setPetName(pet);
-  const onChangePetType = (type) => setPetType(type);
-  const onChangePetGender = (gender) => setPetGender(gender);
-  const onChangePetBreed = (breed) => setPetBreed(breed);
-
   const redirect = () => {
     localStorage.clear();
     history.push("/login");
   };
 
-  const clearTextFields = () => {
-    setPetName("");
-    setPetType("");
-    setPetGender("");
-    setPetBreed("");
-  };
-
   const onClick = () => {
-    const petData = { name: pet, type: type, gender: gender, breed: breed };
+    const petData = { name: state.pet, type: state.type, gender: state.gender, breed: state.breed };
     fetch(url, {
       headers: constructHeader("application/json"),
       method: "POST",
@@ -55,21 +68,21 @@ export const AddPet = () => {
       .then((res) => {
         if (res.status === 401) redirect();
         else {
-          setOpen(true);
-          if (res.status === 200) clearTextFields();
+          dispatch({ type: 'setOpen', value: true });
+          if (res.status === 200) dispatch({ type: 'clearFields' });
         }
         return res.json();
       })
       .then((json) => {
         if (json) {
           updateAppSettings(json.token || "");
-          setMessage(json.message || "");
+          dispatch({ type: 'setMessage', value: json.message || "" });
         }
       })
       .catch((err) => console.log("Error adding pet ", err.message));
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => dispatch({ type: 'setOpen', value: false });
 
   return (
     <div className="AddPet">
@@ -90,8 +103,8 @@ export const AddPet = () => {
             id="petname-input"
             variant="outlined"
             label="name"
-            value={pet}
-            onChange={(e) => onChangePetName(e.target.value)}
+            value={state.pet}
+            onChange={(e) => dispatch({ type: 'setPetName', value: e.target.value })}
           />
         </Grid>
         <Grid item style={{ marginBottom: "5vh" }}>
@@ -99,8 +112,8 @@ export const AddPet = () => {
             id="pettype-input"
             variant="outlined"
             label="type"
-            value={type}
-            onChange={(e) => onChangePetType(e.target.value)}
+            value={state.type}
+            onChange={(e) => dispatch({ type: 'setPetType', value: e.target.value })}
           />
         </Grid>
         <Grid item style={{ marginBottom: "5vh" }}>
@@ -108,8 +121,8 @@ export const AddPet = () => {
             id="petgender-input"
             variant="outlined"
             label="gender"
-            value={gender}
-            onChange={(e) => onChangePetGender(e.target.value)}
+            value={state.gender}
+            onChange={(e) => dispatch({ type: 'setPetGender', value: e.target.value })}
             />
         </Grid>
         <Grid item style={{ marginBottom: "5vh" }}>
@@ -117,8 +130,8 @@ export const AddPet = () => {
             id="petbreed-input"
             variant="outlined"
             label="breed"
-            value={breed}
-            onChange={(e) => onChangePetBreed(e.target.value)}
+            value={state.breed}
+            onChange={(e) => dispatch({ type: 'setPetBreed', value: e.target.value })}
             />
         </Grid>
         <Grid item style={{ marginBottom: "7vh" }}>
@@ -134,8 +147,8 @@ export const AddPet = () => {
         </Grid>
         <Grid>
           <Snackbar
-            open={open}
-            message={message}
+            open={state.open}
+            message={state.message}
             autoHideDuration={2000}
             onClose={handleClose}
           />
