@@ -27,5 +27,12 @@
     "type": "cat",
     "gender": "female",
     "breed": "any"
+  },
+  {
+    "id": "2a0d9041-3832-4219-a92b-5f9bba2d264f",
+    "name": "cat1",
+    "type": "cat",
+    "gender": "male",
+    "breed": "mix"
   }
 ]

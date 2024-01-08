@@ -53,7 +53,7 @@ exports.addPet = async function (pet) {
   try {
     const allPets = await jsonfile.readFile(inventory);
     allPets.push(pet);
-    return await jsonfile.writeFile(inventory, allPets);
+    return await jsonfile.writeFile(inventory, allPets, { spaces: 2 });
   } catch (err) {
     return err;
   }
