@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { updateAppSettings } from "../util";
 let base64 = require("base-64");
 let headers = new Headers();
-const url = "http://localhost:5000/login";
+const url = "http://localhost:5000/v1/login";
 
 const initialState = {
   userName: "",

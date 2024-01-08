@@ -22,7 +22,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.use(express.json());
 app.use(cors());
 
-app.get("/users", verifyToken, (req, res) => {
+app.get("/v1/users", verifyToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   if (getAudienceFromToken(token).includes(Constants.SHOW_USERS)) {
     getAllUsers().then((users) => {
@@ -38,7 +38,7 @@ app.get("/users", verifyToken, (req, res) => {
       .send({ message: "Not authorized to view users", token: token });
 });
 
-app.get("/pets", verifyToken, (req, res) => {
+app.get("/v1/pets", verifyToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   getAllPets().then((pets) => {
     if (pets && pets.length > 0) {
@@ -49,7 +49,7 @@ app.get("/pets", verifyToken, (req, res) => {
   });
 });
 
-app.post("/login", (req, res) => {
+app.post("/v1/login", (req, res) => {
   let base64Encoding = req.headers.authorization.split(" ")[1];
   let credentials = Buffer.from(base64Encoding, "base64").toString().split(":");
   const username = credentials[0];
@@ -74,11 +74,11 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.get("/logout", verifyToken, (req, res) => {
+app.get("/v1/logout", verifyToken, (req, res) => {
   res.status(200).send({ message: "Signed out" });
 });
 
-app.get("/favorite", verifyToken, (req, res) => {
+app.get("/v1/favorite", verifyToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   getFavoritePetsForUser(token).then((pets) => {
     generateToken(token, null).then((token) => {
@@ -87,7 +87,7 @@ app.get("/favorite", verifyToken, (req, res) => {
   });
 });
 
-app.post("/pet", verifyToken, (req, res) => {
+app.post("/v1/pet", verifyToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   if (getAudienceFromToken(token).includes(Constants.ADD_PET)) {
     addPet({ id: uuid(), name: req.body.name, type: req.body.type, gender: req.body.gender, breed: req.body.breed }).then(
@@ -108,7 +108,7 @@ app.post("/pet", verifyToken, (req, res) => {
       .send({ message: "Not authorized to add a pet", token: token });
 });
 
-app.delete("/pets/:id", verifyToken, (req, res) => {
+app.delete("/v1/pets/:id", verifyToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   if (getAudienceFromToken(token).includes(Constants.DELETE_PET)) {
     deletePet(req.params.id).then((err) => {

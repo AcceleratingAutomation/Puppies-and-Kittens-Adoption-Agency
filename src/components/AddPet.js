@@ -11,7 +11,7 @@ import { AppHeader } from "./AppHeader";
 import { useHistory } from "react-router-dom";
 import { constructHeader, isMember, updateAppSettings } from "../util";
 
-const url = "http://localhost:5000/pet";
+const url = "http://localhost:5000/v1/pet";
 
 const initialState = {
   pet: "",

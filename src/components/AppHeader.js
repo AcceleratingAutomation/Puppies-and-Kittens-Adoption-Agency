@@ -12,7 +12,7 @@ import {
 import { useHistory } from "react-router-dom";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { constructHeader, isMember } from "../util";
-const url = "http://localhost:5000/logout";
+const url = "http://localhost:5000/v1/logout";
 
 const initialState = {
   anchorEl: null,

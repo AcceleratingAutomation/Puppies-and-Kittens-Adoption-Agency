@@ -4,7 +4,7 @@ import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader, isMember, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
-const url = "http://localhost:5000/users";
+const url = "http://localhost:5000/v1/users";
 
 const initialState = {
   users: [],

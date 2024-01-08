@@ -4,7 +4,7 @@ import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
-const url = "http://localhost:5000/pets";
+const url = "http://localhost:5000/v1/pets";
 
 const initialState = {
   pets: [],
