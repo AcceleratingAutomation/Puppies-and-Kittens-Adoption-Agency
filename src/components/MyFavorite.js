@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useCallback } from "react";
 import { Grid, Paper, Typography, Button } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
@@ -20,6 +20,33 @@ function reducer(state, action) {
   }
 }
 
+const Pet = React.memo(({ pet, removeFavorite }) => (
+  <Paper elevation={2} className="Pet">
+    <Grid container direction="column">
+      <Grid item xs={12}>
+        <Typography variant="h6">{pet.name}</Typography>
+      </Grid>
+      <Typography variant="subtitle1" gutterBottom>
+        {pet.type}
+      </Typography>
+      <Typography variant="subtitle1" gutterBottom>
+        {pet.gender}
+      </Typography>
+      <Typography variant="subtitle1" gutterBottom>
+        {pet.breed}
+      </Typography>
+      <Button
+        variant="contained"
+        color="secondary"
+        size="small"
+        onClick={() => removeFavorite(pet.id)} 
+      >
+        REMOVE FAVORITE
+      </Button>
+    </Grid>
+  </Paper>
+));
+
 export const MyFavorite = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
@@ -29,7 +56,7 @@ export const MyFavorite = () => {
     history.push("/login");
   };
 
-  const removeFavorite = async (id) => {
+  const removeFavorite = useCallback(async (id) => {
     try {
       const response = await fetch(`${url}/${id}`, {
         method: 'DELETE',
@@ -45,7 +72,7 @@ export const MyFavorite = () => {
     } catch (err) {
       console.error('Error removing pet from favorites', err);
     }
-  };
+  }, [state.favPets]);
 
   useEffect(() => {
     fetch(url, { headers: constructHeader() })
@@ -75,34 +102,9 @@ export const MyFavorite = () => {
           </Typography>
         </Grid>
         <Grid item>
-          {state.favPets.map((pet, key) => {
-            return (
-              <Paper key={key} elevation={2} className="Pet">
-                <Grid container direction="column">
-                  <Grid item xs={12}>
-                    <Typography variant="h6">{pet.name}</Typography>
-                  </Grid>
-                  <Typography variant="subtitle1" gutterBottom>
-                    {pet.type}
-                  </Typography>
-                  <Typography variant="subtitle1" gutterBottom>
-                    {pet.gender}
-                  </Typography>
-                  <Typography variant="subtitle1" gutterBottom>
-                    {pet.breed}
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    onClick={() => removeFavorite(pet.id)} 
-                  >
-                    REMOVE FAVORITE
-                  </Button>
-                </Grid>
-              </Paper>
-            );
-          })}
+          {state.favPets.map((pet) => (
+            <Pet key={pet.id} pet={pet} removeFavorite={removeFavorite} />
+          ))}
         </Grid>
       </Grid>
     </div>
