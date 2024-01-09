@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from "react";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import { Grid, Paper, Typography, Button } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { useHistory } from "react-router-dom";
@@ -27,6 +27,24 @@ export const MyFavorite = () => {
   const redirect = () => {
     localStorage.clear();
     history.push("/login");
+  };
+
+  const removeFavorite = async (id) => {
+    try {
+      const response = await fetch(`${url}/${id}`, {
+        method: 'DELETE',
+        headers: constructHeader(),
+      });
+
+      if (response.status === 200) {
+        const newFavPets = state.favPets.filter(pet => pet.id !== id);
+        dispatch({ type: 'setFavPets', value: newFavPets });
+      } else {
+        console.error('Failed to remove pet from favorites');
+      }
+    } catch (err) {
+      console.error('Error removing pet from favorites', err);
+    }
   };
 
   useEffect(() => {
@@ -73,6 +91,14 @@ export const MyFavorite = () => {
                   <Typography variant="subtitle1" gutterBottom>
                     {pet.breed}
                   </Typography>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    onClick={() => removeFavorite(pet.id)} 
+                  >
+                    REMOVE FAVORITE
+                  </Button>
                 </Grid>
               </Paper>
             );

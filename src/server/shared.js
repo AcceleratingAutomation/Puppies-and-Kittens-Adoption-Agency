@@ -205,3 +205,27 @@ exports.deletePet = (id) => {
     });
   });
 };
+
+exports.deleteFavorite = (token, petId) => {
+  return new Promise((resolve, reject) => {
+    const username = getUsernameFromToken(token);
+
+    const usersPath = path.join(__dirname, usersDB);
+    const users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+
+    const user = users.find(user => user.username === username);
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    user.favorite = user.favorite.filter(favorite => favorite !== petId);
+
+    fs.writeFile(usersPath, JSON.stringify(users, null, 2), (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(user.favorite);
+      }
+    });
+  });
+}

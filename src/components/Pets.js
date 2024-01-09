@@ -67,6 +67,10 @@ export const Pets = () => {
     }
   };
 
+  const inFavorites = (id) => state.favorites.includes(id);
+
+  const redirectToFavorite = () => {history.push('/favorite')}
+
   const deletePet = async (id) => {
     try {
       const response = await fetch(`${url}/${id}`, {
@@ -112,6 +116,8 @@ export const Pets = () => {
                 breed={pet.breed}
                 color={pet.color}
                 onAddFavorite={addToFavorites}
+                onRedirectFavorite={redirectToFavorite}
+                inFavorites={inFavorites}
                 onDelete={deletePet}
               />
             );
@@ -122,7 +128,7 @@ export const Pets = () => {
   );
 };
 
-const Pet = ({ name, id, type, gender, breed, onAddFavorite, onDelete }) => {
+const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedirectFavorite, onDelete }) => {
   return (
     <Paper elevation={2} className="Pet">
       <Grid container direction="column">
@@ -138,6 +144,16 @@ const Pet = ({ name, id, type, gender, breed, onAddFavorite, onDelete }) => {
         <Typography variant="subtitle1" gutterBottom>
           {breed}
         </Typography>
+        {inFavorites(id) ? (
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          onClick={() => onRedirectFavorite()}
+        >
+          FAVORITE
+        </Button>
+        ) : (
         <Button
           variant="contained"
           color="primary"
@@ -146,6 +162,7 @@ const Pet = ({ name, id, type, gender, breed, onAddFavorite, onDelete }) => {
         >
           ADD TO FAVORITES
         </Button>
+        )}
         <Button
           variant="contained"
           color="secondary"

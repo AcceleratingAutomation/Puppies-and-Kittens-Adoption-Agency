@@ -29,5 +29,12 @@
     "type": "cat",
     "gender": "male",
     "breed": "mix"
+  },
+  {
+    "id": "f811132a-9d1f-4dd7-84ad-74fc48269158",
+    "name": "New Fav",
+    "type": "dog",
+    "gender": "male",
+    "breed": "mix"
   }
 ]

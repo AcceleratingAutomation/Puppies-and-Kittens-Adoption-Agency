@@ -14,7 +14,8 @@ const {
   getAudienceFromToken,
   generateToken,
   addFavoritePet,
-  deletePet
+  deletePet,
+  deleteFavorite
 } = require("./shared");
 const Constants = require("./constants");
 const app = express();
@@ -145,4 +146,25 @@ app.delete("/v1/pets/:id", verifyToken, (req, res) => {
     res
       .status(403)
       .send({ message: "Not authorized to delete a pet", token: token });
+});
+
+app.delete("/v1/favorite/:id", verifyToken, (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+  if (getAudienceFromToken(token).includes(Constants.DELETE_FAVORITE)) {
+    deleteFavorite(token, req.params.id)
+      .then(() => {
+        generateToken(token, null).then((token) => {
+          res
+            .status(200)
+            .send({ message: "Favorite deleted successfully", token: token });
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({ message: "Cannot delete this favorite", error: err });
+      });
+  } else {
+    res
+      .status(403)
+      .send({ message: "Not authorized to delete a favorite", token: token });
+  }
 });
