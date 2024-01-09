@@ -50,11 +50,11 @@ export const AppHeader = ({ tabValue }) => {
   };
 
   return (
-    <div style={{ flexGrow: 1 }}>
+    <header style={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <Tabs value={tabValue} onChange={handleClick}>
-            <Tab label="Favorite" />  
+          <Tabs value={tabValue} onChange={handleClick} aria-label="Navigation tabs">
+            <Tab label="Favorite" />
             <Tab label="Pets" />
             <Tab label="Add Pet" disabled={shouldDisable} />
             <Tab label="Users" disabled={shouldDisable} />
@@ -62,7 +62,6 @@ export const AppHeader = ({ tabValue }) => {
           <div style={{ flexGrow: 1 }} />
           <IconButton
             aria-label="account of current user"
-            aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleMenu}
             color="inherit"
@@ -74,12 +73,13 @@ export const AppHeader = ({ tabValue }) => {
             anchorEl={state.anchorEl}
             open={open}
             onClose={handleClose}
+            aria-label="User menu options"
           >
             <MenuItem>{localStorage.getItem("displayName")}</MenuItem>
             <MenuItem onClick={onClickLogout}>Logout</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
-    </div>
+    </header>
   );
 };

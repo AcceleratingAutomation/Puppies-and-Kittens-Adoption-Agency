@@ -24,22 +24,23 @@ const Pet = React.memo(({ pet, removeFavorite }) => (
   <Paper elevation={2} className="Pet">
     <Grid container direction="column">
       <Grid item xs={12}>
-        <Typography variant="h6">{pet.name}</Typography>
+        <Typography variant="h4">{pet.name}</Typography>
       </Grid>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography variant="h5" gutterBottom>
         {pet.type}
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography variant="h5" gutterBottom>
         {pet.gender}
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography variant="h5" gutterBottom>
         {pet.breed}
       </Typography>
       <Button
         variant="contained"
         color="secondary"
         size="small"
-        onClick={() => removeFavorite(pet.id)} 
+        onClick={() => removeFavorite(pet.id)}
+        aria-label="Remove favorite"
       >
         REMOVE FAVORITE
       </Button>
@@ -90,23 +91,23 @@ export const MyFavorite = () => {
   }, []);
 
   return (
-    <div className="Content">
+    <main className="Content">
       <AppHeader tabValue={0} />
       <Grid container direction="column" alignItems="center">
-        <Grid item style={{ marginBottom: "5vh" }}>
+        <section style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom>
             Your Favorite Pets!
             <span role="img" aria-label="pets">
               👍
             </span>
           </Typography>
-        </Grid>
-        <Grid item>
+        </section>
+        <section>
           {state.favPets.map((pet) => (
             <Pet key={pet.id} pet={pet} removeFavorite={removeFavorite} />
           ))}
-        </Grid>
+        </section>
       </Grid>
-    </div>
+    </main>
   );
 };

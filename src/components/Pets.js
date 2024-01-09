@@ -143,15 +143,15 @@ const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedi
     <Paper elevation={2} className="Pet">
       <Grid container direction="column">
         <Grid item xs={12}>
-          <Typography variant="h6">{name}</Typography>
+          <Typography variant="h4">{name}</Typography>
         </Grid>
-        <Typography variant="subtitle1" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           {type}
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           {gender}
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           {breed}
         </Typography>
         {inFavorites(id) ? (
