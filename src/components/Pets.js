@@ -4,7 +4,7 @@ import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
-import {url as favoriteUrl} from "./MyFavorite";
+import { url as favoriteUrl } from "./MyFavorite";
 
 const url = "http://localhost:5000/v1/pets";
 
@@ -84,6 +84,16 @@ export const Pets = () => {
           type: 'setPets',
           value: state.pets.filter((pet) => pet.id !== id),
         });
+
+        // The pet also needs to be removed from favorites if it exists
+        const favResponse = await fetch(`${favoriteUrl}/${id}`, {
+          method: 'DELETE',
+          headers: constructHeader(),
+        });
+  
+        if (!favResponse.ok) {
+          console.error('Failed to delete pet from favorites');
+        }
       } else {
         console.error('Failed to delete pet');
       }
