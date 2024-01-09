@@ -4,7 +4,8 @@ import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { useHistory } from "react-router-dom";
 import { constructHeader, updateAppSettings } from "../util";
-const url = "http://localhost:5000/v1/favorite";
+
+export const url = "http://localhost:5000/v1/favorite";
 
 const initialState = {
   favPets: [],

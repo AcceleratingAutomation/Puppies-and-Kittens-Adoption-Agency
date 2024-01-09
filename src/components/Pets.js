@@ -4,16 +4,21 @@ import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
+import {url as favoriteUrl} from "./MyFavorite";
+
 const url = "http://localhost:5000/v1/pets";
 
 const initialState = {
   pets: [],
+  favorites: [],
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'setPets':
       return { ...state, pets: action.value };
+    case 'addFavorite':
+      return { ...state, favorites: [...state.favorites, action.value] };
     default:
       throw new Error();
   }
@@ -40,6 +45,27 @@ export const Pets = () => {
       .catch((err) => console.log("Error fetching pets ", err.message));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const addToFavorites = async (id) => {
+    try {
+      const response = await fetch(`${favoriteUrl}/${id}`, {
+        method: 'POST',
+        headers: constructHeader(),
+      });
+
+      if (response.status === 200) {
+        // Add the favorite pet to the state
+        dispatch({
+          type: 'addFavorite',
+          value: id,
+        });
+      } else {
+        console.error('Failed to add pet to favorites');
+      }
+    } catch (err) {
+      console.error('Error adding pet to favorites', err);
+    }
+  };
 
   const deletePet = async (id) => {
     try {
@@ -85,7 +111,7 @@ export const Pets = () => {
                 gender={pet.gender}
                 breed={pet.breed}
                 color={pet.color}
-                onClick={() => console.log("My Favorite")}
+                onAddFavorite={addToFavorites}
                 onDelete={deletePet}
               />
             );
@@ -96,7 +122,7 @@ export const Pets = () => {
   );
 };
 
-const Pet = ({ name, id, type, gender, breed, onClick, onDelete }) => {
+const Pet = ({ name, id, type, gender, breed, onAddFavorite, onDelete }) => {
   return (
     <Paper elevation={2} className="Pet">
       <Grid container direction="column">
@@ -116,7 +142,7 @@ const Pet = ({ name, id, type, gender, breed, onClick, onDelete }) => {
           variant="contained"
           color="primary"
           size="small"
-          onClick={() => onClick(id)}
+          onClick={() => onAddFavorite(id)}
         >
           ADD TO FAVORITES
         </Button>
@@ -124,7 +150,7 @@ const Pet = ({ name, id, type, gender, breed, onClick, onDelete }) => {
           variant="contained"
           color="secondary"
           size="small"
-          onClick={() => onDelete(id)} // Add onClick action to delete pet
+          onClick={() => onDelete(id)} 
         >
           DELETE PET
         </Button>

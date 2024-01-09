@@ -1,6 +1,6 @@
 const jsonfile = require("jsonfile");
-const users = "./database/users.json";
-const inventory = "./database/pets.json";
+const usersDB = "./database/users.json";
+const petsDB = "./database/pets.json";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Constants = require("./constants");
@@ -9,7 +9,7 @@ const path = require('path');
 
 var getUserByUsername = (exports.getUserByUsername = async function (username) {
   try {
-    const allUsers = await jsonfile.readFile(users);
+    const allUsers = await jsonfile.readFile(usersDB);
     const filteredUserArray = allUsers.filter(
       (user) => user.username === username
     );
@@ -27,7 +27,7 @@ exports.isPasswordCorrect = async function (key, password) {
 
 exports.getAllPets = async function () {
   try {
-    return await jsonfile.readFile(inventory);
+    return await jsonfile.readFile(petsDB);
   } catch (err) {
     console.log("Error reading pets: ", err);
   }
@@ -35,7 +35,7 @@ exports.getAllPets = async function () {
 
 exports.getAllUsers = async function () {
   try {
-    const allUsers = await jsonfile.readFile(users);
+    const allUsers = await jsonfile.readFile(usersDB);
     let updatedUsers = [];
     allUsers.forEach((user) => {
       updatedUsers.push({
@@ -53,15 +53,26 @@ exports.getAllUsers = async function () {
 
 exports.addPet = async function (pet) {
   try {
-    const allPets = await jsonfile.readFile(inventory);
+    const allPets = await jsonfile.readFile(petsDB);
     allPets.push(pet);
-    return await jsonfile.writeFile(inventory, allPets, { spaces: 2 });
+    return await jsonfile.writeFile(petsDB, allPets, { spaces: 2 });
   } catch (err) {
     return err;
   }
 };
 
-const getUsernameFromToken = (token) => jwt.decode(token)["sub"];
+const getUsernameFromToken = (token) => {
+  if (!token) {
+    throw new Error('Token is not provided');
+  }
+
+  const decodedToken = jwt.decode(token);
+  if (!decodedToken) {
+    throw new Error('Token is not valid');
+  }
+
+  return decodedToken["sub"];
+};
 
 exports.getAudienceFromToken = (token) => jwt.decode(token)["aud"];
 
@@ -104,17 +115,67 @@ exports.getFavoritePetsForUser = async function (token) {
   const favoritePetIds = user["favorite"];
   const favoritePets = [];
   if (favoritePetIds.length === 0) return favoritePets;
-  const allPets = await jsonfile.readFile(inventory);
+  const allPets = await jsonfile.readFile(petsDB);
   favoritePetIds.forEach((id) =>
     favoritePets.push(allPets.filter((pet) => id === pet.id)[0])
   );
   return favoritePets;
 };
 
+exports.addFavoritePet = (token, petId) => {
+  return new Promise(async (resolve, reject) => {
+    // Get the username from the token
+    const username = getUsernameFromToken(token);
+
+    // Get the user by username
+    const user = await getUserByUsername(username);
+    if (!user) {
+      reject(new Error('User not found'));
+      return;
+    }
+
+    // Read the existing users
+    fs.readFile(path.join(__dirname, usersDB), 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      let users = JSON.parse(data);
+
+      // Get the user index by username
+      const userIndex = users.findIndex(user => user.username === username);
+      
+      if (userIndex === -1) {
+        reject(new Error('User not found'));
+        return;
+      }
+
+      // Ensure the user has a favorites array
+      if (!Array.isArray(users[userIndex].favorite)) {
+        users[userIndex].favorite = [];
+      }
+
+      // Add the pet to the user's favorites
+      users[userIndex].favorite.push(petId);
+
+      // Write the updated users back to the file
+      fs.writeFile(path.join(__dirname, usersDB), JSON.stringify(users, null, 2), 'utf8', (err) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  });
+};
+
 exports.deletePet = (id) => {
   return new Promise((resolve, reject) => {
     // Read the existing pets
-    fs.readFile(path.join(__dirname, 'database/pets.json'), 'utf8', (err, data) => {
+    fs.readFile(path.join(__dirname, petsDB), 'utf8', (err, data) => {
       if (err) {
         reject(err);
         return;
@@ -133,7 +194,7 @@ exports.deletePet = (id) => {
       pets.splice(petIndex, 1);
 
       // Write the updated pets back to the file
-      fs.writeFile(path.join(__dirname, 'database/pets.json'), JSON.stringify(pets, null, 2), 'utf8', (err) => {
+      fs.writeFile(path.join(__dirname, petsDB), JSON.stringify(pets, null, 2), 'utf8', (err) => {
         if (err) {
           reject(err);
           return;

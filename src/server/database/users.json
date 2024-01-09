@@ -1,24 +1,14 @@
 [
   {
     "id": "f2775f38-92fc-42e5-98a5-b137a0887a40",
-    "username": "deeksha30",
-    "key": "$2b$10$ph9/OK1lN/.9KzkeGKGPK.bxOkqJ2b9A2AqH/5iPkS7dmqAnUn.vi",
-    "firstName": "Deeksha",
-    "lastName": "Sharma",
+    "username": "jason",
+    "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
+    "firstName": "Member",
+    "lastName": "User",
     "favorite": [
-      "6cc12b5e-cb5e-11ea-87d0-0242ac130003",
-      "765384e6-cb5e-11ea-87d0-0242ac130003"
+      "6cc12b5e-cb5e-11ea-87d0-0242ac130003"
     ],
     "role": "member"
-  },
-  {
-    "id": "677c96e2-cb5e-11ea-87d0-0242ac130003",
-    "username": "zenmade23",
-    "key": "$2b$10$ruGV.xw6P0zuPUa0vt694eLO5LwckcxFZ1NfzdzDQKF12E2240vZy",
-    "firstName": "Amy",
-    "lastName": "Robinson",
-    "favorite": ["722f584a-cb5e-11ea-87d0-0242ac130003"],
-    "role": "admin"
   },
   {
     "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",
@@ -26,7 +16,10 @@
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
     "firstName": "Jason",
     "lastName": "Caldwell",
-    "favorite": ["6cc12b5e-cb5e-11ea-87d0-0242ac130003"],
+    "favorite": [
+      "6cc12b5e-cb5e-11ea-87d0-0242ac130003",
+      "9b64fb2d-8f34-48ae-b74d-e6342a99838e"
+    ],
     "role": "admin"
   }
 ]
