@@ -52,10 +52,10 @@ export const MyFavorite = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
 
-  const redirect = () => {
+  const redirect = useCallback(() => {
     localStorage.clear();
     history.push("/login");
-  };
+  }, [history]);
 
   const removeFavorite = useCallback(async (id) => {
     try {
@@ -87,8 +87,7 @@ export const MyFavorite = () => {
       .catch((err) =>
         console.log("Error getting favorite pets ", err.message)
       );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [redirect]);
 
   return (
     <main className="Content">

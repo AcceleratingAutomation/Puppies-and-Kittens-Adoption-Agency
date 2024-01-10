@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useCallback } from "react";
 import {
   Button,
   Grid,
@@ -48,15 +48,14 @@ export const AddPet = () => {
   const history = useHistory();
   const showPage = !isMember();
 
-  useEffect(() => {
-    if (!localStorage.getItem("token")) history.push("/login");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const redirect = () => {
+  const redirect = useCallback(() => {
     localStorage.clear();
     history.push("/login");
-  };
+  }, [history]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) history.push("/login");
+  }, [history]);
 
   const onClick = () => {
     const petData = { name: state.pet, type: state.type, gender: state.gender, breed: state.breed };

@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useCallback } from "react";
 import { Avatar, Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
@@ -24,10 +24,10 @@ export const Users = () => {
   const history = useHistory();
   const showPage = !isMember();
 
-  const redirect = () => {
+  const redirect = useCallback(() => {
     localStorage.clear();
     history.push("/login");
-  };
+  }, [history]);
 
   useEffect(() => {
     fetch(url, { headers: constructHeader() })
@@ -39,8 +39,7 @@ export const Users = () => {
         }
       })
       .catch((err) => console.log("Error fetching users ", err.message));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [redirect]);
 
   return (
     <div className="Content">

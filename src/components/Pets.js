@@ -28,10 +28,10 @@ export const Pets = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
 
-  const redirect = () => {
+  const redirect = useCallback(() => {
     localStorage.clear();
     history.push("/login");
-  };
+  }, [history]);
 
   useEffect(() => {
     fetch(url, { headers: constructHeader() })
@@ -43,8 +43,7 @@ export const Pets = () => {
         }
       })
       .catch((err) => console.log("Error fetching pets ", err.message));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [redirect]);
 
   const addToFavorites = useCallback(async (id) => {
     try {
