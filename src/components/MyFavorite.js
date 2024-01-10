@@ -25,14 +25,14 @@ const Pet = React.memo(({ pet, removeFavorite }) => (
   <PetCard pet={pet}>
     <Grid item xs={12} container justify="center">
       <Button
-          style={{ width: '65%', margin: '0.625rem' }}
-          variant="contained"
-          color="secondary"
-          size="small"
-          onClick={() => removeFavorite(pet.id)}
-          aria-label="Remove favorite"
-        >
-          REMOVE FAVORITE
+        style={{ width: '65%', margin: '0.625rem' }}
+        variant="contained"
+        color="secondary"
+        size="small"
+        onClick={() => removeFavorite(pet.id)}
+        aria-label="Remove favorite"
+      >
+        REMOVE FAVORITE
       </Button>
     </Grid>
   </PetCard>
@@ -82,20 +82,20 @@ export const MyFavorite = () => {
   return (
     <main className="Content">
       <AppHeader tabValue={0} />
-      <Grid container direction="column" alignItems="center">
-        <section style={{ marginBottom: "5vh" }}>
+      <Grid container justify="center" alignItems="center" direction="column">
+        <Grid item style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom>
             Your Favorite Pets!
             <span role="img" aria-label="pets">
               👍
             </span>
           </Typography>
-        </section>
-        <section>
+        </Grid>
+        <Grid item container justify="center">
           {state.favPets.map((pet) => (
             <Pet key={pet.id} pet={pet} removeFavorite={removeFavorite} />
           ))}
-        </section>
+        </Grid>
       </Grid>
     </main>
   );
