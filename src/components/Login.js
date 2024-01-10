@@ -83,6 +83,7 @@ export const Login = () => {
       </Grid>
       <Grid item style={{ marginBottom: "7vh" }}>
         <Button
+          style={{ margin: '0.625rem' }}
           aria-label={"login"}
           variant={"contained"}
           size={"large"}

@@ -24,6 +24,7 @@ function reducer(state, action) {
 const Pet = React.memo(({ pet, removeFavorite }) => (
   <PetCard pet={pet}>
     <Button
+        style={{ margin: '0.625rem' }}
         variant="contained"
         color="secondary"
         size="small"

@@ -144,6 +144,7 @@ const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedi
     <PetCard pet={pet}>
       {inFavorites(id) ? (
         <Button
+          style={{ margin: '0.625rem' }}
           variant="contained"
           color="primary"
           size="small"
@@ -153,6 +154,7 @@ const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedi
         </Button>
         ) : (
         <Button
+          style={{ margin: '0.625rem' }}
           variant="contained"
           color="primary"
           size="small"
@@ -162,6 +164,7 @@ const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedi
         </Button>
         )}
         <Button
+          style={{ margin: '0.625rem' }} 
           variant="contained"
           color="secondary"
           size="small"
