@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useCallback, useMemo } from "react";
 import { Button, Grid, Paper, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
@@ -46,7 +46,7 @@ export const Pets = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const addToFavorites = async (id) => {
+  const addToFavorites = useCallback(async (id) => {
     try {
       const response = await fetch(`${favoriteUrl}/${id}`, {
         method: 'POST',
@@ -65,13 +65,13 @@ export const Pets = () => {
     } catch (err) {
       console.error('Error adding pet to favorites', err);
     }
-  };
+  }, []);
 
-  const inFavorites = (id) => state.favorites.includes(id);
+  const inFavorites = useCallback((id) => state.favorites.includes(id), [state.favorites]);
 
-  const redirectToFavorite = () => {history.push('/favorite')}
+  const redirectToFavorite = useCallback(() => {history.push('/favorite')}, [history]);
 
-  const deletePet = async (id) => {
+  const deletePet = useCallback(async (id) => {
     try {
       const response = await fetch(`${url}/${id}`, {
         method: 'DELETE',
@@ -100,7 +100,23 @@ export const Pets = () => {
     } catch (err) {
       console.error('Error deleting pet', err);
     }
-  };
+  }, [state.pets]);
+
+  const pets = useMemo(() => state.pets.map((pet, key) => (
+    <Pet
+      key={key}
+      name={pet.name}
+      id={pet.id}
+      type={pet.type}
+      gender={pet.gender}
+      breed={pet.breed}
+      color={pet.color}
+      onAddFavorite={addToFavorites}
+      onRedirectFavorite={redirectToFavorite}
+      inFavorites={inFavorites}
+      onDelete={deletePet}
+    />
+  )), [state.pets, addToFavorites, redirectToFavorite, inFavorites, deletePet]);
 
   return (
     <div className="Content">
@@ -115,23 +131,7 @@ export const Pets = () => {
           </Typography>
         </Grid>
         <Grid item container justify="center">
-          {state.pets.map((pet, key) => {
-            return (
-              <Pet
-                key={key}
-                name={pet.name}
-                id={pet.id}
-                type={pet.type}
-                gender={pet.gender}
-                breed={pet.breed}
-                color={pet.color}
-                onAddFavorite={addToFavorites}
-                onRedirectFavorite={redirectToFavorite}
-                inFavorites={inFavorites}
-                onDelete={deletePet}
-              />
-            );
-          })}
+          {pets}
         </Grid>
       </Grid>
     </div>
