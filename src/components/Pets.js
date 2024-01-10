@@ -1,10 +1,11 @@
 import React, { useReducer, useEffect, useCallback, useMemo } from "react";
-import { Button, Grid, Paper, Typography } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
 import { url as favoriteUrl } from "./MyFavorite";
+import { PetCard } from "./PetCard";
 
 const url = "http://localhost:5000/v1/pets";
 
@@ -138,22 +139,10 @@ export const Pets = () => {
 };
 
 const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedirectFavorite, onDelete }) => {
+  const pet = { name, id, type, gender, breed };
   return (
-    <Paper elevation={2} className="Pet">
-      <Grid container direction="column">
-        <Grid item xs={12}>
-          <Typography variant="h4">{name}</Typography>
-        </Grid>
-        <Typography variant="h5" gutterBottom>
-          {type}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {gender}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {breed}
-        </Typography>
-        {inFavorites(id) ? (
+    <PetCard pet={pet}>
+      {inFavorites(id) ? (
         <Button
           variant="contained"
           color="primary"
@@ -180,7 +169,6 @@ const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedi
         >
           DELETE PET
         </Button>
-      </Grid>
-    </Paper>
+    </PetCard>
   );
 };

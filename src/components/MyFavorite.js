@@ -1,9 +1,10 @@
 import React, { useReducer, useEffect, useCallback } from "react";
-import { Grid, Paper, Typography, Button } from "@material-ui/core";
+import { Grid, Typography, Button } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { useHistory } from "react-router-dom";
 import { constructHeader, updateAppSettings } from "../util";
+import { PetCard } from "./PetCard";
 
 export const url = "http://localhost:5000/v1/favorite";
 
@@ -21,21 +22,8 @@ function reducer(state, action) {
 }
 
 const Pet = React.memo(({ pet, removeFavorite }) => (
-  <Paper elevation={2} className="Pet">
-    <Grid container direction="column">
-      <Grid item xs={12}>
-        <Typography variant="h4">{pet.name}</Typography>
-      </Grid>
-      <Typography variant="h5" gutterBottom>
-        {pet.type}
-      </Typography>
-      <Typography variant="h5" gutterBottom>
-        {pet.gender}
-      </Typography>
-      <Typography variant="h5" gutterBottom>
-        {pet.breed}
-      </Typography>
-      <Button
+  <PetCard pet={pet}>
+    <Button
         variant="contained"
         color="secondary"
         size="small"
@@ -44,8 +32,7 @@ const Pet = React.memo(({ pet, removeFavorite }) => (
       >
         REMOVE FAVORITE
       </Button>
-    </Grid>
-  </Paper>
+  </PetCard>
 ));
 
 export const MyFavorite = () => {
