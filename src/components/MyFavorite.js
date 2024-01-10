@@ -23,16 +23,18 @@ function reducer(state, action) {
 
 const Pet = React.memo(({ pet, removeFavorite }) => (
   <PetCard pet={pet}>
-    <Button
-        style={{ margin: '0.625rem' }}
-        variant="contained"
-        color="secondary"
-        size="small"
-        onClick={() => removeFavorite(pet.id)}
-        aria-label="Remove favorite"
-      >
-        REMOVE FAVORITE
+    <Grid item xs={12} container justify="center">
+      <Button
+          style={{ width: '65%', margin: '0.625rem' }}
+          variant="contained"
+          color="secondary"
+          size="small"
+          onClick={() => removeFavorite(pet.id)}
+          aria-label="Remove favorite"
+        >
+          REMOVE FAVORITE
       </Button>
+    </Grid>
   </PetCard>
 ));
 
