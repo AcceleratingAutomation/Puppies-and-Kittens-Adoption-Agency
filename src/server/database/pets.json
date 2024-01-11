@@ -12,9 +12,15 @@
     "id": "1577ac72-3586-4323-80fd-65a29a71f2fd"
   },
   {
+    "id": "9b64fb2d-8f34-48ae-b74d-e6342a99838e",
     "name": "Max",
     "type": "Dog",
-    "id": "9b64fb2d-8f34-48ae-b74d-e6342a99838e"
+    "gender": "Male",
+    "breed": "Poodle",
+    "isSterilized": "true",
+    "vaccines": "tbd list",
+    "isAdoptable": "true",
+    "bio": "An amazing dog"
   },
   {
     "id": "94426cb1-8de1-446a-90cf-f4c1d9f94b42",
