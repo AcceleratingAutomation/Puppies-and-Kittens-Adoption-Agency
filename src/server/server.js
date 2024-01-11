@@ -81,7 +81,7 @@ app.get("/v1/logout", verifyToken, (req, res) => {
   res.status(200).send({ message: "Signed out" });
 });
 
-app.get("/v1/petDetail/:id", verifyToken, (req, res) => {
+app.get("/v1/petDetails/:id", verifyToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   if (getAudienceFromToken(token).includes(Constants.SHOW_PET_DETAILS)) {
     getPetDetails(req.params.id).then((pet) => {

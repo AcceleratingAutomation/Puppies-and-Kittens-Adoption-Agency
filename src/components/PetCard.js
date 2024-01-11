@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Typography, Button } from "@material-ui/core";
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   petCard: {
@@ -17,6 +18,11 @@ const useStyles = makeStyles({
 
 export const PetCard = ({ pet, children }) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const onViewDetails = () => {
+    history.push(`/petDetails/${pet.id}`);
+  };
 
   return (
     <Paper elevation={2} className={`Pet ${classes.petCard}`}>
@@ -39,7 +45,7 @@ export const PetCard = ({ pet, children }) => {
             variant="contained"
             color="primary"
             size="small"
-            onClick={() => console.log("Get details")}
+            onClick={onViewDetails}
           >
             VIEW DETAILS
           </Button>

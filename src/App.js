@@ -6,6 +6,7 @@ import { Pets } from "./components/Pets";
 import { Users } from "./components/Users";
 import { AddPet } from "./components/AddPet";
 import { MyFavorite } from "./components/MyFavorite";
+import { PetDetails } from "./components/PetDetails";
 
 export default function App() {
   return (
@@ -14,6 +15,9 @@ export default function App() {
         <Switch>
           <Route exact path="/pets">
             <Pets />
+          </Route>
+          <Route exact path="/petDetails/:id">
+            <PetDetails />
           </Route>
           <Route exact path="/users">
             <Users />
