@@ -6,6 +6,7 @@ const {
   getUserByUsername,
   isEmptyObject,
   isPasswordCorrect,
+  getPetDetails,
   getAllPets,
   getAllUsers,
   addPet,
@@ -78,6 +79,26 @@ app.post("/v1/login", (req, res) => {
 
 app.get("/v1/logout", verifyToken, (req, res) => {
   res.status(200).send({ message: "Signed out" });
+});
+
+app.get("/v1/petDetail/:id", verifyToken, (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+  if (getAudienceFromToken(token).includes(Constants.SHOW_PET_DETAILS)) {
+    getPetDetails(req.params.id).then((pet) => {
+      if (!pet || Object.keys(pet).length === 0) {
+        res.status(404).send({ message: "Cannot get details for this pet" });
+      } else {
+        generateToken(token, null).then((newToken) => {
+          res.status(200).send({ pet: pet, token: newToken });
+        });
+      }
+    }).catch((err) => {
+      console.error(err);
+      res.status(500).send({ message: "Error retrieving pet details" });
+    });
+  } else {
+    res.status(403).send({ message: "Not authorized to view pet details", token: token });
+  }
 });
 
 app.get("/v1/favorite", verifyToken, (req, res) => {

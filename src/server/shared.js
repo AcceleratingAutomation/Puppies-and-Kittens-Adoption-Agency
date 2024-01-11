@@ -25,6 +25,18 @@ exports.isPasswordCorrect = async function (key, password) {
   return bcrypt.compare(password, key).then((result) => result);
 };
 
+exports.getPetDetails = async function (id) {
+  try {
+    const allPets = await jsonfile.readFile(petsDB);
+    const filteredPetArray = allPets.filter(
+      (pet) => pet.id === id
+    );
+    return filteredPetArray.length === 0 ? {} : filteredPetArray[0];
+  } catch (err) {
+    console.log("Error reading pets: ", err.message);
+  }
+};
+
 exports.getAllPets = async function () {
   try {
     return await jsonfile.readFile(petsDB);

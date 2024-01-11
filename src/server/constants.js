@@ -1,9 +1,10 @@
 module.exports.JWT_OPTIONS = {
-  MEMBER_AUDIENCE: ["SHOW_FAVORITE", "LOGIN", "SHOW_PETS"],
+  MEMBER_AUDIENCE: ["SHOW_FAVORITE", "LOGIN", "SHOW_PETS", "SHOW_PET_DETAILS"],
   ADMIN_AUDIENCE: [
     "SHOW_FAVORITE",
     "LOGIN",
     "SHOW_PETS",
+    "SHOW_PET_DETAILS",
     "ADD_PET",
     "DELETE_PET",
     "ADD_FAVORITE_PET",
@@ -13,6 +14,7 @@ module.exports.JWT_OPTIONS = {
 };
 
 module.exports.ADD_PET = "ADD_PET";
+module.exports.SHOW_PET_DETAILS = "SHOW_PET_DETAILS";
 module.exports.ADD_FAVORITE_PET = "ADD_FAVORITE_PET";
 module.exports.DELETE_PET = "DELETE_PET";
 module.exports.DELETE_FAVORITE = "DELETE_FAVORITE";
