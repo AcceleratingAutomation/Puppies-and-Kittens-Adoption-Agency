@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useCallback } from 'react';
 import { useHistory, useParams } from "react-router-dom";
-import { Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import { constructHeader } from "../util";
 import { AppHeader } from "./AppHeader";
 
@@ -48,10 +48,7 @@ export const PetDetails = () => {
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom >
-            Pet Details
-          </Typography>
-          <Typography variant="h4" gutterBottom >
-            {state.pet.name}
+          {state.pet.name}'s Details
           </Typography>
         </Grid>
         <Grid container style={{ paddingLeft: '1.25rem' }} alignItems="baseline" direction="row" >
@@ -70,7 +67,7 @@ export const PetDetails = () => {
             </Grid>
             <Grid container>
               <Grid item xs={6}><strong>Spayed/Neutered</strong></Grid>
-              <Grid item xs={6}>{state.pet.isSterilized}</Grid>
+              <Grid item xs={6}>{state.pet.isSterilized ? state.pet.isSterilized.toString() : ''}</Grid>
             </Grid>
             <Grid container>
               <Grid item xs={6}><strong>Vaccines</strong></Grid>
@@ -78,13 +75,24 @@ export const PetDetails = () => {
             </Grid>
             <Grid container>
               <Grid item xs={6}><strong>Ready To Adopt</strong></Grid>
-              <Grid item xs={6}>{state.pet.isAdoptable}</Grid>
+              <Grid item xs={6}>{state.pet.isAdoptable ? state.pet.isAdoptable.toString() : ''}</Grid>
             </Grid>
           </Grid>
           <Grid item xs={12} sm={6} style={{ textAlign: 'left' }}>
             <p><strong>Biography</strong> <br /> {state.pet.bio}</p>
           </Grid>
         </Grid>
+        <Grid item xs={12} container justify="center">
+        <Button
+          style={{ margin: '0.625rem' }}
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={() => console.log("Adopt me!")}
+        >
+          ADOPT ME
+        </Button>
+      </Grid>
       </Grid>
     </div>
   );

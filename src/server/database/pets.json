@@ -17,9 +17,9 @@
     "type": "Dog",
     "gender": "Male",
     "breed": "Poodle",
-    "isSterilized": "true",
+    "isSterilized": true,
     "vaccines": "tbd list",
-    "isAdoptable": "true",
+    "isAdoptable": true,
     "bio": "An amazing dog"
   },
   {
