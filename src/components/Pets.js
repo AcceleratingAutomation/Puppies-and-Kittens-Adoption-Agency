@@ -12,15 +12,14 @@ const url = "http://localhost:5000/v1/pets";
 
 const initialState = {
   pets: [],
-  favorites: [],
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'setPets':
       return { ...state, pets: action.value };
-    case 'addFavorite':
-      return { ...state, favorites: [...state.favorites, action.value] };
+    case 'setFavorites':
+      return action.isFavorite;
     default:
       throw new Error();
   }
@@ -54,7 +53,7 @@ export const Pets = () => {
       .catch((err) => console.log("Error fetching pets ", err.message));
   }, [redirect]);
 
-  const addToFavorites = useCallback(async (id) => {
+  const addToFavorites = useCallback(async (id, dispatch) => {
     try {
       const response = await fetch(`${favoriteUrl}/${id}`, {
         method: 'POST',
@@ -64,8 +63,8 @@ export const Pets = () => {
       if (response.status === 200) {
         // Add the favorite pet to the state
         dispatch({
-          type: 'addFavorite',
-          value: id,
+          type: 'setFavorites',
+          isFavorite: true,
         });
       } else {
         console.error('Failed to add pet to favorites');
@@ -75,9 +74,21 @@ export const Pets = () => {
     }
   }, []);
 
-  const inFavorites = useCallback((id) => state.favorites.includes(id), [state.favorites]);
+  const inFavorites = useCallback(async (id) => {
+    const response = await fetch(`${favoriteUrl}`, {
+      headers: constructHeader(),
+    });
 
-  const redirectToFavorite = useCallback(() => {history.push('/favorite')}, [history]);
+    if (response.ok) {
+      const data = await response.json();
+      return data.favorites.some(pet => pet.id === id);
+    } else {
+      console.error('Failed to fetch favorites');
+      return false;
+    }
+  }, []);
+
+  const redirectToFavorite = useCallback(() => { history.push('/favorite') }, [history]);
 
   const deletePet = useCallback(async (id) => {
     try {
@@ -98,7 +109,7 @@ export const Pets = () => {
           method: 'DELETE',
           headers: constructHeader(),
         });
-  
+
         if (!favResponse.ok) {
           console.error('Failed to delete pet from favorites');
         }
@@ -149,37 +160,44 @@ export const Pets = () => {
 const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedirectFavorite, onDelete }) => {
   const pet = { name, id, type, gender, breed };
   const classes = useStyles();
+  const [isFavorite, dispatch] = useReducer(reducer, false);
+
+  useEffect(() => {
+    inFavorites(id).then(isFavorite => {
+      dispatch({ type: 'setFavorites', isFavorite });
+    });
+  }, [id, inFavorites]);
 
   return (
     <PetCard pet={pet}>
-    <Grid item xs={12} container justify="center">
-      {inFavorites(id) ? (
-        <Button
-          className={classes.muiButton}
-          variant="contained"
-          color="primary"
-          size="small"
-          onClick={() => onRedirectFavorite()}
-        >
-          FAVORITE
-        </Button>
+      <Grid item xs={12} container justify="center">
+        {isFavorite ? (
+          <Button
+            className={classes.muiButton}
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => onRedirectFavorite()}
+          >
+            FAVORITE
+          </Button>
         ) : (
-        <Button
-          className={classes.muiButton}
-          variant="contained"
-          color="primary"
-          size="small"
-          onClick={() => onAddFavorite(id)}
-        >
-          ADD TO FAVORITES
-        </Button>
+          <Button
+            className={classes.muiButton}
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => onAddFavorite(id, dispatch)}
+          >
+            ADD TO FAVORITES
+          </Button>
         )}
         <Button
           className={classes.muiButton}
           variant="contained"
           color="secondary"
           size="small"
-          onClick={() => onDelete(id)} 
+          onClick={() => onDelete(id)}
         >
           DELETE PET
         </Button>
