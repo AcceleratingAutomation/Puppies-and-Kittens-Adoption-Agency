@@ -51,7 +51,7 @@ export const PetDetails = () => {
           {state.pet.name}'s Details
           </Typography>
         </Grid>
-        <Grid container style={{ paddingLeft: '1.25rem' }} alignItems="baseline" direction="row" >
+        <Grid container style={{ padding: '1.25rem' }} alignItems="baseline" direction="row" >
           <Grid item xs={12} sm={6} style={{ textAlign: 'left' }} >
             <Grid container>
               <Grid item xs={6}><strong>Type</strong></Grid>
@@ -66,12 +66,20 @@ export const PetDetails = () => {
               <Grid item xs={6}>{state.pet.breed}</Grid>
             </Grid>
             <Grid container>
+              <Grid item xs={6}><strong>Has Foster Care</strong></Grid>
+              <Grid item xs={6}>{state.pet.hasFoster ? state.pet.hasFoster.toString() : ''}</Grid>
+            </Grid>
+            <Grid container>
+              <Grid item xs={6}><strong>Has Veternarian Care</strong></Grid>
+              <Grid item xs={6}>{state.pet.hasVet ? state.pet.hasVet.toString() : ''}</Grid>
+            </Grid>
+            <Grid container>
               <Grid item xs={6}><strong>Spayed/Neutered</strong></Grid>
               <Grid item xs={6}>{state.pet.isSterilized ? state.pet.isSterilized.toString() : ''}</Grid>
             </Grid>
             <Grid container>
-              <Grid item xs={6}><strong>Vaccines</strong></Grid>
-              <Grid item xs={6}>{state.pet.vaccines}</Grid>
+              <Grid item xs={6}><strong>Vaccinated</strong></Grid>
+              <Grid item xs={6}>{state.pet.isVaccinated ? state.pet.isVaccinated.toString() : ''}</Grid>
             </Grid>
             <Grid container>
               <Grid item xs={6}><strong>Ready To Adopt</strong></Grid>
@@ -88,9 +96,9 @@ export const PetDetails = () => {
           variant="contained"
           color="primary"
           size="large"
-          onClick={() => console.log("Adopt me!")}
+          onClick={() => console.log(`Adopt ${state.pet.name}!`)}
         >
-          ADOPT ME
+          ADOPT {state.pet.name}
         </Button>
       </Grid>
       </Grid>
