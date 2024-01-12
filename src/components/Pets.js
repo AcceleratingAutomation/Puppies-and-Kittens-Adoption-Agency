@@ -61,7 +61,6 @@ export const Pets = () => {
       });
 
       if (response.status === 200) {
-        // Add the favorite pet to the state
         dispatch({
           type: 'setFavorites',
           isFavorite: true,
@@ -88,7 +87,24 @@ export const Pets = () => {
     }
   }, []);
 
-  const redirectToFavorite = useCallback(() => { history.push('/favorite') }, [history]);
+  const onRemoveFavorite = useCallback(async (id, dispatch) => {
+    try {
+      const response = await fetch(`${favoriteUrl}/${id}`, {
+        method: 'DELETE',
+        headers: constructHeader(),
+      });
+      if (response.status === 200) {
+        dispatch({
+          type: 'setFavorites',
+          isFavorite: false,
+        });
+      } else {
+        console.error('Failed to remove pet from favorites');
+      }
+    } catch (err) {
+      console.error('Error removing pet from favorites', err);
+    }
+  }, []);
 
   const deletePet = useCallback(async (id) => {
     try {
@@ -131,11 +147,11 @@ export const Pets = () => {
       breed={pet.breed}
       color={pet.color}
       onAddFavorite={addToFavorites}
-      onRedirectFavorite={redirectToFavorite}
+      onRemoveFavorite={onRemoveFavorite}
       inFavorites={inFavorites}
       onDelete={deletePet}
     />
-  )), [state.pets, addToFavorites, redirectToFavorite, inFavorites, deletePet]);
+  )), [state.pets, addToFavorites, onRemoveFavorite, inFavorites, deletePet]);
 
   return (
     <div className="Content">
@@ -157,7 +173,7 @@ export const Pets = () => {
   );
 };
 
-const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedirectFavorite, onDelete }) => {
+const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRemoveFavorite, onDelete }) => {
   const pet = { name, id, type, gender, breed };
   const classes = useStyles();
   const [isFavorite, dispatch] = useReducer(reducer, false);
@@ -177,9 +193,9 @@ const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRedi
             variant="contained"
             color="primary"
             size="small"
-            onClick={() => onRedirectFavorite()}
+            onClick={() => onRemoveFavorite(id, dispatch)}
           >
-            FAVORITE
+            REMOVE FAVORITE
           </Button>
         ) : (
           <Button
