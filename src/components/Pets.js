@@ -6,38 +6,9 @@ import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
 import { url as favoriteUrl } from "./MyFavorite";
 import { Pet } from './Pet';
+import { reducer, initialState } from '../reducers/pets';
 
 const url = "http://localhost:5000/v1/pets";
-
-const initialState = {
-  pets: [],
-  favorites: [],
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'setPets':
-      return { ...state, pets: action.value };
-    case 'setFavorites':
-      return { ...state, favorites: action.value };
-    case 'addToFavorites':
-      return { 
-        ...state, 
-        pets: state.pets.map(pet => 
-          pet.id === action.id ? { ...pet, isFavorite: true } : pet
-        )
-      };
-    case 'removeFromFavorites':
-      return { 
-        ...state, 
-        pets: state.pets.map(pet => 
-          pet.id === action.id ? { ...pet, isFavorite: false } : pet
-        )
-      };
-    default:
-      throw new Error();
-  }
-}
 
 export const Pets = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -100,10 +71,10 @@ export const Pets = () => {
       const isFavorite = await inFavorites(pet.id);
       return isFavorite ? pet.id : null;
     }))
-    .then(favorites => {
-      const favoriteIds = favorites.filter(id => id !== null);
-      dispatch({ type: 'setFavorites', value: favoriteIds });
-    });
+      .then(favorites => {
+        const favoriteIds = favorites.filter(id => id !== null);
+        dispatch({ type: 'setFavorites', value: favoriteIds });
+      });
   }, [state.pets, inFavorites, dispatch]);
 
   const onRemoveFavorite = useCallback(async (id) => {
