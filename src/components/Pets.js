@@ -1,17 +1,17 @@
 import React, { useReducer, useEffect, useCallback, useMemo } from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
 import { url as favoriteUrl } from "./MyFavorite";
-import { PetCard } from "./PetCard";
+import { Pet } from './Pet';
 
 const url = "http://localhost:5000/v1/pets";
 
 const initialState = {
   pets: [],
+  favorites: [],
 };
 
 function reducer(state, action) {
@@ -19,18 +19,25 @@ function reducer(state, action) {
     case 'setPets':
       return { ...state, pets: action.value };
     case 'setFavorites':
-      return action.isFavorite;
+      return { ...state, favorites: action.value };
+    case 'addToFavorites':
+      return { 
+        ...state, 
+        pets: state.pets.map(pet => 
+          pet.id === action.id ? { ...pet, isFavorite: true } : pet
+        )
+      };
+    case 'removeFromFavorites':
+      return { 
+        ...state, 
+        pets: state.pets.map(pet => 
+          pet.id === action.id ? { ...pet, isFavorite: false } : pet
+        )
+      };
     default:
       throw new Error();
   }
 }
-
-const useStyles = makeStyles({
-  muiButton: {
-    width: '65%',
-    margin: '0.625rem',
-  },
-});
 
 export const Pets = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -53,7 +60,7 @@ export const Pets = () => {
       .catch((err) => console.log("Error fetching pets ", err.message));
   }, [redirect]);
 
-  const addToFavorites = useCallback(async (id, dispatch) => {
+  const onAddFavorite = useCallback(async (id) => {
     try {
       const response = await fetch(`${favoriteUrl}/${id}`, {
         method: 'POST',
@@ -62,8 +69,8 @@ export const Pets = () => {
 
       if (response.status === 200) {
         dispatch({
-          type: 'setFavorites',
-          isFavorite: true,
+          type: 'addToFavorites',
+          id: id,
         });
       } else {
         console.error('Failed to add pet to favorites');
@@ -87,7 +94,19 @@ export const Pets = () => {
     }
   }, []);
 
-  const onRemoveFavorite = useCallback(async (id, dispatch) => {
+  useEffect(() => {
+    // Call inFavorites for each pet and update favorites when the Promises resolve
+    Promise.all(state.pets.map(async pet => {
+      const isFavorite = await inFavorites(pet.id);
+      return isFavorite ? pet.id : null;
+    }))
+    .then(favorites => {
+      const favoriteIds = favorites.filter(id => id !== null);
+      dispatch({ type: 'setFavorites', value: favoriteIds });
+    });
+  }, [state.pets, inFavorites, dispatch]);
+
+  const onRemoveFavorite = useCallback(async (id) => {
     try {
       const response = await fetch(`${favoriteUrl}/${id}`, {
         method: 'DELETE',
@@ -95,8 +114,8 @@ export const Pets = () => {
       });
       if (response.status === 200) {
         dispatch({
-          type: 'setFavorites',
-          isFavorite: false,
+          type: 'removeFromFavorites',
+          id: id,
         });
       } else {
         console.error('Failed to remove pet from favorites');
@@ -106,7 +125,7 @@ export const Pets = () => {
     }
   }, []);
 
-  const deletePet = useCallback(async (id) => {
+  const onDeletePet = useCallback(async (id) => {
     try {
       const response = await fetch(`${url}/${id}`, {
         method: 'DELETE',
@@ -145,13 +164,12 @@ export const Pets = () => {
       type={pet.type}
       gender={pet.gender}
       breed={pet.breed}
-      color={pet.color}
-      onAddFavorite={addToFavorites}
+      onAddFavorite={onAddFavorite}
       onRemoveFavorite={onRemoveFavorite}
-      inFavorites={inFavorites}
-      onDelete={deletePet}
+      isFavorite={state.favorites.includes(pet.id)}
+      onDeletePet={onDeletePet}
     />
-  )), [state.pets, addToFavorites, onRemoveFavorite, inFavorites, deletePet]);
+  )), [state.pets, state.favorites, onAddFavorite, onRemoveFavorite, onDeletePet]);
 
   return (
     <div className="Content">
@@ -173,51 +191,4 @@ export const Pets = () => {
   );
 };
 
-const Pet = ({ name, id, type, gender, breed, onAddFavorite, inFavorites, onRemoveFavorite, onDelete }) => {
-  const pet = { name, id, type, gender, breed };
-  const classes = useStyles();
-  const [isFavorite, dispatch] = useReducer(reducer, false);
 
-  useEffect(() => {
-    inFavorites(id).then(isFavorite => {
-      dispatch({ type: 'setFavorites', isFavorite });
-    });
-  }, [id, inFavorites]);
-
-  return (
-    <PetCard pet={pet}>
-      <Grid item xs={12} container justify="center">
-        {isFavorite ? (
-          <Button
-            className={classes.muiButton}
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={() => onRemoveFavorite(id, dispatch)}
-          >
-            REMOVE FAVORITE
-          </Button>
-        ) : (
-          <Button
-            className={classes.muiButton}
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={() => onAddFavorite(id, dispatch)}
-          >
-            ADD TO FAVORITES
-          </Button>
-        )}
-        <Button
-          className={classes.muiButton}
-          variant="contained"
-          color="secondary"
-          size="small"
-          onClick={() => onDelete(id)}
-        >
-          DELETE PET
-        </Button>
-      </Grid>
-    </PetCard>
-  );
-};
