@@ -43,7 +43,7 @@ export const Users = () => {
 
   return (
     <div className="Content">
-      <AppHeader tabValue={3} />
+      <AppHeader tabValue={6} />
       {!showPage && <div />}
       {showPage && (
         <Grid container justify="center" direction="column" alignItems="center">

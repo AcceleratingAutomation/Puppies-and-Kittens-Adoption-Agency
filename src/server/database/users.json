@@ -22,5 +22,44 @@
       "f811132a-9d1f-4dd7-84ad-74fc48269158"
     ],
     "role": "admin"
+  },
+  {
+    "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",
+    "username": "vet",
+    "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
+    "firstName": "Jason",
+    "lastName": "Caldwell",
+    "favorite": [
+      "6cc12b5e-cb5e-11ea-87d0-0242ac130003",
+      "9b64fb2d-8f34-48ae-b74d-e6342a99838e",
+      "f811132a-9d1f-4dd7-84ad-74fc48269158"
+    ],
+    "role": "vet"
+  },
+  {
+    "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",
+    "username": "foster",
+    "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
+    "firstName": "Jason",
+    "lastName": "Caldwell",
+    "favorite": [
+      "6cc12b5e-cb5e-11ea-87d0-0242ac130003",
+      "9b64fb2d-8f34-48ae-b74d-e6342a99838e",
+      "f811132a-9d1f-4dd7-84ad-74fc48269158"
+    ],
+    "role": "foster"
+  },
+  {
+    "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",
+    "username": "canidate",
+    "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
+    "firstName": "Jason",
+    "lastName": "Caldwell",
+    "favorite": [
+      "6cc12b5e-cb5e-11ea-87d0-0242ac130003",
+      "9b64fb2d-8f34-48ae-b74d-e6342a99838e",
+      "f811132a-9d1f-4dd7-84ad-74fc48269158"
+    ],
+    "role": "canidate"
   }
 ]

@@ -7,6 +7,9 @@ import { Users } from "./components/Users";
 import { AddPet } from "./components/AddPet";
 import { MyFavorite } from "./components/MyFavorite";
 import { PetDetails } from "./components/PetDetails";
+import { Vets } from "./components/Vets";
+import { Fosters } from "./components/Fosters";
+import { Canidates } from "./components/Canidates";
 
 export default function App() {
   return (
@@ -27,6 +30,15 @@ export default function App() {
           </Route>
           <Route exact path="/pet">
             <AddPet />
+          </Route>
+          <Route exact path="/vets">
+            <Vets />
+          </Route>
+          <Route exact path="/fosters">
+            <Fosters />
+          </Route>
+          <Route exact path="/canidates">
+            <Canidates />
           </Route>
           <Route path="/">
             <Login />

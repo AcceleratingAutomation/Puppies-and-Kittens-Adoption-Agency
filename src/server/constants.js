@@ -1,21 +1,65 @@
 module.exports.JWT_OPTIONS = {
-  MEMBER_AUDIENCE: ["SHOW_FAVORITE", "LOGIN", "SHOW_PETS", "SHOW_PET_DETAILS"],
   ADMIN_AUDIENCE: [
-    "SHOW_FAVORITE",
-    "LOGIN",
-    "SHOW_PETS",
-    "SHOW_PET_DETAILS",
+    "ADD_FAVORITE_PET",
     "ADD_PET",
+    "DELETE_FAVORITE",
     "DELETE_PET",
+    "LOGIN",
+    "SHOW_CANDIDATES",
+    "SHOW_FAVORITE",
+    "SHOW_FORMS",
+    "SHOW_FOSTERS",
+    "SHOW_PET_DETAILS",
+    "SHOW_PETS",
+    "SHOW_USERS",
+    "SHOW_VETS",
+  ],
+  CANIDATE_AUDIENCE: [
     "ADD_FAVORITE_PET",
     "DELETE_FAVORITE",
-    "SHOW_USERS",
+    "LOGIN",
+    "SHOW_CANDIDATES",
+    "SHOW_FAVORITE",
+    "SHOW_FORMS",
+    "SHOW_PET_DETAILS",
+    "SHOW_PETS",
+  ],
+  FOSTER_AUDIENCE: [
+    "ADD_FAVORITE_PET",
+    "ADD_PET",
+    "DELETE_FAVORITE",
+    "LOGIN",
+    "SHOW_FAVORITE",
+    "SHOW_FORMS",
+    "SHOW_FOSTERS",
+    "SHOW_PET_DETAILS",
+    "SHOW_PETS",
+  ],
+  MEMBER_AUDIENCE: [
+    "ADD_FAVORITE_PET",
+    "DELETE_FAVORITE",
+    "LOGIN",
+    "SHOW_FAVORITE",
+    "SHOW_PET_DETAILS",
+    "SHOW_PETS",
+  ],
+  VET_AUDIENCE: [
+    "ADD_FAVORITE_PET",
+    "ADD_PET",
+    "DELETE_FAVORITE",
+    "LOGIN",
+    "SHOW_FAVORITE",
+    "SHOW_FORMS",
+    "SHOW_PET_DETAILS",
+    "SHOW_PETS",
+    "SHOW_VETS",
   ],
 };
 
-module.exports.ADD_PET = "ADD_PET";
-module.exports.SHOW_PET_DETAILS = "SHOW_PET_DETAILS";
 module.exports.ADD_FAVORITE_PET = "ADD_FAVORITE_PET";
-module.exports.DELETE_PET = "DELETE_PET";
+module.exports.ADD_PET = "ADD_PET";
 module.exports.DELETE_FAVORITE = "DELETE_FAVORITE";
+module.exports.DELETE_PET = "DELETE_PET";
+module.exports.LOGIN = "LOGIN";
+module.exports.SHOW_PET_DETAILS = "SHOW_PET_DETAILS";
 module.exports.SHOW_USERS = "SHOW_USERS";

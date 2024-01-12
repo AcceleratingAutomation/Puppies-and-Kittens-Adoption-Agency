@@ -28,7 +28,7 @@ function reducer(state, action) {
 }
 
 export const AppHeader = ({ tabValue }) => {
-  const tabs = ["/favorite", "/pets", "/pet", "/users"];
+  const tabs = ["/favorite", "/pets", "/pet", "/canidates", "/fosters", "/vets", "/users"];
   const [state, dispatch] = useReducer(reducer, initialState);
   const open = Boolean(state.anchorEl);
   const history = useHistory();
@@ -57,6 +57,9 @@ export const AppHeader = ({ tabValue }) => {
             <Tab label="Favorite" />
             <Tab label="Pets" />
             <Tab label="Add Pet" disabled={shouldDisable} />
+            <Tab label="Canidates" />
+            <Tab label="Fosters" />
+            <Tab label="Vets" />
             <Tab label="Users" disabled={shouldDisable} />
           </Tabs>
           <div style={{ flexGrow: 1 }} />
