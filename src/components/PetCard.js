@@ -21,7 +21,7 @@ export const PetCard = ({ pet, children }) => {
   const history = useHistory();
 
   const onViewDetails = () => {
-    history.push(`/petDetails/${pet.id}`);
+    history.push(`/v1/petDetails/${pet.id}`);
   };
 
   return (

@@ -26,7 +26,7 @@ export const Fosters = () => {
 
     const redirect = useCallback(() => {
         localStorage.clear();
-        history.push("/login");
+        history.push("/v1/login");
       }, [history]);
     
       useEffect(() => {

@@ -28,7 +28,7 @@ function reducer(state, action) {
 }
 
 export const AppHeader = ({ tabValue }) => {
-  const tabs = ["/favorites", "/pets", "/pet", "/canidates", "/fosters", "/vets", "/users"];
+  const tabs = ["/v1/favorites", "/v1/pets", "/v1/pet", "/v1/canidates", "/v1/fosters", "/v1/vets", "/v1/users"];
   const [state, dispatch] = useReducer(reducer, initialState);
   const open = Boolean(state.anchorEl);
   const history = useHistory();
@@ -45,7 +45,7 @@ export const AppHeader = ({ tabValue }) => {
   const onClickLogout = () => {
     fetch(url, { headers: constructHeader() }).then((res) => {
       localStorage.clear();
-      history.push("/login");
+      history.push("/v1/login");
     });
   };
 

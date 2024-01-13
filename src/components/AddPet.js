@@ -50,11 +50,11 @@ export const AddPet = () => {
 
   const redirect = useCallback(() => {
     localStorage.clear();
-    history.push("/login");
+    history.push("/v1/login");
   }, [history]);
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) history.push("/login");
+    if (!localStorage.getItem("token")) history.push("/v1/login");
   }, [history]);
 
   const onClick = () => {

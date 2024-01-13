@@ -43,7 +43,7 @@ export const Login = () => {
         if (json.message) dispatch({ type: 'setLoginError', value: json.message });
         else {
           updateAppSettings(json.token);
-          history.push("/pets");
+          history.push("/v1/pets");
         }
       })
       .catch((err) => console.log("Error logging into app ", err.message));

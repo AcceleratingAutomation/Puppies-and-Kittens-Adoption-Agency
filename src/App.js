@@ -16,28 +16,28 @@ export default function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/pets">
+          <Route exact path="/v1/pets">
             <Pets />
           </Route>
-          <Route exact path="/petDetails/:id">
+          <Route exact path="/v1/petDetails/:id">
             <PetDetails />
           </Route>
-          <Route exact path="/users">
+          <Route exact path="/v1/users">
             <Users />
           </Route>
-          <Route exact path="/favorites">
+          <Route exact path="/v1/favorites">
             <Favorites />
           </Route>
-          <Route exact path="/pet">
+          <Route exact path="/v1/pet">
             <AddPet />
           </Route>
-          <Route exact path="/vets">
+          <Route exact path="/v1/vets">
             <Vets />
           </Route>
-          <Route exact path="/fosters">
+          <Route exact path="/v1/fosters">
             <Fosters />
           </Route>
-          <Route exact path="/canidates">
+          <Route exact path="/v1/canidates">
             <Canidates />
           </Route>
           <Route path="/">
