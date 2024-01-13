@@ -14,9 +14,20 @@ const useStyles = makeStyles({
     width: '65%',
     margin: '0.625rem',
   },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+  roundImage: {
+    borderRadius: '50%',
+    backgroundSize: 'cover', // This will prevent the image from being stretched or squished
+    backgroundPosition: 'center', // This will center the image
+    width: '100%',
+    paddingTop: '100%', // This will maintain the aspect ratio of the image
+  },
 });
 
-export const PetCard = ({ pet, children }) => {
+export const PetCard = ({ pet, children, imageUrl }) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -26,6 +37,11 @@ export const PetCard = ({ pet, children }) => {
 
   return (
     <Paper elevation={2} className={`Pet ${classes.petCard}`}>
+      <div
+        className={`${classes.media} ${classes.roundImage}`}
+        style={{ backgroundImage: `url(${imageUrl})` }}
+        title="Placeholder Image"
+      />
       <Grid container direction="column">
         <Grid item xs={12}>
           <Typography variant="h4">{pet.name}</Typography>

@@ -22,7 +22,7 @@ function reducer(state, action) {
 }
 
 const Pet = React.memo(({ pet, removeFavorite }) => (
-  <PetCard pet={pet}>
+  <PetCard pet={pet} imageUrl={pet.imageUrl}>
     <Grid item xs={12} container justify="center">
       <Button
         style={{ width: '65%', margin: '0.625rem' }}
@@ -71,7 +71,12 @@ export const Favorites = () => {
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          dispatch({ type: 'setFavPets', value: [...json.favorites] });
+          const favoritesWithImages = json.favorites.map(pet => {
+            let randomImageNumber = Math.floor(Math.random() * 10) + 1;
+            let imageUrl = `/images/people/person-image-${randomImageNumber}.jpg`;
+            return { ...pet, imageUrl };
+          });
+          dispatch({ type: 'setFavPets', value: [...favoritesWithImages] });
         }
       })
       .catch((err) =>
