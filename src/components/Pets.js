@@ -4,7 +4,7 @@ import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
-import { url as favoriteUrl } from "./MyFavorite";
+import { url as favoritesUrl } from "./Favorites";
 import { Pet } from './Pet';
 import { reducer, initialState } from '../reducers/pets';
 
@@ -33,7 +33,7 @@ export const Pets = () => {
 
   const onAddFavorite = useCallback(async (id) => {
     try {
-      const response = await fetch(`${favoriteUrl}/${id}`, {
+      const response = await fetch(`${favoritesUrl}/${id}`, {
         method: 'POST',
         headers: constructHeader(),
       });
@@ -52,7 +52,7 @@ export const Pets = () => {
   }, []);
 
   const inFavorites = useCallback(async (id) => {
-    const response = await fetch(`${favoriteUrl}`, {
+    const response = await fetch(`${favoritesUrl}`, {
       headers: constructHeader(),
     });
 
@@ -79,7 +79,7 @@ export const Pets = () => {
 
   const onRemoveFavorite = useCallback(async (id) => {
     try {
-      const response = await fetch(`${favoriteUrl}/${id}`, {
+      const response = await fetch(`${favoritesUrl}/${id}`, {
         method: 'DELETE',
         headers: constructHeader(),
       });
@@ -111,7 +111,7 @@ export const Pets = () => {
         });
 
         // The pet also needs to be removed from favorites if it exists
-        const favResponse = await fetch(`${favoriteUrl}/${id}`, {
+        const favResponse = await fetch(`${favoritesUrl}/${id}`, {
           method: 'DELETE',
           headers: constructHeader(),
         });

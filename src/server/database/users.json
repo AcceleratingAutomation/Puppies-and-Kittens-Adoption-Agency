@@ -5,8 +5,7 @@
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
     "firstName": "Member",
     "lastName": "User",
-    "favorite": [
-    ],
+    "favorite": [],
     "role": "member"
   },
   {
@@ -27,8 +26,7 @@
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
     "firstName": "Jason",
     "lastName": "Caldwell",
-    "favorite": [
-    ],
+    "favorite": [],
     "role": "vet"
   },
   {
@@ -37,8 +35,7 @@
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
     "firstName": "Jason",
     "lastName": "Caldwell",
-    "favorite": [
-    ],
+    "favorite": [],
     "role": "foster"
   },
   {
@@ -47,8 +44,7 @@
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
     "firstName": "Jason",
     "lastName": "Caldwell",
-    "favorite": [
-    ],
+    "favorite": [],
     "role": "canidate"
   }
 ]

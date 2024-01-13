@@ -5,7 +5,7 @@ import { Login } from "./components/Login";
 import { Pets } from "./components/Pets";
 import { Users } from "./components/Users";
 import { AddPet } from "./components/AddPet";
-import { MyFavorite } from "./components/MyFavorite";
+import { Favorites } from "./components/Favorites";
 import { PetDetails } from "./components/PetDetails";
 import { Vets } from "./components/Vets";
 import { Fosters } from "./components/Fosters";
@@ -25,8 +25,8 @@ export default function App() {
           <Route exact path="/users">
             <Users />
           </Route>
-          <Route exact path="/favorite">
-            <MyFavorite />
+          <Route exact path="/favorites">
+            <Favorites />
           </Route>
           <Route exact path="/pet">
             <AddPet />

@@ -15,9 +15,9 @@ app.use(cors());
 
 // Favorites
 
-app.get("/v1/favorite", verifyToken, favoritesController.getFavorites);
-app.post("/v1/favorite/:id", verifyToken, favoritesController.addFavorite);
-app.delete("/v1/favorite/:id", verifyToken, favoritesController.deleteFavorite);
+app.get("/v1/favorites", verifyToken, favoritesController.getFavorites);
+app.post("/v1/favorites/:id", verifyToken, favoritesController.addFavorite);
+app.delete("/v1/favorites/:id", verifyToken, favoritesController.deleteFavorite);
 
 // Pets
 

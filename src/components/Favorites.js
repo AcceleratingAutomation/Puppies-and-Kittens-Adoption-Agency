@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { constructHeader, updateAppSettings } from "../util";
 import { PetCard } from "./PetCard";
 
-export const url = "http://localhost:5000/v1/favorite";
+export const url = "http://localhost:5000/v1/favorites";
 
 const initialState = {
   favPets: [],
@@ -38,7 +38,7 @@ const Pet = React.memo(({ pet, removeFavorite }) => (
   </PetCard>
 ));
 
-export const MyFavorite = () => {
+export const Favorites = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
 
