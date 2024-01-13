@@ -85,7 +85,6 @@ export const AddPet = () => {
 
   return (
     <div className="AddPet">
-      <AppHeader tabValue={2} />
       {!showPage && <div />}
       {showPage && (
       <Grid container direction="column" alignItems="center">

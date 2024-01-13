@@ -18,7 +18,6 @@ module.exports.JWT_OPTIONS = {
     "ADD_FAVORITE_PET",
     "DELETE_FAVORITE",
     "LOGIN",
-    "SHOW_CANDIDATES",
     "SHOW_FAVORITE",
     "SHOW_FORMS",
     "SHOW_PET_DETAILS",
@@ -31,7 +30,6 @@ module.exports.JWT_OPTIONS = {
     "LOGIN",
     "SHOW_FAVORITE",
     "SHOW_FORMS",
-    "SHOW_FOSTERS",
     "SHOW_PET_DETAILS",
     "SHOW_PETS",
   ],
@@ -52,7 +50,6 @@ module.exports.JWT_OPTIONS = {
     "SHOW_FORMS",
     "SHOW_PET_DETAILS",
     "SHOW_PETS",
-    "SHOW_VETS",
   ],
 };
 

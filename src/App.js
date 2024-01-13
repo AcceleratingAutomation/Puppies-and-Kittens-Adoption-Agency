@@ -10,6 +10,7 @@ import { PetDetails } from "./components/PetDetails";
 import { Vets } from "./components/Vets";
 import { Fosters } from "./components/Fosters";
 import { Canidates } from "./components/Canidates";
+import { Forms } from "./components/Forms";
 
 export default function App() {
   return (
@@ -36,6 +37,9 @@ export default function App() {
           </Route>
           <Route exact path="/v1/fosters">
             <Fosters />
+          </Route>
+          <Route exact path="/v1/forms">
+            <Forms />
           </Route>
           <Route exact path="/v1/canidates">
             <Canidates />
