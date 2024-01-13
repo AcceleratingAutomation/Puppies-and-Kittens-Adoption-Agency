@@ -1,191 +1,45 @@
 require("dotenv").config({ path: "./variables.env" });
 const express = require("express");
 const cors = require("cors");
-const { uuid } = require("uuidv4");
-const {
-  getUserByUsername,
-  isEmptyObject,
-  isPasswordCorrect,
-  getPetDetails,
-  getAllPets,
-  getAllUsers,
-  addPet,
-  verifyToken,
-  getFavoritePetsForUser,
-  getAudienceFromToken,
-  generateToken,
-  addFavoritePet,
-  deletePet,
-  deleteFavorite
-} = require("./shared");
-const Constants = require("./constants");
+const favoritesController = require('./controllers/favorites');
+const petsController = require('./controllers/pets');
+const usersController = require('./controllers/users');
+const loginController = require('./controllers/login');
+const formsController = require('./controllers/forms');
+const { verifyToken } = require("./shared");
 const app = express();
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
 app.use(express.json());
 app.use(cors());
 
-app.get("/v1/users", verifyToken, (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  if (getAudienceFromToken(token).includes(Constants.SHOW_USERS)) {
-    getAllUsers().then((users) => {
-      if (users && users.length > 0) {
-        generateToken(token, null).then((token) => {
-          res.status(200).send({ users: users, token: token });
-        });
-      } else res.status(500).send({ users: [], token: token });
-    });
-  } else
-    res
-      .status(403)
-      .send({ message: "Not authorized to view users", token: token });
-});
+// Favorites
 
-app.get("/v1/pets", verifyToken, (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  getAllPets().then((pets) => {
-    if (pets && pets.length > 0) {
-      generateToken(token, null).then((token) => {
-        res.status(200).send({ pets: pets, token: token });
-      });
-    } else res.status(500).send({ pets: [], token: token });
-  });
-});
+app.get("/v1/favorite", verifyToken, favoritesController.getFavorites);
+app.post("/v1/favorite/:id", verifyToken, favoritesController.addFavorite);
+app.delete("/v1/favorite/:id", verifyToken, favoritesController.deleteFavorite);
 
-app.post("/v1/login", (req, res) => {
-  let base64Encoding = req.headers.authorization.split(" ")[1];
-  let credentials = Buffer.from(base64Encoding, "base64").toString().split(":");
-  const username = credentials[0];
-  const password = credentials[1];
-  getUserByUsername(username).then((user) => {
-    if (user && !isEmptyObject(user)) {
-      isPasswordCorrect(user.key, password).then((result) => {
-        if (!result)
-          res
-            .status(401)
-            .send({ message: "username or password is incorrect" });
-        else {
-          generateToken(null, username).then((token) => {
-            res
-              .status(200)
-              .send({ username: user.username, role: user.role, token: token });
-          });
-        }
-      });
-    } else
-      res.status(401).send({ message: "username or password is incorrect" });
-  });
-});
+// Pets
 
-app.get("/v1/logout", verifyToken, (req, res) => {
-  res.status(200).send({ message: "Signed out" });
-});
+app.get("/v1/pets", verifyToken, petsController.getAllPets);
+app.delete("/v1/pets/:id", verifyToken, petsController.deletePet);
+app.get("/v1/petDetails/:id", verifyToken, petsController.getPetDetails);
 
-app.get("/v1/petDetails/:id", verifyToken, (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  if (getAudienceFromToken(token).includes(Constants.SHOW_PET_DETAILS)) {
-    getPetDetails(req.params.id).then((pet) => {
-      if (!pet || Object.keys(pet).length === 0) {
-        res.status(404).send({ message: "Cannot get details for this pet" });
-      } else {
-        generateToken(token, null).then((newToken) => {
-          res.status(200).send({ pet: pet, token: newToken });
-        });
-      }
-    }).catch((err) => {
-      console.error(err);
-      res.status(500).send({ message: "Error retrieving pet details" });
-    });
-  } else {
-    res.status(403).send({ message: "Not authorized to view pet details", token: token });
-  }
-});
+// Forms
 
-app.get("/v1/favorite", verifyToken, (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  getFavoritePetsForUser(token).then((pets) => {
-    generateToken(token, null).then((token) => {
-      res.status(200).send({ favorites: pets, token: token });
-    });
-  });
-});
+app.post("/v1/pet", verifyToken, formsController.addPet);
 
-app.post("/v1/favorite/:id", verifyToken, (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  if (getAudienceFromToken(token).includes(Constants.ADD_FAVORITE_PET)) {
-    addFavoritePet(token, req.params.id).then((err) => {
-      if (err) res.status(500).send({ message: "Cannot add this pet to favorites" });
-      else {
-        generateToken(token, null).then((token) => {
-          res
-            .status(200)
-            .send({ message: "Pet added to favorites successfully", token: token });
-        });
-      }
-    });
-  } else
-    res
-      .status(403)
-      .send({ message: "Not authorized to add a pet to favorites", token: token });
-});
+// Canidates
 
-app.post("/v1/pet", verifyToken, (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  if (getAudienceFromToken(token).includes(Constants.ADD_PET)) {
-    addPet({ id: uuid(), name: req.body.name, type: req.body.type, gender: req.body.gender, breed: req.body.breed }).then(
-      (err) => {
-        if (err) res.status(500).send({ message: "Cannot add this pet" });
-        else {
-          generateToken(token, null).then((token) => {
-            res
-              .status(200)
-              .send({ message: "Pet added successfully", token: token });
-          });
-        }
-      }
-    );
-  } else
-    res
-      .status(403)
-      .send({ message: "Not authorized to add a pet", token: token });
-});
+// Fosters
 
-app.delete("/v1/pets/:id", verifyToken, (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  if (getAudienceFromToken(token).includes(Constants.DELETE_PET)) {
-    deletePet(req.params.id).then((err) => {
-      if (err) res.status(500).send({ message: "Cannot delete this pet" });
-      else {
-        generateToken(token, null).then((token) => {
-          res
-            .status(200)
-            .send({ message: "Pet deleted successfully", token: token });
-        });
-      }
-    });
-  } else
-    res
-      .status(403)
-      .send({ message: "Not authorized to delete a pet", token: token });
-});
+// Vets
 
-app.delete("/v1/favorite/:id", verifyToken, (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  if (getAudienceFromToken(token).includes(Constants.DELETE_FAVORITE)) {
-    deleteFavorite(token, req.params.id)
-      .then(() => {
-        generateToken(token, null).then((token) => {
-          res
-            .status(200)
-            .send({ message: "Favorite deleted successfully", token: token });
-        });
-      })
-      .catch((err) => {
-        res.status(500).send({ message: "Cannot delete this favorite", error: err });
-      });
-  } else {
-    res
-      .status(403)
-      .send({ message: "Not authorized to delete a favorite", token: token });
-  }
-});
+// Users
+
+app.get("/v1/users", verifyToken, usersController.getAllUsers);
+
+// Login
+
+app.post("/v1/login", loginController.login);
+app.get("/v1/logout", verifyToken, loginController.logout);
