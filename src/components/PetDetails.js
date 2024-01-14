@@ -1,10 +1,18 @@
 import React, { useEffect, useReducer, useCallback } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { constructHeader } from "../util";
 import { AppHeader } from "./AppHeader";
+import { url as favoritesUrl } from "./Favorites";
 
 const url = "http://localhost:5000/v1/petDetails";
+
+const useStyles = makeStyles({
+  muiButton: {
+    margin: '0.625rem',
+  },
+});
 
 const initialState = { pet: null, loading: true };
 
@@ -21,6 +29,7 @@ export const PetDetails = () => {
   const { id } = useParams();
   const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
+  const classes = useStyles();
 
   const redirect = useCallback(() => {
     localStorage.clear();
@@ -38,6 +47,34 @@ export const PetDetails = () => {
       .catch((err) => console.log("Error fetching pets ", err.message));
   }, [id, redirect]);
 
+  const onDeletePet = useCallback(async (id) => {
+    try {
+      const response = await fetch(`${url}/${id}`, {
+        method: 'DELETE',
+        headers: constructHeader(),
+      });
+
+      if (response.status === 200) {
+        // The pet also needs to be removed from favorites if it exists
+        const favResponse = await fetch(`${favoritesUrl}/${id}`, {
+          method: 'DELETE',
+          headers: constructHeader(),
+        });
+
+        if (favResponse.ok) {
+          history.push('/v1/pets');
+        }
+        else {
+          console.error('Failed to delete pet from favorites');
+        }
+      } else {
+        console.error('Failed to delete pet');
+      }
+    } catch (err) {
+      console.error('Error deleting pet', err);
+    }
+  }, [history]);
+
   if (state.loading) {
     return <div>Loading...</div>;
   }
@@ -48,7 +85,7 @@ export const PetDetails = () => {
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom >
-          {state.pet.name}'s Details
+            {state.pet.name}'s Details
           </Typography>
         </Grid>
         <Grid container style={{ padding: '1.25rem' }} alignItems="baseline" direction="row" >
@@ -91,16 +128,25 @@ export const PetDetails = () => {
           </Grid>
         </Grid>
         <Grid item xs={12} container justify="center">
-        <Button
-          style={{ margin: '0.625rem' }}
-          variant="contained"
-          color="primary"
-          size="large"
-          onClick={() => console.log(`Adopt ${state.pet.name}!`)}
-        >
-          ADOPT {state.pet.name}
-        </Button>
-      </Grid>
+          <Button
+            className={classes.muiButton}
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => console.log(`Adopt ${state.pet.name}!`)}
+          >
+            ADOPT {state.pet.name}
+          </Button>
+          <Button
+            className={classes.muiButton}
+            variant="contained"
+            color="secondary"
+            size="small"
+            onClick={() => onDeletePet(id)}
+          >
+            DELETE {state.pet.name}
+          </Button>
+        </Grid>
       </Grid>
     </div>
   );

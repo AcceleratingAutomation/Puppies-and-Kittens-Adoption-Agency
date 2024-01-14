@@ -22,7 +22,7 @@ app.delete("/v1/favorites/:id", verifyToken, favoritesController.deleteFavorite)
 // Pets
 
 app.get("/v1/pets", verifyToken, petsController.getAllPets);
-app.delete("/v1/pets/:id", verifyToken, petsController.deletePet);
+app.delete("/v1/petDetails/:id", verifyToken, petsController.deletePet);
 app.get("/v1/petDetails/:id", verifyToken, petsController.getPetDetails);
 
 // Forms

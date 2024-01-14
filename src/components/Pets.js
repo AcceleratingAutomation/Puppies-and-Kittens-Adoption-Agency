@@ -96,37 +96,6 @@ export const Pets = () => {
     }
   }, []);
 
-  const onDeletePet = useCallback(async (id) => {
-    try {
-      const response = await fetch(`${url}/${id}`, {
-        method: 'DELETE',
-        headers: constructHeader(),
-      });
-
-      if (response.status === 200) {
-        // Remove the deleted pet from the state
-        dispatch({
-          type: 'setPets',
-          value: state.pets.filter((pet) => pet.id !== id),
-        });
-
-        // The pet also needs to be removed from favorites if it exists
-        const favResponse = await fetch(`${favoritesUrl}/${id}`, {
-          method: 'DELETE',
-          headers: constructHeader(),
-        });
-
-        if (!favResponse.ok) {
-          console.error('Failed to delete pet from favorites');
-        }
-      } else {
-        console.error('Failed to delete pet');
-      }
-    } catch (err) {
-      console.error('Error deleting pet', err);
-    }
-  }, [state.pets]);
-
   const pets = useMemo(() => state.pets.map((pet, key) => (
     <Pet
       key={key}
@@ -138,9 +107,8 @@ export const Pets = () => {
       onAddFavorite={onAddFavorite}
       onRemoveFavorite={onRemoveFavorite}
       isFavorite={state.favorites.includes(pet.id)}
-      onDeletePet={onDeletePet}
     />
-  )), [state.pets, state.favorites, onAddFavorite, onRemoveFavorite, onDeletePet]);
+  )), [state.pets, state.favorites, onAddFavorite, onRemoveFavorite]);
 
   return (
     <div className="Content">

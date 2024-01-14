@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Pet = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, onRemoveFavorite, onDeletePet }) => {
+export const Pet = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, onRemoveFavorite }) => {
   const pet = { name, id, type, gender, breed };
   const classes = useStyles();
 
@@ -50,15 +50,6 @@ export const Pet = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, 
             ADD TO FAVORITES
           </Button>
         )}
-        <Button
-          className={classes.muiButton}
-          variant="contained"
-          color="secondary"
-          size="small"
-          onClick={() => onDeletePet(id)}
-        >
-          DELETE PET
-        </Button>
       </Grid>
     </PetCard>
   );
