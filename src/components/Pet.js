@@ -18,19 +18,20 @@ export const Pet = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, 
   const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
-    let randomImageNumber;
+    const generateRandomImageUrl = (maxImages) => {
+      const randomImageNumber = Math.floor(Math.random() * maxImages) + 1;
+      return `/images/${type}/${type}-image-${randomImageNumber}.jpg`;
+    };
+
     switch (type.toLowerCase()) {
       case 'dog':
-        randomImageNumber = Math.floor(Math.random() * 16) + 1;
-        setImageUrl(`/images/puppies/puppy-image-${randomImageNumber}.jpg`);
+        setImageUrl(generateRandomImageUrl(16));
         break;
       case 'cat':
-        randomImageNumber = Math.floor(Math.random() * 10) + 1;
-        setImageUrl(`/images/kittens/kitten-image-${randomImageNumber}.jpg`);
+        setImageUrl(generateRandomImageUrl(13));
         break;
       default:
-        randomImageNumber = Math.floor(Math.random() * 14) + 1;
-        setImageUrl(`/images/people/person-image-${randomImageNumber}.jpg`);
+        setImageUrl(generateRandomImageUrl(10));
     }
   }, [type]);
 
