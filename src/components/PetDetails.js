@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { constructHeader } from "../util";
 import { AppHeader } from "./AppHeader";
+import { ConfirmationDialog } from "./ConfirmationDialog";
 import { url as favoritesUrl } from "./Favorites";
 
 const url = "http://localhost:5000/v1/petDetails";
@@ -14,12 +15,16 @@ const useStyles = makeStyles({
   },
 });
 
-const initialState = { pet: null, loading: true };
+const initialState = { pet: null, loading: true, openDialog: false };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'FETCH_SUCCESS':
-      return { pet: action.payload, loading: false };
+      return { ...state, pet: action.payload, loading: false };
+    case 'OPEN_DIALOG':
+      return { ...state, openDialog: true };
+    case 'CLOSE_DIALOG':
+      return { ...state, openDialog: false };
     default:
       throw new Error();
   }
@@ -142,10 +147,15 @@ export const PetDetails = () => {
             variant="contained"
             color="secondary"
             size="small"
-            onClick={() => onDeletePet(id)}
+            onClick={() => dispatch({ type: 'OPEN_DIALOG' })}
           >
             DELETE {state.pet.name}
           </Button>
+          <ConfirmationDialog
+            open={state.openDialog}
+            onClose={() => dispatch({ type: 'CLOSE_DIALOG' })}
+            onConfirm={() => onDeletePet(id)}
+          />
         </Grid>
       </Grid>
     </div>
