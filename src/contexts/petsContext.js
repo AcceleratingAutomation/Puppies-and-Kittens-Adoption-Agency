@@ -9,7 +9,7 @@ export const initialState = {
 export function reducer(state, action) {
   switch (action.type) {
     case 'setPets':
-      return { ...state, pets: Array.isArray(action.value) ? action.value : ["test", 2], loading: false };
+      return { ...state, pets: action.value, loading: false };
     case 'setFavorites':
       return { ...state, favorites: action.value };
     case 'addToFavorites':
@@ -19,13 +19,14 @@ export function reducer(state, action) {
           pet.id === action.id ? { ...pet, isFavorite: true } : pet
         ),
       };
-    case 'removeFromFavorites':
-      return {
-        ...state,
-        pets: state.pets.map(pet =>
-          pet.id === action.id ? { ...pet, isFavorite: false } : pet
-        ),
-      };
+      case 'removeFromFavorites':
+        return {
+          ...state,
+          pets: state.pets.map(pet =>
+            pet.id === action.id ? { ...pet, isFavorite: false } : pet
+          ),
+          favorites: state.favorites.filter(favoriteId => favoriteId !== action.id)
+        };
     case 'setLoading':
       return { ...state, loading: action.value };
     default:

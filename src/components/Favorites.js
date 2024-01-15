@@ -22,10 +22,6 @@ export const Favorites = () => {
       });
   }, [dispatch]);
 
-  const handleAddFavorite = (id) => {
-    dispatch({ type: 'addToFavorites', id });
-  };
-
   const handleRemoveFavorite = (id) => {
     dispatch({ type: 'removeFromFavorites', id });
   };
@@ -58,7 +54,6 @@ export const Favorites = () => {
                 gender={pet.gender}
                 breed={pet.breed}
                 isFavorite={true}
-                onAddFavorite={handleAddFavorite}
                 onRemoveFavorite={handleRemoveFavorite}
               />
             ))}

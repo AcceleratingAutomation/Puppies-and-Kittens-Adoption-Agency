@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useCallback, useMemo } from "react";
+import React, { useContext, useEffect, useCallback, useMemo } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
@@ -6,12 +6,12 @@ import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
 import { url as favoritesUrl } from "./Favorites";
 import { PetCard } from './PetCard';
-import { reducer, initialState } from '../contexts/petsContext';
+import { PetsContext } from '../contexts/petsContext';
 
 const url = "http://localhost:5000/v1/pets";
 
 export const Pets = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, dispatch } = useContext(PetsContext);
   const history = useHistory();
 
   const redirect = useCallback(() => {
@@ -113,19 +113,23 @@ export const Pets = () => {
   return (
     <div className="Content">
       <AppHeader tabValue={1} />
-      <Grid container justify="center" alignItems="center" direction="column">
-        <Grid item style={{ marginBottom: "5vh" }}>
-          <Typography variant="h3" gutterBottom>
-            Rescue Puppies and Kittens!
-            <span role="img" aria-label="pets">
-              📚
-            </span>
-          </Typography>
+      {state.loading ? (
+        <div>Loading...</div>
+      ) : (
+        <Grid container justify="center" alignItems="center" direction="column">
+          <Grid item style={{ marginBottom: "5vh" }}>
+            <Typography variant="h3" gutterBottom>
+              Rescue Puppies and Kittens!
+              <span role="img" aria-label="pets">
+                📚
+              </span>
+            </Typography>
+          </Grid>
+          <Grid item container justify="center">
+            {pets}
+          </Grid>
         </Grid>
-        <Grid item container justify="center">
-          {pets}
-        </Grid>
-      </Grid>
+      )}
     </div>
   );
 };
