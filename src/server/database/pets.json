@@ -15,7 +15,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "An amazing dog with a great personality. He loves to play outside and is very friendly with other dogs. He is very well trained and is very obedient. He is a great dog for a family with kids."
+    "bio": "An amazing dog with a great personality. He loves to play outside and is very friendly with other dogs. He is very well trained and is very obedient. He is a great dog for a family with kids.",
+    "imageUrl": "/images/dog/dog-image-10.jpg"
   },
   {
     "id": "94426cb1-8de1-446a-90cf-f4c1d9f94b42",

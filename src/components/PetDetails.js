@@ -89,7 +89,7 @@ export const PetDetails = () => {
       <AppHeader tabValue={1} />
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item>
-          <Typography variant="h3" gutterBottom >
+          <Typography variant="h3" >
             {state.pet.name}'s Details
           </Typography>
           <Button
@@ -101,6 +101,7 @@ export const PetDetails = () => {
           >
             ADOPT {state.pet.name}
           </Button>
+          <Grid item xs={6}><img src={state.pet.imageUrl} alt={state.pet.name}></img></Grid>
         </Grid>
         <Grid container style={{ padding: '1.25rem' }} alignItems="baseline" direction="row" >
           <Grid item xs={12} sm={6} style={{ textAlign: 'left' }} >
@@ -117,28 +118,28 @@ export const PetDetails = () => {
               <Grid item xs={6}>{state.pet.breed}</Grid>
             </Grid>
             <Grid container>
-              <Grid item xs={6}><strong>Has Foster Care</strong></Grid>
-              <Grid item xs={6}>{state.pet.hasFoster ? state.pet.hasFoster.toString() : ''}</Grid>
+              <Grid item xs={6}><strong>Has Foster</strong></Grid>
+              <Grid item xs={6}>{state.pet.hasFoster ? 'Yes' : 'No'}</Grid>
             </Grid>
             <Grid container>
-              <Grid item xs={6}><strong>Has Veternarian Care</strong></Grid>
-              <Grid item xs={6}>{state.pet.hasVet ? state.pet.hasVet.toString() : ''}</Grid>
+              <Grid item xs={6}><strong>Has Veternarian</strong></Grid>
+              <Grid item xs={6}>{state.pet.hasVet ? 'Yes' : 'No'}</Grid>
             </Grid>
             <Grid container>
-              <Grid item xs={6}><strong>Spayed/Neutered</strong></Grid>
-              <Grid item xs={6}>{state.pet.isSterilized ? state.pet.isSterilized.toString() : ''}</Grid>
+              <Grid item xs={6}><strong>{state.pet.gender === 'Female' ? 'Spayed' : 'Neutered'}</strong></Grid>
+              <Grid item xs={6}>{state.pet.isSterilized ? 'Yes' : 'No'}</Grid>
             </Grid>
             <Grid container>
               <Grid item xs={6}><strong>Vaccinated</strong></Grid>
-              <Grid item xs={6}>{state.pet.isVaccinated ? state.pet.isVaccinated.toString() : ''}</Grid>
+              <Grid item xs={6}>{state.pet.isVaccinated ? 'Yes' : 'No'}</Grid>
             </Grid>
             <Grid container>
               <Grid item xs={6}><strong>Ready To Adopt</strong></Grid>
-              <Grid item xs={6}>{state.pet.isAdoptable ? state.pet.isAdoptable.toString() : ''}</Grid>
+              <Grid item xs={6}>{state.pet.isAdoptable ? 'Yes' : 'No'}</Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} style={{ textAlign: 'left' }}>
-            <p><strong>Biography</strong> <br /> {state.pet.bio}</p>
+          <Grid item xs={12} sm={6}  style={{ textAlign: 'left' }}>
+            <p>{state.pet.bio}</p>
           </Grid>
         </Grid>
         <Grid item xs={12} container justify="center">
