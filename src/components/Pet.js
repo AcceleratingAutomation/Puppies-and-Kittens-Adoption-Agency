@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import "../styles.css";
-import { PetCard } from "./PetCard";
+import { SummaryCard } from "./SummaryCard";
 
 const useStyles = makeStyles({
   muiButton: {
@@ -35,12 +35,20 @@ export const Pet = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, 
     }
   }, [type]);
 
-  let newPet = {
-    imageUrl: imageUrl,
-  };
-
   return (
-    <PetCard pet={pet} imageUrl={newPet.imageUrl}>
+    <SummaryCard imageUrl={imageUrl} componentUrl={`/v1/petDetails/${pet.id}`}>
+      <Grid item xs={12}>
+        <Typography variant="h4">{pet.name}</Typography>
+      </Grid>
+      <Typography variant="h5" gutterBottom>
+        {pet.type}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {pet.gender}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {pet.breed}
+      </Typography>
       <Grid item xs={12} container justify="center">
         {isFavorite ? (
           <Button
@@ -48,7 +56,7 @@ export const Pet = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, 
             variant="contained"
             color="primary"
             size="small"
-            onClick={() => onRemoveFavorite(id)}
+            onClick={() => onRemoveFavorite(pet.id)}
           >
             REMOVE FAVORITE
           </Button>
@@ -58,12 +66,12 @@ export const Pet = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, 
             variant="contained"
             color="primary"
             size="small"
-            onClick={() => onAddFavorite(id)}
+            onClick={() => onAddFavorite(pet.id)}
           >
             ADD TO FAVORITES
           </Button>
         )}
       </Grid>
-    </PetCard>
+    </SummaryCard>
   );
 };
