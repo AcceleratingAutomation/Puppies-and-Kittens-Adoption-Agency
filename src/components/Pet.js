@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, IconButton } from "@material-ui/core";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import "../styles.css";
 import { SummaryCard } from "./SummaryCard";
 
-const useStyles = makeStyles({
-  muiButton: {
-    width: '65%',
-    margin: '0.625rem',
-  },
-});
-
 export const Pet = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, onRemoveFavorite }) => {
   const pet = { name, id, type, gender, breed };
-  const classes = useStyles();
 
   const [imageUrl, setImageUrl] = useState('');
 
@@ -51,25 +44,18 @@ export const Pet = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, 
       </Typography>
       <Grid item xs={12} container justify="center">
         {isFavorite ? (
-          <Button
-            className={classes.muiButton}
-            variant="contained"
-            color="primary"
-            size="small"
+          <IconButton
+            color="secondary"
             onClick={() => onRemoveFavorite(pet.id)}
           >
-            REMOVE FAVORITE
-          </Button>
+            <FavoriteIcon />
+          </IconButton>
         ) : (
-          <Button
-            className={classes.muiButton}
-            variant="contained"
-            color="primary"
-            size="small"
+          <IconButton
             onClick={() => onAddFavorite(pet.id)}
           >
-            ADD TO FAVORITES
-          </Button>
+            <FavoriteBorderIcon />
+          </IconButton>
         )}
       </Grid>
     </SummaryCard>
