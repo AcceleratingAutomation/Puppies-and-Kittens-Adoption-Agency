@@ -88,10 +88,19 @@ export const PetDetails = () => {
     <div className="Content">
       <AppHeader tabValue={1} />
       <Grid container justify="center" alignItems="center" direction="column">
-        <Grid item style={{ marginBottom: "5vh" }}>
+        <Grid item>
           <Typography variant="h3" gutterBottom >
             {state.pet.name}'s Details
           </Typography>
+          <Button
+            className={classes.muiButton}
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => console.log(`Adopt ${state.pet.name}!`)}
+          >
+            ADOPT {state.pet.name}
+          </Button>
         </Grid>
         <Grid container style={{ padding: '1.25rem' }} alignItems="baseline" direction="row" >
           <Grid item xs={12} sm={6} style={{ textAlign: 'left' }} >
@@ -137,16 +146,14 @@ export const PetDetails = () => {
             className={classes.muiButton}
             variant="contained"
             color="primary"
-            size="large"
-            onClick={() => console.log(`Adopt ${state.pet.name}!`)}
+            onClick={() => console.log(`Edit ${state.pet.name}!`)}
           >
-            ADOPT {state.pet.name}
+            Edit {state.pet.name}
           </Button>
           <Button
             className={classes.muiButton}
             variant="contained"
             color="secondary"
-            size="small"
             onClick={() => dispatch({ type: 'OPEN_DIALOG' })}
           >
             DELETE {state.pet.name}
