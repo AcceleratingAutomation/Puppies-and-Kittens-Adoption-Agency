@@ -1,73 +1,63 @@
-import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper, Typography, Button } from "@material-ui/core";
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Grid, Typography, IconButton } from "@material-ui/core";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import "../styles.css";
+import { SummaryCard } from "./SummaryCard";
 
-const useStyles = makeStyles({
-  petCard: {
-    width: '100%', // Full width on mobile devices
-    maxWidth: '20rem',
-    wordWrap: 'break-word',
-    minHeight: '10rem', // Adjust as needed
-  },
-  muiButton: {
-    width: '65%',
-    margin: '0.625rem',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  roundImage: {
-    borderRadius: '50%',
-    backgroundSize: 'cover', // This will prevent the image from being stretched or squished
-    backgroundPosition: 'center', // This will center the image
-    width: '100%',
-    paddingTop: '100%', // This will maintain the aspect ratio of the image
-  },
-});
+export const PetCard = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, onRemoveFavorite }) => {
+  const pet = { name, id, type, gender, breed };
 
-export const PetCard = ({ pet, children, imageUrl }) => {
-  const classes = useStyles();
-  const history = useHistory();
+  const [imageUrl, setImageUrl] = useState('');
 
-  const onViewDetails = () => {
-    history.push(`/v1/petDetails/${pet.id}`);
-  };
+  useEffect(() => {
+    const generateRandomImageUrl = (maxImages) => {
+      const randomImageNumber = Math.floor(Math.random() * maxImages) + 1;
+      return `/images/${pet.type}/${pet.type}-image-${randomImageNumber}.jpg`;
+    };
+
+    switch (pet.type.toLowerCase()) {
+      case 'dog':
+        setImageUrl(generateRandomImageUrl(16));
+        break;
+      case 'cat':
+        setImageUrl(generateRandomImageUrl(13));
+        break;
+      default:
+        setImageUrl(generateRandomImageUrl(10));
+    }
+  }, [pet.type]);
 
   return (
-    <Paper elevation={2} className={`Pet ${classes.petCard}`}>
-      <div
-        className={`${classes.media} ${classes.roundImage}`}
-        style={{ backgroundImage: `url(${imageUrl})` }}
-        title="Placeholder Image"
-      />
-      <Grid container direction="column">
-        <Grid item xs={12}>
-          <Typography variant="h4">{pet.name}</Typography>
-        </Grid>
-        <Typography variant="h5" gutterBottom>
-          {pet.type}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {pet.gender}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {pet.breed}
-        </Typography>
-        <Grid item xs={12} container justify="center">
-          <Button
-            className={classes.muiButton}
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={onViewDetails}
-          >
-            VIEW DETAILS
-          </Button>
-        </Grid>
-        {children}
+    <SummaryCard imageUrl={imageUrl} viewComponentDetailsUrl={`/v1/petDetails/${pet.id}`}>
+      <Grid item xs={12}>
+        <Typography variant="h4">{pet.name}</Typography>
       </Grid>
-    </Paper>
+      <Typography variant="h5" gutterBottom>
+        {pet.type}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {pet.gender}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {pet.breed}
+      </Typography>
+      <Grid item xs={12} container justify="center">
+        {isFavorite ? (
+          <IconButton
+            color="secondary"
+            onClick={() => onRemoveFavorite(pet.id)}
+          >
+            <FavoriteIcon />
+          </IconButton>
+        ) : (
+          <IconButton
+            onClick={() => onAddFavorite(pet.id)}
+          >
+            <FavoriteBorderIcon />
+          </IconButton>
+        )}
+      </Grid>
+    </SummaryCard>
   );
 };

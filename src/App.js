@@ -11,44 +11,47 @@ import { Vets } from "./components/Vets";
 import { Fosters } from "./components/Fosters";
 import { Canidates } from "./components/Canidates";
 import { Forms } from "./components/Forms";
+import { PetsProvider } from "./contexts/petsContext";
 
 export default function App() {
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path="/v1/pets">
-            <Pets />
-          </Route>
-          <Route exact path="/v1/petDetails/:id">
-            <PetDetails />
-          </Route>
-          <Route exact path="/v1/users">
-            <Users />
-          </Route>
-          <Route exact path="/v1/favorites">
-            <Favorites />
-          </Route>
-          <Route exact path="/v1/pet">
-            <AddPet />
-          </Route>
-          <Route exact path="/v1/vets">
-            <Vets />
-          </Route>
-          <Route exact path="/v1/fosters">
-            <Fosters />
-          </Route>
-          <Route exact path="/v1/forms">
-            <Forms />
-          </Route>
-          <Route exact path="/v1/canidates">
-            <Canidates />
-          </Route>
-          <Route path="/">
-            <Login />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <PetsProvider>
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path="/v1/pets">
+              <Pets />
+            </Route>
+            <Route exact path="/v1/petDetails/:id">
+              <PetDetails />
+            </Route>
+            <Route exact path="/v1/users">
+              <Users />
+            </Route>
+            <Route exact path="/v1/favorites">
+              <Favorites />
+            </Route>
+            <Route exact path="/v1/pet">
+              <AddPet />
+            </Route>
+            <Route exact path="/v1/vets">
+              <Vets />
+            </Route>
+            <Route exact path="/v1/fosters">
+              <Fosters />
+            </Route>
+            <Route exact path="/v1/forms">
+              <Forms />
+            </Route>
+            <Route exact path="/v1/canidates">
+              <Canidates />
+            </Route>
+            <Route path="/">
+              <Login />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </PetsProvider>
   );
 }

@@ -27,12 +27,12 @@ const useStyles = makeStyles({
     },
 });
 
-export const SummaryCard = ({ children, imageUrl, componentUrl }) => {
+export const SummaryCard = ({ children, imageUrl, viewComponentDetailsUrl }) => {
     const classes = useStyles();
     const history = useHistory();
 
     const onViewDetails = () => {
-        history.push(`${componentUrl}`);
+        history.push(`${viewComponentDetailsUrl}`);
     };
 
     return (

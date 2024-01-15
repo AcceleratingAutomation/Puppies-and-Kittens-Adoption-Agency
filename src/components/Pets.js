@@ -5,8 +5,8 @@ import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
 import { url as favoritesUrl } from "./Favorites";
-import { Pet } from './Pet';
-import { reducer, initialState } from '../reducers/pets';
+import { PetCard } from './PetCard';
+import { reducer, initialState } from '../contexts/petsContext';
 
 const url = "http://localhost:5000/v1/pets";
 
@@ -97,7 +97,7 @@ export const Pets = () => {
   }, []);
 
   const pets = useMemo(() => state.pets.map((pet, key) => (
-    <Pet
+    <PetCard
       key={key}
       name={pet.name}
       id={pet.id}
