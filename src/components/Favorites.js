@@ -22,8 +22,17 @@ export const Favorites = () => {
       });
   }, [dispatch]);
 
-  const handleRemoveFavorite = (id) => {
-    dispatch({ type: 'removeFromFavorites', id });
+  const handleRemoveFavorite = async (id) => {
+    const favResponse = await fetch(`${url}/${id}`, {
+      method: 'DELETE',
+      headers: constructHeader(),
+    });
+    if (favResponse.ok) {
+      dispatch({ type: 'removeFromFavorites', id });
+    }
+    else {
+      console.error('Failed to delete pet from favorites');
+    }
   };
 
   if (state.loading) {

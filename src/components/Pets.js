@@ -29,7 +29,7 @@ export const Pets = () => {
         }
       })
       .catch((err) => console.log("Error fetching pets ", err.message));
-  }, [redirect]);
+  }, [redirect, dispatch]);
 
   const onAddFavorite = useCallback(async (id) => {
     try {
@@ -49,7 +49,7 @@ export const Pets = () => {
     } catch (err) {
       console.error('Error adding pet to favorites', err);
     }
-  }, []);
+  }, [dispatch]);
 
   const inFavorites = useCallback(async (id) => {
     const response = await fetch(`${favoritesUrl}`, {
@@ -94,7 +94,7 @@ export const Pets = () => {
     } catch (err) {
       console.error('Error removing pet from favorites', err);
     }
-  }, []);
+  }, [dispatch]);
 
   const pets = useMemo(() => state.pets.map((pet, key) => (
     <PetCard
