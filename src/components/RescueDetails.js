@@ -5,8 +5,9 @@ import { Button, Grid, Typography, Container } from "@material-ui/core";
 import { constructHeader } from "../utils";
 import { AppHeader } from "./AppHeader";
 import { ConfirmationDialog } from "./ConfirmationDialog";
-import { RescueImage } from "./RescueImage";
+import RescueImage from "./RescueImage";
 import { url as favoritesUrl } from "./Favorites";
+import Loading from './Loading';
 
 const url = "http://localhost:5000/v1/rescueDetails";
 
@@ -82,7 +83,7 @@ export const RescueDetails = () => {
   }, [history]);
 
   if (state.loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

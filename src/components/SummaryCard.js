@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
-import { RescueImage } from "./RescueImage";
+import RescueImage from "./RescueImage";
 
 const useStyles = makeStyles({
     summaryCard: {

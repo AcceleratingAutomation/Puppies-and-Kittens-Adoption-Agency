@@ -5,6 +5,7 @@ import { AppHeader } from "./AppHeader";
 import { constructHeader } from "../utils";
 import { RescueCard } from "./RescueCard";
 import { RescuesContext } from "../contexts/rescuesContext";
+import Loading from "./Loading";
 
 export const url = "http://localhost:5000/v1/favorites";
 
@@ -36,7 +37,7 @@ export const Favorites = () => {
   };
 
   if (state.loading) {
-    return <main aria-live="polite">Loading...</main>;
+    return <Loading />;
   }
 
   return (

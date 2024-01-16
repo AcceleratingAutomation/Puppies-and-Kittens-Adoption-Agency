@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { url as favoritesUrl } from "./Favorites";
 import { RescueCard } from './RescueCard';
 import { RescuesContext } from '../contexts/rescuesContext';
+import Loading from './Loading';
 
 const url = "http://localhost:5000/v1/rescues";
 
@@ -111,26 +112,23 @@ export const Rescues = () => {
     />
   )), [state.rescues, state.favorites, onAddFavorite, onRemoveFavorite]);
 
+  if (state.loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="Content">
       <AppHeader tabValue={1} />
-      {state.loading ? (
-        <div>Loading...</div>
-      ) : (
-        <Grid container justify="center" alignItems="center" direction="column">
-          <Grid item style={{ marginBottom: "5vh" }}>
-            <Typography variant="h3" gutterBottom>
-              Rescue Puppies and Kittens!
-              <span role="img" aria-label="rescues">
-                📚
-              </span>
-            </Typography>
-          </Grid>
-          <Grid item container justify="center">
-            {rescues}
-          </Grid>
+      <Grid container justify="center" alignItems="center" direction="column">
+        <Grid item style={{ marginBottom: "5vh" }}>
+          <Typography variant="h3" gutterBottom>
+            Rescue Puppies and Kittens!
+          </Typography>
         </Grid>
-      )}
+        <Grid item container justify="center">
+          {rescues}
+        </Grid>
+      </Grid>
     </div>
   );
 };
