@@ -4,7 +4,7 @@ import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../utils";
 import { useHistory } from "react-router-dom";
-import { url as favoritesUrl } from "./Favorites";
+import { favoritesUrl } from "../server/apiConfig";
 import { RescueCard } from './RescueCard';
 import { RescuesContext } from '../contexts/rescuesContext';
 import Loading from './Loading';

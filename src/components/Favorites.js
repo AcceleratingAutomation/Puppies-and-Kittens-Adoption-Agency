@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
@@ -6,14 +6,13 @@ import { constructHeader } from "../utils";
 import { RescueCard } from "./RescueCard";
 import { RescuesContext } from "../contexts/rescuesContext";
 import Loading from "./Loading";
-
-export const url = "http://localhost:5000/v1/favorites";
+import { favoritesUrl } from "../server/apiConfig";
 
 export const Favorites = () => {
   const { state, dispatch } = useContext(RescuesContext);
 
-  useEffect(() => {
-    fetch(url, { headers: constructHeader() })
+  const fetchFavorites = useCallback(() => {
+    fetch(favoritesUrl, { headers: constructHeader() })
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: 'setRescues', value: data.favorites });
@@ -23,8 +22,12 @@ export const Favorites = () => {
       });
   }, [dispatch]);
 
-  const handleRemoveFavorite = async (id) => {
-    const favResponse = await fetch(`${url}/${id}`, {
+  useEffect(() => {
+    fetchFavorites();
+  }, [fetchFavorites]);
+
+  const handleRemoveFavorite = useCallback(async (id) => {
+    const favResponse = await fetch(`${favoritesUrl}/${id}`, {
       method: 'DELETE',
       headers: constructHeader(),
     });
@@ -34,7 +37,7 @@ export const Favorites = () => {
     else {
       console.error('Failed to delete rescue from favorites');
     }
-  };
+  }, [dispatch]);
 
   if (state.loading) {
     return <Loading />;
@@ -44,7 +47,7 @@ export const Favorites = () => {
     <main className="Content">
       <AppHeader tabValue={0} />
       <Grid container justify="center" alignItems="center" direction="column">
-        <Grid item style={{ marginBottom: "5vh" }}>
+        <Grid item style={{ marginBottom: "2vh" }}>
           <Typography variant="h3" >
             Your Favorites
             <span role="img" aria-label="Red heart icon">
@@ -55,11 +58,11 @@ export const Favorites = () => {
         <Grid item container justify="center">
           {state.rescues
             .filter(rescue => state.favorites.includes(rescue.id))
-            .map((rescue, key) => (
+            .map((rescue) => (
               <RescueCard
-                key={key}
-                name={rescue.name}
+                key={rescue.id}
                 id={rescue.id}
+                name={rescue.name}
                 type={rescue.type}
                 gender={rescue.gender}
                 breed={rescue.breed}

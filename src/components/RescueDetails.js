@@ -6,7 +6,7 @@ import { constructHeader } from "../utils";
 import { AppHeader } from "./AppHeader";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import RescueImage from "./RescueImage";
-import { url as favoritesUrl } from "./Favorites";
+import { favoritesUrl } from "../server/apiConfig";
 import Loading from './Loading';
 
 const url = "http://localhost:5000/v1/rescueDetails";
