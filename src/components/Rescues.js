@@ -5,13 +5,13 @@ import { AppHeader } from "./AppHeader";
 import { constructHeader, updateAppSettings } from "../utils";
 import { useHistory } from "react-router-dom";
 import { url as favoritesUrl } from "./Favorites";
-import { PetCard } from './PetCard';
-import { PetsContext } from '../contexts/petsContext';
+import { RescueCard } from './RescueCard';
+import { RescuesContext } from '../contexts/rescuesContext';
 
-const url = "http://localhost:5000/v1/pets";
+const url = "http://localhost:5000/v1/rescues";
 
-export const Pets = () => {
-  const { state, dispatch } = useContext(PetsContext);
+export const Rescues = () => {
+  const { state, dispatch } = useContext(RescuesContext);
   const history = useHistory();
 
   const redirect = useCallback(() => {
@@ -25,10 +25,10 @@ export const Pets = () => {
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          dispatch({ type: 'setPets', value: [...json.pets] });
+          dispatch({ type: 'setRescues', value: [...json.rescues] });
         }
       })
-      .catch((err) => console.log("Error fetching pets ", err.message));
+      .catch((err) => console.log("Error fetching rescues ", err.message));
   }, [redirect, dispatch]);
 
   const onAddFavorite = useCallback(async (id) => {
@@ -44,10 +44,10 @@ export const Pets = () => {
           id: id,
         });
       } else {
-        console.error('Failed to add pet to favorites');
+        console.error('Failed to add rescue to favorites');
       }
     } catch (err) {
-      console.error('Error adding pet to favorites', err);
+      console.error('Error adding rescue to favorites', err);
     }
   }, [dispatch]);
 
@@ -58,7 +58,7 @@ export const Pets = () => {
 
     if (response.ok) {
       const data = await response.json();
-      return data.favorites.some(pet => pet.id === id);
+      return data.favorites.some(rescue => rescue.id === id);
     } else {
       console.error('Failed to fetch favorites');
       return false;
@@ -66,16 +66,16 @@ export const Pets = () => {
   }, []);
 
   useEffect(() => {
-    // Call inFavorites for each pet and update favorites when the Promises resolve
-    Promise.all(state.pets.map(async pet => {
-      const isFavorite = await inFavorites(pet.id);
-      return isFavorite ? pet.id : null;
+    // Call inFavorites for each rescue and update favorites when the Promises resolve
+    Promise.all(state.rescues.map(async rescue => {
+      const isFavorite = await inFavorites(rescue.id);
+      return isFavorite ? rescue.id : null;
     }))
       .then(favorites => {
         const favoriteIds = favorites.filter(id => id !== null);
         dispatch({ type: 'setFavorites', value: favoriteIds });
       });
-  }, [state.pets, inFavorites, dispatch]);
+  }, [state.rescues, inFavorites, dispatch]);
 
   const onRemoveFavorite = useCallback(async (id) => {
     try {
@@ -89,27 +89,27 @@ export const Pets = () => {
           id: id,
         });
       } else {
-        console.error('Failed to remove pet from favorites');
+        console.error('Failed to remove rescue from favorites');
       }
     } catch (err) {
-      console.error('Error removing pet from favorites', err);
+      console.error('Error removing rescue from favorites', err);
     }
   }, [dispatch]);
 
-  const pets = useMemo(() => state.pets.map((pet, key) => (
-    <PetCard
+  const rescues = useMemo(() => state.rescues.map((rescue, key) => (
+    <RescueCard
       key={key}
-      name={pet.name}
-      id={pet.id}
-      type={pet.type}
-      gender={pet.gender}
-      breed={pet.breed}
-      image={pet.image}
+      name={rescue.name}
+      id={rescue.id}
+      type={rescue.type}
+      gender={rescue.gender}
+      breed={rescue.breed}
+      image={rescue.image}
       onAddFavorite={onAddFavorite}
       onRemoveFavorite={onRemoveFavorite}
-      isFavorite={state.favorites.includes(pet.id)}
+      isFavorite={state.favorites.includes(rescue.id)}
     />
-  )), [state.pets, state.favorites, onAddFavorite, onRemoveFavorite]);
+  )), [state.rescues, state.favorites, onAddFavorite, onRemoveFavorite]);
 
   return (
     <div className="Content">
@@ -121,13 +121,13 @@ export const Pets = () => {
           <Grid item style={{ marginBottom: "5vh" }}>
             <Typography variant="h3" gutterBottom>
               Rescue Puppies and Kittens!
-              <span role="img" aria-label="pets">
+              <span role="img" aria-label="rescues">
                 📚
               </span>
             </Typography>
           </Grid>
           <Grid item container justify="center">
-            {pets}
+            {rescues}
           </Grid>
         </Grid>
       )}

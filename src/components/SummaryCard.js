@@ -26,7 +26,7 @@ export const SummaryCard = ({ children, type, image, name, viewComponentDetailsU
     };
 
     return (
-        <Paper elevation={2} className={`Pet ${classes.summaryCard}`}>
+        <Paper elevation={2} className={`Rescue ${classes.summaryCard}`}>
             <img
                 src={getImageUrl(type, image)}
                 alt={image ? `${name}'s image` : `${name}'s placeholder image`}

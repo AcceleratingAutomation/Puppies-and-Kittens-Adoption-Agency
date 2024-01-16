@@ -28,7 +28,7 @@ function reducer(state, action) {
 }
 
 export const AppHeader = ({ tabValue }) => {
-  const tabs = ["/v1/favorites", "/v1/pets", "/v1/forms", "/v1/canidates", "/v1/fosters", "/v1/vets", "/v1/users"];
+  const tabs = ["/v1/favorites", "/v1/rescues", "/v1/forms", "/v1/canidates", "/v1/fosters", "/v1/vets", "/v1/users"];
   const [state, dispatch] = useReducer(reducer, initialState);
   const open = Boolean(state.anchorEl);
   const history = useHistory();
@@ -55,7 +55,7 @@ export const AppHeader = ({ tabValue }) => {
         <Toolbar>
           <Tabs value={tabValue} onChange={handleClick} aria-label="Navigation tabs">
             <Tab label="Favorites" />
-            <Tab label="Pets" />
+            <Tab label="Rescues" />
             <Tab label="Forms" />
             <Tab label="Canidates" />
             <Tab label="Fosters" />

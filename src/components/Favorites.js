@@ -3,19 +3,19 @@ import { Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
 import { constructHeader } from "../utils";
-import { PetCard } from "./PetCard";
-import { PetsContext } from "../contexts/petsContext";
+import { RescueCard } from "./RescueCard";
+import { RescuesContext } from "../contexts/rescuesContext";
 
 export const url = "http://localhost:5000/v1/favorites";
 
 export const Favorites = () => {
-  const { state, dispatch } = useContext(PetsContext);
+  const { state, dispatch } = useContext(RescuesContext);
 
   useEffect(() => {
     fetch(url, { headers: constructHeader() })
       .then((response) => response.json())
       .then((data) => {
-        dispatch({ type: 'setPets', value: data.favorites });
+        dispatch({ type: 'setRescues', value: data.favorites });
         const favoriteIds = data.favorites.map(favorite => favorite.id);
         dispatch({ type: 'setFavorites', value: favoriteIds });
         dispatch({ type: 'setLoading', value: false });
@@ -31,7 +31,7 @@ export const Favorites = () => {
       dispatch({ type: 'removeFromFavorites', id });
     }
     else {
-      console.error('Failed to delete pet from favorites');
+      console.error('Failed to delete rescue from favorites');
     }
   };
 
@@ -45,24 +45,24 @@ export const Favorites = () => {
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item style={{ marginBottom: "5vh" }}>
           <Typography variant="h3" gutterBottom>
-            Your Favorite Pets!
-            <span role="img" aria-label="pets">
+            Your Favorites!
+            <span role="img" aria-label="rescues">
               👍
             </span>
           </Typography>
         </Grid>
         <Grid item container justify="center">
-          {state.pets
-            .filter(pet => state.favorites.includes(pet.id))
-            .map((pet, key) => (
-              <PetCard
+          {state.rescues
+            .filter(rescue => state.favorites.includes(rescue.id))
+            .map((rescue, key) => (
+              <RescueCard
                 key={key}
-                name={pet.name}
-                id={pet.id}
-                type={pet.type}
-                gender={pet.gender}
-                breed={pet.breed}
-                image={pet.image}
+                name={rescue.name}
+                id={rescue.id}
+                type={rescue.type}
+                gender={rescue.gender}
+                breed={rescue.breed}
+                image={rescue.image}
                 isFavorite={true}
                 onRemoveFavorite={handleRemoveFavorite}
               />

@@ -1,44 +1,44 @@
 const {
-    getFavoritePetsForUser,
+    getFavoriteRescuesForUser,
     getAudienceFromToken,
     generateToken,
-    addFavoritePet,
-    deleteFavorite: deleteFavoritePet
+    addFavoriteRescue,
+    deleteFavorite: deleteFavoriteRescue
 } = require("../shared");
 const Constants = require("../constants");
 
 exports.getFavorites = (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
-    getFavoritePetsForUser(token).then((pets) => {
+    getFavoriteRescuesForUser(token).then((rescues) => {
         generateToken(token, null).then((token) => {
-            res.status(200).send({ favorites: pets, token: token });
+            res.status(200).send({ favorites: rescues, token: token });
         });
     });
 };
 
 exports.addFavorite = (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
-    if (getAudienceFromToken(token).includes(Constants.ADD_FAVORITE_PET)) {
-        addFavoritePet(token, req.params.id).then((err) => {
-            if (err) res.status(500).send({ message: "Cannot add this pet to favorites" });
+    if (getAudienceFromToken(token).includes(Constants.ADD_FAVORITE_RESCUE)) {
+        addFavoriteRescue(token, req.params.id).then((err) => {
+            if (err) res.status(500).send({ message: "Cannot add this rescue to favorites" });
             else {
                 generateToken(token, null).then((token) => {
                     res
                         .status(200)
-                        .send({ message: "Pet added to favorites successfully", token: token });
+                        .send({ message: "Rescue added to favorites successfully", token: token });
                 });
             }
         });
     } else
         res
             .status(403)
-            .send({ message: "Not authorized to add a pet to favorites", token: token });
+            .send({ message: "Not authorized to add a rescue to favorites", token: token });
 };
 
 exports.deleteFavorite = (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
     if (getAudienceFromToken(token).includes(Constants.DELETE_FAVORITE)) {
-        deleteFavoritePet(token, req.params.id)
+        deleteFavoriteRescue(token, req.params.id)
             .then(() => {
                 generateToken(token, null).then((token) => {
                     res

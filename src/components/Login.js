@@ -43,7 +43,7 @@ export const Login = () => {
         if (json.message) dispatch({ type: 'setLoginError', value: json.message });
         else {
           updateAppSettings(json.token);
-          history.push("/v1/pets");
+          history.push("/v1/rescues");
         }
       })
       .catch((err) => console.log("Error logging into app ", err.message));
@@ -59,7 +59,7 @@ export const Login = () => {
       <Grid item style={{ marginBottom: "10vh" }}>
         <Typography variant={"h3"}>
           Welcome to Puppies and Kittens Adoption Agency!
-          <span role={"img"} aria-label={"pets"}>
+          <span role={"img"} aria-label={"rescue agency for puppies and kittens"}>
             📚
           </span>
         </Typography>

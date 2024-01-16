@@ -5,34 +5,34 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import "../styles.css";
 import { SummaryCard } from "./SummaryCard";
 
-export const PetCard = ({ name, id, type, gender, breed, image, isFavorite, onAddFavorite, onRemoveFavorite }) => {
-  const pet = { name, id, type, gender, breed, image };
+export const RescueCard = ({ name, id, type, gender, breed, image, isFavorite, onAddFavorite, onRemoveFavorite }) => {
+  const rescue = { name, id, type, gender, breed, image };
 
   return (
-    <SummaryCard type={pet.type} image={pet.image} name={pet.name} viewComponentDetailsUrl={`/v1/petDetails/${pet.id}`}>
+    <SummaryCard type={rescue.type} image={rescue.image} name={rescue.name} viewComponentDetailsUrl={`/v1/rescueDetails/${rescue.id}`}>
       <Grid item xs={12}>
-        <Typography variant="h4">{pet.name}</Typography>
+        <Typography variant="h4">{rescue.name}</Typography>
       </Grid>
       <Typography variant="h5" gutterBottom>
-        {pet.type}
+        {rescue.type}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        {pet.gender}
+        {rescue.gender}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        {pet.breed}
+        {rescue.breed}
       </Typography>
       <Grid item xs={12} container justify="center">
         {isFavorite ? (
           <IconButton
             color="secondary"
-            onClick={() => onRemoveFavorite(pet.id)}
+            onClick={() => onRemoveFavorite(rescue.id)}
           >
             <FavoriteIcon />
           </IconButton>
         ) : (
           <IconButton
-            onClick={() => onAddFavorite(pet.id)}
+            onClick={() => onAddFavorite(rescue.id)}
           >
             <FavoriteBorderIcon />
           </IconButton>

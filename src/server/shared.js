@@ -1,6 +1,6 @@
 const jsonfile = require("jsonfile");
 const usersDB = "./database/users.json";
-const petsDB = "./database/pets.json";
+const rescuesDB = "./database/rescues.json";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Constants = require("./constants");
@@ -25,23 +25,23 @@ exports.isPasswordCorrect = async function (key, password) {
   return bcrypt.compare(password, key).then((result) => result);
 };
 
-exports.getPetDetails = async function (id) {
+exports.getRescueDetails = async function (id) {
   try {
-    const allPets = await jsonfile.readFile(petsDB);
-    const filteredPetArray = allPets.filter(
-      (pet) => pet.id === id
+    const allRescues = await jsonfile.readFile(rescuesDB);
+    const filteredRescueArray = allRescues.filter(
+      (rescue) => rescue.id === id
     );
-    return filteredPetArray.length === 0 ? {} : filteredPetArray[0];
+    return filteredRescueArray.length === 0 ? {} : filteredRescueArray[0];
   } catch (err) {
-    console.log("Error reading pets: ", err.message);
+    console.log("Error reading rescues: ", err.message);
   }
 };
 
-exports.getAllPets = async function () {
+exports.getAllRescues = async function () {
   try {
-    return await jsonfile.readFile(petsDB);
+    return await jsonfile.readFile(rescuesDB);
   } catch (err) {
-    console.log("Error reading pets: ", err);
+    console.log("Error reading rescues: ", err);
   }
 };
 
@@ -63,15 +63,7 @@ exports.getAllUsers = async function () {
   }
 };
 
-exports.addPet = async function (pet) {
-  try {
-    const allPets = await jsonfile.readFile(petsDB);
-    allPets.push(pet);
-    return await jsonfile.writeFile(petsDB, allPets, { spaces: 2 });
-  } catch (err) {
-    return err;
-  }
-};
+
 
 const getUsernameFromToken = (token) => {
   if (!token) {
@@ -121,20 +113,20 @@ exports.verifyToken = (req, res, next) => {
   }
 };
 
-exports.getFavoritePetsForUser = async function (token) {
+exports.getFavoriteRescuesForUser = async function (token) {
   const username = getUsernameFromToken(token);
   const user = await getUserByUsername(username);
-  const favoritePetIds = user["favorite"];
-  const favoritePets = [];
-  if (favoritePetIds.length === 0) return favoritePets;
-  const allPets = await jsonfile.readFile(petsDB);
-  favoritePetIds.forEach((id) =>
-    favoritePets.push(allPets.filter((pet) => id === pet.id)[0])
+  const favoriteRescueIds = user["favorite"];
+  const favoriteRescues = [];
+  if (favoriteRescueIds.length === 0) return favoriteRescues;
+  const allRescues = await jsonfile.readFile(rescuesDB);
+  favoriteRescueIds.forEach((id) =>
+    favoriteRescues.push(allRescues.filter((rescue) => id === rescue.id)[0])
   );
-  return favoritePets;
+  return favoriteRescues;
 };
 
-exports.addFavoritePet = (token, petId) => {
+exports.addFavoriteRescue = (token, rescueId) => {
   return new Promise(async (resolve, reject) => {
     // Get the username from the token
     const username = getUsernameFromToken(token);
@@ -168,8 +160,8 @@ exports.addFavoritePet = (token, petId) => {
         users[userIndex].favorite = [];
       }
 
-      // Add the pet to the user's favorites
-      users[userIndex].favorite.push(petId);
+      // Add the rescue to the user's favorites
+      users[userIndex].favorite.push(rescueId);
 
       // Write the updated users back to the file
       fs.writeFile(path.join(__dirname, usersDB), JSON.stringify(users, null, 2), 'utf8', (err) => {
@@ -184,29 +176,29 @@ exports.addFavoritePet = (token, petId) => {
   });
 };
 
-exports.deletePet = (id) => {
+exports.deleteRescue = (id) => {
   return new Promise((resolve, reject) => {
-    // Read the existing pets
-    fs.readFile(path.join(__dirname, petsDB), 'utf8', (err, data) => {
+    // Read the existing rescues
+    fs.readFile(path.join(__dirname, rescuesDB), 'utf8', (err, data) => {
       if (err) {
         reject(err);
         return;
       }
 
-      let pets = JSON.parse(data);
+      let rescues = JSON.parse(data);
 
-      // Find the pet with the given id
-      const petIndex = pets.findIndex(pet => pet.id === id);
-      if (petIndex === -1) {
-        reject(new Error('Pet not found'));
+      // Find the rescue with the given id
+      const rescueIndex = rescues.findIndex(rescue => rescue.id === id);
+      if (rescueIndex === -1) {
+        reject(new Error('Rescue not found'));
         return;
       }
 
-      // Remove the pet from the array
-      pets.splice(petIndex, 1);
+      // Remove the rescue from the array
+      rescues.splice(rescueIndex, 1);
 
-      // Write the updated pets back to the file
-      fs.writeFile(path.join(__dirname, petsDB), JSON.stringify(pets, null, 2), 'utf8', (err) => {
+      // Write the updated rescues back to the file
+      fs.writeFile(path.join(__dirname, rescuesDB), JSON.stringify(rescues, null, 2), 'utf8', (err) => {
         if (err) {
           reject(err);
           return;
@@ -218,7 +210,7 @@ exports.deletePet = (id) => {
   });
 };
 
-exports.deleteFavorite = (token, petId) => {
+exports.deleteFavorite = (token, rescueId) => {
   return new Promise((resolve, reject) => {
     const username = getUsernameFromToken(token);
 
@@ -230,7 +222,7 @@ exports.deleteFavorite = (token, petId) => {
       throw new Error('User not found');
     }
 
-    user.favorite = user.favorite.filter(favorite => favorite !== petId);
+    user.favorite = user.favorite.filter(favorite => favorite !== rescueId);
 
     fs.writeFile(usersPath, JSON.stringify(users, null, 2), (err) => {
       if (err) {
@@ -241,3 +233,13 @@ exports.deleteFavorite = (token, petId) => {
     });
   });
 }
+
+exports.addPet = async function (pet) {
+  try {
+    const allPets = await jsonfile.readFile(rescuesDB);
+    allPets.push(pet);
+    return await jsonfile.writeFile(rescuesDB, allPets, { spaces: 2 });
+  } catch (err) {
+    return err;
+  }
+};

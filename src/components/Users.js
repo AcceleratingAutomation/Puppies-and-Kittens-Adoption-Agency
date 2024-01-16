@@ -49,8 +49,8 @@ export const Users = () => {
         <Grid container justify="center" direction="column" alignItems="center">
           <Grid item style={{ marginBottom: "5vh" }}>
             <Typography variant="h3" gutterBottom>
-              Pet Rescue Users!
-              <span role="img" aria-label="pets">
+              Rescue Users!
+              <span role="img" aria-label="rescues">
                 🤓🤠
               </span>
             </Typography>

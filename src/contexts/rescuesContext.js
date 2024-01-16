@@ -1,29 +1,29 @@
 import React, { createContext, useReducer } from 'react';
 
 export const initialState = {
-  pets: [],
+  rescues: [],
   favorites: [],
   loading: true,
 };
 
 export function reducer(state, action) {
   switch (action.type) {
-    case 'setPets':
-      return { ...state, pets: action.value, loading: false };
+    case 'setRescues':
+      return { ...state, rescues: action.value, loading: false };
     case 'setFavorites':
       return { ...state, favorites: action.value };
     case 'addToFavorites':
       return {
         ...state,
-        pets: state.pets.map(pet =>
-          pet.id === action.id ? { ...pet, isFavorite: true } : pet
+        rescues: state.rescues.map(rescue =>
+          rescue.id === action.id ? { ...rescue, isFavorite: true } : rescue
         ),
       };
       case 'removeFromFavorites':
         return {
           ...state,
-          pets: state.pets.map(pet =>
-            pet.id === action.id ? { ...pet, isFavorite: false } : pet
+          rescues: state.rescues.map(rescue =>
+            rescue.id === action.id ? { ...rescue, isFavorite: false } : rescue
           ),
           favorites: state.favorites.filter(favoriteId => favoriteId !== action.id)
         };
@@ -34,14 +34,14 @@ export function reducer(state, action) {
   }
 }
 
-export const PetsContext = createContext();
+export const RescuesContext = createContext();
 
-export const PetsProvider = ({ children }) => {
+export const RescuesProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <PetsContext.Provider value={{ state, dispatch }}>
+    <RescuesContext.Provider value={{ state, dispatch }}>
       {children}
-    </PetsContext.Provider>
+    </RescuesContext.Provider>
   );
 };
