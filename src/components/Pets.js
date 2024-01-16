@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useCallback, useMemo } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
-import { constructHeader, updateAppSettings } from "../util";
+import { constructHeader, updateAppSettings } from "../utils";
 import { useHistory } from "react-router-dom";
 import { url as favoritesUrl } from "./Favorites";
 import { PetCard } from './PetCard';

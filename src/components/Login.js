@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { Grid, Typography, TextField, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { updateAppSettings } from "../util";
+import { updateAppSettings } from "../utils";
 let base64 = require("base-64");
 let headers = new Headers();
 const url = "http://localhost:5000/v1/login";

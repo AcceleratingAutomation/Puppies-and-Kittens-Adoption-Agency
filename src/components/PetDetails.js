@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Typography, Container } from "@material-ui/core";
-import { constructHeader } from "../util";
+import { constructHeader } from "../utils";
 import { AppHeader } from "./AppHeader";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { url as favoritesUrl } from "./Favorites";
