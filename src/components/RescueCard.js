@@ -9,7 +9,7 @@ export const RescueCard = ({ name, id, type, gender, breed, image, isFavorite, o
   const rescue = { name, id, type, gender, breed, image };
 
   return (
-    <SummaryCard type={rescue.type} image={rescue.image} name={rescue.name} viewComponentDetailsUrl={`/v1/rescueDetails/${rescue.id}`}>
+    <SummaryCard type={rescue.type} image={rescue.image} name={rescue.name} viewComponentDetailsUrl={`/v1/rescueDetails/${rescue.id}`} role="group">
       <Grid item xs={12}>
         <Typography variant="h4">{rescue.name}</Typography>
       </Grid>
@@ -27,12 +27,14 @@ export const RescueCard = ({ name, id, type, gender, breed, image, isFavorite, o
           <IconButton
             color="secondary"
             onClick={() => onRemoveFavorite(rescue.id)}
+            aria-label="Remove from favorites"
           >
             <FavoriteIcon />
           </IconButton>
         ) : (
           <IconButton
             onClick={() => onAddFavorite(rescue.id)}
+            aria-label="Add to favorites"
           >
             <FavoriteBorderIcon />
           </IconButton>

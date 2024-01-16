@@ -36,7 +36,7 @@ export const Favorites = () => {
   };
 
   if (state.loading) {
-    return <div>Loading...</div>;
+    return <main aria-live="polite">Loading...</main>;
   }
 
   return (
@@ -44,10 +44,10 @@ export const Favorites = () => {
       <AppHeader tabValue={0} />
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item style={{ marginBottom: "5vh" }}>
-          <Typography variant="h3" gutterBottom>
-            Your Favorites!
-            <span role="img" aria-label="rescues">
-              👍
+          <Typography variant="h3" >
+            Your Favorites
+            <span role="img" aria-label="Red heart icon">
+              ❤️
             </span>
           </Typography>
         </Grid>
