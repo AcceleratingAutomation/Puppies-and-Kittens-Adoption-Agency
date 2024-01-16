@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
-import { getImageUrl } from "../utils";
+import { RescueImage } from "./RescueImage";
 
 const useStyles = makeStyles({
     summaryCard: {
@@ -27,11 +27,13 @@ export const SummaryCard = ({ children, type, image, name, viewComponentDetailsU
 
     return (
         <Paper elevation={2} className={`Rescue ${classes.summaryCard}`}>
-            <img
-                src={getImageUrl(type, image)}
-                alt={image ? `${name}'s image` : `${name}'s placeholder image`}
-                style={{ borderRadius: '50%', width: '15rem', height: '15rem', objectFit: 'cover' }}
-            ></img>
+            <RescueImage
+                type={type}
+                image={image}
+                name={name}
+                width='15rem'
+                height='15rem'
+            />
             <Grid container direction="column">
                 {children}
                 <Grid item xs={12} container justify="center">

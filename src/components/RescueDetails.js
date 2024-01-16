@@ -5,8 +5,8 @@ import { Button, Grid, Typography, Container } from "@material-ui/core";
 import { constructHeader } from "../utils";
 import { AppHeader } from "./AppHeader";
 import { ConfirmationDialog } from "./ConfirmationDialog";
+import { RescueImage } from "./RescueImage";
 import { url as favoritesUrl } from "./Favorites";
-import { getImageUrl } from "../utils";
 
 const url = "http://localhost:5000/v1/rescueDetails";
 
@@ -106,11 +106,13 @@ export const RescueDetails = () => {
         <Container maxWidth="lg">
           <Grid container justify="center" alignItems="center" direction="row">
             <Grid item xs={12} sm={12} md={3} style={{ textAlign: 'center' }}>
-              <img
-                src={getImageUrl(state.rescue.type, state.rescue.image)}
-                alt={state.rescue.image ? `${state.rescue.name}'s image` : `${state.rescue.name}'s placeholder image`}
-                style={{ borderRadius: '50%', width: '12rem', height: '12rem', objectFit: 'cover' }}
-              ></img>
+              <RescueImage
+                type={state.rescue.type}
+                image={state.rescue.image}
+                name={state.rescue.name}
+                width='12rem'
+                height='12rem'
+              />
             </Grid>
             <Grid item xs={12} sm={5} md={3} style={{ textAlign: 'center' }}>
               <Grid container>
