@@ -1,9 +1,11 @@
 import React, { useReducer } from "react";
-import { Grid, Typography, TextField, Button } from "@material-ui/core";
+import { Grid, Typography, TextField, Button, Hidden } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { updateAppSettings } from "../utils";
+import { RescueImage } from "./RescueImage";
 let base64 = require("base-64");
 let headers = new Headers();
+
 const url = "http://localhost:5000/v1/login";
 
 const initialState = {
@@ -54,14 +56,11 @@ export const Login = () => {
       container
       direction={"column"}
       alignItems={"center"}
-      style={{ marginTop: "10vh" }}
+      style={{ marginTop: "3vh" }}
     >
-      <Grid item style={{ marginBottom: "10vh" }}>
+      <Grid item style={{ marginBottom: "5vh" }}>
         <Typography variant={"h3"}>
-          Welcome to Puppies and Kittens Adoption Agency!
-          <span role={"img"} aria-label={"rescue agency for puppies and kittens"}>
-            📚
-          </span>
+          Puppies and Kittens <Hidden xsDown><br /></Hidden> Adoption Agency!
         </Typography>
       </Grid>
       <Grid item style={{ marginBottom: "5vh" }}>
@@ -72,7 +71,7 @@ export const Login = () => {
           onChange={(e) => onChangeUsername(e.target.value)}
         />
       </Grid>
-      <Grid item style={{ marginBottom: "7vh" }}>
+      <Grid item style={{ marginBottom: "5vh" }}>
         <TextField
           id={"password-input"}
           label={"password"}
@@ -81,7 +80,7 @@ export const Login = () => {
           onChange={(e) => onChangePassword(e.target.value)}
         />
       </Grid>
-      <Grid item style={{ marginBottom: "7vh" }}>
+      <Grid item style={{ marginBottom: "5vh" }}>
         <Button
           style={{ margin: '0.625rem' }}
           aria-label={"login"}
@@ -97,6 +96,26 @@ export const Login = () => {
         <Typography variant={"body2"} color={"error"}>
           {state.loginError}
         </Typography>
+      </Grid>
+      <Grid container style={{ margin: '0 auto', maxWidth: '80%' }} justify="center">
+        <Grid item xs={12} sm={4}>
+          <RescueImage
+            type={"dog"}
+            image={0}
+            name={"Playful Puppy"}
+            width='15rem'
+            height='15rem'
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <RescueImage
+            type={"cat"}
+            image={0}
+            name={"Playful Kitten"}
+            width='15rem'
+            height='15rem'
+          />
+        </Grid>
       </Grid>
     </Grid>
   );
