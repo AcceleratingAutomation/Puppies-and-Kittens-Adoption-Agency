@@ -97,7 +97,6 @@ export const RescueDetails = () => {
             {state.rescue.name}'s Details
           </Typography>
           <Button
-            style={{ marginTop: "2vh" }}
             className={classes.muiButton}
             variant="contained"
             color="primary"
@@ -109,16 +108,7 @@ export const RescueDetails = () => {
         </Grid>
         <Container maxWidth="lg">
           <Grid container justify="center" alignItems="center" direction="row">
-            <Grid item xs={12} sm={12} md={3} style={{ textAlign: 'center' }}>
-              <RescueImage
-                type={state.rescue.type}
-                image={state.rescue.image}
-                name={state.rescue.name}
-                width='12rem'
-                height='12rem'
-              />
-            </Grid>
-            <Grid item xs={12} sm={5} md={3} style={{ textAlign: 'center' }}>
+            <Grid item xs={12} sm={4} md={3} style={{ textAlign: 'center' }}>
               <Grid container>
                 <Grid item xs={6}><strong>Type</strong></Grid>
                 <Grid item xs={6}>{state.rescue.type}</Grid>
@@ -152,7 +142,16 @@ export const RescueDetails = () => {
                 <Grid item xs={6}>{state.rescue.isAdoptable ? 'Yes' : 'No'}</Grid>
               </Grid>
             </Grid>
-            <Grid item xs={12} sm={5} md={3} style={{ textAlign: 'left' }}>
+            <Grid item xs={12} sm={4} md={3} style={{ textAlign: 'center' }}>
+            <RescueImage
+              type={state.rescue.type}
+              image={state.rescue.image}
+              name={state.rescue.name}
+              width='12rem'
+              height='12rem'
+            />
+          </Grid>
+            <Grid item xs={12} sm={8} md={3} style={{ textAlign: 'left' }}>
               <p>{state.rescue.bio}</p>
             </Grid>
           </Grid>
