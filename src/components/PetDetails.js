@@ -104,10 +104,10 @@ export const PetDetails = () => {
         </Grid>
         <Container maxWidth="lg">
           <Grid container justify="center" alignItems="center" direction="row">
-            <Grid item xs={12} sm={12} md={4} style={{ textAlign: 'center' }}>
+            <Grid item xs={12} sm={12} md={3} style={{ textAlign: 'center' }}>
               <img src={state.pet.imageUrl} alt={state.pet.name} style={{ borderRadius: '50%', maxWidth: '100%' }}></img>
             </Grid>
-            <Grid item xs={12} sm={5} md={4} style={{ textAlign: 'center' }}>
+            <Grid item xs={12} sm={5} md={3} style={{ textAlign: 'center' }}>
               <Grid container>
                 <Grid item xs={6}><strong>Type</strong></Grid>
                 <Grid item xs={6}>{state.pet.type}</Grid>
@@ -121,11 +121,11 @@ export const PetDetails = () => {
                 <Grid item xs={6}>{state.pet.breed}</Grid>
               </Grid>
               <Grid container>
-                <Grid item xs={6}><strong>Has Foster</strong></Grid>
+                <Grid item xs={6}><strong>Foster</strong></Grid>
                 <Grid item xs={6}>{state.pet.hasFoster ? 'Yes' : 'No'}</Grid>
               </Grid>
               <Grid container>
-                <Grid item xs={6}><strong>Has Veternarian</strong></Grid>
+                <Grid item xs={6}><strong>Veternarian</strong></Grid>
                 <Grid item xs={6}>{state.pet.hasVet ? 'Yes' : 'No'}</Grid>
               </Grid>
               <Grid container>
@@ -141,12 +141,20 @@ export const PetDetails = () => {
                 <Grid item xs={6}>{state.pet.isAdoptable ? 'Yes' : 'No'}</Grid>
               </Grid>
             </Grid>
-            <Grid item xs={12} sm={5} md={4} style={{ textAlign: 'left' }}>
+            <Grid item xs={12} sm={5} md={3} style={{ textAlign: 'left' }}>
               <p>{state.pet.bio}</p>
             </Grid>
           </Grid>
         </Container>
         <Grid item xs={12} container justify="center">
+          <Button
+            className={classes.muiButton}
+            variant="contained"
+            color="primary"
+            onClick={() => history.push('/v1/pets')}
+          >
+            Back
+          </Button>
           <Button
             className={classes.muiButton}
             variant="contained"
