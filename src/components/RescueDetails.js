@@ -6,10 +6,8 @@ import { constructHeader } from "../utils";
 import { AppHeader } from "./AppHeader";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import RescueImage from "./RescueImage";
-import { favoritesUrl } from "../server/apiConfig";
+import { favoritesUrl, rescueDetailsUrl } from "../server/apiConfig";
 import Loading from './Loading';
-
-const url = "http://localhost:5000/v1/rescueDetails";
 
 const useStyles = makeStyles({
   muiButton: {
@@ -43,8 +41,8 @@ export const RescueDetails = () => {
     history.push("/v1/login");
   }, [history]);
 
-  useEffect(() => {
-    fetch(`${url}/${id}`, { headers: constructHeader() })
+  const fetchRescue = useCallback(() => {
+    fetch(`${rescueDetailsUrl}/${id}`, { headers: constructHeader() })
       .then((res) => (res.status === 401 ? redirect() : res.json()))
       .then((data) => {
         if (data) {
@@ -54,9 +52,13 @@ export const RescueDetails = () => {
       .catch((err) => console.log("Error fetching rescues ", err.message));
   }, [id, redirect]);
 
+  useEffect(() => {
+    fetchRescue();
+  }, [fetchRescue]);
+
   const onDeleteRescue = useCallback(async (id) => {
     try {
-      const response = await fetch(`${url}/${id}`, {
+      const response = await fetch(`${rescueDetailsUrl}/${id}`, {
         method: 'DELETE',
         headers: constructHeader(),
       });
@@ -95,6 +97,7 @@ export const RescueDetails = () => {
             {state.rescue.name}'s Details
           </Typography>
           <Button
+            style={{ marginTop: "2vh" }}
             className={classes.muiButton}
             variant="contained"
             color="primary"
