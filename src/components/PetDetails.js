@@ -6,6 +6,7 @@ import { constructHeader } from "../utils";
 import { AppHeader } from "./AppHeader";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { url as favoritesUrl } from "./Favorites";
+import { getImageUrl } from "../utils";
 
 const url = "http://localhost:5000/v1/petDetails";
 
@@ -84,10 +85,6 @@ export const PetDetails = () => {
     return <div>Loading...</div>;
   }
 
-  function getImageUrl(imageNumber = 0) {
-    return `/images/${state.pet.type}/${state.pet.type}-image-${imageNumber}.jpg`;
-  }
-
   return (
     <div className="Content">
       <AppHeader tabValue={1} />
@@ -110,9 +107,9 @@ export const PetDetails = () => {
           <Grid container justify="center" alignItems="center" direction="row">
             <Grid item xs={12} sm={12} md={3} style={{ textAlign: 'center' }}>
               <img
-                src={getImageUrl(state.pet.image)}
+                src={getImageUrl(state.pet.type, state.pet.image)}
                 alt={state.pet.image ? `${state.pet.name}'s image` : `${state.pet.name}'s placeholder image`}
-                style={{ borderRadius: '50%', maxWidth: '100%' }}
+                style={{ borderRadius: '50%', width: '12rem', height: '12rem', objectFit: 'cover' }}
               ></img>
             </Grid>
             <Grid item xs={12} sm={5} md={3} style={{ textAlign: 'center' }}>

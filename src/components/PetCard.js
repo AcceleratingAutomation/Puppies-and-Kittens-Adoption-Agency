@@ -1,35 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Grid, Typography, IconButton } from "@material-ui/core";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import "../styles.css";
 import { SummaryCard } from "./SummaryCard";
 
-export const PetCard = ({ name, id, type, gender, breed, isFavorite, onAddFavorite, onRemoveFavorite }) => {
-  const pet = { name, id, type, gender, breed };
-
-  const [imageUrl, setImageUrl] = useState('');
-
-  useEffect(() => {
-    const generateRandomImageUrl = (maxImages) => {
-      const randomImageNumber = Math.floor(Math.random() * maxImages) + 1;
-      return `/images/${pet.type}/${pet.type}-image-${randomImageNumber}.jpg`;
-    };
-
-    switch (pet.type.toLowerCase()) {
-      case 'dog':
-        setImageUrl(generateRandomImageUrl(16));
-        break;
-      case 'cat':
-        setImageUrl(generateRandomImageUrl(13));
-        break;
-      default:
-        setImageUrl(generateRandomImageUrl(10));
-    }
-  }, [pet.type]);
+export const PetCard = ({ name, id, type, gender, breed, image, isFavorite, onAddFavorite, onRemoveFavorite }) => {
+  const pet = { name, id, type, gender, breed, image };
 
   return (
-    <SummaryCard imageUrl={imageUrl} viewComponentDetailsUrl={`/v1/petDetails/${pet.id}`}>
+    <SummaryCard type={pet.type} image={pet.image} name={pet.name} viewComponentDetailsUrl={`/v1/petDetails/${pet.id}`}>
       <Grid item xs={12}>
         <Typography variant="h4">{pet.name}</Typography>
       </Grid>

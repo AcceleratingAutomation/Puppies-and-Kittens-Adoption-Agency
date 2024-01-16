@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
+import { getImageUrl } from "../utils";
 
 const useStyles = makeStyles({
     summaryCard: {
@@ -14,20 +15,9 @@ const useStyles = makeStyles({
         width: '65%',
         margin: '0.625rem',
     },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
-    roundImage: {
-        borderRadius: '50%',
-        backgroundSize: 'cover', // This will prevent the image from being stretched or squished
-        backgroundPosition: 'center', // This will center the image
-        width: '100%',
-        paddingTop: '100%', // This will maintain the aspect ratio of the image
-    },
 });
 
-export const SummaryCard = ({ children, imageUrl, viewComponentDetailsUrl }) => {
+export const SummaryCard = ({ children, type, image, name, viewComponentDetailsUrl }) => {
     const classes = useStyles();
     const history = useHistory();
 
@@ -37,11 +27,11 @@ export const SummaryCard = ({ children, imageUrl, viewComponentDetailsUrl }) => 
 
     return (
         <Paper elevation={2} className={`Pet ${classes.summaryCard}`}>
-            <div
-                className={`${classes.media} ${classes.roundImage}`}
-                style={{ backgroundImage: `url(${imageUrl})` }}
-                title="Placeholder Image"
-            />
+            <img
+                src={getImageUrl(type, image)}
+                alt={image ? `${name}'s image` : `${name}'s placeholder image`}
+                style={{ borderRadius: '50%', width: '15rem', height: '15rem', objectFit: 'cover' }}
+            ></img>
             <Grid container direction="column">
                 {children}
                 <Grid item xs={12} container justify="center">

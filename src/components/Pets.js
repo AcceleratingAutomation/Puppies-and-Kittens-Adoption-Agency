@@ -104,6 +104,7 @@ export const Pets = () => {
       type={pet.type}
       gender={pet.gender}
       breed={pet.breed}
+      image={pet.image}
       onAddFavorite={onAddFavorite}
       onRemoveFavorite={onRemoveFavorite}
       isFavorite={state.favorites.includes(pet.id)}

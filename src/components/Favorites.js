@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
-import { constructHeader, updateAppSettings } from "../utils";
+import { constructHeader } from "../utils";
 import { PetCard } from "./PetCard";
 import { PetsContext } from "../contexts/petsContext";
 
@@ -62,6 +62,7 @@ export const Favorites = () => {
                 type={pet.type}
                 gender={pet.gender}
                 breed={pet.breed}
+                image={pet.image}
                 isFavorite={true}
                 onRemoveFavorite={handleRemoveFavorite}
               />
