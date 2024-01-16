@@ -84,6 +84,10 @@ export const PetDetails = () => {
     return <div>Loading...</div>;
   }
 
+  function getImageUrl(imageNumber = 0) {
+    return `/images/${state.pet.type}/${state.pet.type}-image-${imageNumber}.jpg`;
+  }
+
   return (
     <div className="Content">
       <AppHeader tabValue={1} />
@@ -105,7 +109,11 @@ export const PetDetails = () => {
         <Container maxWidth="lg">
           <Grid container justify="center" alignItems="center" direction="row">
             <Grid item xs={12} sm={12} md={3} style={{ textAlign: 'center' }}>
-              <img src={state.pet.imageUrl} alt={state.pet.name} style={{ borderRadius: '50%', maxWidth: '100%' }}></img>
+              <img
+                src={getImageUrl(state.pet.image)}
+                alt={state.pet.image ? `${state.pet.name}'s image` : `${state.pet.name}'s placeholder image`}
+                style={{ borderRadius: '50%', maxWidth: '100%' }}
+              ></img>
             </Grid>
             <Grid item xs={12} sm={5} md={3} style={{ textAlign: 'center' }}>
               <Grid container>
