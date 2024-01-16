@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Typography, Container } from "@material-ui/core";
 import { constructHeader } from "../util";
 import { AppHeader } from "./AppHeader";
 import { ConfirmationDialog } from "./ConfirmationDialog";
@@ -101,47 +101,51 @@ export const PetDetails = () => {
           >
             ADOPT {state.pet.name}
           </Button>
-          <Grid item xs={6}><img src={state.pet.imageUrl} alt={state.pet.name}></img></Grid>
         </Grid>
-        <Grid container style={{ padding: '1.25rem' }} alignItems="baseline" direction="row" >
-          <Grid item xs={12} sm={6} style={{ textAlign: 'left' }} >
-            <Grid container>
-              <Grid item xs={6}><strong>Type</strong></Grid>
-              <Grid item xs={6}>{state.pet.type}</Grid>
+        <Container maxWidth="lg">
+          <Grid container justify="center" alignItems="center" direction="row">
+            <Grid item xs={12} sm={12} md={4} style={{ textAlign: 'center' }}>
+              <img src={state.pet.imageUrl} alt={state.pet.name} style={{ borderRadius: '50%', maxWidth: '100%' }}></img>
             </Grid>
-            <Grid container>
-              <Grid item xs={6}><strong>Gender</strong></Grid>
-              <Grid item xs={6}>{state.pet.gender}</Grid>
+            <Grid item xs={12} sm={5} md={4} style={{ textAlign: 'center' }}>
+              <Grid container>
+                <Grid item xs={6}><strong>Type</strong></Grid>
+                <Grid item xs={6}>{state.pet.type}</Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={6}><strong>Gender</strong></Grid>
+                <Grid item xs={6}>{state.pet.gender}</Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={6}><strong>Breed</strong></Grid>
+                <Grid item xs={6}>{state.pet.breed}</Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={6}><strong>Has Foster</strong></Grid>
+                <Grid item xs={6}>{state.pet.hasFoster ? 'Yes' : 'No'}</Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={6}><strong>Has Veternarian</strong></Grid>
+                <Grid item xs={6}>{state.pet.hasVet ? 'Yes' : 'No'}</Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={6}><strong>{state.pet.gender === 'Female' ? 'Spayed' : 'Neutered'}</strong></Grid>
+                <Grid item xs={6}>{state.pet.isSterilized ? 'Yes' : 'No'}</Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={6}><strong>Vaccinated</strong></Grid>
+                <Grid item xs={6}>{state.pet.isVaccinated ? 'Yes' : 'No'}</Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={6}><strong>Ready To Adopt</strong></Grid>
+                <Grid item xs={6}>{state.pet.isAdoptable ? 'Yes' : 'No'}</Grid>
+              </Grid>
             </Grid>
-            <Grid container>
-              <Grid item xs={6}><strong>Breed</strong></Grid>
-              <Grid item xs={6}>{state.pet.breed}</Grid>
-            </Grid>
-            <Grid container>
-              <Grid item xs={6}><strong>Has Foster</strong></Grid>
-              <Grid item xs={6}>{state.pet.hasFoster ? 'Yes' : 'No'}</Grid>
-            </Grid>
-            <Grid container>
-              <Grid item xs={6}><strong>Has Veternarian</strong></Grid>
-              <Grid item xs={6}>{state.pet.hasVet ? 'Yes' : 'No'}</Grid>
-            </Grid>
-            <Grid container>
-              <Grid item xs={6}><strong>{state.pet.gender === 'Female' ? 'Spayed' : 'Neutered'}</strong></Grid>
-              <Grid item xs={6}>{state.pet.isSterilized ? 'Yes' : 'No'}</Grid>
-            </Grid>
-            <Grid container>
-              <Grid item xs={6}><strong>Vaccinated</strong></Grid>
-              <Grid item xs={6}>{state.pet.isVaccinated ? 'Yes' : 'No'}</Grid>
-            </Grid>
-            <Grid container>
-              <Grid item xs={6}><strong>Ready To Adopt</strong></Grid>
-              <Grid item xs={6}>{state.pet.isAdoptable ? 'Yes' : 'No'}</Grid>
+            <Grid item xs={12} sm={5} md={4} style={{ textAlign: 'left' }}>
+              <p>{state.pet.bio}</p>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}  style={{ textAlign: 'left' }}>
-            <p>{state.pet.bio}</p>
-          </Grid>
-        </Grid>
+        </Container>
         <Grid item xs={12} container justify="center">
           <Button
             className={classes.muiButton}
