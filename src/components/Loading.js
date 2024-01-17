@@ -1,30 +1,12 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
-import RescueImage from './rescues/RescueImage';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Loading = () => (
-  <div>
-    <main aria-live="polite"><h3>Loading...</h3></main>
-    <Grid container style={{ margin: '0 auto', maxWidth: '80%' }} justify="center">
-      <Grid item xs={12} sm={4}>
-        <RescueImage
-          type={"dog"}
-          image={0}
-          name={"Playful Puppy"}
-          width='15rem'
-          height='15rem'
-        />
-      </Grid>
-      <Grid item xs={12} sm={4}>
-        <RescueImage
-          type={"cat"}
-          image={0}
-          name={"Playful Kitten"}
-          width='15rem'
-          height='15rem'
-        />
-      </Grid>
-    </Grid>
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <main aria-live="polite">
+      <h1>Loading...</h1>
+      <CircularProgress />
+    </main>
   </div>
 );
 
