@@ -2,11 +2,10 @@ import React, { useEffect, useReducer, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Typography, Container } from "@material-ui/core";
-import { constructHeader } from "../utils";
 import { AppHeader } from "./AppHeader";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import RescueImage from "./RescueImage";
-import { favoritesUrl, rescueDetailsUrl } from "../server/api/apiConfig";
+import { fetchRescueDetails, deleteRescue, deleteFavorite } from "../server/api/rescueDetailsApi";
 import Loading from './Loading';
 
 const useStyles = makeStyles({
@@ -36,21 +35,14 @@ export const RescueDetails = () => {
   const history = useHistory();
   const classes = useStyles();
 
-  const redirect = useCallback(() => {
-    localStorage.clear();
-    history.push("/v1/login");
-  }, [history]);
-
-  const fetchRescue = useCallback(() => {
-    fetch(`${rescueDetailsUrl}/${id}`, { headers: constructHeader() })
-      .then((res) => (res.status === 401 ? redirect() : res.json()))
-      .then((data) => {
-        if (data) {
-          dispatch({ type: 'FETCH_SUCCESS', payload: data.rescue });
-        }
-      })
-      .catch((err) => console.log("Error fetching rescues ", err.message));
-  }, [id, redirect]);
+  const fetchRescue = useCallback(async () => {
+    try {
+      const data = await fetchRescueDetails(id);
+      dispatch({ type: 'FETCH_SUCCESS', payload: data.rescue });
+    } catch (err) {
+      console.log("Error fetching rescues ", err.message);
+    }
+  }, [id]);
 
   useEffect(() => {
     fetchRescue();
@@ -58,19 +50,9 @@ export const RescueDetails = () => {
 
   const onDeleteRescue = useCallback(async (id) => {
     try {
-      const response = await fetch(`${rescueDetailsUrl}/${id}`, {
-        method: 'DELETE',
-        headers: constructHeader(),
-      });
-
-      if (response.status === 200) {
+      if (await deleteRescue(id)) {
         // The rescue also needs to be removed from favorites if it exists
-        const favResponse = await fetch(`${favoritesUrl}/${id}`, {
-          method: 'DELETE',
-          headers: constructHeader(),
-        });
-
-        if (favResponse.ok) {
+        if (await deleteFavorite(id)) {
           history.push('/v1/rescues');
         }
         else {
@@ -143,14 +125,14 @@ export const RescueDetails = () => {
               </Grid>
             </Grid>
             <Grid item xs={12} sm={4} md={3} style={{ textAlign: 'center' }}>
-            <RescueImage
-              type={state.rescue.type}
-              image={state.rescue.image}
-              name={state.rescue.name}
-              width='12rem'
-              height='12rem'
-            />
-          </Grid>
+              <RescueImage
+                type={state.rescue.type}
+                image={state.rescue.image}
+                name={state.rescue.name}
+                width='12rem'
+                height='12rem'
+              />
+            </Grid>
             <Grid item xs={12} sm={8} md={3} style={{ textAlign: 'left' }}>
               <p>{state.rescue.bio}</p>
             </Grid>
