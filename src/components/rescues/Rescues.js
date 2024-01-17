@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useCallback, useMemo } from "react";
 import { Grid, Typography } from "@material-ui/core";
-import "../styles.css";
-import { AppHeader } from "./AppHeader";
-import { updateAppSettings } from "../utils";
+import "../../styles.css";
+import { AppHeader } from "../AppHeader";
+import { updateAppSettings } from "../../utils";
 import { useHistory } from "react-router-dom";
 import { RescueCard } from './RescueCard';
-import { RescuesContext } from '../contexts/rescuesContext';
-import Loading from './Loading';
-import { fetchRescues, addFavorite, checkFavorite, removeFavorite } from '../server/api/rescuesApi';
+import { RescuesContext } from '../../contexts/rescuesContext';
+import Loading from '../Loading';
+import { fetchRescues, addFavorite, checkFavorite, removeFavorite } from '../../server/api/rescuesApi';
 
 export const Rescues = () => {
   const { state, dispatch } = useContext(RescuesContext);

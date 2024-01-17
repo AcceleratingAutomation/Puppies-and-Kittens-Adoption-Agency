@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import { Grid, Typography, TextField, Button, Hidden } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { updateAppSettings } from "../utils";
-import RescueImage from "./RescueImage";
+import RescueImage from "./rescues/RescueImage";
 let base64 = require("base-64");
 let headers = new Headers();
 

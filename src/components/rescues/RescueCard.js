@@ -2,8 +2,8 @@ import React from "react";
 import { Grid, Typography, IconButton } from "@material-ui/core";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import "../styles.css";
-import { SummaryCard } from "./SummaryCard";
+import "../../styles.css";
+import { SummaryCard } from "../SummaryCard";
 
 export const RescueCard = ({ name, id, type, gender, breed, image, isFavorite, onAddFavorite, onRemoveFavorite }) => {
   const rescue = { name, id, type, gender, breed, image };

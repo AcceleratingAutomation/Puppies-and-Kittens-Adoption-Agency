@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useCallback } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
-import { RescueCard } from "./RescueCard";
+import { RescueCard } from "./rescues/RescueCard";
 import { RescuesContext } from "../contexts/rescuesContext";
 import Loading from "./Loading";
 import { fetchFavorites, removeFavorite } from "../server/api/favoritesApi";

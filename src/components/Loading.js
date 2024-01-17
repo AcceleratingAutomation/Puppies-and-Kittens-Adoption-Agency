@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import RescueImage from './RescueImage'; // Adjust the import path as needed
+import RescueImage from './rescues/RescueImage';
 
 const Loading = () => (
   <div>
