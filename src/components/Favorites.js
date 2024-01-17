@@ -6,7 +6,7 @@ import { constructHeader } from "../utils";
 import { RescueCard } from "./RescueCard";
 import { RescuesContext } from "../contexts/rescuesContext";
 import Loading from "./Loading";
-import { favoritesUrl } from "../server/apiConfig";
+import { favoritesUrl } from "../server/api/apiConfig";
 
 export const Favorites = () => {
   const { state, dispatch } = useContext(RescuesContext);

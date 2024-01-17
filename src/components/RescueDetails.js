@@ -6,7 +6,7 @@ import { constructHeader } from "../utils";
 import { AppHeader } from "./AppHeader";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import RescueImage from "./RescueImage";
-import { favoritesUrl, rescueDetailsUrl } from "../server/apiConfig";
+import { favoritesUrl, rescueDetailsUrl } from "../server/api/apiConfig";
 import Loading from './Loading';
 
 const useStyles = makeStyles({

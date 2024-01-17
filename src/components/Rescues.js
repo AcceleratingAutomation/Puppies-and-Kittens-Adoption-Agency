@@ -2,14 +2,12 @@ import React, { useContext, useEffect, useCallback, useMemo } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./AppHeader";
-import { constructHeader, updateAppSettings } from "../utils";
+import { updateAppSettings } from "../utils";
 import { useHistory } from "react-router-dom";
-import { favoritesUrl } from "../server/apiConfig";
 import { RescueCard } from './RescueCard';
 import { RescuesContext } from '../contexts/rescuesContext';
 import Loading from './Loading';
-
-const url = "http://localhost:5000/v1/rescues";
+import { fetchRescues, addFavorite, checkFavorite, removeFavorite } from '../server/api/rescuesApi';
 
 export const Rescues = () => {
   const { state, dispatch } = useContext(RescuesContext);
@@ -21,50 +19,26 @@ export const Rescues = () => {
   }, [history]);
 
   useEffect(() => {
-    fetch(url, { headers: constructHeader() })
-      .then((res) => (res.status === 401 ? redirect() : res.json()))
+    fetchRescues()
       .then((json) => {
-        if (json) {
-          updateAppSettings(json.token);
-          dispatch({ type: 'setRescues', value: [...json.rescues] });
-        }
+        updateAppSettings(json.token);
+        dispatch({ type: 'setRescues', value: [...json.rescues] });
       })
       .catch((err) => console.log("Error fetching rescues ", err.message));
   }, [redirect, dispatch]);
 
   const onAddFavorite = useCallback(async (id) => {
-    try {
-      const response = await fetch(`${favoritesUrl}/${id}`, {
-        method: 'POST',
-        headers: constructHeader(),
+    if (await addFavorite(id)) {
+      dispatch({
+        type: 'addToFavorites',
+        id: id,
       });
-
-      if (response.status === 200) {
-        dispatch({
-          type: 'addToFavorites',
-          id: id,
-        });
-      } else {
-        console.error('Failed to add rescue to favorites');
-      }
-    } catch (err) {
-      console.error('Error adding rescue to favorites', err);
+    } else {
+      console.error('Failed to add rescue to favorites');
     }
   }, [dispatch]);
 
-  const inFavorites = useCallback(async (id) => {
-    const response = await fetch(`${favoritesUrl}`, {
-      headers: constructHeader(),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      return data.favorites.some(rescue => rescue.id === id);
-    } else {
-      console.error('Failed to fetch favorites');
-      return false;
-    }
-  }, []);
+  const inFavorites = useCallback(checkFavorite, []);
 
   useEffect(() => {
     // Call inFavorites for each rescue and update favorites when the Promises resolve
@@ -79,21 +53,13 @@ export const Rescues = () => {
   }, [state.rescues, inFavorites, dispatch]);
 
   const onRemoveFavorite = useCallback(async (id) => {
-    try {
-      const response = await fetch(`${favoritesUrl}/${id}`, {
-        method: 'DELETE',
-        headers: constructHeader(),
+    if (await removeFavorite(id)) {
+      dispatch({
+        type: 'removeFromFavorites',
+        id: id,
       });
-      if (response.status === 200) {
-        dispatch({
-          type: 'removeFromFavorites',
-          id: id,
-        });
-      } else {
-        console.error('Failed to remove rescue from favorites');
-      }
-    } catch (err) {
-      console.error('Error removing rescue from favorites', err);
+    } else {
+      console.error('Failed to remove rescue from favorites');
     }
   }, [dispatch]);
 
@@ -120,7 +86,7 @@ export const Rescues = () => {
     <div className="Content">
       <AppHeader tabValue={1} />
       <Grid container justify="center" alignItems="center" direction="column">
-        <Grid item style={{ marginBottom: "5vh" }}>
+        <Grid item style={{ marginBottom: "2vh" }}>
           <Typography variant="h3" gutterBottom>
             Rescue Puppies and Kittens!
           </Typography>
