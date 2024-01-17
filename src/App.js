@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Login } from "./components/Login";
+import { Login } from "./components/login/Login";
 import { Rescues } from "./components/rescues/Rescues";
 import { Users } from "./components/Users";
 import { AddPet } from "./components/AddPet";
