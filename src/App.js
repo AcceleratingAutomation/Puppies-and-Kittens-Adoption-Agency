@@ -3,13 +3,13 @@ import "./styles.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Login } from "./components/login/Login";
 import { Rescues } from "./components/rescues/Rescues";
-import { Users } from "./components/Users";
+import { Users } from "./components/users/Users";
 import { AddPet } from "./components/AddPet";
 import { Favorites } from "./components/Favorites";
 import { RescueDetails } from "./components/rescues/RescueDetails";
-import { Vets } from "./components/Vets";
-import { Fosters } from "./components/Fosters";
-import { Canidates } from "./components/Canidates";
+import { Veterinarians } from "./components/veterinarians/Veterinarians";
+import { Fosters } from "./components/fosters/Fosters";
+import { Canidates } from "./components/canidates/Canidates";
 import { Forms } from "./components/Forms";
 import { RescuesProvider } from "./contexts/rescuesContext";
 
@@ -34,8 +34,8 @@ export default function App() {
             <Route exact path="/v1/pet">
               <AddPet />
             </Route>
-            <Route exact path="/v1/vets">
-              <Vets />
+            <Route exact path="/v1/veterinarians">
+              <Veterinarians />
             </Route>
             <Route exact path="/v1/fosters">
               <Fosters />

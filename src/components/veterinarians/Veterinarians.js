@@ -1,26 +1,26 @@
 import React, { useEffect, useCallback, useReducer } from "react";
 import { Grid, Typography } from "@material-ui/core";
-import "../styles.css";
-import { AppHeader } from "./header/AppHeader";
-import { constructHeader, updateAppSettings } from "../utils";
+import "../../styles.css";
+import { AppHeader } from "../header/AppHeader";
+import { constructHeader, updateAppSettings } from "../../utils";
 import { useHistory } from "react-router-dom";
 
-const url = "http://localhost:5000/v1/vets";
+const url = "http://localhost:5000/v1/veterinarians";
 
 const initialState = {
-    vets: [],
+    veterinarians: [],
   };
 
 function reducer(state, action) {
     switch (action.type) {
-      case 'setVets':
-        return { ...state, vets: action.value };
+      case 'setVeterinarians':
+        return { ...state, veterinarians: action.value };
       default:
         throw new Error();
     }
   }
 
-export const Vets = () => {
+export const Veterinarians = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const history = useHistory();
 
@@ -35,10 +35,10 @@ export const Vets = () => {
           .then((json) => {
             if (json) {
               updateAppSettings(json.token);
-              dispatch({ type: 'setVets', value: [...json.vets] });
+              dispatch({ type: 'setVeterinarians', value: [...json.veterinarians] });
             }
           })
-          .catch((err) => console.log("Error fetching vets ", err.message));
+          .catch((err) => console.log("Error fetching veterinarians ", err.message));
       }, [redirect]);
 
     return (
@@ -47,7 +47,7 @@ export const Vets = () => {
           <Grid container justify="center" alignItems="center" direction="column">
             <Grid item style={{ marginBottom: "5vh" }}>
               <Typography variant="h3" gutterBottom>
-                Vets
+                Veterinarians
               </Typography>
             </Grid>
             <Grid item container justify="center">
