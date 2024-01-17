@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Typography, Container } from "@material-ui/core";
-import { AppHeader } from "../AppHeader";
+import { AppHeader } from "../header/AppHeader";
 import { ConfirmationDialog } from "../ConfirmationDialog";
 import RescueImage from "./RescueImage";
 import { fetchRescueDetails, deleteRescue, deleteFavorite } from "../../server/api/rescueDetailsApi";

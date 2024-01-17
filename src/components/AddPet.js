@@ -7,7 +7,7 @@ import {
   Typography
 } from "@material-ui/core";
 import "../styles.css";
-import { AppHeader } from "./AppHeader";
+import { AppHeader } from "./header/AppHeader";
 import { useHistory } from "react-router-dom";
 import { constructHeader, isMember, updateAppSettings } from "../utils";
 

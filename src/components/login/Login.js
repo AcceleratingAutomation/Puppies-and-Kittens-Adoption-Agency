@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { updateAppSettings } from "../../utils";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { login } from '../../server/api/authService';
+import { login } from '../../server/api/authApi';
 import LoginForm from './LoginForm';
 
 const LoginSchema = Yup.object().shape({

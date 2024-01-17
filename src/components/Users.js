@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useCallback } from "react";
 import { Avatar, Grid, Typography } from "@material-ui/core";
 import "../styles.css";
-import { AppHeader } from "./AppHeader";
+import { AppHeader } from "./header/AppHeader";
 import { constructHeader, isMember, updateAppSettings } from "../utils";
 import { useHistory } from "react-router-dom";
 const url = "http://localhost:5000/v1/users";

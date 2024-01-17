@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useCallback } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import "../styles.css";
-import { AppHeader } from "./AppHeader";
+import { AppHeader } from "./header/AppHeader";
 import { RescueCard } from "./rescues/RescueCard";
 import { RescuesContext } from "../contexts/rescuesContext";
 import Loading from "./Loading";
