@@ -1,4 +1,4 @@
-import { constructHeader } from "../../utils";
+import { constructHeader } from "../../utils/utils";
 import { favoritesUrl, rescueDetailsUrl } from "./apiConfig";
 
 export const fetchRescueDetails = async (id) => {

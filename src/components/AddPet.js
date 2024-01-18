@@ -9,7 +9,7 @@ import {
 import "../styles.css";
 import { AppHeader } from "./header/AppHeader";
 import { useHistory } from "react-router-dom";
-import { constructHeader, isMember, updateAppSettings } from "../utils";
+import { constructHeader, isMember, updateAppSettings } from "../utils/utils";
 
 const url = "http://localhost:5000/v1/pet";
 

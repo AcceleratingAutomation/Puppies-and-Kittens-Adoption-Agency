@@ -1,5 +1,5 @@
 import React from 'react';
-import { getImageUrl } from "../../utils";
+import { getImageUrl } from "../../utils/utils";
 
 const RescueImage = ({ type, image, name, width, height }) => (
   <img

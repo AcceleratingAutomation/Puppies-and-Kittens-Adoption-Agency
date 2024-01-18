@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import { isMember } from "../../utils";
+import { isMember } from "../../utils/utils";
 import DrawerComponent from "./DrawerComponent";
 import TabsComponent from "./TabsComponent";
 import { handleLogout } from "../../server/api/authApi";

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useCallback, useMemo } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
-import { updateAppSettings } from "../../utils";
+import { updateAppSettings } from "../../utils/utils";
 import { useHistory } from "react-router-dom";
 import RescueCard from './RescueCard';
 import { RescuesContext } from '../../contexts/rescuesContext';

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import { updateAppSettings } from "../../utils";
+import { updateAppSettings } from "../../utils/utils";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { login } from '../../server/api/authApi';

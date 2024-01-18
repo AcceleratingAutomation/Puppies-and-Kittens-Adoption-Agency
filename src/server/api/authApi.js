@@ -1,6 +1,6 @@
 import base64 from "base-64";
 import { loginUrl } from "./apiConfig";
-import { constructHeader } from "../../utils";
+import { constructHeader } from "../../utils/utils";
 import { logoutUrl } from "./apiConfig";
 
 let headers = new Headers();
