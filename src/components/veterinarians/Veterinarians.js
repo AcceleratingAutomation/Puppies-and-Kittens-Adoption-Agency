@@ -4,6 +4,7 @@ import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
 import { constructHeader, updateAppSettings } from "../../utils";
 import { useHistory } from "react-router-dom";
+import { tabs } from "../header/AppHeader";
 
 const url = "http://localhost:5000/v1/veterinarians";
 
@@ -23,6 +24,7 @@ function reducer(state, action) {
 export const Veterinarians = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const history = useHistory();
+    const tabValue = tabs.findIndex(tab => tab.label === 'Veterinarians');
 
     const redirect = useCallback(() => {
         localStorage.clear();
@@ -43,7 +45,7 @@ export const Veterinarians = () => {
 
     return (
         <div className="Content">
-          <AppHeader tabValue={5} />
+          <AppHeader tabValue={tabValue} />
           <Grid container justify="center" alignItems="center" direction="column">
             <Grid item style={{ marginBottom: "5vh" }}>
               <Typography variant="h3" gutterBottom>

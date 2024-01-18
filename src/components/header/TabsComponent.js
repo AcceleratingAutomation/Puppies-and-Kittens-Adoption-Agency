@@ -12,7 +12,7 @@ const TabsComponent = ({ tabs, tabValue, handleTabClick, shouldDisable }) => (
                 <Tab
                     key={index}
                     label={tab.label}
-                    disabled={index === 6 && shouldDisable}
+                    disabled={index === 5 && shouldDisable}
                     style={{ color: 'white' }}
                 />
             ))}

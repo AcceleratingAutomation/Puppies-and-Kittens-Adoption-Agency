@@ -6,9 +6,11 @@ import { RescueCard } from "./rescues/RescueCard";
 import { RescuesContext } from "../contexts/rescuesContext";
 import Loading from "./Loading";
 import { fetchFavorites, removeFavorite } from "../server/api/favoritesApi";
+import { tabs } from "./header/AppHeader";
 
 export const Favorites = () => {
   const { state, dispatch } = useContext(RescuesContext);
+  const tabValue = tabs.findIndex(tab => tab.label === 'Favorites');
 
   const fetchAndSetFavorites = useCallback(async () => {
     const data = await fetchFavorites();
@@ -37,7 +39,7 @@ export const Favorites = () => {
 
   return (
     <main className="Content">
-      <AppHeader tabValue={0} />
+      <AppHeader tabValue={tabValue} />
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item style={{ marginBottom: "2vh" }}>
           <Typography variant="h3" >

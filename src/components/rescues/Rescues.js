@@ -8,10 +8,12 @@ import { RescueCard } from './RescueCard';
 import { RescuesContext } from '../../contexts/rescuesContext';
 import Loading from '../Loading';
 import { fetchRescues, addFavorite, checkFavorite, removeFavorite } from '../../server/api/rescuesApi';
+import { tabs } from "../header/AppHeader";
 
 export const Rescues = () => {
   const { state, dispatch } = useContext(RescuesContext);
   const history = useHistory();
+  const tabValue = tabs.findIndex(tab => tab.label === 'Rescues');
 
   const redirect = useCallback(() => {
     localStorage.clear();
@@ -84,7 +86,7 @@ export const Rescues = () => {
 
   return (
     <div className="Content">
-      <AppHeader tabValue={1} />
+      <AppHeader tabValue={tabValue} />
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item style={{ marginBottom: "2vh" }}>
           <Typography variant="h3" gutterBottom>

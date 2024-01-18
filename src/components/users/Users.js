@@ -4,6 +4,8 @@ import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
 import { constructHeader, isMember, updateAppSettings } from "../../utils";
 import { useHistory } from "react-router-dom";
+import { tabs } from "../header/AppHeader";
+
 const url = "http://localhost:5000/v1/users";
 
 const initialState = {
@@ -23,6 +25,7 @@ export const Users = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
   const showPage = !isMember();
+  const tabValue = tabs.findIndex(tab => tab.label === 'Users');
 
   const redirect = useCallback(() => {
     localStorage.clear();
@@ -43,7 +46,7 @@ export const Users = () => {
 
   return (
     <div className="Content">
-      <AppHeader tabValue={6} />
+      <AppHeader tabValue={tabValue} />
       {!showPage && <div />}
       {showPage && (
         <Grid container justify="center" direction="column" alignItems="center">

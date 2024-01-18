@@ -27,7 +27,7 @@ app.get("/v1/rescueDetails/:id", verifyToken, rescuesController.getRescueDetails
 
 // Forms
 
-app.post("/v1/pet", verifyToken, formsController.addPet);
+app.post("/v1/addpet", verifyToken, formsController.addPet);
 
 // Canidates
 
