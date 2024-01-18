@@ -2,7 +2,7 @@ require("dotenv").config({ path: "./variables.env" });
 const express = require("express");
 const cors = require("cors");
 const favoritesController = require('./controllers/favorites');
-const rescuesController = require('./controllers/rescues');
+const { rescueHandlers } = require('./controllers/createHandlers');
 const usersController = require('./controllers/users');
 const loginController = require('./controllers/login');
 const formsController = require('./controllers/forms');
@@ -21,9 +21,9 @@ app.delete("/v1/favorites/:id", verifyToken, favoritesController.deleteFavorite)
 
 // Rescues
 
-app.get("/v1/rescues", verifyToken, rescuesController.getAllRescues);
-app.delete("/v1/rescue/:id", verifyToken, rescuesController.deleteRescue);
-app.get("/v1/rescue/:id", verifyToken, rescuesController.getRescueDetails);
+app.get("/v1/rescues", verifyToken, rescueHandlers.getAll);
+app.delete("/v1/rescue/:id", verifyToken, rescueHandlers.delete);
+app.get("/v1/rescue/:id", verifyToken, rescueHandlers.getDetails);
 
 // Forms
 

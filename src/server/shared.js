@@ -1,11 +1,76 @@
 const jsonfile = require("jsonfile");
-const usersDB = "./database/users.json";
-const rescuesDB = "./database/rescues.json";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Constants = require("./constants");
 const fs = require('fs');
 const path = require('path');
+const usersDB = "./database/users.json";
+const rescuesDB = "./database/rescues.json";
+const fostersDB = "./database/fosters.json";
+const canidatesDB = "./database/canidates.json";
+const veterinariansDB = "./database/veterinarians.json";
+
+exports.usersDB = usersDB;
+exports.rescuesDB = rescuesDB;
+exports.fostersDB = fostersDB;
+exports.canidatesDB = canidatesDB;
+exports.veterinariansDB = veterinariansDB;
+
+// common
+
+exports.getAllData = async function (db) {
+  try {
+    return await jsonfile.readFile(db);
+  } catch (err) {
+    console.log(`Error reading data from ${db}:`, err);
+  }
+};
+
+exports.getDetails = async function (id, db) {
+  try {
+    const allData = await jsonfile.readFile(db);
+    const filteredDataArray = allData.filter(
+      (data) => data.id === id
+    );
+    return filteredDataArray.length === 0 ? {} : filteredDataArray[0];
+  } catch (err) {
+    console.log("Error reading data: ", err.message);
+  }
+};
+
+exports.deleteData = (id, db) => {
+  return new Promise((resolve, reject) => {
+    // Read the existing data
+    fs.readFile(path.join(__dirname, db), 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      let items = JSON.parse(data);
+
+      // Find the item with the given id
+      const itemIndex = items.findIndex(item => item.id === id);
+      if (itemIndex === -1) {
+        reject(new Error('Item not found'));
+        return;
+      }
+
+      // Remove the item from the array
+      items.splice(itemIndex, 1);
+
+      // Write the updated items back to the file
+      fs.writeFile(path.join(__dirname, db), JSON.stringify(items, null, 2), 'utf8', (err) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  });
+};
 
 // Favorites
 
@@ -45,7 +110,7 @@ exports.addFavoriteRescue = (token, rescueId) => {
 
       // Get the user index by username
       const userIndex = users.findIndex(user => user.username === username);
-      
+
       if (userIndex === -1) {
         reject(new Error('User not found'));
         return;
@@ -97,60 +162,6 @@ exports.deleteFavorite = (token, rescueId) => {
 }
 
 // Rescues
-
-exports.getRescueDetails = async function (id) {
-  try {
-    const allRescues = await jsonfile.readFile(rescuesDB);
-    const filteredRescueArray = allRescues.filter(
-      (rescue) => rescue.id === id
-    );
-    return filteredRescueArray.length === 0 ? {} : filteredRescueArray[0];
-  } catch (err) {
-    console.log("Error reading rescues: ", err.message);
-  }
-};
-
-exports.getAllRescues = async function () {
-  try {
-    return await jsonfile.readFile(rescuesDB);
-  } catch (err) {
-    console.log("Error reading rescues: ", err);
-  }
-};
-
-exports.deleteRescue = (id) => {
-  return new Promise((resolve, reject) => {
-    // Read the existing rescues
-    fs.readFile(path.join(__dirname, rescuesDB), 'utf8', (err, data) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      let rescues = JSON.parse(data);
-
-      // Find the rescue with the given id
-      const rescueIndex = rescues.findIndex(rescue => rescue.id === id);
-      if (rescueIndex === -1) {
-        reject(new Error('Rescue not found'));
-        return;
-      }
-
-      // Remove the rescue from the array
-      rescues.splice(rescueIndex, 1);
-
-      // Write the updated rescues back to the file
-      fs.writeFile(path.join(__dirname, rescuesDB), JSON.stringify(rescues, null, 2), 'utf8', (err) => {
-        if (err) {
-          reject(err);
-          return;
-        }
-
-        resolve();
-      });
-    });
-  });
-};
 
 // Canidates
 

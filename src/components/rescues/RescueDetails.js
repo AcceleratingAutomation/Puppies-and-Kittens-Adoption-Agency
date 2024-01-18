@@ -38,7 +38,7 @@ export const RescueDetails = () => {
   const fetchRescue = useCallback(async () => {
     try {
       const data = await fetchRescueDetails(id);
-      dispatch({ type: 'FETCH_SUCCESS', payload: data.rescue });
+      dispatch({ type: 'FETCH_SUCCESS', payload: data.rescues });
     } catch (err) {
       console.log("Error fetching rescues ", err.message);
     }

@@ -1,0 +1,73 @@
+const {
+    getDetails,
+    getAllData,
+    getAudienceFromToken,
+    generateToken,
+    deleteData,
+    rescuesDB,
+    candidatesDB,
+    fostersDB,
+    veterinariansDB,
+    usersDB,
+} = require("../shared");
+const Constants = require("../constants");
+
+const createHandlers = (type, db, permissions) => {
+    return {
+        getAll: (req, res) => {
+            const token = req.headers.authorization.split(" ")[1];
+            getAllData(db).then((data) => {
+                if (data && data.length > 0) {
+                    generateToken(token, null).then((token) => {
+                        res.status(200).send({ [type]: data, token: token });
+                    });
+                } else res.status(500).send({ [type]: [], token: token });
+            });
+        },
+
+        delete: (req, res) => {
+            const token = req.headers.authorization.split(" ")[1];
+            if (getAudienceFromToken(token).includes(permissions.delete)) {
+                deleteData(req.params.id, db).then((err) => {
+                    if (err) res.status(500).send({ message: `Cannot delete this ${type}` });
+                    else {
+                        generateToken(token, null).then((token) => {
+                            res
+                                .status(200)
+                                .send({ message: `${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully`, token: token });
+                        });
+                    }
+                });
+            } else
+                res
+                    .status(403)
+                    .send({ message: `Not authorized to delete a ${type}`, token: token });
+        },
+
+        getDetails: (req, res) => {
+            const token = req.headers.authorization.split(" ")[1];
+            if (getAudienceFromToken(token).includes(permissions.showDetails)) {
+                getDetails(req.params.id, db).then((data) => {
+                    if (!data || Object.keys(data).length === 0) {
+                        res.status(404).send({ message: `Cannot get details for this ${type}` });
+                    } else {
+                        generateToken(token, null).then((newToken) => {
+                            res.status(200).send({ [type]: data, token: newToken });
+                        });
+                    }
+                }).catch((err) => {
+                    console.error(err);
+                    res.status(500).send({ message: `Error retrieving ${type} details` });
+                });
+            } else {
+                res.status(403).send({ message: `Not authorized to view ${type} details`, token: token });
+            }
+        }
+    };
+};
+
+exports.rescueHandlers = createHandlers('rescues', rescuesDB, { delete: Constants.DELETE_RESCUE, showDetails: Constants.SHOW_RESCUE_DETAILS });
+exports.candidateHandlers = createHandlers('candidates', candidatesDB, { delete: Constants.DELETE_CANDIDATE, showDetails: Constants.SHOW_CANDIDATE_DETAILS });
+exports.fosterHandlers = createHandlers('fosters', fostersDB, { delete: Constants.DELETE_FOSTER, showDetails: Constants.SHOW_FOSTER_DETAILS });
+exports.candidateHandlers = createHandlers('veterinarians', veterinariansDB, { delete: Constants.DELETE_VETERINARIAN, showDetails: Constants.SHOW_VETERINARIAN_DETAILS });
+exports.userHandlers = createHandlers('users', usersDB, { delete: Constants.DELETE_USER, showDetails: Constants.SHOW_USER_DETAILS });
