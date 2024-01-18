@@ -21,7 +21,7 @@ export default function App() {
             <Route exact path="/v1/rescues">
               <Rescues />
             </Route>
-            <Route exact path="/v1/rescueDetails/:id">
+            <Route exact path="/v1/rescue/:id">
               <RescueDetails />
             </Route>
             <Route exact path="/v1/users">
@@ -29,9 +29,6 @@ export default function App() {
             </Route>
             <Route exact path="/v1/favorites">
               <Favorites />
-            </Route>
-            <Route exact path="/v1/pet">
-              <AddPet />
             </Route>
             <Route exact path="/v1/veterinarians">
               <Veterinarians />

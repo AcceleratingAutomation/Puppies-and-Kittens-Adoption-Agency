@@ -22,8 +22,8 @@ app.delete("/v1/favorites/:id", verifyToken, favoritesController.deleteFavorite)
 // Rescues
 
 app.get("/v1/rescues", verifyToken, rescuesController.getAllRescues);
-app.delete("/v1/rescueDetails/:id", verifyToken, rescuesController.deleteRescue);
-app.get("/v1/rescueDetails/:id", verifyToken, rescuesController.getRescueDetails);
+app.delete("/v1/rescue/:id", verifyToken, rescuesController.deleteRescue);
+app.get("/v1/rescue/:id", verifyToken, rescuesController.getRescueDetails);
 
 // Forms
 
