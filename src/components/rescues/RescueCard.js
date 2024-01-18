@@ -5,7 +5,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import "../../styles.css";
 import { SummaryCard } from "../SummaryCard";
 
-export const RescueCard = ({ name, id, type, gender, breed, image, isFavorite, onAddFavorite, onRemoveFavorite }) => {
+const RescueCard = ({ name, id, type, gender, breed, image, isFavorite, onAddFavorite, onRemoveFavorite }) => {
   const rescue = { name, id, type, gender, breed, image };
 
   return (
@@ -43,3 +43,5 @@ export const RescueCard = ({ name, id, type, gender, breed, image, isFavorite, o
     </SummaryCard>
   );
 };
+
+export default RescueCard;

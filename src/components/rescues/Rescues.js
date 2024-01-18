@@ -4,7 +4,7 @@ import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils";
 import { useHistory } from "react-router-dom";
-import { RescueCard } from './RescueCard';
+import RescueCard from './RescueCard';
 import { RescuesContext } from '../../contexts/rescuesContext';
 import Loading from '../Loading';
 import { fetchRescues, addFavorite, checkFavorite, removeFavorite } from '../../server/api/rescuesApi';
