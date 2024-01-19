@@ -9,7 +9,7 @@ const RescueCard = ({ name, id, type, gender, breed, image, isFavorite, onAddFav
   const rescue = { name, id, type, gender, breed, image };
 
   return (
-    <SummaryCard type={rescue.type} image={rescue.image} name={rescue.name} viewComponentDetailsUrl={`/v1/rescue/${rescue.id}`} role="group">
+    <SummaryCard type={rescue.type} image={rescue.image} name={rescue.name} viewComponentDetailsUrl={`/v1/rescue/${rescue.id}`} >
       <Grid item xs={12}>
         <Typography variant="h4">{rescue.name}</Typography>
       </Grid>
