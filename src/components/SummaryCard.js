@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
-import RescueImage from "./rescues/RescueImage";
+import DisplayImage from "./DisplayImage";
 
 const useStyles = makeStyles({
     summaryCard: {
@@ -27,7 +27,7 @@ export const SummaryCard = ({ children, type, image, name, viewComponentDetailsU
 
     return (
         <Paper elevation={2} className={`Rescue ${classes.summaryCard}`}>
-            <RescueImage
+            <DisplayImage
                 type={type}
                 image={image}
                 name={name}

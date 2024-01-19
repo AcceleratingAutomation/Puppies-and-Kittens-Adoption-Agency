@@ -3,7 +3,7 @@ import { Grid, Typography, TextField, Button, Hidden } from "@material-ui/core";
 import Tooltip from '@material-ui/core/Tooltip';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import { Field, Form, ErrorMessage } from 'formik';
-import RescueImage from "../rescues/RescueImage";
+import DisplayImage from "../DisplayImage";
 
 const LoginForm = ({ isSubmitting }) => (
     <Form>
@@ -72,7 +72,7 @@ const LoginForm = ({ isSubmitting }) => (
             <ErrorMessage name="login" component="div" style={{ color: 'red' }} />
             <Grid container style={{ margin: '0 auto', maxWidth: '80%' }} justify="center">
                 <Grid item xs={12} sm={4}>
-                    <RescueImage
+                    <DisplayImage
                         type={"dog"}
                         image={0}
                         name={"Playful Puppy"}
@@ -81,7 +81,7 @@ const LoginForm = ({ isSubmitting }) => (
                     />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                    <RescueImage
+                    <DisplayImage
                         type={"cat"}
                         image={0}
                         name={"Playful Kitten"}

@@ -1,12 +1,13 @@
 import React, { useReducer, useEffect, useCallback } from "react";
-import { Avatar, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
-import { constructHeader, isMember, updateAppSettings } from "../../utils/utils";
+import { isMember, updateAppSettings } from "../../utils/utils";
 import { useHistory } from "react-router-dom";
 import { tabs } from "../header/AppHeader";
-
-const url = "http://localhost:5000/v1/users";
+import { usersUrl } from '../../server/api/apiConfig';
+import { fetchData } from '../../server/api/cardApi';
+import UserCard from "./UserCard";
 
 const initialState = {
   users: [],
@@ -33,8 +34,7 @@ export const Users = () => {
   }, [history]);
 
   useEffect(() => {
-    fetch(url, { headers: constructHeader() })
-      .then((res) => (res.status === 401 ? redirect() : res.json()))
+    fetchData(usersUrl)
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
@@ -52,21 +52,18 @@ export const Users = () => {
         <Grid container justify="center" direction="column" alignItems="center">
           <Grid item style={{ marginBottom: "5vh" }}>
             <Typography variant="h3" gutterBottom>
-              Rescue Users!
-              <span role="img" aria-label="rescues">
-                🤓🤠
-              </span>
+              Application Users
             </Typography>
           </Grid>
-          <Grid item xs={4}>
-            {state.users.map((user, key) => {
+          <Grid item container justify="center">
+            {state.users.map((user) => {
               return (
-                <User
-                  key={key}
-                  userName={user.username}
-                  firstName={user.firstName}
-                  lastName={user.lastName}
+                <UserCard
+                  key={user.id}
+                  image={user.image}
+                  username={user.username}
                   role={user.role}
+                  favorite={user.favorite}
                 />
               );
             })}
@@ -74,32 +71,5 @@ export const Users = () => {
         </Grid>
       )}
     </div>
-  );
-};
-
-const User = ({ firstName, lastName, userName, role }) => {
-  return (
-    <Grid container direction="column" alignItems="center" className="User">
-      <Grid item xs={12}>
-        <Grid
-          container
-          justify="space-between"
-          alignItems="center"
-          style={{ padding: "0.7em" }}
-        >
-          <Avatar style={{ marginRight: "0.5em" }}>
-            {firstName.charAt(0)}
-          </Avatar>
-          <Typography variant="body2" gutterBottom>
-            {userName + " (" + role + ") "}
-          </Typography>
-        </Grid>
-      </Grid>
-      <Grid item>
-        <Typography variant="h6" gutterBottom color="primary">
-          {firstName + " " + lastName}
-        </Typography>
-      </Grid>
-    </Grid>
   );
 };

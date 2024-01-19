@@ -21,33 +21,37 @@
       "45fc3986-b0d8-43a7-9200-a7bca6eece41",
       "d36e95b7-0b8c-4215-82e6-85e1fd92c8c9"
     ],
-    "role": "admin"
+    "role": "admin",
+    "image": 0
   },
   {
-    "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",
+    "id": "677c96e2-cb5e-11ea-87d0-0242ac130005",
     "username": "vet",
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
     "firstName": "Jason",
     "lastName": "Caldwell",
     "favorite": [],
-    "role": "veterinarian"
+    "role": "veterinarian",
+    "image": 0
   },
   {
-    "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",
+    "id": "677c96e2-cb5e-11ea-87d0-0242ac130006",
     "username": "foster",
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
     "firstName": "Jason",
     "lastName": "Caldwell",
     "favorite": [],
-    "role": "foster"
+    "role": "foster",
+    "image": 0
   },
   {
-    "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",
+    "id": "677c96e2-cb5e-11ea-87d0-0242ac130007",
     "username": "adopter",
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
     "firstName": "Jason",
     "lastName": "Caldwell",
     "favorite": [],
-    "role": "adopter"
+    "role": "adopter",
+    "image": 0
   }
 ]

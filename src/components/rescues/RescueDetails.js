@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Typography, Container } from "@material-ui/core";
 import { AppHeader } from "../header/AppHeader";
 import { ConfirmationDialog } from "../ConfirmationDialog";
-import RescueImage from "./RescueImage";
+import DisplayImage from "../DisplayImage";
 import { deleteFavorite } from "../../server/api/rescueDetailsApi";
 import Loading from '../Loading';
 import { fetchDetails, deleteDetails } from "../../server/api/detailsApi";
@@ -127,7 +127,7 @@ export const RescueDetails = () => {
               </Grid>
             </Grid>
             <Grid item xs={12} sm={4} md={3} style={{ textAlign: 'center' }}>
-              <RescueImage
+              <DisplayImage
                 type={state.rescue.type}
                 image={state.rescue.image}
                 name={state.rescue.name}

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { getImageUrl } from "../../utils/utils";
+import { getImageUrl } from "../utils/utils";
 
-const RescueImage = ({ type, image, name, width, height }) => {
+const DisplayImage = ({ type, image, name, width, height }) => {
   useEffect(() => {
     const img = new Image();
     img.src = getImageUrl(type, image);
@@ -16,4 +16,4 @@ const RescueImage = ({ type, image, name, width, height }) => {
   );
 };
 
-export default RescueImage;
+export default DisplayImage;
