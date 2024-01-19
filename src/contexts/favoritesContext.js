@@ -2,14 +2,14 @@ import React, { createContext, useReducer } from 'react';
 
 export const initialState = {
   adopters: [],
+  favorites: [],
   fosters: [],
+  loading: true,
+  openDialog: false,
+  rescueDetails: null,
   rescues: [],
   veterinarians: [],
   users: [],
-  rescueDetails: null,
-  favorites: [],
-  loading: true,
-  openDialog: false
 };
 
 export function reducer(state, action) {
@@ -20,6 +20,8 @@ export function reducer(state, action) {
       return { ...state, fosters: action.value, loading: false };
     case 'setRescues':
       return { ...state, rescues: action.value, loading: false };
+    case 'setRescueDetails':
+      return { ...state, rescueDetails: action.value, loading: false };
     case 'setUsers':
       return { ...state, users: action.value, loading: false };
     case 'setVeterinarians':
@@ -43,6 +45,10 @@ export function reducer(state, action) {
       };
     case 'setLoading':
       return { ...state, loading: action.value };
+    case 'openDialog':
+      return { ...state, openDialog: true };
+    case 'closeDialog':
+      return { ...state, openDialog: false };
     default:
       throw new Error();
   }
