@@ -8,7 +8,6 @@ const {
     fosterHandlers,
     veterinarianHandlers,
     userHandlers } = require('./controllers/createHandlers');
-const usersController = require('./controllers/users');
 const loginController = require('./controllers/login');
 const formsController = require('./controllers/forms');
 const { verifyToken } = require("./shared");
@@ -54,8 +53,6 @@ app.get("/v1/veterinarian/:id", verifyToken, veterinarianHandlers.getDetails);
 
 // Users
 
-// app.get("/v1/users", verifyToken, usersController.getAllUsers); 
-// Security differences between above and below b/c of SHOW_USERS
 app.get("/v1/users", verifyToken, userHandlers.getAll);
 app.delete("/v1/user/:id", verifyToken, userHandlers.delete);
 app.get("/v1/user/:id", verifyToken, userHandlers.getDetails);

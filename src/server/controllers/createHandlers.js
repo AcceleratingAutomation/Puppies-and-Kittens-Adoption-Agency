@@ -16,13 +16,17 @@ const createHandlers = (type, db, permissions) => {
     return {
         getAll: (req, res) => {
             const token = req.headers.authorization.split(" ")[1];
-            getAllData(db).then((data) => {
-                if (data && data.length > 0) {
-                    generateToken(token, null).then((token) => {
-                        res.status(200).send({ [type]: data, token: token });
-                    });
-                } else res.status(500).send({ [type]: [], token: token });
-            });
+            if (getAudienceFromToken(token).includes(permissions.read)) {
+                getAllData(db).then((data) => {
+                    if (data && data.length > 0) {
+                        generateToken(token, null).then((token) => {
+                            res.status(200).send({ [type]: data, token: token });
+                        });
+                    } else res.status(500).send({ [type]: [], token: token });
+                });
+            } else {
+                res.status(403).send({ message: `Not authorized to view ${type}`, token: token });
+            }
         },
 
         delete: (req, res) => {
@@ -66,8 +70,8 @@ const createHandlers = (type, db, permissions) => {
     };
 };
 
-exports.adopterHandlers = createHandlers('adopters', adoptersDB, { delete: Constants.DELETE_ADOPTER, showDetails: Constants.SHOW_ADOPTER_DETAILS });
-exports.fosterHandlers = createHandlers('fosters', fostersDB, { delete: Constants.DELETE_FOSTER, showDetails: Constants.SHOW_FOSTER_DETAILS });
-exports.rescueHandlers = createHandlers('rescues', rescuesDB, { delete: Constants.DELETE_RESCUE, showDetails: Constants.SHOW_RESCUE_DETAILS });
-exports.userHandlers = createHandlers('users', usersDB, { delete: Constants.DELETE_USER, showDetails: Constants.SHOW_USER_DETAILS });
-exports.veterinarianHandlers = createHandlers('veterinarians', veterinariansDB, { delete: Constants.DELETE_VETERINARIAN, showDetails: Constants.SHOW_VETERINARIAN_DETAILS });
+exports.adopterHandlers = createHandlers('adopters', adoptersDB, { read: Constants.SHOW_ADOPTERS, delete: Constants.DELETE_ADOPTER, showDetails: Constants.SHOW_ADOPTER_DETAILS });
+exports.fosterHandlers = createHandlers('fosters', fostersDB, { read: Constants.SHOW_FOSTERS, delete: Constants.DELETE_FOSTER, showDetails: Constants.SHOW_FOSTER_DETAILS });
+exports.rescueHandlers = createHandlers('rescues', rescuesDB, { read: Constants.SHOW_RESCUES, delete: Constants.DELETE_RESCUE, showDetails: Constants.SHOW_RESCUE_DETAILS });
+exports.userHandlers = createHandlers('users', usersDB, { read: Constants.SHOW_USERS, delete: Constants.DELETE_USER, showDetails: Constants.SHOW_USER_DETAILS });
+exports.veterinarianHandlers = createHandlers('veterinarians', veterinariansDB, { read: Constants.SHOW_VETERINARIANS, delete: Constants.DELETE_VETERINARIAN, showDetails: Constants.SHOW_VETERINARIAN_DETAILS });
