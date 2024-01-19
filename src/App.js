@@ -9,7 +9,7 @@ import { Favorites } from "./components/Favorites";
 import { RescueDetails } from "./components/rescues/RescueDetails";
 import { Veterinarians } from "./components/veterinarians/Veterinarians";
 import { Fosters } from "./components/fosters/Fosters";
-import { Canidates } from "./components/canidates/Canidates";
+import { Adopters } from "./components/adopters/Adopters";
 import { RescuesProvider } from "./contexts/rescuesContext";
 
 export default function App() {
@@ -39,8 +39,8 @@ export default function App() {
             <Route exact path="/v1/addpet">
               <AddPet />
             </Route>
-            <Route exact path="/v1/canidates">
-              <Canidates />
+            <Route exact path="/v1/adopters">
+              <Adopters />
             </Route>
             <Route path="/">
               <Login />

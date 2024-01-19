@@ -1,9 +1,9 @@
 [
     {
         "id": "1047d9f6-e7c3-488b-bf89-0c1f60bed381",
-        "displayName": "canidate name",
-        "type": "Canidate",
-        "email": "canidate@email.com",
+        "displayName": "adopter name",
+        "type": "Adopter",
+        "email": "adopter@email.com",
         "isAdopting": true,
         "householdAdults": 2,
         "householdChildren": 2,

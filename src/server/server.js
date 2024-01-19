@@ -2,7 +2,7 @@ require("dotenv").config({ path: "./variables.env" });
 const express = require("express");
 const cors = require("cors");
 const favoritesController = require('./controllers/favorites');
-const { rescueHandlers } = require('./controllers/createHandlers');
+const { rescueHandlers, adopterHandlers } = require('./controllers/createHandlers');
 const usersController = require('./controllers/users');
 const loginController = require('./controllers/login');
 const formsController = require('./controllers/forms');
@@ -29,7 +29,11 @@ app.get("/v1/rescue/:id", verifyToken, rescueHandlers.getDetails);
 
 app.post("/v1/addpet", verifyToken, formsController.addPet);
 
-// Canidates
+// Adopters
+
+app.get("/v1/adopters", verifyToken, adopterHandlers.getAll);
+app.delete("/v1/adopter/:id", verifyToken, adopterHandlers.delete);
+app.get("/v1/adopter/:id", verifyToken, adopterHandlers.getDetails);
 
 // Fosters
 

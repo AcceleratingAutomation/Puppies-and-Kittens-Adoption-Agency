@@ -6,25 +6,25 @@ import { constructHeader, updateAppSettings } from "../../utils/utils";
 import { useHistory } from "react-router-dom";
 import { tabs } from "../header/AppHeader";
 
-const url = "http://localhost:5000/v1/canidates";
+const url = "http://localhost:5000/v1/adopters";
 
 const initialState = {
-    canidates: [],
+    adopters: [],
   };
 
 function reducer(state, action) {
     switch (action.type) {
-      case 'setCanidates':
-        return { ...state, canidates: action.value };
+      case 'setAdopters':
+        return { ...state, adopters: action.value };
       default:
         throw new Error();
     }
   }
 
-export const Canidates = () => {
+export const Adopters = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const history = useHistory();
-    const tabValue = tabs.findIndex(tab => tab.label === 'Canidates');
+    const tabValue = tabs.findIndex(tab => tab.label === 'Adopters');
 
     const redirect = useCallback(() => {
         localStorage.clear();
@@ -37,10 +37,10 @@ export const Canidates = () => {
           .then((json) => {
             if (json) {
               updateAppSettings(json.token);
-              dispatch({ type: 'setCanidates', value: [...json.canidates] });
+              dispatch({ type: 'setAdopters', value: [...json.adopters] });
             }
           })
-          .catch((err) => console.log("Error fetching canidates ", err.message));
+          .catch((err) => console.log("Error fetching adopters ", err.message));
       }, [redirect]);
 
     return (
@@ -49,7 +49,7 @@ export const Canidates = () => {
           <Grid container justify="center" alignItems="center" direction="column">
             <Grid item style={{ marginBottom: "5vh" }}>
               <Typography variant="h3" gutterBottom>
-                Canidates
+                Adopters
               </Typography>
             </Grid>
             <Grid item container justify="center">

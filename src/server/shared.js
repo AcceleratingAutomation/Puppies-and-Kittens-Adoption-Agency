@@ -7,13 +7,13 @@ const path = require('path');
 const usersDB = "./database/users.json";
 const rescuesDB = "./database/rescues.json";
 const fostersDB = "./database/fosters.json";
-const canidatesDB = "./database/canidates.json";
+const adoptersDB = "./database/adopters.json";
 const veterinariansDB = "./database/veterinarians.json";
 
 exports.usersDB = usersDB;
 exports.rescuesDB = rescuesDB;
 exports.fostersDB = fostersDB;
-exports.canidatesDB = canidatesDB;
+exports.adoptersDB = adoptersDB;
 exports.veterinariansDB = veterinariansDB;
 
 // common
@@ -163,7 +163,7 @@ exports.deleteFavorite = (token, rescueId) => {
 
 // Rescues
 
-// Canidates
+// Adopters
 
 // Fosters
 

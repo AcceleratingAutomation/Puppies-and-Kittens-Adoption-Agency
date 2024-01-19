@@ -6,7 +6,7 @@ module.exports.JWT_OPTIONS = {
     "DELETE_FAVORITE",
     "DELETE_RESCUE",
     "LOGIN",
-    "SHOW_CANDIDATES",
+    "SHOW_ADOPTERS",
     "SHOW_FAVORITE",
     "SHOW_FORMS",
     "SHOW_FOSTERS",
