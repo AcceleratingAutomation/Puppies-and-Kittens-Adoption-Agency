@@ -2,7 +2,12 @@ require("dotenv").config({ path: "./variables.env" });
 const express = require("express");
 const cors = require("cors");
 const favoritesController = require('./controllers/favorites');
-const { rescueHandlers, adopterHandlers } = require('./controllers/createHandlers');
+const {
+    rescueHandlers,
+    adopterHandlers,
+    fosterHandlers,
+    veterinarianHandlers,
+    userHandlers } = require('./controllers/createHandlers');
 const usersController = require('./controllers/users');
 const loginController = require('./controllers/login');
 const formsController = require('./controllers/forms');
@@ -37,11 +42,23 @@ app.get("/v1/adopter/:id", verifyToken, adopterHandlers.getDetails);
 
 // Fosters
 
-// Vets
+app.get("/v1/fosters", verifyToken, fosterHandlers.getAll);
+app.delete("/v1/foster/:id", verifyToken, fosterHandlers.delete);
+app.get("/v1/foster/:id", verifyToken, fosterHandlers.getDetails);
+
+// Veterinarians
+
+app.get("/v1/veterinarians", verifyToken, veterinarianHandlers.getAll);
+app.delete("/v1/veterinarian/:id", verifyToken, veterinarianHandlers.delete);
+app.get("/v1/veterinarian/:id", verifyToken, veterinarianHandlers.getDetails);
 
 // Users
 
-app.get("/v1/users", verifyToken, usersController.getAllUsers);
+// app.get("/v1/users", verifyToken, usersController.getAllUsers); 
+// Security differences between above and below b/c of SHOW_USERS
+app.get("/v1/users", verifyToken, userHandlers.getAll);
+app.delete("/v1/user/:id", verifyToken, userHandlers.delete);
+app.get("/v1/user/:id", verifyToken, userHandlers.getDetails);
 
 // Login
 

@@ -7,8 +7,10 @@ import { useHistory } from "react-router-dom";
 import RescueCard from './RescueCard';
 import { RescuesContext } from '../../contexts/rescuesContext';
 import Loading from '../Loading';
-import { fetchRescues, addFavorite, checkFavorite, removeFavorite } from '../../server/api/rescuesApi';
+import { addFavorite, checkFavorite, removeFavorite } from '../../server/api/rescuesApi';
 import { tabs } from "../header/AppHeader";
+import { rescuesUrl } from '../../server/api/apiConfig';
+import { fetchData } from '../../server/api/cardApi';
 
 export const Rescues = () => {
   const { state, dispatch } = useContext(RescuesContext);
@@ -21,7 +23,7 @@ export const Rescues = () => {
   }, [history]);
 
   useEffect(() => {
-    fetchRescues()
+    fetchData(rescuesUrl)
       .then((json) => {
         updateAppSettings(json.token);
         dispatch({ type: 'setRescues', value: [...json.rescues] });

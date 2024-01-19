@@ -1,13 +1,5 @@
 import { constructHeader } from '../../utils/utils';
-import { rescuesUrl, favoritesUrl } from './apiConfig';
-
-export const fetchRescues = async () => {
-  const response = await fetch(rescuesUrl, { headers: constructHeader() });
-  if (response.status === 401) {
-    throw new Error('Unauthorized');
-  }
-  return response.json();
-};
+import { favoritesUrl } from './apiConfig';
 
 export const addFavorite = async (id) => {
   const response = await fetch(`${favoritesUrl}/${id}`, {

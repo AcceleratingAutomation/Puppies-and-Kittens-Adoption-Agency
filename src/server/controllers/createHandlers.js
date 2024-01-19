@@ -66,8 +66,8 @@ const createHandlers = (type, db, permissions) => {
     };
 };
 
-exports.rescueHandlers = createHandlers('rescues', rescuesDB, { delete: Constants.DELETE_RESCUE, showDetails: Constants.SHOW_RESCUE_DETAILS });
 exports.adopterHandlers = createHandlers('adopters', adoptersDB, { delete: Constants.DELETE_ADOPTER, showDetails: Constants.SHOW_ADOPTER_DETAILS });
 exports.fosterHandlers = createHandlers('fosters', fostersDB, { delete: Constants.DELETE_FOSTER, showDetails: Constants.SHOW_FOSTER_DETAILS });
-exports.veterinarianHandlers = createHandlers('veterinarians', veterinariansDB, { delete: Constants.DELETE_VETERINARIAN, showDetails: Constants.SHOW_VETERINARIAN_DETAILS });
+exports.rescueHandlers = createHandlers('rescues', rescuesDB, { delete: Constants.DELETE_RESCUE, showDetails: Constants.SHOW_RESCUE_DETAILS });
 exports.userHandlers = createHandlers('users', usersDB, { delete: Constants.DELETE_USER, showDetails: Constants.SHOW_USER_DETAILS });
+exports.veterinarianHandlers = createHandlers('veterinarians', veterinariansDB, { delete: Constants.DELETE_VETERINARIAN, showDetails: Constants.SHOW_VETERINARIAN_DETAILS });

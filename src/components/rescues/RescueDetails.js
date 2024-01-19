@@ -5,8 +5,10 @@ import { Button, Grid, Typography, Container } from "@material-ui/core";
 import { AppHeader } from "../header/AppHeader";
 import { ConfirmationDialog } from "../ConfirmationDialog";
 import RescueImage from "./RescueImage";
-import { fetchRescueDetails, deleteRescue, deleteFavorite } from "../../server/api/rescueDetailsApi";
+import { deleteFavorite } from "../../server/api/rescueDetailsApi";
 import Loading from '../Loading';
+import { fetchDetails, deleteDetails } from "../../server/api/detailsApi";
+import { rescueDetailsUrl } from '../../server/api/apiConfig';
 
 const useStyles = makeStyles({
   muiButton: {
@@ -37,7 +39,7 @@ export const RescueDetails = () => {
 
   const fetchRescue = useCallback(async () => {
     try {
-      const data = await fetchRescueDetails(id);
+      const data = await fetchDetails(rescueDetailsUrl, id);
       dispatch({ type: 'FETCH_SUCCESS', payload: data.rescues });
     } catch (err) {
       console.log("Error fetching rescues ", err.message);
@@ -50,7 +52,7 @@ export const RescueDetails = () => {
 
   const onDeleteRescue = useCallback(async (id) => {
     try {
-      if (await deleteRescue(id)) {
+      if (await deleteDetails(rescueDetailsUrl, id)) {
         // The rescue also needs to be removed from favorites if it exists
         if (await deleteFavorite(id)) {
           history.push('/v1/rescues');

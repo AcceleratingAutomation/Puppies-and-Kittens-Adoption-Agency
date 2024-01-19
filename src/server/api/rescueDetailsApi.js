@@ -1,18 +1,5 @@
 import { constructHeader } from "../../utils/utils";
-import { favoritesUrl, rescueDetailsUrl } from "./apiConfig";
-
-export const fetchRescueDetails = async (id) => {
-  const response = await fetch(`${rescueDetailsUrl}/${id}`, { headers: constructHeader() });
-  return response.json();
-};
-
-export const deleteRescue = async (id) => {
-  const response = await fetch(`${rescueDetailsUrl}/${id}`, {
-    method: 'DELETE',
-    headers: constructHeader(),
-  });
-  return response.ok;
-};
+import { favoritesUrl } from "./apiConfig";
 
 export const deleteFavorite = async (id) => {
   const response = await fetch(`${favoritesUrl}/${id}`, {
