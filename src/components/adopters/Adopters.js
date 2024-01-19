@@ -47,7 +47,7 @@ export const Adopters = () => {
               image={adopter.image}
               displayName={adopter.displayName}
               email={adopter.email}
-              householdPets={adopter.householdPets}
+              numHouseholdPets={adopter.numHouseholdPets}
               isAdopting={adopter.isAdopting}
             />
           );

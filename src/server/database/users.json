@@ -1,8 +1,9 @@
 [
   {
     "id": "f2775f38-92fc-42e5-98a5-b137a0887a40",
-    "username": "jason",
+    "email": "member@email.com",
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
+    "username": "jason",
     "firstName": "Member",
     "lastName": "User",
     "favorite": [],
@@ -10,8 +11,9 @@
   },
   {
     "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",
-    "username": "jdcald13",
+    "email": "admin@email.com",
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
+    "username": "jdcald13",
     "firstName": "Jason",
     "lastName": "Caldwell",
     "favorite": [
@@ -26,8 +28,9 @@
   },
   {
     "id": "677c96e2-cb5e-11ea-87d0-0242ac130005",
-    "username": "vet",
+    "email": "vet@email.com",
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
+    "username": "vet",
     "firstName": "Jason",
     "lastName": "Caldwell",
     "favorite": [],
@@ -36,8 +39,9 @@
   },
   {
     "id": "677c96e2-cb5e-11ea-87d0-0242ac130006",
-    "username": "foster",
+    "email": "foster@email.com",
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
+    "username": "foster",
     "firstName": "Jason",
     "lastName": "Caldwell",
     "favorite": [],
@@ -46,8 +50,9 @@
   },
   {
     "id": "677c96e2-cb5e-11ea-87d0-0242ac130007",
-    "username": "adopter",
+    "email": "adopter@email.com",
     "key": "$2b$10$CQ2CLSmrVpLUQsU3Tz4i6uwYrD80RaaCsjRq3tpZD5HI54Su1Papm",
+    "username": "adopter",
     "firstName": "Jason",
     "lastName": "Caldwell",
     "favorite": [],

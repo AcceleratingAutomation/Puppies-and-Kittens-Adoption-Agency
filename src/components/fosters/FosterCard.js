@@ -15,7 +15,7 @@ const FosterCard = ({ displayName, id, email, numCurrentRescues, numTotalRescues
         {foster.email}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        New Fosters: {foster.isAccepting ? "Yes" : "No"}
+        Accepting Rescues: {foster.isAccepting ? "Yes" : "No"}
       </Typography>
       <Typography variant="h5" gutterBottom>
         Current Rescues: {foster.numCurrentRescues}

@@ -15,7 +15,7 @@ const VeterinarianCard = ({ displayName, id, email, numCurrentRescues, numTotalR
         {veterinarian.email}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        New Patients: {veterinarian.isAccepting ? "Yes" : "No"}
+        Accepting Patients: {veterinarian.isAccepting ? "Yes" : "No"}
       </Typography>
       <Typography variant="h5" gutterBottom>
         Current Rescues: {veterinarian.numCurrentRescues}

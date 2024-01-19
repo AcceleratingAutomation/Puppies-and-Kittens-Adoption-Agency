@@ -48,6 +48,7 @@ export const Users = () => {
               <UserCard
                 key={user.id}
                 image={user.image}
+                email={user.email}
                 username={user.username}
                 role={user.role}
                 favorite={user.favorite}

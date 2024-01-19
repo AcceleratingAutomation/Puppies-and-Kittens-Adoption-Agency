@@ -5,14 +5,11 @@
         "type": "Adopter",
         "email": "adopter@email.com",
         "isAdopting": true,
-        "householdAdults": 2,
-        "householdChildren": 2,
-        "youngestChildAge": 10,
-        "householdPets": 3,
+        "numHouseholdPeople": 2,
+        "numHouseholdPets": 3,
         "isOriented": true,
         "hasBackgroundCheck": true,
         "hasApplication": true,
-        "hasReferences": true,
         "bio": "An amazing dog with a great personality. He loves to play outside and is very friendly with other dogs. He is very well trained and is very obedient. He is a great dog for a family with kids.",
         "image": 0
     }
