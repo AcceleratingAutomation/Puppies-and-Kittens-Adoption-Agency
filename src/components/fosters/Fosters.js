@@ -1,9 +1,8 @@
-import React, { useEffect, useCallback, useReducer } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import React, { useEffect, useReducer } from "react";
+import { Grid } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
-import { useHistory } from "react-router-dom";
 import { tabs } from "../header/AppHeader";
 import { fostersUrl } from "../../server/api/apiConfig";
 import { fetchData } from "../../server/api/cardApi";
@@ -24,13 +23,7 @@ function reducer(state, action) {
 
 export const Fosters = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const history = useHistory();
   const tabValue = tabs.findIndex(tab => tab.label === 'Fosters');
-
-  const redirect = useCallback(() => {
-    localStorage.clear();
-    history.push("/v1/login");
-  }, [history]);
 
   useEffect(() => {
     fetchData(fostersUrl)
@@ -41,32 +34,25 @@ export const Fosters = () => {
         }
       })
       .catch((err) => console.log("Error fetching fosters ", err.message));
-  }, [redirect]);
+  }, []);
 
   return (
     <div className="Content">
       <AppHeader tabValue={tabValue} />
-      <Grid container justify="center" alignItems="center" direction="column">
-        <Grid item style={{ marginBottom: "5vh" }}>
-          <Typography variant="h3" gutterBottom>
-            Fosters
-          </Typography>
-        </Grid>
-        <Grid item container justify="center">
-          {state.fosters.map((foster) => {
-            return (
-              <FosterCard
-                key={foster.id}
-                image={foster.image}
-                displayName={foster.displayName}
-                email={foster.email}
-                numCurrentRescues={foster.numCurrentRescues}
-                numTotalRescues={foster.numTotalRescues}
-                isAccepting={foster.isAccepting}
-              />
-            );
-          })}
-        </Grid>
+      <Grid item container justify="center">
+        {state.fosters.map((foster) => {
+          return (
+            <FosterCard
+              key={foster.id}
+              image={foster.image}
+              displayName={foster.displayName}
+              email={foster.email}
+              numCurrentRescues={foster.numCurrentRescues}
+              numTotalRescues={foster.numTotalRescues}
+              isAccepting={foster.isAccepting}
+            />
+          );
+        })}
       </Grid>
     </div>
   );

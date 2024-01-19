@@ -15,7 +15,7 @@ const LoginForm = ({ isSubmitting }) => (
         >
             <Grid item style={{ marginBottom: "3vh" }}>
                 <Typography variant={"h3"}>
-                    Puppies and Kittens <Hidden xsDown><br /></Hidden> Adoption Agency!
+                    Puppies and Kittens <Hidden xsDown><br /></Hidden> Rescue and Adoption Agency!
                 </Typography>
             </Grid>
             <Grid item style={{ marginBottom: "3vh" }}>

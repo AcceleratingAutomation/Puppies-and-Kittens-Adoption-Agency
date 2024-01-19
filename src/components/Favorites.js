@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useCallback } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./header/AppHeader";
 import RescueCard from "./rescues/RescueCard";
@@ -40,32 +40,22 @@ export const Favorites = () => {
   return (
     <main className="Content">
       <AppHeader tabValue={tabValue} />
-      <Grid container justify="center" alignItems="center" direction="column">
-        <Grid item style={{ marginBottom: "2vh" }}>
-          <Typography variant="h3" >
-            Your Favorites
-            <span role="img" aria-label="Red heart icon">
-              ❤️
-            </span>
-          </Typography>
-        </Grid>
-        <Grid item container justify="center">
-          {state.rescues
-            .filter(rescue => state.favorites.includes(rescue.id))
-            .map((rescue) => (
-              <RescueCard
-                key={rescue.id}
-                id={rescue.id}
-                name={rescue.name}
-                type={rescue.type}
-                gender={rescue.gender}
-                breed={rescue.breed}
-                image={rescue.image}
-                isFavorite={true}
-                onRemoveFavorite={handleRemoveFavorite}
-              />
-            ))}
-        </Grid>
+      <Grid item container justify="center">
+        {state.rescues
+          .filter(rescue => state.favorites.includes(rescue.id))
+          .map((rescue) => (
+            <RescueCard
+              key={rescue.id}
+              id={rescue.id}
+              name={rescue.name}
+              type={rescue.type}
+              gender={rescue.gender}
+              breed={rescue.breed}
+              image={rescue.image}
+              isFavorite={true}
+              onRemoveFavorite={handleRemoveFavorite}
+            />
+          ))}
       </Grid>
     </main>
   );

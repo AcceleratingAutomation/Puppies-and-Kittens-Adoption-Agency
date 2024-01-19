@@ -1,9 +1,8 @@
-import React, { useReducer, useEffect, useCallback } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import React, { useReducer, useEffect } from "react";
+import { Grid } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
 import { isMember, updateAppSettings } from "../../utils/utils";
-import { useHistory } from "react-router-dom";
 import { tabs } from "../header/AppHeader";
 import { usersUrl } from '../../server/api/apiConfig';
 import { fetchData } from '../../server/api/cardApi';
@@ -24,14 +23,8 @@ function reducer(state, action) {
 
 export const Users = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const history = useHistory();
   const showPage = !isMember();
   const tabValue = tabs.findIndex(tab => tab.label === 'Users');
-
-  const redirect = useCallback(() => {
-    localStorage.clear();
-    history.push("/v1/login");
-  }, [history]);
 
   useEffect(() => {
     fetchData(usersUrl)
@@ -42,32 +35,25 @@ export const Users = () => {
         }
       })
       .catch((err) => console.log("Error fetching users ", err.message));
-  }, [redirect]);
+  }, []);
 
   return (
     <div className="Content">
       <AppHeader tabValue={tabValue} />
       {!showPage && <div />}
       {showPage && (
-        <Grid container justify="center" direction="column" alignItems="center">
-          <Grid item style={{ marginBottom: "5vh" }}>
-            <Typography variant="h3" gutterBottom>
-              Application Users
-            </Typography>
-          </Grid>
-          <Grid item container justify="center">
-            {state.users.map((user) => {
-              return (
-                <UserCard
-                  key={user.id}
-                  image={user.image}
-                  username={user.username}
-                  role={user.role}
-                  favorite={user.favorite}
-                />
-              );
-            })}
-          </Grid>
+        <Grid item container justify="center">
+          {state.users.map((user) => {
+            return (
+              <UserCard
+                key={user.id}
+                image={user.image}
+                username={user.username}
+                role={user.role}
+                favorite={user.favorite}
+              />
+            );
+          })}
         </Grid>
       )}
     </div>

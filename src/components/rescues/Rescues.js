@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useCallback, useMemo } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
-import { useHistory } from "react-router-dom";
 import RescueCard from './RescueCard';
 import { RescuesContext } from '../../contexts/rescuesContext';
 import Loading from '../Loading';
@@ -14,13 +13,7 @@ import { fetchData } from '../../server/api/cardApi';
 
 export const Rescues = () => {
   const { state, dispatch } = useContext(RescuesContext);
-  const history = useHistory();
   const tabValue = tabs.findIndex(tab => tab.label === 'Rescues');
-
-  const redirect = useCallback(() => {
-    localStorage.clear();
-    history.push("/v1/login");
-  }, [history]);
 
   useEffect(() => {
     fetchData(rescuesUrl)
@@ -29,7 +22,7 @@ export const Rescues = () => {
         dispatch({ type: 'setRescues', value: [...json.rescues] });
       })
       .catch((err) => console.log("Error fetching rescues ", err.message));
-  }, [redirect, dispatch]);
+  }, [dispatch]);
 
   const onAddFavorite = useCallback(async (id) => {
     if (await addFavorite(id)) {
@@ -89,15 +82,8 @@ export const Rescues = () => {
   return (
     <div className="Content">
       <AppHeader tabValue={tabValue} />
-      <Grid container justify="center" alignItems="center" direction="column">
-        <Grid item style={{ marginBottom: "2vh" }}>
-          <Typography variant="h3" gutterBottom>
-            Rescue Puppies and Kittens!
-          </Typography>
-        </Grid>
-        <Grid item container justify="center">
-          {rescues}
-        </Grid>
+      <Grid item container justify="center">
+        {rescues}
       </Grid>
     </div>
   );
