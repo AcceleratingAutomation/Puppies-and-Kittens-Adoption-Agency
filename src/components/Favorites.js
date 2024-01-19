@@ -3,13 +3,13 @@ import { Grid } from "@material-ui/core";
 import "../styles.css";
 import { AppHeader } from "./header/AppHeader";
 import RescueCard from "./rescues/RescueCard";
-import { RescuesContext } from "../contexts/rescuesContext";
+import { FavoritesContext } from "../contexts/favoritesContext";
 import Loading from "./Loading";
 import { fetchFavorites, removeFavorite } from "../server/api/favoritesApi";
 import { tabs } from "./header/AppHeader";
 
 export const Favorites = () => {
-  const { state, dispatch } = useContext(RescuesContext);
+  const { state, dispatch } = useContext(FavoritesContext);
   const tabValue = tabs.findIndex(tab => tab.label === 'Favorites');
 
   const fetchAndSetFavorites = useCallback(async () => {

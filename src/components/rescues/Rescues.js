@@ -4,7 +4,7 @@ import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
 import RescueCard from './RescueCard';
-import { RescuesContext } from '../../contexts/rescuesContext';
+import { FavoritesContext } from '../../contexts/favoritesContext';
 import Loading from '../Loading';
 import { addFavorite, checkFavorite, removeFavorite } from '../../server/api/rescuesApi';
 import { tabs } from "../header/AppHeader";
@@ -12,7 +12,7 @@ import { rescuesUrl } from '../../server/api/apiConfig';
 import { fetchData } from '../../server/api/cardApi';
 
 export const Rescues = () => {
-  const { state, dispatch } = useContext(RescuesContext);
+  const { state, dispatch } = useContext(FavoritesContext);
   const tabValue = tabs.findIndex(tab => tab.label === 'Rescues');
 
   useEffect(() => {

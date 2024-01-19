@@ -10,11 +10,11 @@ import { RescueDetails } from "./components/rescues/RescueDetails";
 import { Veterinarians } from "./components/veterinarians/Veterinarians";
 import { Fosters } from "./components/fosters/Fosters";
 import { Adopters } from "./components/adopters/Adopters";
-import { RescuesProvider } from "./contexts/rescuesContext";
+import { FavoritesProvider } from "./contexts/favoritesContext";
 
 export default function App() {
   return (
-    <RescuesProvider>
+    <FavoritesProvider>
       <div className="App">
         <Router>
           <Switch>
@@ -48,6 +48,6 @@ export default function App() {
           </Switch>
         </Router>
       </div>
-    </RescuesProvider>
+    </FavoritesProvider>
   );
 }

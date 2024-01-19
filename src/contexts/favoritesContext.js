@@ -34,14 +34,14 @@ export function reducer(state, action) {
   }
 }
 
-export const RescuesContext = createContext();
+export const FavoritesContext = createContext();
 
-export const RescuesProvider = ({ children }) => {
+export const FavoritesProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <RescuesContext.Provider value={{ state, dispatch }}>
+    <FavoritesContext.Provider value={{ state, dispatch }}>
       {children}
-    </RescuesContext.Provider>
+    </FavoritesContext.Provider>
   );
 };

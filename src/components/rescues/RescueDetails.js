@@ -9,6 +9,7 @@ import { deleteFavorite } from "../../server/api/rescueDetailsApi";
 import Loading from '../Loading';
 import { fetchDetails, deleteDetails } from "../../server/api/detailsApi";
 import { rescueDetailsUrl } from '../../server/api/apiConfig';
+import { tabs } from "../header/AppHeader";
 
 const useStyles = makeStyles({
   muiButton: {
@@ -36,6 +37,7 @@ export const RescueDetails = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
   const classes = useStyles();
+  const tabValue = tabs.findIndex(tab => tab.label === 'Rescues');
 
   const fetchRescue = useCallback(async () => {
     try {
@@ -74,7 +76,7 @@ export const RescueDetails = () => {
 
   return (
     <div className="Content">
-      <AppHeader tabValue={1} />
+      <AppHeader tabValue={tabValue} />
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item>
           <Typography variant="h3" >
