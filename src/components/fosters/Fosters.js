@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useContext } from "react";
 import { Grid } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
@@ -7,22 +7,11 @@ import { tabs } from "../header/AppHeader";
 import { fostersUrl } from "../../server/api/apiConfig";
 import { fetchData } from "../../server/api/cardApi";
 import FosterCard from "./FosterCard";
-
-const initialState = {
-  fosters: [],
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'setFosters':
-      return { ...state, fosters: action.value };
-    default:
-      throw new Error();
-  }
-}
+import { FavoritesContext } from '../../contexts/favoritesContext';
+import Loading from '../Loading';
 
 export const Fosters = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, dispatch } = useContext(FavoritesContext);
   const tabValue = tabs.findIndex(tab => tab.label === 'Fosters');
 
   useEffect(() => {
@@ -34,7 +23,11 @@ export const Fosters = () => {
         }
       })
       .catch((err) => console.log("Error fetching fosters ", err.message));
-  }, []);
+  }, [dispatch]);
+
+  if (state.loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="Content">

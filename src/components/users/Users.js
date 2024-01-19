@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader } from "../header/AppHeader";
@@ -7,22 +7,11 @@ import { tabs } from "../header/AppHeader";
 import { usersUrl } from '../../server/api/apiConfig';
 import { fetchData } from '../../server/api/cardApi';
 import UserCard from "./UserCard";
-
-const initialState = {
-  users: [],
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'setUsers':
-      return { ...state, users: action.value };
-    default:
-      throw new Error();
-  }
-}
+import { FavoritesContext } from '../../contexts/favoritesContext';
+import Loading from '../Loading';
 
 export const Users = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, dispatch } = useContext(FavoritesContext);
   const showPage = !isMember();
   const tabValue = tabs.findIndex(tab => tab.label === 'Users');
 
@@ -35,7 +24,11 @@ export const Users = () => {
         }
       })
       .catch((err) => console.log("Error fetching users ", err.message));
-  }, []);
+  }, [dispatch]);
+
+  if (state.loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="Content">
