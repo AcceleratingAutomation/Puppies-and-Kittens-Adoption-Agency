@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getImageUrl } from "../utils/utils";
+import { getImageUrl } from "../utils/componentUtils";
 
 const DisplayImage = ({ type, image, name, width, height }) => {
   useEffect(() => {

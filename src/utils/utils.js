@@ -22,7 +22,3 @@ export const constructHeader = (contentType) => {
     ? { "Content-type": contentType, Authorization: auth }
     : { Authorization: auth };
 };
-
-export function getImageUrl(type, imageNumber = 0) {
-  return `/images/${type}/${type}-image-${imageNumber}.webp`;
-}

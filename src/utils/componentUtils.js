@@ -31,3 +31,7 @@ export const navigateBack = (history, path) => {
 export const navigateToEdit = (history, id, path) => {
     history.push(`${path}/${id}/edit`);
 };
+
+export function getImageUrl(type, imageNumber = 0) {
+  return `/images/${type}/${type}-image-${imageNumber}.webp`;
+}
