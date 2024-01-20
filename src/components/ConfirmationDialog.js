@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const ConfirmationDialog = ({ open, onClose, onConfirm }) => {
+const ConfirmationDialog = ({ open, onClose, onConfirm }) => {
   const classes = useStyles();
 
   return (
@@ -42,3 +42,5 @@ export const ConfirmationDialog = ({ open, onClose, onConfirm }) => {
     </Dialog>
   );
 };
+
+export default ConfirmationDialog;

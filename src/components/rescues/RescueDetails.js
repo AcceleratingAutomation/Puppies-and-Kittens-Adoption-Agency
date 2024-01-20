@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Typography, Container } from "@material-ui/core";
 import { AppHeader } from "../header/AppHeader";
-import { ConfirmationDialog } from "../ConfirmationDialog";
 import DisplayImage from "../DisplayImage";
 import { deleteFavorite } from "../../server/api/rescueDetailsApi";
 import Loading from '../Loading';
@@ -11,6 +10,7 @@ import { fetchDetails, deleteDetails } from "../../server/api/detailsApi";
 import { rescueDetailsUrl } from '../../server/api/apiConfig';
 import { tabs } from "../header/AppHeader";
 import { FavoritesContext } from '../../contexts/favoritesContext';
+import DetailsButtons from "../DetailsButtons";
 
 const useStyles = makeStyles({
   muiButton: {
@@ -40,7 +40,7 @@ export const RescueDetails = () => {
   useEffect(() => {
     fetchRescue();
   }, [fetchRescue]);
-
+  
   const onDeleteRescue = useCallback(async (id) => {
     try {
       if (await deleteDetails(rescueDetailsUrl, id)) {
@@ -60,12 +60,21 @@ export const RescueDetails = () => {
     }
   }, [history, dispatch]);
 
-  if (state.loading) {
+  const onBack = useCallback(() => {
+    history.push('/v1/rescues');
+  }, [history]);
+
+  const onEditRescue = useCallback(async (id) => {
+    console.log(`Edit!`)
+    // history.push(`/v1/rescues/${id}/edit`);
+  }, []);
+  
+  if (state.loading || !state.rescueDetails) {
     return <Loading />;
   }
-
+  
   const { name, type, gender, breed, hasFoster, hasVet, isSterilized, isVaccinated, isAdoptable, image, bio } = state.rescueDetails;
-
+  
   return (
     <div className="Content">
       <AppHeader tabValue={tabValue} />
@@ -134,37 +143,14 @@ export const RescueDetails = () => {
             </Grid>
           </Grid>
         </Container>
-        <Grid item xs={12} container justify="center">
-          <Button
-            className={classes.muiButton}
-            variant="contained"
-            color="primary"
-            onClick={() => history.push('/v1/rescues')}
-          >
-            Back
-          </Button>
-          <Button
-            className={classes.muiButton}
-            variant="contained"
-            color="primary"
-            onClick={() => console.log(`Edit ${name}!`)}
-          >
-            Edit {name}
-          </Button>
-          <Button
-            className={classes.muiButton}
-            variant="contained"
-            color="secondary"
-            onClick={() => dispatch({ type: 'openDialog' })}
-          >
-            DELETE {name}
-          </Button>
-          <ConfirmationDialog
-            open={state.openDialog}
-            onClose={() => dispatch({ type: 'closeDialog' })}
-            onConfirm={() => onDeleteRescue(id)}
-          />
-        </Grid>
+        <DetailsButtons 
+        rescue={state.rescueDetails} 
+        onBack={onBack}
+        onEdit={onEditRescue} 
+        onDelete={onDeleteRescue} 
+        openDialog={state.openDialog}
+        dispatch={dispatch}
+        />
       </Grid>
     </div>
   );
