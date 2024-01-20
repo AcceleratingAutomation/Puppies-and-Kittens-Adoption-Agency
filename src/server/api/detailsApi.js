@@ -1,11 +1,11 @@
 import { constructHeader } from "../../utils/utils";
 
-export const fetchDetails = async (url, id) => {
+export const fetchDetailsApi = async (url, id) => {
   const response = await fetch(`${url}/${id}`, { headers: constructHeader() });
   return response.json();
 };
 
-export const deleteDetails = async (url, id) => {
+export const deleteDetailsApi = async (url, id) => {
   const response = await fetch(`${url}/${id}`, {
     method: 'DELETE',
     headers: constructHeader(),

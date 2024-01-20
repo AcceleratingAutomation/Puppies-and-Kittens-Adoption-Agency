@@ -31,7 +31,7 @@ const ConfirmationDialog = ({ open, onClose, onConfirm }) => {
 
   return (
     <Dialog open={open} onClose={onClose} PaperProps={{ className: classes.dialog }}>
-      <DialogTitle className={classes.dialogTitle}>Are you sure you want to delete this rescue?</DialogTitle>
+      <DialogTitle className={classes.dialogTitle}>Are you sure you want to delete?</DialogTitle>
       <DialogContent>
         <Typography>This action cannot be undone.</Typography>
       </DialogContent>
