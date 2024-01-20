@@ -1,9 +1,8 @@
 import React, { useEffect, useContext, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Grid, Typography, Container } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import { AppHeader } from "../header/AppHeader";
-import DisplayImage from "../DisplayImage";
 import { deleteFavorite } from "../../server/api/rescueDetailsApi";
 import Loading from '../Loading';
 import { fetchDetails, deleteDetails } from "../../server/api/detailsApi";
@@ -11,6 +10,7 @@ import { rescueDetailsUrl } from '../../server/api/apiConfig';
 import { tabs } from "../header/AppHeader";
 import { FavoritesContext } from '../../contexts/favoritesContext';
 import DetailsButtons from "../DetailsButtons";
+import RescueDetailsLayout from "./RescueDetailsLayout";
 
 const useStyles = makeStyles({
   muiButton: {
@@ -40,7 +40,7 @@ export const RescueDetails = () => {
   useEffect(() => {
     fetchRescue();
   }, [fetchRescue]);
-  
+
   const onDeleteRescue = useCallback(async (id) => {
     try {
       if (await deleteDetails(rescueDetailsUrl, id)) {
@@ -68,13 +68,13 @@ export const RescueDetails = () => {
     console.log(`Edit!`)
     // history.push(`/v1/rescues/${id}/edit`);
   }, []);
-  
+
   if (state.loading || !state.rescueDetails) {
     return <Loading />;
   }
-  
-  const { name, type, gender, breed, hasFoster, hasVet, isSterilized, isVaccinated, isAdoptable, image, bio } = state.rescueDetails;
-  
+
+  const { name } = state.rescueDetails;
+
   return (
     <div className="Content">
       <AppHeader tabValue={tabValue} />
@@ -93,63 +93,16 @@ export const RescueDetails = () => {
             ADOPT {name}
           </Button>
         </Grid>
-        <Container maxWidth="lg">
-          <Grid container justify="center" alignItems="center" direction="row">
-            <Grid item xs={12} sm={4} md={3} style={{ textAlign: 'center' }}>
-              <Grid container>
-                <Grid item xs={6}><strong>Type</strong></Grid>
-                <Grid item xs={6}>{type}</Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6}><strong>Gender</strong></Grid>
-                <Grid item xs={6}>{gender}</Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6}><strong>Breed</strong></Grid>
-                <Grid item xs={6}>{breed}</Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6}><strong>Foster</strong></Grid>
-                <Grid item xs={6}>{hasFoster ? 'Yes' : 'No'}</Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6}><strong>Veternarian</strong></Grid>
-                <Grid item xs={6}>{hasVet ? 'Yes' : 'No'}</Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6}><strong>{gender === 'Female' ? 'Spayed' : 'Neutered'}</strong></Grid>
-                <Grid item xs={6}>{isSterilized ? 'Yes' : 'No'}</Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6}><strong>Vaccinated</strong></Grid>
-                <Grid item xs={6}>{isVaccinated ? 'Yes' : 'No'}</Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6}><strong>Ready To Adopt</strong></Grid>
-                <Grid item xs={6}>{isAdoptable ? 'Yes' : 'No'}</Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm={4} md={3} style={{ textAlign: 'center' }}>
-              <DisplayImage
-                type={type}
-                image={image}
-                name={name}
-                width='12rem'
-                height='12rem'
-              />
-            </Grid>
-            <Grid item xs={12} sm={8} md={3} style={{ textAlign: 'left' }}>
-              <p>{bio}</p>
-            </Grid>
-          </Grid>
-        </Container>
-        <DetailsButtons 
-        rescue={state.rescueDetails} 
-        onBack={onBack}
-        onEdit={onEditRescue} 
-        onDelete={onDeleteRescue} 
-        openDialog={state.openDialog}
-        dispatch={dispatch}
+        <RescueDetailsLayout
+          rescue={state.rescueDetails}
+        />
+        <DetailsButtons
+          rescue={state.rescueDetails}
+          onBack={onBack}
+          onEdit={onEditRescue}
+          onDelete={onDeleteRescue}
+          openDialog={state.openDialog}
+          dispatch={dispatch}
         />
       </Grid>
     </div>
