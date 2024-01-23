@@ -3,7 +3,7 @@ const path = require('path');
 const sharp = require('sharp');
 const async = require('async');
 
-export function convertImage(input, output, quality = 80, callback) {
+function convertImage(input, output, quality = 80, callback) {
   sharp(input)
     .webp({ quality })
     .toFile(output, (err, info) => {
@@ -17,19 +17,19 @@ export function convertImage(input, output, quality = 80, callback) {
     });
 }
 
-function convertAllJpgImagesInDirectory(directory) {
+function convertAllImagesInDirectory(directory) {
   fs.readdir(directory, (err, files) => {
     if (err) {
       console.error('Error reading directory:', err);
       return;
     }
 
-    const jpgFiles = files.filter(file => path.extname(file) === '.jpg');
+    const imageFiles = files.filter(file => ['.jpg', '.jpeg', '.png'].includes(path.extname(file)));
 
     // Convert 4 files in parallel to prevent overloading the CPU
-    async.eachLimit(jpgFiles, 4, (file, callback) => {
+    async.eachLimit(imageFiles, 4, (file, callback) => {
       const inputPath = path.join(directory, file);
-      const outputPath = path.join(directory, path.basename(file, '.jpg') + '.webp');
+      const outputPath = path.join(directory, path.basename(file, path.extname(file)) + '.webp');
       convertImage(inputPath, outputPath, 80, callback);
     }, err => {
       if (err) {
@@ -41,5 +41,9 @@ function convertAllJpgImagesInDirectory(directory) {
   });
 }
 
-// Only uncomment and run as needed to convert new jpg images
-// convertAllJpgImagesInDirectory('../../public/images/dog');
+// Only uncomment and run as needed to convert new images
+// convertAllImagesInDirectory('../../public/images/rescues');
+
+module.exports = {
+  convertImage
+};
