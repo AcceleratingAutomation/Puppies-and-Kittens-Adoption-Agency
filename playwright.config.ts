@@ -41,12 +41,10 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
@@ -64,12 +62,28 @@ export default defineConfig({
 
     /* Test against mobile viewports. */
     {
-      name: 'Galaxy S9+ Chrome',
-      use: { ...devices['Galaxy S9+'], },
+      name: 'Galaxy S23 Chrome',
+      use: { ...devices['Galaxy S9+'],
+      viewport: { width: 360, height: 780 },
+    },
+  },
+    {
+      name: 'Galaxy S21 landscape Chrome',
+      use: {
+        ...devices['Galaxy S9+ landscape'],
+        viewport: { width: 800, height: 360 },
+      },
     },
     {
-      name: 'Galaxy S9+ landscape Chrome',
-      use: { ...devices['Galaxy S9+ landscape'], },
+      name: 'iPhone 12 Pro Max Safari',
+      use: { ...devices['iPhone 12 Pro Max'] },
+    },
+    {
+      name: 'iPhone 12 Pro Max landscape Safari',
+      use: {
+        ...devices['iPhone 12 Pro Max landscape'],
+        viewport: { width: 926, height: 428 },
+      },
     },
     {
       name: 'iPhone 14 Pro Max Safari',
@@ -77,7 +91,11 @@ export default defineConfig({
     },
     {
       name: 'iPhone 12 landscape Chrome',
-      use: { ...devices['iPhone 12 landscape'], defaultBrowserType: 'chromium' },
+      use: {
+        ...devices['iPhone 12 landscape'],
+        viewport: { width: 750, height: 340 },
+        defaultBrowserType: 'chromium'
+      },
     },
 
     /* Test against branded browsers. */
