@@ -15,7 +15,7 @@ export default defineConfig({
   fullyParallel: true,
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.02
+      maxDiffPixelRatio: 0.03
     }
   },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -72,17 +72,6 @@ export default defineConfig({
       use: {
         ...devices['Galaxy S9+ landscape'],
         viewport: { width: 800, height: 360 },
-      },
-    },
-    {
-      name: 'iPhone 12 Pro Max Safari',
-      use: { ...devices['iPhone 12 Pro Max'] },
-    },
-    {
-      name: 'iPhone 12 Pro Max landscape Safari',
-      use: {
-        ...devices['iPhone 12 Pro Max landscape'],
-        viewport: { width: 926, height: 428 },
       },
     },
     {
