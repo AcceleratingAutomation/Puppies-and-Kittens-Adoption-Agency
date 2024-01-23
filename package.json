@@ -26,8 +26,7 @@
     "start:both": "concurrently \"npm run start\" \"cd src/server && node server.js\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"

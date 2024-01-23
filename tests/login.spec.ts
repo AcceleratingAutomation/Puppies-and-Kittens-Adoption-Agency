@@ -6,6 +6,5 @@ test('Visual comparison of Login screen', async ({ page }) => {
   await expect(page).toHaveScreenshot('login-page.png',
     {
       fullPage: true,
-      maxDiffPixelRatio: 0.02
     });
 });
