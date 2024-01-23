@@ -43,32 +43,52 @@ export default defineConfig({
     },
 
     {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+
+    {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
 
-    /* Test against mobile viewports. */
+    /* Test against tablet viewports. */
     {
-      name: 'Mobile Chrome',
-      use: {
-        ...devices['Galaxy S21'],
-        viewport: { width: 360, height: 800 },
-      },
+      name: 'Pixel 7 landscape Chrome',
+      use: { ...devices['Pixel 7 landscape'] },
     },
     {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 13'] },
+      name: 'iPad Pro 11 Safari',
+      use: { ...devices['iPad Pro 11'] },
+    },
+
+    /* Test against mobile viewports. */
+    {
+      name: 'Galaxy S9+ Chrome',
+      use: { ...devices['Galaxy S9+'], },
+    },
+    {
+      name: 'Galaxy S9+ landscape Chrome',
+      use: { ...devices['Galaxy S9+ landscape'], },
+    },
+    {
+      name: 'iPhone 14 Pro Max Safari',
+      use: { ...devices['iPhone 14 Pro Max'] },
+    },
+    {
+      name: 'iPhone 12 landscape Chrome',
+      use: { ...devices['iPhone 12 landscape'], defaultBrowserType: 'chromium' },
     },
 
     /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+    {
+      name: 'Microsoft Edge',
+      use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    },
+    {
+      name: 'Google Chrome',
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+    },
   ],
 
   /* Run your local dev server before starting the tests */
