@@ -33,7 +33,7 @@ export const SummaryCard = ({ children, type, id, name, viewComponentDetailsUrl 
                 id={id}
                 name={name}
                 width='15rem'
-                height='15rem'
+                height='18rem'
             />
             <Grid container direction="column">
                 {children}

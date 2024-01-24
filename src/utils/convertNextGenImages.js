@@ -42,7 +42,7 @@ function convertAllImagesInDirectory(directory) {
 }
 
 // Only uncomment and run as needed to convert new images
-// convertAllImagesInDirectory('../../public/images/rescues');
+// convertAllImagesInDirectory('../../public/images/placeholders');
 
 module.exports = {
   convertImage
