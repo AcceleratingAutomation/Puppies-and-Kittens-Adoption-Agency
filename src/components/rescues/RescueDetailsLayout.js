@@ -3,7 +3,7 @@ import { Grid, Container } from "@material-ui/core";
 import DisplayImage from "../DisplayImage";
 
 const RescueDetailsLayout = ({ rescue }) => {
-    const { name, type, gender, breed, hasFoster, hasVet, isSterilized, isVaccinated, isAdoptable, image, bio } = rescue;
+    const { name, type, gender, breed, hasFoster, hasVet, isSterilized, isVaccinated, isAdoptable, id, bio } = rescue;
     
     return (
         <Container maxWidth="lg">
@@ -44,8 +44,8 @@ const RescueDetailsLayout = ({ rescue }) => {
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} style={{ textAlign: 'center' }}>
                     <DisplayImage
-                        type={type}
-                        image={image}
+                        directory={"rescues"}
+                        id={id}
                         name={name}
                         width='12rem'
                         height='12rem'

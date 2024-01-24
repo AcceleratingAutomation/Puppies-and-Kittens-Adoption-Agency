@@ -73,8 +73,8 @@ const LoginForm = ({ isSubmitting }) => (
             <Grid container style={{ margin: '0 auto', maxWidth: '80%' }} justify="center">
                 <Grid item xs={12} sm={4}>
                     <DisplayImage
-                        type={"dog"}
-                        image={0}
+                        directory={"placeholders"}
+                        id={"puppy"}
                         name={"Playful Puppy"}
                         width='15rem'
                         height='15rem'
@@ -82,8 +82,8 @@ const LoginForm = ({ isSubmitting }) => (
                 </Grid>
                 <Grid item xs={12} sm={4}>
                     <DisplayImage
-                        type={"cat"}
-                        image={0}
+                        directory={"placeholders"}
+                        id={"kitten"}
                         name={"Playful Kitten"}
                         width='15rem'
                         height='15rem'

@@ -5,11 +5,11 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import "../../styles.css";
 import { SummaryCard } from "../SummaryCard";
 
-const RescueCard = ({ name, id, type, gender, breed, image, isFavorite, onAddFavorite, onRemoveFavorite }) => {
-  const rescue = { name, id, type, gender, breed, image };
+const RescueCard = ({ name, id, type, gender, breed, directory, isFavorite, onAddFavorite, onRemoveFavorite }) => {
+  const rescue = { name, id, type, gender, breed };
 
   return (
-    <SummaryCard type={rescue.type} image={rescue.image} name={rescue.name} viewComponentDetailsUrl={`/v1/rescue/${rescue.id}`} >
+    <SummaryCard directory={directory} type={type} id={rescue.id} name={rescue.name} viewComponentDetailsUrl={`/v1/rescue/${rescue.id}`} >
       <Grid item xs={12}>
         <Typography variant="h4">{rescue.name}</Typography>
       </Grid>

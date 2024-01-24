@@ -60,15 +60,14 @@ export const Rescues = () => {
     }
   }, [dispatch]);
 
-  const rescues = useMemo(() => state.rescues.map((rescue, key) => (
+  const rescues = useMemo(() => state.rescues.map((rescue) => (
     <RescueCard
-      key={key}
+      key={rescue.id}
       name={rescue.name}
       id={rescue.id}
       type={rescue.type}
       gender={rescue.gender}
       breed={rescue.breed}
-      image={rescue.image}
       onAddFavorite={onAddFavorite}
       onRemoveFavorite={onRemoveFavorite}
       isFavorite={state.favorites.includes(rescue.id)}

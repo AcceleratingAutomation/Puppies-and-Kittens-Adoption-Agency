@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     },
 });
 
-export const SummaryCard = ({ children, type, image, name, viewComponentDetailsUrl }) => {
+export const SummaryCard = ({ children, type, id, name, viewComponentDetailsUrl }) => {
     const classes = useStyles();
     const history = useHistory();
 
@@ -29,7 +29,8 @@ export const SummaryCard = ({ children, type, image, name, viewComponentDetailsU
         <Paper elevation={2} className={`Rescue ${classes.summaryCard}`}>
             <DisplayImage
                 type={type}
-                image={image}
+                directory={"rescues"}
+                id={id}
                 name={name}
                 width='15rem'
                 height='15rem'

@@ -51,7 +51,6 @@ export const Favorites = () => {
               type={rescue.type}
               gender={rescue.gender}
               breed={rescue.breed}
-              image={rescue.image}
               isFavorite={true}
               onRemoveFavorite={handleRemoveFavorite}
             />
