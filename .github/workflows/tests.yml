@@ -69,7 +69,7 @@ jobs:
 
       - name: Print Node.js version
         env:
-            NODE_VERSION: ${{ needs.setup.outputs.node_version }}
+          NODE_VERSION: ${{ needs.setup.outputs.node_version }}
         run: echo $NODE_VERSION
 
       - name: Install dependencies
