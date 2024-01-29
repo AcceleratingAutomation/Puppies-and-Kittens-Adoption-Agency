@@ -11,20 +11,24 @@ jobs:
     # The timestamp output is used to ensure that the setup job always runs and is not skipped due to caching.
     outputs:
       timestamp: ${{ steps.timestamp.outputs.timestamp }}
+      node_version: ${{ steps.get_node_version.outputs.node_version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Archive code
+        uses: actions/upload-artifact@v2
+        with:
+          name: code
+          path: .
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
 
-      - name: Print Node.js version
-        run: node --version
-
-      - name: Install dependencies
-        run: npm ci
+      - id: get_node_version
+        run: echo "::set-output name=node_version::$(node --version)"
 
       - id: timestamp
         run: echo "::set-output name=timestamp::$(date +'%Y%m%d%H%M%S')"
@@ -34,6 +38,19 @@ jobs:
     needs: setup
     runs-on: windows-latest
     steps:
+      - name: Download code
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+
+      - name: Print Node.js version
+        env:
+          NODE_VERSION: ${{ needs.setup.outputs.node_version }}
+        run: echo $NODE_VERSION
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Print Prettier version
         run: npx prettier --version
 
@@ -42,9 +59,22 @@ jobs:
 
   playwright:
     timeout-minutes: 60
-    needs: prettier
+    needs: [setup, prettier]
     runs-on: windows-latest
     steps:
+      - name: Download code
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+
+      - name: Print Node.js version
+        env:
+            NODE_VERSION: ${{ needs.setup.outputs.node_version }}
+        run: echo $NODE_VERSION
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Print Playwright version
         run: npx playwright --version
 
