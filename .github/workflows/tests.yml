@@ -8,9 +8,7 @@ jobs:
   setup:
     timeout-minutes: 10
     runs-on: windows-latest
-    # The timestamp output is used to ensure that the setup job always runs and is not skipped due to caching.
     outputs:
-      timestamp: ${{ steps.timestamp.outputs.timestamp }}
       node_version: ${{ steps.get_node_version.outputs.node_version }}
     steps:
       - name: Checkout code
@@ -29,9 +27,6 @@ jobs:
 
       - id: get_node_version
         run: echo "node_version=$(node --version)" >> $GITHUB_ENV
-
-      - id: timestamp
-        run: echo "timestamp=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
   prettier:
     timeout-minutes: 10
