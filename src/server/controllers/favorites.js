@@ -26,22 +26,18 @@ exports.addFavorite = (req, res) => {
           .send({ message: "Cannot add this rescue to favorites" });
       else {
         generateToken(token, null).then((token) => {
-          res
-            .status(200)
-            .send({
-              message: "Rescue added to favorites successfully",
-              token: token,
-            });
+          res.status(200).send({
+            message: "Rescue added to favorites successfully",
+            token: token,
+          });
         });
       }
     });
   } else
-    res
-      .status(403)
-      .send({
-        message: "Not authorized to add a rescue to favorites",
-        token: token,
-      });
+    res.status(403).send({
+      message: "Not authorized to add a rescue to favorites",
+      token: token,
+    });
 };
 
 exports.deleteFavorite = (req, res) => {

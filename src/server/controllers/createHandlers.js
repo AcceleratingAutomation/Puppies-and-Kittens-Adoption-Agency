@@ -39,22 +39,18 @@ const createHandlers = (type, db, permissions) => {
             res.status(500).send({ message: `Cannot delete this ${type}` });
           else {
             generateToken(token, null).then((token) => {
-              res
-                .status(200)
-                .send({
-                  message: `${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully`,
-                  token: token,
-                });
+              res.status(200).send({
+                message: `${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully`,
+                token: token,
+              });
             });
           }
         });
       } else
-        res
-          .status(403)
-          .send({
-            message: `Not authorized to delete a ${type}`,
-            token: token,
-          });
+        res.status(403).send({
+          message: `Not authorized to delete a ${type}`,
+          token: token,
+        });
     },
 
     getDetails: (req, res) => {
@@ -79,12 +75,10 @@ const createHandlers = (type, db, permissions) => {
               .send({ message: `Error retrieving ${type} details` });
           });
       } else {
-        res
-          .status(403)
-          .send({
-            message: `Not authorized to view ${type} details`,
-            token: token,
-          });
+        res.status(403).send({
+          message: `Not authorized to view ${type} details`,
+          token: token,
+        });
       }
     },
   };
