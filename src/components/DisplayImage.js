@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { getImageUrl } from "../utils/componentUtils";
 import { makeStyles } from "@material-ui/core";
 
 const getPlaceholderImage = (type) => {
-  switch(type) {
-    case 'Dog':
-      return 'puppy';
-    case 'Cat':
-      return 'kitten';
+  switch (type) {
+    case "Dog":
+      return "puppy";
+    case "Cat":
+      return "kitten";
     default:
-      return 'users';
+      return "users";
   }
-}
+};
 
 const useStyles = makeStyles({
   responsiveImage: {
-    maxWidth: '100%',
-    height: 'auto',
+    maxWidth: "100%",
+    height: "auto",
   },
 });
 
@@ -29,10 +29,17 @@ const DisplayImage = ({ directory, id, type, name, width, height }) => {
   }, [directory, id]);
 
   return (
-    <img className={classes.responsiveImage}
-      src={id && directory ? getImageUrl(directory, id) : getImageUrl('placeholders', getPlaceholderImage(type))}
-      alt={id && directory ? `${name}'s picture` : `${name}'s placeholder picture`}
-      style={{ borderRadius: '25%', width, height, objectFit: 'cover' }}
+    <img
+      className={classes.responsiveImage}
+      src={
+        id && directory
+          ? getImageUrl(directory, id)
+          : getImageUrl("placeholders", getPlaceholderImage(type))
+      }
+      alt={
+        id && directory ? `${name}'s picture` : `${name}'s placeholder picture`
+      }
+      style={{ borderRadius: "25%", width, height, objectFit: "cover" }}
     />
   );
 };

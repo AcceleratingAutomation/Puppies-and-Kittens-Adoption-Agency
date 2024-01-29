@@ -1,11 +1,5 @@
 import React, { useReducer, useCallback } from "react";
-import {
-  AppBar,
-  MenuItem,
-  IconButton,
-  Menu,
-  Toolbar,
-} from "@material-ui/core";
+import { AppBar, MenuItem, IconButton, Menu, Toolbar } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { isMember } from "../../utils/utils";
@@ -20,9 +14,9 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'setAnchorEl':
+    case "setAnchorEl":
       return { ...state, anchorEl: action.value };
-    case 'setMobileOpen':
+    case "setMobileOpen":
       return { ...state, mobileOpen: action.value };
     default:
       throw new Error();
@@ -44,28 +38,34 @@ export const AppHeader = ({ tabValue }) => {
   const history = useHistory();
   const shouldDisable = isMember();
 
-  const handleHamburgerClick = useCallback((newValue) => {
-    if (tabValue === newValue) {
-      dispatch({ type: 'setMobileOpen', value: false });
-    } else {
-      history.push(tabs[newValue].route);
-    }
-  }, [tabValue, history]);
+  const handleHamburgerClick = useCallback(
+    (newValue) => {
+      if (tabValue === newValue) {
+        dispatch({ type: "setMobileOpen", value: false });
+      } else {
+        history.push(tabs[newValue].route);
+      }
+    },
+    [tabValue, history],
+  );
 
-  const handleTabClick = useCallback((event, newValue) => {
-    history.push(tabs[newValue].route);
-  }, [history]);
+  const handleTabClick = useCallback(
+    (event, newValue) => {
+      history.push(tabs[newValue].route);
+    },
+    [history],
+  );
 
   const handleDrawerToggle = useCallback(() => {
-    dispatch({ type: 'setMobileOpen', value: !state.mobileOpen });
+    dispatch({ type: "setMobileOpen", value: !state.mobileOpen });
   }, [state.mobileOpen]);
 
   const handleMenu = useCallback((event) => {
-    dispatch({ type: 'setAnchorEl', value: event.currentTarget });
+    dispatch({ type: "setAnchorEl", value: event.currentTarget });
   }, []);
 
   const handleClose = useCallback(() => {
-    dispatch({ type: 'setAnchorEl', value: null });
+    dispatch({ type: "setAnchorEl", value: null });
   }, []);
 
   const onClickLogout = useCallback(() => {

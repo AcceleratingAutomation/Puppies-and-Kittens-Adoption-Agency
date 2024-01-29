@@ -7,23 +7,28 @@ import { tabs } from "../header/AppHeader";
 import VeterinarianCard from "./VeterinarianCard";
 import { veterinariansUrl } from "../../server/api/apiConfig";
 import { fetchData } from "../../server/api/cardApi";
-import { FavoritesContext } from '../../contexts/favoritesContext';
-import Loading from '../Loading';
+import { FavoritesContext } from "../../contexts/favoritesContext";
+import Loading from "../Loading";
 
 export const Veterinarians = () => {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex(tab => tab.label === 'Veterinarians');
+  const tabValue = tabs.findIndex((tab) => tab.label === "Veterinarians");
 
   useEffect(() => {
     fetchData(veterinariansUrl)
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          dispatch({ type: 'setVeterinarians', value: [...json.veterinarians] });
+          dispatch({
+            type: "setVeterinarians",
+            value: [...json.veterinarians],
+          });
         }
       })
-      .catch((err) => console.log("Error fetching veterinarians ", err.message));
-    }, [dispatch]);
+      .catch((err) =>
+        console.log("Error fetching veterinarians ", err.message),
+      );
+  }, [dispatch]);
 
   if (state.loading) {
     return <Loading />;

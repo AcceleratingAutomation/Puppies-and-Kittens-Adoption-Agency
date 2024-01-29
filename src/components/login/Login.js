@@ -1,19 +1,19 @@
 import React, { useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { updateAppSettings } from "../../utils/utils";
-import { Formik } from 'formik';
-import * as Yup from 'yup';
-import { login } from '../../server/api/authApi';
-import LoginForm from './LoginForm';
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { login } from "../../server/api/authApi";
+import LoginForm from "./LoginForm";
 
 const LoginSchema = Yup.object().shape({
-  username: Yup.string().required('Required'),
+  username: Yup.string().required("Required"),
   password: Yup.string()
-    .required('Required')
-    .min(8, 'Password must be at least 8 characters')
-    .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .matches(/[0-9]/, 'Password must contain at least one number'),
+    .required("Required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .matches(/[0-9]/, "Password must contain at least one number"),
   login: Yup.string(),
 });
 
@@ -34,8 +34,7 @@ export const Login = () => {
       if (isMounted.current) {
         if (json.message) {
           setErrors({ login: json.message });
-        }
-        else {
+        } else {
           updateAppSettings(json.token);
           history.push("/v1/rescues");
         }
@@ -52,13 +51,11 @@ export const Login = () => {
 
   return (
     <Formik
-      initialValues={{ username: '', password: '', login: '' }}
+      initialValues={{ username: "", password: "", login: "" }}
       validationSchema={LoginSchema}
       onSubmit={onSubmit}
     >
-      {({ isSubmitting }) => (
-        <LoginForm isSubmitting={isSubmitting} />
-      )}
+      {({ isSubmitting }) => <LoginForm isSubmitting={isSubmitting} />}
     </Formik>
   );
 };

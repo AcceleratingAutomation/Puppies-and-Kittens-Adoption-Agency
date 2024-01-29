@@ -2,8 +2,8 @@ const jsonfile = require("jsonfile");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Constants = require("./constants");
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 const usersDB = "./database/users.json";
 const rescuesDB = "./database/rescues.json";
 const fostersDB = "./database/fosters.json";
@@ -29,9 +29,7 @@ exports.getAllData = async function (db) {
 exports.getDetails = async function (id, db) {
   try {
     const allData = await jsonfile.readFile(db);
-    const filteredDataArray = allData.filter(
-      (data) => data.id === id
-    );
+    const filteredDataArray = allData.filter((data) => data.id === id);
     return filteredDataArray.length === 0 ? {} : filteredDataArray[0];
   } catch (err) {
     console.log("Error reading data: ", err.message);
@@ -41,7 +39,7 @@ exports.getDetails = async function (id, db) {
 exports.deleteData = (id, db) => {
   return new Promise((resolve, reject) => {
     // Read the existing data
-    fs.readFile(path.join(__dirname, db), 'utf8', (err, data) => {
+    fs.readFile(path.join(__dirname, db), "utf8", (err, data) => {
       if (err) {
         reject(err);
         return;
@@ -50,9 +48,9 @@ exports.deleteData = (id, db) => {
       let items = JSON.parse(data);
 
       // Find the item with the given id
-      const itemIndex = items.findIndex(item => item.id === id);
+      const itemIndex = items.findIndex((item) => item.id === id);
       if (itemIndex === -1) {
-        reject(new Error('Item not found'));
+        reject(new Error("Item not found"));
         return;
       }
 
@@ -60,14 +58,19 @@ exports.deleteData = (id, db) => {
       items.splice(itemIndex, 1);
 
       // Write the updated items back to the file
-      fs.writeFile(path.join(__dirname, db), JSON.stringify(items, null, 2), 'utf8', (err) => {
-        if (err) {
-          reject(err);
-          return;
-        }
+      fs.writeFile(
+        path.join(__dirname, db),
+        JSON.stringify(items, null, 2),
+        "utf8",
+        (err) => {
+          if (err) {
+            reject(err);
+            return;
+          }
 
-        resolve();
-      });
+          resolve();
+        },
+      );
     });
   });
 };
@@ -82,7 +85,7 @@ exports.getFavoriteRescuesForUser = async function (token) {
   if (favoriteRescueIds.length === 0) return favoriteRescues;
   const allRescues = await jsonfile.readFile(rescuesDB);
   favoriteRescueIds.forEach((id) =>
-    favoriteRescues.push(allRescues.filter((rescue) => id === rescue.id)[0])
+    favoriteRescues.push(allRescues.filter((rescue) => id === rescue.id)[0]),
   );
   return favoriteRescues;
 };
@@ -95,12 +98,12 @@ exports.addFavoriteRescue = (token, rescueId) => {
     // Get the user by username
     const user = await getUserByUsername(username);
     if (!user) {
-      reject(new Error('User not found'));
+      reject(new Error("User not found"));
       return;
     }
 
     // Read the existing users
-    fs.readFile(path.join(__dirname, usersDB), 'utf8', (err, data) => {
+    fs.readFile(path.join(__dirname, usersDB), "utf8", (err, data) => {
       if (err) {
         reject(err);
         return;
@@ -109,10 +112,10 @@ exports.addFavoriteRescue = (token, rescueId) => {
       let users = JSON.parse(data);
 
       // Get the user index by username
-      const userIndex = users.findIndex(user => user.username === username);
+      const userIndex = users.findIndex((user) => user.username === username);
 
       if (userIndex === -1) {
-        reject(new Error('User not found'));
+        reject(new Error("User not found"));
         return;
       }
 
@@ -125,14 +128,19 @@ exports.addFavoriteRescue = (token, rescueId) => {
       users[userIndex].favorite.push(rescueId);
 
       // Write the updated users back to the file
-      fs.writeFile(path.join(__dirname, usersDB), JSON.stringify(users, null, 2), 'utf8', (err) => {
-        if (err) {
-          reject(err);
-          return;
-        }
+      fs.writeFile(
+        path.join(__dirname, usersDB),
+        JSON.stringify(users, null, 2),
+        "utf8",
+        (err) => {
+          if (err) {
+            reject(err);
+            return;
+          }
 
-        resolve();
-      });
+          resolve();
+        },
+      );
     });
   });
 };
@@ -142,14 +150,14 @@ exports.deleteFavorite = (token, rescueId) => {
     const username = getUsernameFromToken(token);
 
     const usersPath = path.join(__dirname, usersDB);
-    const users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+    const users = JSON.parse(fs.readFileSync(usersPath, "utf8"));
 
-    const user = users.find(user => user.username === username);
+    const user = users.find((user) => user.username === username);
     if (!user) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
 
-    user.favorite = user.favorite.filter(favorite => favorite !== rescueId);
+    user.favorite = user.favorite.filter((favorite) => favorite !== rescueId);
 
     fs.writeFile(usersPath, JSON.stringify(users, null, 2), (err) => {
       if (err) {
@@ -159,7 +167,7 @@ exports.deleteFavorite = (token, rescueId) => {
       }
     });
   });
-}
+};
 
 // Rescues
 
@@ -175,7 +183,7 @@ var getUserByUsername = (exports.getUserByUsername = async function (username) {
   try {
     const allUsers = await jsonfile.readFile(usersDB);
     const filteredUserArray = allUsers.filter(
-      (user) => user.username === username
+      (user) => user.username === username,
     );
     return filteredUserArray.length === 0 ? {} : filteredUserArray[0];
   } catch (err) {
@@ -211,12 +219,12 @@ exports.isPasswordCorrect = async function (key, password) {
 
 const getUsernameFromToken = (token) => {
   if (!token) {
-    throw new Error('Token is not provided');
+    throw new Error("Token is not provided");
   }
 
   const decodedToken = jwt.decode(token);
   if (!decodedToken) {
-    throw new Error('Token is not valid');
+    throw new Error("Token is not valid");
   }
 
   return decodedToken["sub"];

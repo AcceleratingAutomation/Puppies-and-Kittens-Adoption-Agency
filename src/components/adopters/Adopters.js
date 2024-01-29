@@ -7,19 +7,19 @@ import { tabs } from "../header/AppHeader";
 import { adoptersUrl } from "../../server/api/apiConfig";
 import { fetchData } from "../../server/api/cardApi";
 import AdopterCard from "./AdopterCard";
-import { FavoritesContext } from '../../contexts/favoritesContext';
-import Loading from '../Loading';
+import { FavoritesContext } from "../../contexts/favoritesContext";
+import Loading from "../Loading";
 
 export const Adopters = () => {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex(tab => tab.label === 'Adopters');
+  const tabValue = tabs.findIndex((tab) => tab.label === "Adopters");
 
   useEffect(() => {
     fetchData(adoptersUrl)
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          dispatch({ type: 'setAdopters', value: [...json.adopters] });
+          dispatch({ type: "setAdopters", value: [...json.adopters] });
         }
       })
       .catch((err) => console.log("Error fetching adopters ", err.message));

@@ -10,28 +10,30 @@ import { tabs } from "./header/AppHeader";
 
 export const Favorites = () => {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex(tab => tab.label === 'Favorites');
+  const tabValue = tabs.findIndex((tab) => tab.label === "Favorites");
 
   const fetchAndSetFavorites = useCallback(async () => {
     const data = await fetchFavorites();
-    dispatch({ type: 'setRescues', value: data.favorites });
-    const favoriteIds = data.favorites.map(favorite => favorite.id);
-    dispatch({ type: 'setFavorites', value: favoriteIds });
-    dispatch({ type: 'setLoading', value: false });
+    dispatch({ type: "setRescues", value: data.favorites });
+    const favoriteIds = data.favorites.map((favorite) => favorite.id);
+    dispatch({ type: "setFavorites", value: favoriteIds });
+    dispatch({ type: "setLoading", value: false });
   }, [dispatch]);
 
   useEffect(() => {
     fetchAndSetFavorites();
   }, [fetchAndSetFavorites]);
 
-  const handleRemoveFavorite = useCallback(async (id) => {
-    if (await removeFavorite(id)) {
-      dispatch({ type: 'removeFromFavorites', id });
-    }
-    else {
-      console.error('Failed to delete rescue from favorites');
-    }
-  }, [dispatch]);
+  const handleRemoveFavorite = useCallback(
+    async (id) => {
+      if (await removeFavorite(id)) {
+        dispatch({ type: "removeFromFavorites", id });
+      } else {
+        console.error("Failed to delete rescue from favorites");
+      }
+    },
+    [dispatch],
+  );
 
   if (state.loading) {
     return <Loading />;
@@ -42,7 +44,7 @@ export const Favorites = () => {
       <AppHeader tabValue={tabValue} />
       <Grid item container justify="center">
         {state.rescues
-          .filter(rescue => state.favorites.includes(rescue.id))
+          .filter((rescue) => state.favorites.includes(rescue.id))
           .map((rescue) => (
             <RescueCard
               key={rescue.id}

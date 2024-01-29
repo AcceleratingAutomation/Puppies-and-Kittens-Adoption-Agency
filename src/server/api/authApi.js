@@ -8,7 +8,7 @@ let headers = new Headers();
 export const login = (username, password) => {
   headers.set(
     "Authorization",
-    "Basic " + base64.encode(username + ":" + password)
+    "Basic " + base64.encode(username + ":" + password),
   );
   return fetch(loginUrl, { headers: headers, method: "POST" })
     .then((res) => res.json())

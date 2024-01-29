@@ -1,15 +1,16 @@
 require("dotenv").config({ path: "./variables.env" });
 const express = require("express");
 const cors = require("cors");
-const favoritesController = require('./controllers/favorites');
+const favoritesController = require("./controllers/favorites");
 const {
-    rescueHandlers,
-    adopterHandlers,
-    fosterHandlers,
-    veterinarianHandlers,
-    userHandlers } = require('./controllers/createHandlers');
-const loginController = require('./controllers/login');
-const formsController = require('./controllers/forms');
+  rescueHandlers,
+  adopterHandlers,
+  fosterHandlers,
+  veterinarianHandlers,
+  userHandlers,
+} = require("./controllers/createHandlers");
+const loginController = require("./controllers/login");
+const formsController = require("./controllers/forms");
 const { verifyToken } = require("./shared");
 const app = express();
 const port = process.env.PORT || 5000;
@@ -21,7 +22,11 @@ app.use(cors());
 
 app.get("/v1/favorites", verifyToken, favoritesController.getFavorites);
 app.post("/v1/favorites/:id", verifyToken, favoritesController.addFavorite);
-app.delete("/v1/favorites/:id", verifyToken, favoritesController.deleteFavorite);
+app.delete(
+  "/v1/favorites/:id",
+  verifyToken,
+  favoritesController.deleteFavorite,
+);
 
 // Rescues
 

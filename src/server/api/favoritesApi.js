@@ -8,7 +8,7 @@ export const fetchFavorites = async () => {
 
 export const removeFavorite = async (id) => {
   const response = await fetch(`${favoritesUrl}/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: constructHeader(),
   });
   return response.ok;

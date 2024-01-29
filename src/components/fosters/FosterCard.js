@@ -3,11 +3,32 @@ import { Grid, Typography } from "@material-ui/core";
 import "../../styles.css";
 import { SummaryCard } from "../SummaryCard";
 
-const FosterCard = ({ displayName, id, email, numCurrentRescues, numTotalRescues, image, isAccepting }) => {
-  const foster = { displayName, id, email, numCurrentRescues, numTotalRescues, image, isAccepting };
+const FosterCard = ({
+  displayName,
+  id,
+  email,
+  numCurrentRescues,
+  numTotalRescues,
+  image,
+  isAccepting,
+}) => {
+  const foster = {
+    displayName,
+    id,
+    email,
+    numCurrentRescues,
+    numTotalRescues,
+    image,
+    isAccepting,
+  };
 
   return (
-    <SummaryCard type={"foster"} image={foster.image} name={foster.displayName} viewComponentDetailsUrl={`/v1/foster/${foster.id}`} >
+    <SummaryCard
+      type={"foster"}
+      image={foster.image}
+      name={foster.displayName}
+      viewComponentDetailsUrl={`/v1/foster/${foster.id}`}
+    >
       <Grid item xs={12}>
         <Typography variant="h4">{foster.displayName}</Typography>
       </Grid>
@@ -23,8 +44,7 @@ const FosterCard = ({ displayName, id, email, numCurrentRescues, numTotalRescues
       <Typography variant="h5" gutterBottom>
         Total Rescues: {foster.numTotalRescues}
       </Typography>
-      <Grid item xs={12} container justify="center">
-      </Grid>
+      <Grid item xs={12} container justify="center"></Grid>
     </SummaryCard>
   );
 };

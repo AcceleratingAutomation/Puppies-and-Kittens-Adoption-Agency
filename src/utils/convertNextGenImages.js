@@ -1,17 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-const sharp = require('sharp');
-const async = require('async');
+const fs = require("fs");
+const path = require("path");
+const sharp = require("sharp");
+const async = require("async");
 
 function convertImage(input, output, quality = 80, callback) {
   sharp(input)
     .webp({ quality })
     .toFile(output, (err, info) => {
       if (err) {
-        console.error('Error occurred:', err);
+        console.error("Error occurred:", err);
         callback(err);
       } else {
-        console.log('Image converted successfully:', info);
+        console.log("Image converted successfully:", info);
         callback(null);
       }
     });
@@ -20,24 +20,34 @@ function convertImage(input, output, quality = 80, callback) {
 function convertAllImagesInDirectory(directory) {
   fs.readdir(directory, (err, files) => {
     if (err) {
-      console.error('Error reading directory:', err);
+      console.error("Error reading directory:", err);
       return;
     }
 
-    const imageFiles = files.filter(file => ['.jpg', '.jpeg', '.png'].includes(path.extname(file)));
+    const imageFiles = files.filter((file) =>
+      [".jpg", ".jpeg", ".png"].includes(path.extname(file)),
+    );
 
     // Convert 4 files in parallel to prevent overloading the CPU
-    async.eachLimit(imageFiles, 4, (file, callback) => {
-      const inputPath = path.join(directory, file);
-      const outputPath = path.join(directory, path.basename(file, path.extname(file)) + '.webp');
-      convertImage(inputPath, outputPath, 80, callback);
-    }, err => {
-      if (err) {
-        console.error('Error occurred during conversion:', err);
-      } else {
-        console.log('All images converted successfully');
-      }
-    });
+    async.eachLimit(
+      imageFiles,
+      4,
+      (file, callback) => {
+        const inputPath = path.join(directory, file);
+        const outputPath = path.join(
+          directory,
+          path.basename(file, path.extname(file)) + ".webp",
+        );
+        convertImage(inputPath, outputPath, 80, callback);
+      },
+      (err) => {
+        if (err) {
+          console.error("Error occurred during conversion:", err);
+        } else {
+          console.log("All images converted successfully");
+        }
+      },
+    );
   });
 }
 
@@ -45,5 +55,5 @@ function convertAllImagesInDirectory(directory) {
 // convertAllImagesInDirectory('../../public/images/placeholders');
 
 module.exports = {
-  convertImage
+  convertImage,
 };

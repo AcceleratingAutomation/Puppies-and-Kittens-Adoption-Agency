@@ -1,17 +1,17 @@
 [
-    {
-        "id": "8dbad0be-9194-408a-aecf-c8e9fb52ddf3",
-        "displayName": "foster name",
-        "type": "Foster",
-        "email": "foster@email.com",
-        "numCurrentRescues": 1,
-        "numTotalRescues": 4,
-        "isAccepting": true,
-        "numHouseholdPeople": 2,
-        "numHouseholdPets": 3,
-        "isOriented": true,
-        "hasBackgroundCheck": true,
-        "bio": "An amazing dog with a great personality. He loves to play outside and is very friendly with other dogs. He is very well trained and is very obedient. He is a great dog for a family with kids.",
-        "image": 0
-    }
+  {
+    "id": "8dbad0be-9194-408a-aecf-c8e9fb52ddf3",
+    "displayName": "foster name",
+    "type": "Foster",
+    "email": "foster@email.com",
+    "numCurrentRescues": 1,
+    "numTotalRescues": 4,
+    "isAccepting": true,
+    "numHouseholdPeople": 2,
+    "numHouseholdPets": 3,
+    "isOriented": true,
+    "hasBackgroundCheck": true,
+    "bio": "An amazing dog with a great personality. He loves to play outside and is very friendly with other dogs. He is very well trained and is very obedient. He is a great dog for a family with kids.",
+    "image": 0
+  }
 ]

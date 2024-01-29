@@ -7,7 +7,7 @@ export const fetchDetailsApi = async (url, id) => {
 
 export const deleteDetailsApi = async (url, id) => {
   const response = await fetch(`${url}/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: constructHeader(),
   });
   return response.ok;
