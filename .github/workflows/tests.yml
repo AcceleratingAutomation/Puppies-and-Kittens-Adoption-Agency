@@ -28,10 +28,10 @@ jobs:
           node-version: "lts/*"
 
       - id: get_node_version
-        run: echo "::set-output name=node_version::$(node --version)"
+        run: echo "node_version=$(node --version)" >> $GITHUB_ENV
 
       - id: timestamp
-        run: echo "::set-output name=timestamp::$(date +'%Y%m%d%H%M%S')"
+        run: echo "timestamp=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
   prettier:
     timeout-minutes: 10
