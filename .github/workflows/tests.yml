@@ -8,40 +8,17 @@ jobs:
   setup:
     timeout-minutes: 10
     runs-on: windows-latest
-    outputs:
-      node_version: ${{ steps.get_node_version.outputs.node_version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Archive code
-        uses: actions/upload-artifact@v4
-        with:
-          name: code
-          path: .
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
 
-      - id: get_node_version
-        run: echo "node_version=$(node --version)" >> $GITHUB_ENV
-
-  prettier:
-    timeout-minutes: 10
-    needs: setup
-    runs-on: windows-latest
-    steps:
-      - name: Download code
-        uses: actions/download-artifact@v4
-        with:
-          name: code
-
       - name: Print Node.js version
-        env:
-          NODE_VERSION: ${{ needs.setup.outputs.node_version }}
-        run: echo $NODE_VERSION
+        run: node --version
 
       - name: Install dependencies
         run: npm ci
@@ -52,28 +29,10 @@ jobs:
       - name: Run Prettier check
         run: npx prettier --check .
 
-  playwright:
-    timeout-minutes: 60
-    needs: [setup, prettier]
-    runs-on: windows-latest
-    steps:
-      - name: Download code
-        uses: actions/download-artifact@v4
-        with:
-          name: code
-
-      - name: Print Node.js version
-        env:
-          NODE_VERSION: ${{ needs.setup.outputs.node_version }}
-        run: echo $NODE_VERSION
-
-      - name: Install dependencies
-        run: npm ci
-
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Print Playwright and Browser versions
+      - name: Print Playwright version
         run: npx playwright --version
 
       - name: Run Playwright tests
