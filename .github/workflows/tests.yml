@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [main]
 jobs:
-  setup:
+  automated-checks:
     timeout-minutes: 10
     runs-on: windows-latest
     steps:

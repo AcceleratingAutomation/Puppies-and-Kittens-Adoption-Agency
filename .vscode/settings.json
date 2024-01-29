@@ -17,5 +17,7 @@
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "cSpell.enableFiletypes": ["github-actions-workflow"],
+  "cSpell.words": ["precached"]
 }
