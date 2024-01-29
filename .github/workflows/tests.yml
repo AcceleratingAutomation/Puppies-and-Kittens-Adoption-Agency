@@ -1,13 +1,16 @@
-name: Playwright Tests
+name: Tests
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 jobs:
-  test:
-    timeout-minutes: 60
+  setup:
+    timeout-minutes: 10
     runs-on: windows-latest
+    # The timestamp output is used to ensure that the setup job always runs and is not skipped due to caching.
+    outputs:
+      timestamp: ${{ steps.timestamp.outputs.timestamp }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,11 +26,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - id: timestamp
+        run: echo "::set-output name=timestamp::$(date +'%Y%m%d%H%M%S')"
+
+  prettier:
+    timeout-minutes: 10
+    needs: setup
+    runs-on: windows-latest
+    steps:
       - name: Print Prettier version
         run: npx prettier --version
 
       - name: Run Prettier check
         run: npx prettier --check .
+
+  playwright:
+    timeout-minutes: 60
+    needs: prettier
+    runs-on: windows-latest
+    steps:
+      - name: Print Playwright version
+        run: npx playwright --version
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
