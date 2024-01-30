@@ -29,6 +29,12 @@ jobs:
       - name: Run Prettier check
         run: npx prettier --check .
 
+      - name: Print ESLint version
+        run: npx eslint --version
+  
+      - name: Run ESLint
+        run: npx eslint .
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
