@@ -23,5 +23,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    // For the registration object in serviceWorker for ServiceWorkerRegistration
+    'no-param-reassign': ['error', { props: false }],
   },
 };

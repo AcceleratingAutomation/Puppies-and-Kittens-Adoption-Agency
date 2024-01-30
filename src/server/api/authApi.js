@@ -1,23 +1,24 @@
-import base64 from "base-64";
-import { loginUrl } from "./apiConfig";
-import { constructHeader } from "../../utils/utils";
-import { logoutUrl } from "./apiConfig";
+import base64 from 'base-64';
+import { loginUrl, logoutUrl } from './apiConfig';
+import { constructHeader } from '../../utils/utils';
 
-let headers = new Headers();
+const headers = new Headers();
 
 export const login = (username, password) => {
   headers.set(
-    "Authorization",
-    "Basic " + base64.encode(username + ":" + password),
+    'Authorization',
+    `Basic ${base64.encode(`${username}:${password}`)}`,
   );
-  return fetch(loginUrl, { headers: headers, method: "POST" })
+  return fetch(loginUrl, { headers, method: 'POST' })
     .then((res) => res.json())
-    .catch((err) => console.log("Error logging into app ", err.message));
+    .catch((err) => {
+      throw new Error(`Error logging into app ${err.message}`);
+    });
 };
 
 export const handleLogout = (history) => {
-  fetch(logoutUrl, { headers: constructHeader() }).then((res) => {
+  fetch(logoutUrl, { headers: constructHeader() }).then(() => {
     localStorage.clear();
-    history.push("/v1/login");
+    history.push('/v1/login');
   });
 };

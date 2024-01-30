@@ -1,17 +1,15 @@
-const fs = require("fs");
-const path = require("path");
-const sharp = require("sharp");
-const async = require("async");
+const fs = require('fs');
+const path = require('path');
+const sharp = require('sharp');
+const async = require('async');
 
-function convertImage(input, output, quality = 80, callback) {
+function convertImage(input, output, callback, quality = 80) {
   sharp(input)
     .webp({ quality })
-    .toFile(output, (err, info) => {
+    .toFile(output, (err) => {
       if (err) {
-        console.error("Error occurred:", err);
-        callback(err);
+        callback(new Error(`Error occurred: ${err}`));
       } else {
-        console.log("Image converted successfully:", info);
         callback(null);
       }
     });
@@ -20,13 +18,10 @@ function convertImage(input, output, quality = 80, callback) {
 function convertAllImagesInDirectory(directory) {
   fs.readdir(directory, (err, files) => {
     if (err) {
-      console.error("Error reading directory:", err);
-      return;
+      throw new Error(`Error reading directory: ${err}`);
     }
 
-    const imageFiles = files.filter((file) =>
-      [".jpg", ".jpeg", ".png"].includes(path.extname(file)),
-    );
+    const imageFiles = files.filter((file) => ['.jpg', '.jpeg', '.png'].includes(path.extname(file)));
 
     // Convert 4 files in parallel to prevent overloading the CPU
     async.eachLimit(
@@ -36,15 +31,13 @@ function convertAllImagesInDirectory(directory) {
         const inputPath = path.join(directory, file);
         const outputPath = path.join(
           directory,
-          path.basename(file, path.extname(file)) + ".webp",
+          `${path.basename(file, path.extname(file))}.webp`,
         );
         convertImage(inputPath, outputPath, 80, callback);
       },
-      (err) => {
-        if (err) {
-          console.error("Error occurred during conversion:", err);
-        } else {
-          console.log("All images converted successfully");
+      (newErr) => {
+        if (newErr) {
+          throw new Error(`Error occurred during conversion: ${newErr}`);
         }
       },
     );
@@ -52,7 +45,7 @@ function convertAllImagesInDirectory(directory) {
 }
 
 // Only uncomment and run as needed to convert new images
-// convertAllImagesInDirectory('../../public/images/placeholders');
+convertAllImagesInDirectory('../../public/images/placeholders');
 
 module.exports = {
   convertImage,

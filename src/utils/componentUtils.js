@@ -1,5 +1,4 @@
-import { fetchDetailsApi } from "../server/api/detailsApi";
-import { deleteDetailsApi } from "../server/api/detailsApi";
+import { fetchDetailsApi, deleteDetailsApi } from '../server/api/detailsApi';
 
 export const fetchDetails = async (url, id, dispatch, setType, name) => {
   try {
@@ -9,18 +8,18 @@ export const fetchDetails = async (url, id, dispatch, setType, name) => {
       value: data[name],
     });
   } catch (err) {
-    console.error(`Error fetching ${name} `, err.message);
+    throw new Error(`Error fetching ${name} ${err.message}`);
   }
 };
 
 export const deleteDetails = async (url, id, history, dispatch, path) => {
   try {
     if (await deleteDetailsApi(url, id)) {
-      dispatch({ type: "closeDialog" });
+      dispatch({ type: 'closeDialog' });
       history.push(path);
     }
   } catch (err) {
-    console.error(`Error deleting ${id}`, err);
+    throw new Error(`Error deleting ${id} ${err}`);
   }
 };
 

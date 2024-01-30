@@ -1,16 +1,17 @@
-import React from "react";
-import { Grid, Typography } from "@material-ui/core";
-import "../../styles.css";
-import { SummaryCard } from "../SummaryCard";
+import React from 'react';
+import { Grid, Typography } from '@material-ui/core';
+import '../../styles.css';
+import PropTypes from 'prop-types';
+import SummaryCard from '../SummaryCard';
 
-const AdopterCard = ({
+function AdopterCard({
   displayName,
   id,
   email,
   numHouseholdPets,
   image,
   isAdopting,
-}) => {
+}) {
   const adopter = {
     displayName,
     id,
@@ -22,7 +23,7 @@ const AdopterCard = ({
 
   return (
     <SummaryCard
-      type={"adopter"}
+      type="adopter"
       image={adopter.image}
       name={adopter.displayName}
       viewComponentDetailsUrl={`/v1/adopter/${adopter.id}`}
@@ -34,14 +35,27 @@ const AdopterCard = ({
         {adopter.email}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Currently Looking: {adopter.isAdopting ? "Yes" : "No"}
+        Currently Looking:
+        {' '}
+        {adopter.isAdopting ? 'Yes' : 'No'}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Current Pets: {adopter.numHouseholdPets}
+        Current Pets:
+        {' '}
+        {adopter.numHouseholdPets}
       </Typography>
-      <Grid item xs={12} container justify="center"></Grid>
+      <Grid item xs={12} container justify="center" />
     </SummaryCard>
   );
+}
+
+AdopterCard.propTypes = {
+  displayName: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  numHouseholdPets: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  isAdopting: PropTypes.bool.isRequired,
 };
 
 export default AdopterCard;

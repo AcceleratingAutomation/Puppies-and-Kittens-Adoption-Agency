@@ -1,4 +1,4 @@
-import { constructHeader } from "../../utils/utils";
+import { constructHeader } from '../../utils/utils';
 
 export const fetchDetailsApi = async (url, id) => {
   const response = await fetch(`${url}/${id}`, { headers: constructHeader() });
@@ -7,7 +7,7 @@ export const fetchDetailsApi = async (url, id) => {
 
 export const deleteDetailsApi = async (url, id) => {
   const response = await fetch(`${url}/${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: constructHeader(),
   });
   return response.ok;

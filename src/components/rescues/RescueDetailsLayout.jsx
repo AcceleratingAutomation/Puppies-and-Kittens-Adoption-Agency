@@ -1,8 +1,9 @@
-import React from "react";
-import { Grid, Container } from "@material-ui/core";
-import DisplayImage from "../DisplayImage";
+import React from 'react';
+import { Grid, Container } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import DisplayImage from '../DisplayImage';
 
-const RescueDetailsLayout = ({ rescue }) => {
+function RescueDetailsLayout({ rescue }) {
   const {
     name,
     type,
@@ -20,7 +21,7 @@ const RescueDetailsLayout = ({ rescue }) => {
   return (
     <Container maxWidth="lg">
       <Grid container justify="center" alignItems="center" direction="row">
-        <Grid item xs={12} sm={4} md={3} style={{ textAlign: "center" }}>
+        <Grid item xs={12} sm={4} md={3} style={{ textAlign: 'center' }}>
           <Grid container>
             <Grid item xs={6}>
               <strong>Type</strong>
@@ -50,23 +51,23 @@ const RescueDetailsLayout = ({ rescue }) => {
               <strong>Foster</strong>
             </Grid>
             <Grid item xs={6}>
-              {hasFoster ? "Yes" : "No"}
+              {hasFoster ? 'Yes' : 'No'}
             </Grid>
           </Grid>
           <Grid container>
             <Grid item xs={6}>
-              <strong>Veternarian</strong>
+              <strong>Veterinarian</strong>
             </Grid>
             <Grid item xs={6}>
-              {hasVet ? "Yes" : "No"}
+              {hasVet ? 'Yes' : 'No'}
             </Grid>
           </Grid>
           <Grid container>
             <Grid item xs={6}>
-              <strong>{gender === "Female" ? "Spayed" : "Neutered"}</strong>
+              <strong>{gender === 'Female' ? 'Spayed' : 'Neutered'}</strong>
             </Grid>
             <Grid item xs={6}>
-              {isSterilized ? "Yes" : "No"}
+              {isSterilized ? 'Yes' : 'No'}
             </Grid>
           </Grid>
           <Grid container>
@@ -74,7 +75,7 @@ const RescueDetailsLayout = ({ rescue }) => {
               <strong>Vaccinated</strong>
             </Grid>
             <Grid item xs={6}>
-              {isVaccinated ? "Yes" : "No"}
+              {isVaccinated ? 'Yes' : 'No'}
             </Grid>
           </Grid>
           <Grid container>
@@ -82,25 +83,41 @@ const RescueDetailsLayout = ({ rescue }) => {
               <strong>Ready To Adopt</strong>
             </Grid>
             <Grid item xs={6}>
-              {isAdoptable ? "Yes" : "No"}
+              {isAdoptable ? 'Yes' : 'No'}
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={4} md={3} style={{ textAlign: "center" }}>
+        <Grid item xs={12} sm={4} md={3} style={{ textAlign: 'center' }}>
           <DisplayImage
-            directory={"rescues"}
+            directory="rescues"
             id={id}
             name={name}
             width="12rem"
             height="12rem"
           />
         </Grid>
-        <Grid item xs={12} sm={8} md={3} style={{ textAlign: "left" }}>
+        <Grid item xs={12} sm={8} md={3} style={{ textAlign: 'left' }}>
           <p>{bio}</p>
         </Grid>
       </Grid>
     </Container>
   );
+}
+
+RescueDetailsLayout.propTypes = {
+  rescue: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    gender: PropTypes.string.isRequired,
+    breed: PropTypes.string.isRequired,
+    hasFoster: PropTypes.bool.isRequired,
+    hasVet: PropTypes.bool.isRequired,
+    isSterilized: PropTypes.bool.isRequired,
+    isVaccinated: PropTypes.bool.isRequired,
+    isAdoptable: PropTypes.bool.isRequired,
+    id: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default RescueDetailsLayout;

@@ -23,13 +23,6 @@
   border-radius: 10px;
 }
 
-.AddPet {
-  display: flex;
-  align-items: center;
-  min-height: 20vh;
-  padding: 7em;
-}
-
 img {
   max-width: 100%;
   height: auto;

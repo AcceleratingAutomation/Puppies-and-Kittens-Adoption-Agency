@@ -1,11 +1,13 @@
-import React, { useReducer, useCallback } from "react";
-import { AppBar, MenuItem, IconButton, Menu, Toolbar } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import { isMember } from "../../utils/utils";
-import DrawerComponent from "./DrawerComponent";
-import TabsComponent from "./TabsComponent";
-import { handleLogout } from "../../server/api/authApi";
+import React, { useReducer, useCallback } from 'react';
+import {
+  AppBar, MenuItem, IconButton, Menu, Toolbar,
+} from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import PropTypes from 'prop-types';
+import DrawerComponent from './DrawerComponent';
+import TabsComponent from './TabsComponent';
+import { handleLogout } from '../../server/api/authApi';
 
 const initialState = {
   anchorEl: null,
@@ -14,9 +16,9 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "setAnchorEl":
+    case 'setAnchorEl':
       return { ...state, anchorEl: action.value };
-    case "setMobileOpen":
+    case 'setMobileOpen':
       return { ...state, mobileOpen: action.value };
     default:
       throw new Error();
@@ -24,24 +26,24 @@ function reducer(state, action) {
 }
 
 export const tabs = [
-  { route: "/v1/favorites", label: "Favorites" },
-  { route: "/v1/rescues", label: "Rescues" },
-  { route: "/v1/adopters", label: "Adopters" },
-  { route: "/v1/fosters", label: "Fosters" },
-  { route: "/v1/veterinarians", label: "Veterinarians" },
-  { route: "/v1/users", label: "Users" },
+  { route: '/v1/favorites', label: 'Favorites' },
+  { route: '/v1/rescues', label: 'Rescues' },
+  { route: '/v1/adopters', label: 'Adopters' },
+  { route: '/v1/fosters', label: 'Fosters' },
+  { route: '/v1/veterinarians', label: 'Veterinarians' },
+  { route: '/v1/users', label: 'Users' },
 ];
 
-export const AppHeader = ({ tabValue }) => {
+export function AppHeader({ tabValue }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const open = Boolean(state.anchorEl);
   const history = useHistory();
-  const shouldDisable = isMember();
+  const shouldDisable = false; // Change to shouldHide
 
   const handleHamburgerClick = useCallback(
     (newValue) => {
       if (tabValue === newValue) {
-        dispatch({ type: "setMobileOpen", value: false });
+        dispatch({ type: 'setMobileOpen', value: false });
       } else {
         history.push(tabs[newValue].route);
       }
@@ -57,15 +59,15 @@ export const AppHeader = ({ tabValue }) => {
   );
 
   const handleDrawerToggle = useCallback(() => {
-    dispatch({ type: "setMobileOpen", value: !state.mobileOpen });
+    dispatch({ type: 'setMobileOpen', value: !state.mobileOpen });
   }, [state.mobileOpen]);
 
   const handleMenu = useCallback((event) => {
-    dispatch({ type: "setAnchorEl", value: event.currentTarget });
+    dispatch({ type: 'setAnchorEl', value: event.currentTarget });
   }, []);
 
   const handleClose = useCallback(() => {
-    dispatch({ type: "setAnchorEl", value: null });
+    dispatch({ type: 'setAnchorEl', value: null });
   }, []);
 
   const onClickLogout = useCallback(() => {
@@ -104,11 +106,15 @@ export const AppHeader = ({ tabValue }) => {
             onClose={handleClose}
             aria-label="User menu options"
           >
-            <MenuItem>{localStorage.getItem("displayName")}</MenuItem>
+            <MenuItem>{localStorage.getItem('displayName')}</MenuItem>
             <MenuItem onClick={onClickLogout}>Logout</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
     </header>
   );
+}
+
+AppHeader.propTypes = {
+  tabValue: PropTypes.number.isRequired,
 };

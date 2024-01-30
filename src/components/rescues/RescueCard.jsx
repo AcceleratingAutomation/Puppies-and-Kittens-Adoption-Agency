@@ -1,11 +1,12 @@
-import React from "react";
-import { Grid, Typography, IconButton } from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import "../../styles.css";
-import { SummaryCard } from "../SummaryCard";
+import React from 'react';
+import { Grid, Typography, IconButton } from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import '../../styles.css';
+import PropTypes from 'prop-types';
+import SummaryCard from '../SummaryCard';
 
-const RescueCard = ({
+function RescueCard({
   name,
   id,
   type,
@@ -15,8 +16,10 @@ const RescueCard = ({
   isFavorite,
   onAddFavorite,
   onRemoveFavorite,
-}) => {
-  const rescue = { name, id, type, gender, breed };
+}) {
+  const rescue = {
+    name, id, type, gender, breed,
+  };
 
   return (
     <SummaryCard
@@ -58,6 +61,23 @@ const RescueCard = ({
       </Grid>
     </SummaryCard>
   );
+}
+
+RescueCard.defaultProps = {
+  directory: '', // TODO
+  onAddFavorite: () => {}, // TODO
+};
+
+RescueCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  gender: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  directory: PropTypes.string,
+  isFavorite: PropTypes.bool.isRequired,
+  onAddFavorite: PropTypes.func,
+  onRemoveFavorite: PropTypes.func.isRequired,
 };
 
 export default RescueCard;
