@@ -31,7 +31,7 @@ jobs:
 
       - name: Print ESLint version
         run: npx eslint --version
-  
+
       - name: Run ESLint
         run: npx eslint .
 
