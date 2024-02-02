@@ -1,6 +1,7 @@
 require('dotenv').config({ path: './variables.env' });
 const express = require('express');
 const debug = require('debug')('app:server');
+const morgan = require('morgan');
 const cors = require('cors');
 const favoritesController = require('./controllers/favorites');
 const {
@@ -15,6 +16,7 @@ const formsController = require('./controllers/forms');
 const { verifyToken } = require('./shared');
 
 const app = express();
+app.use(morgan('tiny'));
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   debug(`Server is running on port ${port}`);
