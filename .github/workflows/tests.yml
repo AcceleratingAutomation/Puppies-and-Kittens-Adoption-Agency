@@ -1,13 +1,16 @@
-name: Tests
+name: Automated Checks
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
-  automated-checks:
+  formatters-and-linters:
+    name: Prettier and Super-linter
     timeout-minutes: 10
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # For super-linter
     permissions:
@@ -50,6 +53,26 @@ jobs:
           DEFAULT_BRANCH: main
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  automated-tests:
+    name: Run Playwright Tests
+    timeout-minutes: 10
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Print Node.js version
+        run: node --version
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
