@@ -4,8 +4,8 @@ import '../../styles.css';
 import { AppHeader, tabs } from '../header/AppHeader';
 import { updateAppSettings } from '../../utils/utils';
 import VeterinarianCard from './VeterinarianCard';
-import { veterinariansUrl } from '../../server/api/apiConfig';
-import fetchData from '../../server/api/cardApi';
+import { veterinariansUrl } from '../../server/apiService/apiConfig';
+import fetchData from '../../server/apiService/cardApi';
 import { FavoritesContext } from '../../contexts/favoritesContext';
 import Loading from '../Loading';
 

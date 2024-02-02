@@ -12,9 +12,9 @@ import {
   addFavorite,
   checkFavorite,
   removeFavorite,
-} from '../../server/api/rescuesApi';
-import { rescuesUrl } from '../../server/api/apiConfig';
-import fetchData from '../../server/api/cardApi';
+} from '../../server/apiService/rescuesApi';
+import { rescuesUrl } from '../../server/apiService/apiConfig';
+import fetchData from '../../server/apiService/cardApi';
 
 export default function Rescues() {
   const { state, dispatch } = useContext(FavoritesContext);

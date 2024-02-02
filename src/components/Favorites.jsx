@@ -5,7 +5,7 @@ import { AppHeader, tabs } from './header/AppHeader';
 import RescueCard from './rescues/RescueCard';
 import { FavoritesContext } from '../contexts/favoritesContext';
 import Loading from './Loading';
-import { fetchFavorites, removeFavorite } from '../server/api/favoritesApi';
+import { fetchFavorites, removeFavorite } from '../server/apiService/favoritesApi';
 
 export default function Favorites() {
   const { state, dispatch } = useContext(FavoritesContext);

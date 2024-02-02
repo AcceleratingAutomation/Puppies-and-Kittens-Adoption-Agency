@@ -7,7 +7,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import PropTypes from 'prop-types';
 import DrawerComponent from './DrawerComponent';
 import TabsComponent from './TabsComponent';
-import { handleLogout } from '../../server/api/authApi';
+import { handleLogout } from '../../server/apiService/authApi';
 
 const initialState = {
   anchorEl: null,

@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { AppHeader, tabs } from '../header/AppHeader';
 import Loading from '../Loading';
-import { rescueDetailsUrl } from '../../server/api/apiConfig';
+import { rescueDetailsUrl } from '../../server/apiService/apiConfig';
 import { FavoritesContext } from '../../contexts/favoritesContext';
 import DetailsButtons from '../DetailsButtons';
 import RescueDetailsLayout from './RescueDetailsLayout';

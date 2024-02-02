@@ -1,4 +1,4 @@
-import { fetchDetailsApi, deleteDetailsApi } from '../server/api/detailsApi';
+import { fetchDetailsApi, deleteDetailsApi } from '../server/apiService/detailsApi';
 
 export const fetchDetails = async (url, id, dispatch, setType, name) => {
   try {
