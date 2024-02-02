@@ -1,4 +1,7 @@
-import { fetchDetailsApi, deleteDetailsApi } from '../server/apiService/detailsApi';
+import {
+  fetchDetailsApi,
+  deleteDetailsApi,
+} from "../server/apiService/detailsApi";
 
 export const fetchDetails = async (url, id, dispatch, setType, name) => {
   try {
@@ -15,7 +18,7 @@ export const fetchDetails = async (url, id, dispatch, setType, name) => {
 export const deleteDetails = async (url, id, history, dispatch, path) => {
   try {
     if (await deleteDetailsApi(url, id)) {
-      dispatch({ type: 'closeDialog' });
+      dispatch({ type: "closeDialog" });
       history.push(path);
     }
   } catch (err) {

@@ -1,12 +1,10 @@
-import React from 'react';
-import {
-  Grid, Typography, TextField, Button, Hidden,
-} from '@material-ui/core';
-import Tooltip from '@material-ui/core/Tooltip';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import { Field, Form, ErrorMessage } from 'formik';
-import PropTypes from 'prop-types';
-import DisplayImage from '../DisplayImage';
+import React from "react";
+import { Grid, Typography, TextField, Button, Hidden } from "@material-ui/core";
+import Tooltip from "@material-ui/core/Tooltip";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import { Field, Form, ErrorMessage } from "formik";
+import PropTypes from "prop-types";
+import DisplayImage from "../DisplayImage";
 
 function LoginForm({ isSubmitting }) {
   return (
@@ -15,20 +13,18 @@ function LoginForm({ isSubmitting }) {
         container
         direction="column"
         alignItems="center"
-        style={{ marginTop: '3vh' }}
+        style={{ marginTop: "3vh" }}
       >
-        <Grid item style={{ marginBottom: '3vh' }}>
+        <Grid item style={{ marginBottom: "3vh" }}>
           <Typography variant="h3">
-            Puppies and Kittens
-            {' '}
+            Puppies and Kittens{" "}
             <Hidden xsDown>
               <br />
-            </Hidden>
-            {' '}
+            </Hidden>{" "}
             Rescue and Adoption Agency!
           </Typography>
         </Grid>
-        <Grid item style={{ marginBottom: '3vh' }}>
+        <Grid item style={{ marginBottom: "3vh" }}>
           <Field
             name="username"
             as={TextField}
@@ -38,20 +34,20 @@ function LoginForm({ isSubmitting }) {
           <ErrorMessage
             name="username"
             component="div"
-            style={{ color: 'red' }}
+            style={{ color: "red" }}
           />
         </Grid>
-        <Grid item style={{ marginBottom: '5vh' }}>
+        <Grid item style={{ marginBottom: "5vh" }}>
           <Field
             name="password"
             as={TextField}
             id="password-input"
-            label={(
+            label={
               <>
                 Password
                 <Tooltip
-                  title={(
-                    <Typography variant="body2" style={{ fontSize: '1.2em' }}>
+                  title={
+                    <Typography variant="body2" style={{ fontSize: "1.2em" }}>
                       Must contain:
                       <ul>
                         <li>at least 8 characters,</li>
@@ -60,26 +56,26 @@ function LoginForm({ isSubmitting }) {
                         <li>1 number</li>
                       </ul>
                     </Typography>
-                )}
+                  }
                 >
                   <HelpOutlineIcon
                     fontSize="small"
-                    style={{ marginLeft: '10px' }}
+                    style={{ marginLeft: "10px" }}
                   />
                 </Tooltip>
               </>
-          )}
+            }
             type="password"
           />
           <ErrorMessage
             name="password"
             component="div"
-            style={{ color: 'red' }}
+            style={{ color: "red" }}
           />
         </Grid>
-        <Grid item style={{ marginBottom: '2vh' }}>
+        <Grid item style={{ marginBottom: "2vh" }}>
           <Button
-            style={{ margin: '0.625rem' }}
+            style={{ margin: "0.625rem" }}
             aria-label="login"
             variant="contained"
             size="large"
@@ -90,10 +86,10 @@ function LoginForm({ isSubmitting }) {
             LOGIN
           </Button>
         </Grid>
-        <ErrorMessage name="login" component="div" style={{ color: 'red' }} />
+        <ErrorMessage name="login" component="div" style={{ color: "red" }} />
         <Grid
           container
-          style={{ margin: '0 auto', maxWidth: '80%' }}
+          style={{ margin: "0 auto", maxWidth: "80%" }}
           justify="center"
         >
           <Grid item xs={12} sm={4}>

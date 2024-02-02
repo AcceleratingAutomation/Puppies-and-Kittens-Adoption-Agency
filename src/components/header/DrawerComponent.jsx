@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   IconButton,
   Hidden,
@@ -6,9 +6,9 @@ import {
   List,
   ListItem,
   ListItemText,
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import PropTypes from 'prop-types';
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import PropTypes from "prop-types";
 
 function DrawerComponent({
   tabs,
@@ -30,7 +30,7 @@ function DrawerComponent({
         variant="temporary"
         open={mobileOpen}
         onClose={handleDrawerToggle}
-        PaperProps={{ style: { backgroundColor: '#3f51b5' } }}
+        PaperProps={{ style: { backgroundColor: "#3f51b5" } }}
       >
         <div>
           <List>
@@ -39,7 +39,7 @@ function DrawerComponent({
                 button
                 key={tab.route}
                 onClick={() => handleHamburgerClick(index)}
-                style={{ color: 'white' }}
+                style={{ color: "white" }}
               >
                 <ListItemText primary={tab.label} />
               </ListItem>
@@ -52,10 +52,12 @@ function DrawerComponent({
 }
 
 DrawerComponent.propTypes = {
-  tabs: PropTypes.arrayOf(PropTypes.shape({
-    route: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-  })).isRequired,
+  tabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      route: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   handleHamburgerClick: PropTypes.func.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
   handleDrawerToggle: PropTypes.func.isRequired,

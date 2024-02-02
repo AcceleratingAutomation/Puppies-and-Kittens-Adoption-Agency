@@ -1,20 +1,20 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper, Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import DisplayImage from './DisplayImage';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Paper, Button } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
+import DisplayImage from "./DisplayImage";
 
 const useStyles = makeStyles({
   summaryCard: {
-    width: '100%', // Full width on mobile devices
-    maxWidth: '20rem',
-    wordWrap: 'break-word',
-    minHeight: '10rem',
+    width: "100%", // Full width on mobile devices
+    maxWidth: "20rem",
+    wordWrap: "break-word",
+    minHeight: "10rem",
   },
   muiButton: {
-    width: '65%',
-    margin: '0.625rem',
+    width: "65%",
+    margin: "0.625rem",
   },
 });
 

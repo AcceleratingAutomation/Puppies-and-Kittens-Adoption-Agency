@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Grid, Typography } from '@material-ui/core';
-import '../../styles.css';
-import SummaryCard from '../SummaryCard';
+import React from "react";
+import PropTypes from "prop-types";
+import { Grid, Typography } from "@material-ui/core";
+import "../../styles.css";
+import SummaryCard from "../SummaryCard";
 
 function VeterinarianCard({
   displayName,
@@ -37,19 +37,13 @@ function VeterinarianCard({
         {veterinarian.email}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Accepting Patients:
-        {' '}
-        {veterinarian.isAccepting ? 'Yes' : 'No'}
+        Accepting Patients: {veterinarian.isAccepting ? "Yes" : "No"}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Current Rescues:
-        {' '}
-        {veterinarian.numCurrentRescues}
+        Current Rescues: {veterinarian.numCurrentRescues}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Total Rescues:
-        {' '}
-        {veterinarian.numTotalRescues}
+        Total Rescues: {veterinarian.numTotalRescues}
       </Typography>
       <Grid item xs={12} container justify="center" />
     </SummaryCard>

@@ -1,29 +1,27 @@
-import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import { getImageUrl } from '../utils/componentUtils';
+import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
+import { getImageUrl } from "../utils/componentUtils";
 
 const getPlaceholderImage = (type) => {
   switch (type) {
-    case 'Dog':
-      return 'puppy';
-    case 'Cat':
-      return 'kitten';
+    case "Dog":
+      return "puppy";
+    case "Cat":
+      return "kitten";
     default:
-      return 'users';
+      return "users";
   }
 };
 
 const useStyles = makeStyles({
   responsiveImage: {
-    maxWidth: '100%',
-    height: 'auto',
+    maxWidth: "100%",
+    height: "auto",
   },
 });
 
-function DisplayImage({
-  directory, id, type, name, width, height,
-}) {
+function DisplayImage({ directory, id, type, name, width, height }) {
   const classes = useStyles();
 
   useEffect(() => {
@@ -37,20 +35,23 @@ function DisplayImage({
       src={
         id && directory
           ? getImageUrl(directory, id)
-          : getImageUrl('placeholders', getPlaceholderImage(type))
+          : getImageUrl("placeholders", getPlaceholderImage(type))
       }
       alt={
         id && directory ? `${name}'s picture` : `${name}'s placeholder picture`
       }
       style={{
-        borderRadius: '25%', width, height, objectFit: 'cover',
+        borderRadius: "25%",
+        width,
+        height,
+        objectFit: "cover",
       }}
     />
   );
 }
 
 DisplayImage.defaultProps = {
-  type: 'users',
+  type: "users",
 };
 
 DisplayImage.propTypes = {

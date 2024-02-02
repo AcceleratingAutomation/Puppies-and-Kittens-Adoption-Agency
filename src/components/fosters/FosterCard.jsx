@@ -1,8 +1,8 @@
-import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import '../../styles.css';
-import PropTypes from 'prop-types';
-import SummaryCard from '../SummaryCard';
+import React from "react";
+import { Grid, Typography } from "@material-ui/core";
+import "../../styles.css";
+import PropTypes from "prop-types";
+import SummaryCard from "../SummaryCard";
 
 function FosterCard({
   displayName,
@@ -37,19 +37,13 @@ function FosterCard({
         {foster.email}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Accepting Rescues:
-        {' '}
-        {foster.isAccepting ? 'Yes' : 'No'}
+        Accepting Rescues: {foster.isAccepting ? "Yes" : "No"}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Current Rescues:
-        {' '}
-        {foster.numCurrentRescues}
+        Current Rescues: {foster.numCurrentRescues}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Total Rescues:
-        {' '}
-        {foster.numTotalRescues}
+        Total Rescues: {foster.numTotalRescues}
       </Typography>
       <Grid item xs={12} container justify="center" />
     </SummaryCard>

@@ -1,14 +1,17 @@
-import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import '../../styles.css';
-import PropTypes from 'prop-types';
-import SummaryCard from '../SummaryCard';
+import React from "react";
+import { Grid, Typography } from "@material-ui/core";
+import "../../styles.css";
+import PropTypes from "prop-types";
+import SummaryCard from "../SummaryCard";
 
-function UserCard({
-  username, id, role, favorite, image, email,
-}) {
+function UserCard({ username, id, role, favorite, image, email }) {
   const user = {
-    username, id, role, favorite, image, email,
+    username,
+    id,
+    role,
+    favorite,
+    image,
+    email,
   };
 
   return (
@@ -28,9 +31,7 @@ function UserCard({
         {user.role}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Favorites:
-        {' '}
-        {user.favorite.length}
+        Favorites: {user.favorite.length}
       </Typography>
       <Grid item xs={12} container justify="center" />
     </SummaryCard>

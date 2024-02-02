@@ -1,10 +1,10 @@
-import React from 'react';
-import { Grid, Typography, IconButton } from '@material-ui/core';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import '../../styles.css';
-import PropTypes from 'prop-types';
-import SummaryCard from '../SummaryCard';
+import React from "react";
+import { Grid, Typography, IconButton } from "@material-ui/core";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import "../../styles.css";
+import PropTypes from "prop-types";
+import SummaryCard from "../SummaryCard";
 
 function RescueCard({
   name,
@@ -18,7 +18,11 @@ function RescueCard({
   onRemoveFavorite,
 }) {
   const rescue = {
-    name, id, type, gender, breed,
+    name,
+    id,
+    type,
+    gender,
+    breed,
   };
 
   return (
@@ -64,7 +68,7 @@ function RescueCard({
 }
 
 RescueCard.defaultProps = {
-  directory: '', // TODO
+  directory: "", // TODO
   onAddFavorite: () => {}, // TODO
 };
 

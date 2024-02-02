@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const sharp = require('sharp');
-const async = require('async');
+const fs = require("fs");
+const path = require("path");
+const sharp = require("sharp");
+const async = require("async");
 
 function convertImage(input, output, callback, quality = 80) {
   sharp(input)
@@ -21,7 +21,9 @@ function convertAllImagesInDirectory(directory) {
       throw new Error(`Error reading directory: ${err}`);
     }
 
-    const imageFiles = files.filter((file) => ['.jpg', '.jpeg', '.png'].includes(path.extname(file)));
+    const imageFiles = files.filter((file) =>
+      [".jpg", ".jpeg", ".png"].includes(path.extname(file)),
+    );
 
     // Convert 4 files in parallel to prevent overloading the CPU
     async.eachLimit(
@@ -45,7 +47,7 @@ function convertAllImagesInDirectory(directory) {
 }
 
 // Only uncomment and run as needed to convert new images
-convertAllImagesInDirectory('../../public/images/placeholders');
+convertAllImagesInDirectory("../../public/images/placeholders");
 
 module.exports = {
   convertImage,

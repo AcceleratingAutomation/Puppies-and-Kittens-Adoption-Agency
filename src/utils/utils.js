@@ -1,10 +1,10 @@
-const jwtDecode = require('jwt-decode');
+const jwtDecode = require("jwt-decode");
 
 export const updateAppSettings = (token) => {
   localStorage.clear();
   if (token) {
-    localStorage.setItem('displayName', jwtDecode(token).sub);
-    localStorage.setItem('token', token);
+    localStorage.setItem("displayName", jwtDecode(token).sub);
+    localStorage.setItem("token", token);
   }
 };
 
@@ -17,8 +17,8 @@ export const updateAppSettings = (token) => {
 // };
 
 export const constructHeader = (contentType) => {
-  const auth = `Bearer ${localStorage.getItem('token')}` || '';
+  const auth = `Bearer ${localStorage.getItem("token")}` || "";
   return contentType
-    ? { 'Content-type': contentType, Authorization: auth }
+    ? { "Content-type": contentType, Authorization: auth }
     : { Authorization: auth };
 };

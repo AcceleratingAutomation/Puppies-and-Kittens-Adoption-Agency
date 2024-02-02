@@ -1,30 +1,28 @@
-import React, {
-  useContext, useEffect, useCallback, useMemo,
-} from 'react';
-import { Grid } from '@material-ui/core';
-import '../../styles.css';
-import { AppHeader, tabs } from '../header/AppHeader';
-import { updateAppSettings } from '../../utils/utils';
-import RescueCard from './RescueCard';
-import { FavoritesContext } from '../../contexts/favoritesContext';
-import Loading from '../Loading';
+import React, { useContext, useEffect, useCallback, useMemo } from "react";
+import { Grid } from "@material-ui/core";
+import "../../styles.css";
+import { AppHeader, tabs } from "../header/AppHeader";
+import { updateAppSettings } from "../../utils/utils";
+import RescueCard from "./RescueCard";
+import { FavoritesContext } from "../../contexts/favoritesContext";
+import Loading from "../Loading";
 import {
   addFavorite,
   checkFavorite,
   removeFavorite,
-} from '../../server/apiService/rescuesApi';
-import { rescuesUrl } from '../../server/apiService/apiConfig';
-import fetchData from '../../server/apiService/cardApi';
+} from "../../server/apiService/rescuesApi";
+import { rescuesUrl } from "../../server/apiService/apiConfig";
+import fetchData from "../../server/apiService/cardApi";
 
 export default function Rescues() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex((tab) => tab.label === 'Rescues');
+  const tabValue = tabs.findIndex((tab) => tab.label === "Rescues");
 
   useEffect(() => {
     fetchData(rescuesUrl)
       .then((json) => {
         updateAppSettings(json.token);
-        dispatch({ type: 'setRescues', value: [...json.rescues] });
+        dispatch({ type: "setRescues", value: [...json.rescues] });
       })
       .catch((err) => {
         throw new Error(`Error fetching rescues: ${err.message}`);
@@ -35,11 +33,11 @@ export default function Rescues() {
     async (id) => {
       if (await addFavorite(id)) {
         dispatch({
-          type: 'addToFavorites',
+          type: "addToFavorites",
           id,
         });
       } else {
-        throw new Error('Failed to add rescue to favorites');
+        throw new Error("Failed to add rescue to favorites");
       }
     },
     [dispatch],
@@ -56,7 +54,7 @@ export default function Rescues() {
       }),
     ).then((favorites) => {
       const favoriteIds = favorites.filter((id) => id !== null);
-      dispatch({ type: 'setFavorites', value: favoriteIds });
+      dispatch({ type: "setFavorites", value: favoriteIds });
     });
   }, [state.rescues, inFavorites, dispatch]);
 
@@ -64,30 +62,31 @@ export default function Rescues() {
     async (id) => {
       if (await removeFavorite(id)) {
         dispatch({
-          type: 'removeFromFavorites',
+          type: "removeFromFavorites",
           id,
         });
       } else {
-        throw new Error('Failed to remove rescue from favorites');
+        throw new Error("Failed to remove rescue from favorites");
       }
     },
     [dispatch],
   );
 
   const rescues = useMemo(
-    () => state.rescues.map((rescue) => (
-      <RescueCard
-        key={rescue.id}
-        name={rescue.name}
-        id={rescue.id}
-        type={rescue.type}
-        gender={rescue.gender}
-        breed={rescue.breed}
-        onAddFavorite={onAddFavorite}
-        onRemoveFavorite={onRemoveFavorite}
-        isFavorite={state.favorites.includes(rescue.id)}
-      />
-    )),
+    () =>
+      state.rescues.map((rescue) => (
+        <RescueCard
+          key={rescue.id}
+          name={rescue.name}
+          id={rescue.id}
+          type={rescue.type}
+          gender={rescue.gender}
+          breed={rescue.breed}
+          onAddFavorite={onAddFavorite}
+          onRemoveFavorite={onRemoveFavorite}
+          isFavorite={state.favorites.includes(rescue.id)}
+        />
+      )),
     [state.rescues, state.favorites, onAddFavorite, onRemoveFavorite],
   );
 

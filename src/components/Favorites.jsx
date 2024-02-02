@@ -1,22 +1,25 @@
-import React, { useContext, useEffect, useCallback } from 'react';
-import { Grid } from '@material-ui/core';
-import '../styles.css';
-import { AppHeader, tabs } from './header/AppHeader';
-import RescueCard from './rescues/RescueCard';
-import { FavoritesContext } from '../contexts/favoritesContext';
-import Loading from './Loading';
-import { fetchFavorites, removeFavorite } from '../server/apiService/favoritesApi';
+import React, { useContext, useEffect, useCallback } from "react";
+import { Grid } from "@material-ui/core";
+import "../styles.css";
+import { AppHeader, tabs } from "./header/AppHeader";
+import RescueCard from "./rescues/RescueCard";
+import { FavoritesContext } from "../contexts/favoritesContext";
+import Loading from "./Loading";
+import {
+  fetchFavorites,
+  removeFavorite,
+} from "../server/apiService/favoritesApi";
 
 export default function Favorites() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex((tab) => tab.label === 'Favorites');
+  const tabValue = tabs.findIndex((tab) => tab.label === "Favorites");
 
   const fetchAndSetFavorites = useCallback(async () => {
     const data = await fetchFavorites();
-    dispatch({ type: 'setRescues', value: data.favorites });
+    dispatch({ type: "setRescues", value: data.favorites });
     const favoriteIds = data.favorites.map((favorite) => favorite.id);
-    dispatch({ type: 'setFavorites', value: favoriteIds });
-    dispatch({ type: 'setLoading', value: false });
+    dispatch({ type: "setFavorites", value: favoriteIds });
+    dispatch({ type: "setLoading", value: false });
   }, [dispatch]);
 
   useEffect(() => {
@@ -26,9 +29,9 @@ export default function Favorites() {
   const handleRemoveFavorite = useCallback(
     async (id) => {
       if (await removeFavorite(id)) {
-        dispatch({ type: 'removeFromFavorites', id });
+        dispatch({ type: "removeFromFavorites", id });
       } else {
-        throw new Error('Failed to delete rescue from favorites');
+        throw new Error("Failed to delete rescue from favorites");
       }
     },
     [dispatch],

@@ -4,27 +4,27 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: 'airbnb',
+  extends: ["airbnb", "prettier"],
+  plugins: ["prettier"],
   overrides: [
     {
       env: {
         node: true,
       },
-      files: [
-        '.eslintrc.{js,cjs}',
-      ],
+      files: [".eslintrc.{js,cjs}"],
       parserOptions: {
-        sourceType: 'script',
+        sourceType: "script",
       },
     },
   ],
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
   rules: {
     // For the registration object in serviceWorker for ServiceWorkerRegistration
-    'no-param-reassign': ['error', { props: false }],
-    'linebreak-style': ['error', 'unix'],
+    "no-param-reassign": ["error", { props: false }],
+    "linebreak-style": ["error", "unix"],
+    "prettier/prettier": "error",
   },
 };

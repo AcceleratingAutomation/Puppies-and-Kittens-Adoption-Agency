@@ -3,11 +3,13 @@ const {
   isEmptyObject,
   isPasswordCorrect,
   generateToken,
-} = require('../shared');
+} = require("../shared");
 
 exports.login = (req, res) => {
-  const base64Encoding = req.headers.authorization.split(' ')[1];
-  const credentials = Buffer.from(base64Encoding, 'base64').toString().split(':');
+  const base64Encoding = req.headers.authorization.split(" ")[1];
+  const credentials = Buffer.from(base64Encoding, "base64")
+    .toString()
+    .split(":");
   const username = credentials[0];
   const password = credentials[1];
   getUserByUsername(username).then((user) => {
@@ -16,7 +18,7 @@ exports.login = (req, res) => {
         if (!result) {
           res
             .status(401)
-            .send({ message: 'username or password is incorrect' });
+            .send({ message: "username or password is incorrect" });
         } else {
           generateToken(null, username).then((token) => {
             res
@@ -25,10 +27,11 @@ exports.login = (req, res) => {
           });
         }
       });
-    } else res.status(401).send({ message: 'username or password is incorrect' });
+    } else
+      res.status(401).send({ message: "username or password is incorrect" });
   });
 };
 
 exports.logout = (req, res) => {
-  res.status(200).send({ message: 'Signed out' });
+  res.status(200).send({ message: "Signed out" });
 };

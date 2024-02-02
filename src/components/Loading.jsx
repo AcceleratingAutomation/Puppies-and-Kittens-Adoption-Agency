@@ -1,14 +1,14 @@
-import React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import React from "react";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function Loading() {
   return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
       }}
     >
       <main aria-live="polite">

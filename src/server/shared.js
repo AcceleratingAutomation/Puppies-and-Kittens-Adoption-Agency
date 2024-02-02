@@ -1,16 +1,16 @@
-const jsonfile = require('jsonfile');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const path = require('path');
-const Constants = require('./constants');
+const jsonfile = require("jsonfile");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const path = require("path");
+const Constants = require("./constants");
 
 // Define database paths
-const usersDB = './database/users.json';
-const rescuesDB = './database/rescues.json';
-const fostersDB = './database/fosters.json';
-const adoptersDB = './database/adopters.json';
-const veterinariansDB = './database/veterinarians.json';
+const usersDB = "./database/users.json";
+const rescuesDB = "./database/rescues.json";
+const fostersDB = "./database/fosters.json";
+const adoptersDB = "./database/adopters.json";
+const veterinariansDB = "./database/veterinarians.json";
 
 // Export database paths
 exports.usersDB = usersDB;
@@ -22,12 +22,12 @@ exports.veterinariansDB = veterinariansDB;
 // Define helper functions
 const getUsernameFromToken = (token) => {
   if (!token) {
-    throw new Error('Token is not provided');
+    throw new Error("Token is not provided");
   }
 
   const decodedToken = jwt.decode(token);
   if (!decodedToken) {
-    throw new Error('Token is not valid');
+    throw new Error("Token is not valid");
   }
 
   return decodedToken.sub;
@@ -70,42 +70,43 @@ exports.getDetails = async (id, db) => {
   }
 };
 
-exports.deleteData = (id, db) => new Promise((resolve, reject) => {
-  // Read the existing data
-  fs.readFile(path.join(__dirname, db), 'utf8', (err, data) => {
-    if (err) {
-      reject(err);
-      return;
-    }
+exports.deleteData = (id, db) =>
+  new Promise((resolve, reject) => {
+    // Read the existing data
+    fs.readFile(path.join(__dirname, db), "utf8", (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
 
-    const items = JSON.parse(data);
+      const items = JSON.parse(data);
 
-    // Find the item with the given id
-    const itemIndex = items.findIndex((item) => item.id === id);
-    if (itemIndex === -1) {
-      reject(new Error('Item not found'));
-      return;
-    }
+      // Find the item with the given id
+      const itemIndex = items.findIndex((item) => item.id === id);
+      if (itemIndex === -1) {
+        reject(new Error("Item not found"));
+        return;
+      }
 
-    // Remove the item from the array
-    items.splice(itemIndex, 1);
+      // Remove the item from the array
+      items.splice(itemIndex, 1);
 
-    // Write the updated items back to the file
-    fs.writeFile(
-      path.join(__dirname, db),
-      JSON.stringify(items, null, 2),
-      'utf8',
-      (deleteErr) => {
-        if (deleteErr) {
-          reject(deleteErr);
-          return;
-        }
+      // Write the updated items back to the file
+      fs.writeFile(
+        path.join(__dirname, db),
+        JSON.stringify(items, null, 2),
+        "utf8",
+        (deleteErr) => {
+          if (deleteErr) {
+            reject(deleteErr);
+            return;
+          }
 
-        resolve();
-      },
-    );
+          resolve();
+        },
+      );
+    });
   });
-});
 
 // Favorites
 
@@ -117,9 +118,9 @@ exports.getFavoriteRescuesForUser = async (token) => {
     const favoriteRescues = [];
     if (favoriteRescueIds.length === 0) return favoriteRescues;
     const allRescues = await jsonfile.readFile(rescuesDB);
-    favoriteRescueIds.forEach((id) => favoriteRescues.push(
-      allRescues.filter((rescue) => id === rescue.id)[0],
-    ));
+    favoriteRescueIds.forEach((id) =>
+      favoriteRescues.push(allRescues.filter((rescue) => id === rescue.id)[0]),
+    );
     return favoriteRescues;
   } catch (err) {
     // Removed console.log statement
@@ -135,18 +136,23 @@ exports.addFavoriteRescue = async (token, rescueId) => {
     // Get the user by username
     const user = await getUserByUsername(username);
     if (!user) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
 
     // Read the existing users
-    const data = await fs.promises.readFile(path.join(__dirname, usersDB), 'utf8');
+    const data = await fs.promises.readFile(
+      path.join(__dirname, usersDB),
+      "utf8",
+    );
     const users = JSON.parse(data);
 
     // Get the user index by username
-    const userIndex = users.findIndex((foundUser) => foundUser.username === username);
+    const userIndex = users.findIndex(
+      (foundUser) => foundUser.username === username,
+    );
 
     if (userIndex === -1) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
 
     // Ensure the user has a favorites array
@@ -161,34 +167,37 @@ exports.addFavoriteRescue = async (token, rescueId) => {
     await fs.promises.writeFile(
       path.join(__dirname, usersDB),
       JSON.stringify(users, null, 2),
-      'utf8',
+      "utf8",
     );
   } catch (err) {
     throw new Error(`Error adding favorite rescue: ${err.message}`);
   }
 };
 
-exports.deleteFavorite = (token, rescueId) => new Promise((resolve, reject) => {
-  const username = getUsernameFromToken(token);
+exports.deleteFavorite = (token, rescueId) =>
+  new Promise((resolve, reject) => {
+    const username = getUsernameFromToken(token);
 
-  const usersPath = path.join(__dirname, usersDB);
-  const users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+    const usersPath = path.join(__dirname, usersDB);
+    const users = JSON.parse(fs.readFileSync(usersPath, "utf8"));
 
-  const foundUser = users.find((u) => u.username === username);
-  if (!foundUser) {
-    throw new Error('User not found');
-  }
-
-  foundUser.favorite = foundUser.favorite.filter((favorite) => favorite !== rescueId);
-
-  fs.writeFile(usersPath, JSON.stringify(users, null, 2), (err) => {
-    if (err) {
-      reject(err);
-    } else {
-      resolve(foundUser.favorite);
+    const foundUser = users.find((u) => u.username === username);
+    if (!foundUser) {
+      throw new Error("User not found");
     }
+
+    foundUser.favorite = foundUser.favorite.filter(
+      (favorite) => favorite !== rescueId,
+    );
+
+    fs.writeFile(usersPath, JSON.stringify(users, null, 2), (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(foundUser.favorite);
+      }
+    });
   });
-});
 
 // Rescues
 
@@ -243,7 +252,7 @@ exports.generateToken = async (prevToken, userName) => {
       issuer: process.env.ISSUER,
       subject: userName || user.username,
       audience:
-        user.role === 'admin'
+        user.role === "admin"
           ? Constants.JWT_OPTIONS.ADMIN_AUDIENCE
           : Constants.JWT_OPTIONS.MEMBER_AUDIENCE,
     };
@@ -254,14 +263,16 @@ exports.generateToken = async (prevToken, userName) => {
 };
 
 exports.verifyToken = (req, res, next) => {
-  if (!req.headers.authorization) res.status(401).send({ message: 'Not authorized to access data' });
+  if (!req.headers.authorization)
+    res.status(401).send({ message: "Not authorized to access data" });
   else {
-    const token = req.headers.authorization.split(' ')[1];
-    if (!token) res.status(401).send({ message: 'Not Authorized to access data' });
+    const token = req.headers.authorization.split(" ")[1];
+    if (!token)
+      res.status(401).send({ message: "Not Authorized to access data" });
     else {
       jwt.verify(token, process.env.SECRET, (err) => {
         if (err) {
-          res.status(401).send({ message: 'Please login again' });
+          res.status(401).send({ message: "Please login again" });
         } else next();
       });
     }

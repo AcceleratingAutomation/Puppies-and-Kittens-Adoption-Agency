@@ -1,5 +1,5 @@
-import React, { createContext, useReducer, useMemo } from 'react';
-import PropTypes from 'prop-types';
+import React, { createContext, useReducer, useMemo } from "react";
+import PropTypes from "prop-types";
 
 export const initialState = {
   adopters: [],
@@ -15,42 +15,42 @@ export const initialState = {
 
 export function reducer(state, action) {
   switch (action.type) {
-    case 'setAdopters':
+    case "setAdopters":
       return { ...state, adopters: action.value, loading: false };
-    case 'setFosters':
+    case "setFosters":
       return { ...state, fosters: action.value, loading: false };
-    case 'setRescues':
+    case "setRescues":
       return { ...state, rescues: action.value, loading: false };
-    case 'setRescueDetails':
+    case "setRescueDetails":
       return { ...state, rescueDetails: action.value, loading: false };
-    case 'setUsers':
+    case "setUsers":
       return { ...state, users: action.value, loading: false };
-    case 'setVeterinarians':
+    case "setVeterinarians":
       return { ...state, veterinarians: action.value, loading: false };
-    case 'setFavorites':
+    case "setFavorites":
       return { ...state, favorites: action.value, loading: false };
-    case 'addToFavorites':
+    case "addToFavorites":
       return {
         ...state,
-        rescues: state.rescues.map((rescue) => (
-          rescue.id === action.id ? { ...rescue, isFavorite: true } : rescue
-        )),
+        rescues: state.rescues.map((rescue) =>
+          rescue.id === action.id ? { ...rescue, isFavorite: true } : rescue,
+        ),
       };
-    case 'removeFromFavorites':
+    case "removeFromFavorites":
       return {
         ...state,
-        rescues: state.rescues.map((rescue) => (
-          rescue.id === action.id ? { ...rescue, isFavorite: false } : rescue
-        )),
+        rescues: state.rescues.map((rescue) =>
+          rescue.id === action.id ? { ...rescue, isFavorite: false } : rescue,
+        ),
         favorites: state.favorites.filter(
           (favoriteId) => favoriteId !== action.id,
         ),
       };
-    case 'setLoading':
+    case "setLoading":
       return { ...state, loading: action.value };
-    case 'openDialog':
+    case "openDialog":
       return { ...state, openDialog: true };
-    case 'closeDialog':
+    case "closeDialog":
       return { ...state, openDialog: false };
     default:
       throw new Error();

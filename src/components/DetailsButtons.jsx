@@ -1,12 +1,12 @@
-import React from 'react';
-import { Button, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import ConfirmationDialog from './ConfirmationDialog';
+import React from "react";
+import { Button, Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import ConfirmationDialog from "./ConfirmationDialog";
 
 const useStyles = makeStyles({
   muiButton: {
-    margin: '0.625rem',
+    margin: "0.625rem",
   },
 });
 
@@ -37,23 +37,19 @@ function DetailsButtons({
         color="primary"
         onClick={() => onEdit(id)}
       >
-        Edit
-        {' '}
-        {name}
+        Edit {name}
       </Button>
       <Button
         className={classes.muiButton}
         variant="contained"
         color="secondary"
-        onClick={() => dispatch({ type: 'openDialog' })}
+        onClick={() => dispatch({ type: "openDialog" })}
       >
-        DELETE
-        {' '}
-        {name}
+        DELETE {name}
       </Button>
       <ConfirmationDialog
         open={openDialog}
-        onClose={() => dispatch({ type: 'closeDialog' })}
+        onClose={() => dispatch({ type: "closeDialog" })}
         onConfirm={() => onDelete(id)}
       />
     </Grid>

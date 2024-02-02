@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Dialog,
   DialogTitle,
@@ -6,31 +6,31 @@ import {
   DialogActions,
   Typography,
   Button,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   dialog: {
-    border: '2px solid black',
+    border: "2px solid black",
   },
   deleteButton: {
-    backgroundColor: 'red',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: '#f00',
+    backgroundColor: "red",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#f00",
     },
   },
   cancelButton: {
-    backgroundColor: '#3f51b5',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: '#00f',
+    backgroundColor: "#3f51b5",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#00f",
     },
   },
   dialogTitle: {
-    backgroundColor: '#3f51b5',
-    color: 'white',
+    backgroundColor: "#3f51b5",
+    color: "white",
   },
 });
 

@@ -1,24 +1,24 @@
-import React, { useEffect, useContext } from 'react';
-import { Grid } from '@material-ui/core';
-import '../../styles.css';
-import { AppHeader, tabs } from '../header/AppHeader';
-import { updateAppSettings } from '../../utils/utils';
-import { adoptersUrl } from '../../server/apiService/apiConfig';
-import fetchData from '../../server/apiService/cardApi';
-import AdopterCard from './AdopterCard';
-import { FavoritesContext } from '../../contexts/favoritesContext';
-import Loading from '../Loading';
+import React, { useEffect, useContext } from "react";
+import { Grid } from "@material-ui/core";
+import "../../styles.css";
+import { AppHeader, tabs } from "../header/AppHeader";
+import { updateAppSettings } from "../../utils/utils";
+import { adoptersUrl } from "../../server/apiService/apiConfig";
+import fetchData from "../../server/apiService/cardApi";
+import AdopterCard from "./AdopterCard";
+import { FavoritesContext } from "../../contexts/favoritesContext";
+import Loading from "../Loading";
 
 export default function Adopters() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex((tab) => tab.label === 'Adopters');
+  const tabValue = tabs.findIndex((tab) => tab.label === "Adopters");
 
   useEffect(() => {
     fetchData(adoptersUrl)
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          dispatch({ type: 'setAdopters', value: [...json.adopters] });
+          dispatch({ type: "setAdopters", value: [...json.adopters] });
         }
       })
       .catch((err) => {
