@@ -25,5 +25,6 @@ module.exports = {
   rules: {
     // For the registration object in serviceWorker for ServiceWorkerRegistration
     'no-param-reassign': ['error', { props: false }],
+    'linebreak-style': ['error', 'unix'],
   },
 };
