@@ -1,6 +1,12 @@
+# Setup
+
 `npm install`
 
 `npm start`
+
+## Build Progress
+
+[![Super-Linter](https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE_NAME>/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 ### - How do I run the Client application in browser?
 
@@ -13,17 +19,8 @@ Your server is will run at port 5000 and the URL for server APIs is [http://loca
 
 ### How do I start the server?
 
-Go inside the `server/` directory and run teh command below.
+Go inside the `server/` directory and run the command below.
 
 ```bash
 node server.js
-```
-
-Below are the contents of `variables.env` file.
-
-```
-SECRET=")x2f-l-opsnd)w!!z2m7ykvony99pt@6@6m+=q2uk3%w8*7$ow"
-ALGORITHM="HS256"
-ISSUER="BOOKIE_ORG"
-EXPIRY="1h"
 ```

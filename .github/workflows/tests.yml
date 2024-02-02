@@ -8,9 +8,21 @@ jobs:
   automated-checks:
     timeout-minutes: 10
     runs-on: windows-latest
+
+    # For super-linter
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,8 +44,12 @@ jobs:
       - name: Print ESLint version
         run: npx eslint --version
 
-      - name: Run ESLint
-        run: npx eslint .
+      - name: Super-linter
+        uses: super-linter/super-linter@v6.0.0 # x-release-please-version
+        env:
+          DEFAULT_BRANCH: main
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
