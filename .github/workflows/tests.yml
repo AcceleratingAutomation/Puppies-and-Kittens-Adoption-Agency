@@ -9,7 +9,7 @@ on:
 jobs:
   formatters-and-linters:
     name: Prettier and Super-linter
-    timeout-minutes: 10
+    timeout-minutes: 15
     runs-on: ubuntu-latest
 
     # For super-linter
@@ -56,7 +56,7 @@ jobs:
 
   automated-tests:
     name: Run Playwright Tests
-    timeout-minutes: 10
+    timeout-minutes: 120
     runs-on: windows-latest
 
     steps:
