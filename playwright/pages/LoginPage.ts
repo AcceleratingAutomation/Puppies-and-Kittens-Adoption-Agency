@@ -1,5 +1,16 @@
 import { Page } from "@playwright/test";
-import { required, usernameText, passwordText, loginText, atLeast8Characters, atLeastOneLowercaseLetter, atLeastOneUppercaseLetter, atLeastOneNumber, atLeastOneSpecialCharacter, errorLoggingIntoApp } from '../../src/components/login/loginText';
+import {
+  required,
+  usernameText,
+  passwordText,
+  loginText,
+  atLeast8Characters,
+  atLeastOneLowercaseLetter,
+  atLeastOneUppercaseLetter,
+  atLeastOneNumber,
+  atLeastOneSpecialCharacter,
+  errorLoggingIntoApp,
+} from "../../src/components/login/loginText";
 
 export class LoginPage {
   constructor(private page: Page) {}
@@ -42,25 +53,25 @@ export class LoginPage {
   }
 
   // Error messages
-    async getRequiredErrorMessage() {
-        return this.page.getByText(required);
-    }
-    async getIncorrectErrorMessage() {
-        return this.page.getByText(errorLoggingIntoApp);
-    }
-    async getPasswordLengthErrorMessage() {
-        let sut= this.page.getByText(atLeast8Characters);
-    }
-    async getPasswordUpperCaseErrorMessage() {
-        return this.page.getByText(atLeastOneUppercaseLetter);
-    }
-    async getPasswordLowerCaseErrorMessage() {
-        return this.page.getByText(atLeastOneLowercaseLetter);
-    }
-    async getPasswordNumberErrorMessage() {
-        return this.page.getByText(atLeastOneNumber);
-    }
-    async getPasswordSpecialCharacterErrorMessage() {
-        return this.page.getByText(atLeastOneSpecialCharacter);
-    }
+  async getRequiredErrorMessage() {
+    return this.page.getByText(required);
+  }
+  async getIncorrectErrorMessage() {
+    return this.page.getByText(errorLoggingIntoApp);
+  }
+  async getPasswordLengthErrorMessage() {
+    let sut = this.page.getByText(atLeast8Characters);
+  }
+  async getPasswordUpperCaseErrorMessage() {
+    return this.page.getByText(atLeastOneUppercaseLetter);
+  }
+  async getPasswordLowerCaseErrorMessage() {
+    return this.page.getByText(atLeastOneLowercaseLetter);
+  }
+  async getPasswordNumberErrorMessage() {
+    return this.page.getByText(atLeastOneNumber);
+  }
+  async getPasswordSpecialCharacterErrorMessage() {
+    return this.page.getByText(atLeastOneSpecialCharacter);
+  }
 }

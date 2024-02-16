@@ -12,7 +12,8 @@ test.beforeEach(async ({ page }) => {
 describe("visual comparison of", () => {
   test("viewable page before scrolling", async ({ page }, testInfo) => {
     const browserName = testInfo.project.name;
-    const _maxDiffPixelRatio = browserName === 'iPad Pro 11 Safari' ? 0.03 : 0.01;
+    const _maxDiffPixelRatio =
+      browserName === "iPad Pro 11 Safari" ? 0.03 : 0.01;
 
     await expect(page).toHaveScreenshot("login-page.png", {
       maxDiffPixelRatio: _maxDiffPixelRatio,
@@ -21,7 +22,8 @@ describe("visual comparison of", () => {
 
   test("entire page", async ({ page }, testInfo) => {
     const browserName = testInfo.project.name;
-    const _maxDiffPixelRatio = browserName === 'iPad Pro 11 Safari' ? 0.03 : 0.01;
+    const _maxDiffPixelRatio =
+      browserName === "iPad Pro 11 Safari" ? 0.03 : 0.01;
 
     await expect(page).toHaveScreenshot("login-full-page.png", {
       fullPage: true,
@@ -41,13 +43,17 @@ describe("Login Page", () => {
     test("invalid credentials", async ({ page }) => {
       await loginPage.login("invalid", "Invalid1$");
       await loginPage.getIncorrectErrorMessage();
-      await expect(page).toHaveScreenshot("login-error-invalid-credentials.png");
+      await expect(page).toHaveScreenshot(
+        "login-error-invalid-credentials.png"
+      );
     });
     test("empty username and password", async ({ page }) => {
       await loginPage.login("", "");
       (await loginPage.getRequiredErrorMessage()).first();
       (await loginPage.getRequiredErrorMessage()).nth(1);
-      await expect(page).toHaveScreenshot("login-error-required-credentials.png");
+      await expect(page).toHaveScreenshot(
+        "login-error-required-credentials.png"
+      );
     });
     test("empty username", async ({ page }) => {
       await loginPage.login("", "Password123!");
@@ -64,25 +70,33 @@ describe("Login Page", () => {
       await loginPage.getPasswordLengthErrorMessage();
       await expect(page).toHaveScreenshot("login-error-password-length.png");
     });
-    test("password without uppercase letter", async ({ page }) => { 
+    test("password without uppercase letter", async ({ page }) => {
       await loginPage.login("username", "password123!");
       await loginPage.getPasswordUpperCaseErrorMessage();
-      await expect(page).toHaveScreenshot("login-error-password-without-uppercase.png");
+      await expect(page).toHaveScreenshot(
+        "login-error-password-without-uppercase.png"
+      );
     });
     test("password without lowercase letter", async ({ page }) => {
       await loginPage.login("username", "PASSWORD123!");
       await loginPage.getPasswordLowerCaseErrorMessage();
-      await expect(page).toHaveScreenshot("login-error-password-without-lowercase.png");
+      await expect(page).toHaveScreenshot(
+        "login-error-password-without-lowercase.png"
+      );
     });
     test("password without number", async ({ page }) => {
       await loginPage.login("username", "Password!");
       await loginPage.getPasswordNumberErrorMessage();
-      await expect(page).toHaveScreenshot("login-error-password-without-number.png");
+      await expect(page).toHaveScreenshot(
+        "login-error-password-without-number.png"
+      );
     });
     test("password without special character", async ({ page }) => {
       await loginPage.login("username", "Password123");
       await loginPage.getPasswordSpecialCharacterErrorMessage();
-      await expect(page).toHaveScreenshot("login-error-password-without-special-character.png");
+      await expect(page).toHaveScreenshot(
+        "login-error-password-without-special-character.png"
+      );
     });
   });
 });

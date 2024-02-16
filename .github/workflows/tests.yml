@@ -71,8 +71,9 @@ jobs:
       - name: Print Node.js version
         run: node --version
 
+        # Playwright warning to use npm install instead of npm ci
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
