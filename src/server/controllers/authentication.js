@@ -4,6 +4,7 @@ const {
   isPasswordCorrect,
   generateToken,
 } = require("../shared");
+const { errorLoggingIntoApp } = require("../../components/login/loginText");
 
 exports.login = (req, res) => {
   const base64Encoding = req.headers.authorization.split(" ")[1];
@@ -16,9 +17,7 @@ exports.login = (req, res) => {
     if (user && !isEmptyObject(user)) {
       isPasswordCorrect(user.key, password).then((result) => {
         if (!result) {
-          res
-            .status(401)
-            .send({ message: "username or password is incorrect" });
+          res.status(401).send({ message: errorLoggingIntoApp });
         } else {
           generateToken(null, username).then((token) => {
             res
@@ -27,8 +26,7 @@ exports.login = (req, res) => {
           });
         }
       });
-    } else
-      res.status(401).send({ message: "username or password is incorrect" });
+    } else res.status(401).send({ message: errorLoggingIntoApp });
   });
 };
 

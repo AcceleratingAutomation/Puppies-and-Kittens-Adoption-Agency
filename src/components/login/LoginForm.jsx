@@ -5,6 +5,7 @@ import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import DisplayImage from "../DisplayImage";
+import { usernameText, passwordText, loginText } from "./loginText";
 
 function LoginForm({ isSubmitting }) {
   return (
@@ -29,7 +30,7 @@ function LoginForm({ isSubmitting }) {
             name="username"
             as={TextField}
             id="username-input"
-            label="Username"
+            label={usernameText}
           />
           <ErrorMessage
             name="username"
@@ -44,16 +45,17 @@ function LoginForm({ isSubmitting }) {
             id="password-input"
             label={
               <>
-                Password
+                {passwordText}
                 <Tooltip
                   title={
                     <Typography variant="body2" style={{ fontSize: "1.2em" }}>
-                      Must contain:
+                      Must contain at least:
                       <ul>
-                        <li>at least 8 characters,</li>
+                        <li>8 characters,</li>
                         <li>1 lowercase letter,</li>
-                        <li>1 uppercase letter, and</li>
-                        <li>1 number</li>
+                        <li>1 uppercase letter,</li>
+                        <li>1 number, and</li>
+                        <li>1 special character</li>
                       </ul>
                     </Typography>
                   }
@@ -83,7 +85,7 @@ function LoginForm({ isSubmitting }) {
             type="submit"
             disabled={isSubmitting}
           >
-            LOGIN
+            {loginText}
           </Button>
         </Grid>
         <ErrorMessage name="login" component="div" style={{ color: "red" }} />

@@ -5,15 +5,24 @@ import * as Yup from "yup";
 import { updateAppSettings } from "../../utils/utils";
 import { login } from "../../server/apiService/authApi";
 import LoginForm from "./LoginForm";
+import {
+  required,
+  atLeast8Characters,
+  atLeastOneLowercaseLetter,
+  atLeastOneUppercaseLetter,
+  atLeastOneNumber,
+  atLeastOneSpecialCharacter,
+} from "./loginText";
 
 const LoginSchema = Yup.object().shape({
-  username: Yup.string().required("Required"),
+  username: Yup.string().required(required),
   password: Yup.string()
-    .required("Required")
-    .min(8, "Password must be at least 8 characters")
-    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-    .matches(/[0-9]/, "Password must contain at least one number"),
+    .required(required)
+    .min(8, atLeast8Characters)
+    .matches(/[a-z]/, atLeastOneLowercaseLetter)
+    .matches(/[A-Z]/, atLeastOneUppercaseLetter)
+    .matches(/[0-9]/, atLeastOneNumber)
+    .matches(/[\^$*.[\]{}()?\-"!@#%&/,><':;|_~`]/, atLeastOneSpecialCharacter),
   login: Yup.string(),
 });
 
