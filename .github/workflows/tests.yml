@@ -53,7 +53,7 @@ jobs:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_CONFIG: .gitleaks.toml
-          VALIDATE_TERRAFORM: false  # Disable Checkov because need write permissions for super-linter
+          VALIDATE_TERRAFORM: false # Disable Checkov because need write permissions for super-linter
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
 
