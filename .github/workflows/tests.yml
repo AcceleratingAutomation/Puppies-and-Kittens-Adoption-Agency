@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     # Write permissions are needed to report GitHub Actions status checks for super-linter.
-    # checkov:skip=CKV2_GHA_1:Ensure top-level permissions are not set to write-all
     permissions:
       contents: read
       packages: read
@@ -54,8 +53,9 @@ jobs:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_CONFIG: .gitleaks.toml
-          VALIDATE_JAVASCRIPT_STANDARD: false
-          VALIDATE_TYPESCRIPT_STANDARD: false
+          VALIDATE_TERRAFORM: false  # Disable Checkov because need write permissions for super-linter
+          VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
+          VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
 
   automated-tests:
     name: Run Playwright Tests
