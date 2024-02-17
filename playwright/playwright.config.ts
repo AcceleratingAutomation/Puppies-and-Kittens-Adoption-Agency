@@ -56,10 +56,11 @@ export default defineConfig({
       use: { ...devices["Pixel 7 landscape"] },
     },
     {
-      name: "iPad Pro 11 Safari",
+      name: "iPad Pro 12 Safari",
       use: {
+        /* iPad Pro 11 is the latest available in playwright devices. Manually setting viewport to iPad Pro 12 (2021). */
         ...devices["iPad Pro 11"],
-        viewport: { width: 834, height: 1194 },
+        viewport: { width: 1024, height: 1366 },
       },
     },
 
