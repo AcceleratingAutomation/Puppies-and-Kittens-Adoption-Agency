@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "../../pages/LoginPage";
 import { describe } from "node:test";
+import LoginPage from "../../pages/LoginPage.ts";
 
 let loginPage: LoginPage;
 

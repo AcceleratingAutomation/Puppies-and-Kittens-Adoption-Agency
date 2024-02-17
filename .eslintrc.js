@@ -6,7 +6,29 @@ module.exports = {
   },
   extends: ["airbnb", "prettier"],
   plugins: ["prettier"],
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+  },
+  rules: {
+    // For the registration object in serviceWorker for ServiceWorkerRegistration
+    "no-param-reassign": ["error", { props: false }],
+    "linebreak-style": ["error", "unix"],
+    "prettier/prettier": "error",
+    // Disable for relative imports from development project and playwright tests
+    "import/no-relative-packages": "off",
+  },
   overrides: [
+    {
+      files: ["**/*.ts", "**/*.tsx"],
+      rules: {
+        // Disable for constructors in TypeScript files
+        "no-useless-constructor": "off",
+      },
+      parser: "@typescript-eslint/parser",
+      plugins: ["@typescript-eslint"],
+      extends: ["plugin:@typescript-eslint/recommended"],
+    },
     {
       env: {
         node: true,
@@ -17,14 +39,4 @@ module.exports = {
       },
     },
   ],
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-  },
-  rules: {
-    // For the registration object in serviceWorker for ServiceWorkerRegistration
-    "no-param-reassign": ["error", { props: false }],
-    "linebreak-style": ["error", "unix"],
-    "prettier/prettier": "error",
-  },
 };

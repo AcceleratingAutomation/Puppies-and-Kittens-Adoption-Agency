@@ -12,7 +12,7 @@ import {
   errorLoggingIntoApp,
 } from "../../src/components/login/loginText";
 
-export class LoginPage {
+class LoginPage {
   constructor(private page: Page) {}
 
   async navigate() {
@@ -56,22 +56,30 @@ export class LoginPage {
   async getRequiredErrorMessage() {
     return this.page.getByText(required);
   }
+
   async getIncorrectErrorMessage() {
     return this.page.getByText(errorLoggingIntoApp);
   }
+
   async getPasswordLengthErrorMessage() {
-    let sut = this.page.getByText(atLeast8Characters);
+    return this.page.getByText(atLeast8Characters);
   }
+
   async getPasswordUpperCaseErrorMessage() {
     return this.page.getByText(atLeastOneUppercaseLetter);
   }
+
   async getPasswordLowerCaseErrorMessage() {
     return this.page.getByText(atLeastOneLowercaseLetter);
   }
+
   async getPasswordNumberErrorMessage() {
     return this.page.getByText(atLeastOneNumber);
   }
+
   async getPasswordSpecialCharacterErrorMessage() {
     return this.page.getByText(atLeastOneSpecialCharacter);
   }
 }
+
+export default LoginPage;
