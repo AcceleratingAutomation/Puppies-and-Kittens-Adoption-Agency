@@ -1,8 +1,8 @@
-.App {
+.app {
   text-align: center;
 }
 
-.Content {
+.content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,17 +10,10 @@
   margin-top: 12vh;
 }
 
-.Rescue {
+.rescue {
   padding: 2em;
   margin: 2em;
   border: 2px solid gray;
-}
-
-.User {
-  border: 2px solid gray;
-  padding: 1em;
-  margin-bottom: 2em;
-  border-radius: 10px;
 }
 
 img {

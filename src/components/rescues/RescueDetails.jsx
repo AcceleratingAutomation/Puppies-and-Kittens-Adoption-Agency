@@ -39,7 +39,7 @@ export default function RescueDetails() {
   const { name } = state.rescueDetails;
 
   return (
-    <div className="Content">
+    <div className="content">
       <AppHeader tabValue={tabValue} />
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item>

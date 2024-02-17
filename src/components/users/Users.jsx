@@ -32,7 +32,7 @@ export default function Users() {
   }
 
   return (
-    <div className="Content">
+    <div className="content">
       <AppHeader tabValue={tabValue} />
       {!showPage && <div />}
       {showPage && (

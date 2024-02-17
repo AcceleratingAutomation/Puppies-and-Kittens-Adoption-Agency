@@ -42,7 +42,7 @@ export default function Favorites() {
   }
 
   return (
-    <main className="Content">
+    <main className="content">
       <AppHeader tabValue={tabValue} />
       <Grid item container justify="center">
         {state.rescues

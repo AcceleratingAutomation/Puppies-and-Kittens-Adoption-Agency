@@ -31,7 +31,7 @@ export default function Adopters() {
   }
 
   return (
-    <div className="Content">
+    <div className="content">
       <AppHeader tabValue={tabValue} />
       <Grid item container justify="center">
         {state.adopters.map((adopter) => (

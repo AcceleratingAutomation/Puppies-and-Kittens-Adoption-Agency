@@ -14,7 +14,7 @@ import { FavoritesProvider } from "./contexts/favoritesContext";
 export default function App() {
   return (
     <FavoritesProvider>
-      <div className="App">
+      <div className="app">
         <Router>
           <Switch>
             <Route exact path="/v1/rescues">

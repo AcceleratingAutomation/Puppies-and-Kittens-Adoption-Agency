@@ -33,7 +33,7 @@ export default function SummaryCard({
   };
 
   return (
-    <Paper elevation={2} className={`Rescue ${classes.summaryCard}`}>
+    <Paper elevation={2} className={`rescue ${classes.summaryCard}`}>
       <DisplayImage
         type={type}
         directory="rescues"

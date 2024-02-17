@@ -95,7 +95,7 @@ export default function Rescues() {
   }
 
   return (
-    <div className="Content">
+    <div className="content">
       <AppHeader tabValue={tabValue} />
       <Grid item container justify="center">
         {rescues}
