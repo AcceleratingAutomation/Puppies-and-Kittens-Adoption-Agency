@@ -1,3 +1,0 @@
-[allowlist]
-  description = "Allowlist to ignore certain files, commits, and regex"
-  files = ['loginText.js']
