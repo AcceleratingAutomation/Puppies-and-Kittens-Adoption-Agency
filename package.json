@@ -38,7 +38,7 @@
     "extends": "react-app"
   },
   "lint-staged": {
-    "*.{css,html,js,jsx,json,md,ts,yaml}": "prettier --write"
+    "*.{css,html,js,jsx,json,md,ts,tsx,yaml}": "prettier --write"
   },
   "browserslist": {
     "production": [
