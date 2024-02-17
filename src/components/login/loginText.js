@@ -1,5 +1,5 @@
 const usernameText = "Username";
-// Allowing exception in gitleaks as this is a reference to the word Password
+// This is a reference to the word Password; not an actual password.
 const passwordText = "Password";
 const loginText = "LOGIN";
 const required = "Required";

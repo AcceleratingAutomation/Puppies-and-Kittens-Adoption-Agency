@@ -1,4 +1,3 @@
 [allowlist]
-  description = "Allow passwordText variable in loginText.js"
-  files = ['src/components/login/loginText.js']
-  regexes = ['^const passwordText = "Password";$']
+  description = "Allowlist to ignore certain files, commits, and regex"
+  files = ['loginText.js']

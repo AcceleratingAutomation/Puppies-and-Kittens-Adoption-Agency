@@ -40,7 +40,7 @@
     "extends": "react-app"
   },
   "lint-staged": {
-    "*.{css,html,js,jsx,json,md,ts,tsx,yaml}": "prettier --write",
+    "*.{css,html,js,jsx,json,md,ts,tsx,yaml,yml}": "prettier --write",
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.css": "npm run lint:css:fix"
   },
