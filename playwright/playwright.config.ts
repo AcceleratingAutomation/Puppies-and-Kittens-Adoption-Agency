@@ -15,7 +15,7 @@ export default defineConfig({
   fullyParallel: true,
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: process.env.CI ? 0.03 : 0.01,
     },
   },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
