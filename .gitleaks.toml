@@ -1,0 +1,3 @@
+[allowlist]
+  description = "Allowlist to ignore certain regex"
+  regexes = ['^const passwordText = "Password";$']
