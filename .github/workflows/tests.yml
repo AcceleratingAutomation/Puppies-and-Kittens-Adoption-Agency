@@ -1,6 +1,3 @@
-# checkov:skip=CKV2_GHA_1:Ensure top-level permissions are not set to write-all
-# write permissions are needed to report GitHub Actions status checks
-
 name: Automated Checks
 
 on:
@@ -15,11 +12,11 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
-    # For super-linter
+    # Write permissions are needed to report GitHub Actions status checks for super-linter.
+    # checkov:skip=CKV2_GHA_1:Ensure top-level permissions are not set to write-all
     permissions:
       contents: read
       packages: read
-      # To report GitHub Actions status checks
       statuses: write
 
     steps:
