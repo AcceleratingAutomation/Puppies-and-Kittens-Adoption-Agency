@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     # Write permissions are needed to report GitHub Actions status checks for super-linter.
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
+    # permissions:
+    #   contents: read
+    #   packages: read
+    #   statuses: write
 
     steps:
       - name: Checkout code
@@ -53,15 +53,17 @@ jobs:
           DEFAULT_BRANCH: main
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: false # Disable all linters
-          VALIDATE_CSS: true
-          VALIDATE_GITHUB_ACTIONS: true
-          VALIDATE_HTML: true
-          VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_JSON: true
-          VALIDATE_TYPESCRIPT_ES: true
-          VALIDATE_MARKDOWN: true
-          VALIDATE_YAML: true
+          VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
+          VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
+          # VALIDATE_ALL_CODEBASE: false # Disable all linters
+          # VALIDATE_CSS: true
+          # VALIDATE_GITHUB_ACTIONS: true
+          # VALIDATE_HTML: true
+          # VALIDATE_JAVASCRIPT_ES: true
+          # VALIDATE_JSON: true
+          # VALIDATE_TYPESCRIPT_ES: true
+          # VALIDATE_MARKDOWN: true
+          # VALIDATE_YAML: true
 
   automated-tests:
     name: Run Playwright Tests
