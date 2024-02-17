@@ -57,7 +57,10 @@ export default defineConfig({
     },
     {
       name: "iPad Pro 11 Safari",
-      use: { ...devices["iPad Pro 11"] },
+      use: {
+        ...devices["iPad Pro 11"],
+        viewport: { width: 834, height: 1194 },
+      },
     },
 
     /* Test against mobile viewports. */

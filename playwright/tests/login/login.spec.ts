@@ -33,7 +33,7 @@ describe("Login Page", () => {
       await loginPage.login("invalid", "Invalid1$");
       await loginPage.getIncorrectErrorMessage();
       await expect(page).toHaveScreenshot(
-        "login-error-invalid-credentials.png"
+        "login-error-invalid-credentials.png",
       );
     });
     test("empty username and password", async ({ page }) => {
@@ -41,7 +41,7 @@ describe("Login Page", () => {
       (await loginPage.getRequiredErrorMessage()).first();
       (await loginPage.getRequiredErrorMessage()).nth(1);
       await expect(page).toHaveScreenshot(
-        "login-error-required-credentials.png"
+        "login-error-required-credentials.png",
       );
     });
     test("empty username", async ({ page }) => {
@@ -63,28 +63,28 @@ describe("Login Page", () => {
       await loginPage.login("username", "password123!");
       await loginPage.getPasswordUpperCaseErrorMessage();
       await expect(page).toHaveScreenshot(
-        "login-error-password-without-uppercase.png"
+        "login-error-password-without-uppercase.png",
       );
     });
     test("password without lowercase letter", async ({ page }) => {
       await loginPage.login("username", "PASSWORD123!");
       await loginPage.getPasswordLowerCaseErrorMessage();
       await expect(page).toHaveScreenshot(
-        "login-error-password-without-lowercase.png"
+        "login-error-password-without-lowercase.png",
       );
     });
     test("password without number", async ({ page }) => {
       await loginPage.login("username", "Password!");
       await loginPage.getPasswordNumberErrorMessage();
       await expect(page).toHaveScreenshot(
-        "login-error-password-without-number.png"
+        "login-error-password-without-number.png",
       );
     });
     test("password without special character", async ({ page }) => {
       await loginPage.login("username", "Password123");
       await loginPage.getPasswordSpecialCharacterErrorMessage();
       await expect(page).toHaveScreenshot(
-        "login-error-password-without-special-character.png"
+        "login-error-password-without-special-character.png",
       );
     });
   });
