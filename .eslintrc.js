@@ -21,10 +21,6 @@ module.exports = {
   overrides: [
     {
       files: ["**/*.ts", "**/*.tsx"],
-      rules: {
-        // Disable for constructors in TypeScript files
-        "no-useless-constructor": "off",
-      },
       parser: "@typescript-eslint/parser",
       plugins: ["@typescript-eslint"],
       extends: ["plugin:@typescript-eslint/recommended"],
