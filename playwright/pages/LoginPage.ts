@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import {
   required,
   usernameText,
@@ -15,45 +15,39 @@ import {
 class LoginPage {
   readonly page: Page;
 
+  private readonly usernameInput: Locator;
+
+  private readonly passwordInput: Locator;
+
+  private readonly submitButton: Locator;
+
   constructor(page: Page) {
     this.page = page;
+    this.usernameInput = page.getByLabel(usernameText);
+    this.passwordInput = page.getByLabel(passwordText);
+    this.submitButton = this.page.getByText(loginText);
   }
 
   async navigate() {
     await this.page.goto("/login");
   }
 
-  private async getUsernameInput() {
-    return this.page.getByLabel(usernameText);
-  }
-
   private async setUsername(username: string) {
-    const usernameInput = await this.getUsernameInput();
-    await usernameInput.fill(username);
-  }
-
-  private async getPasswordInput() {
-    return this.page.getByLabel(passwordText);
+    await this.usernameInput.fill(username);
   }
 
   private async setPassword(password: string) {
-    const passwordInput = await this.getPasswordInput();
-    await passwordInput.fill(password);
+    await this.passwordInput.fill(password);
   }
 
-  private async getLoginButton() {
-    return this.page.getByText(loginText);
-  }
-
-  private async submit() {
-    const submitButton = await this.getLoginButton();
-    await submitButton.click();
+  private async clickLogin() {
+    await this.submitButton.click();
   }
 
   async login(username: string, password: string) {
     await this.setUsername(username);
     await this.setPassword(password);
-    await this.submit();
+    await this.clickLogin();
   }
 
   // Error messages
@@ -61,7 +55,7 @@ class LoginPage {
     return this.page.getByText(required);
   }
 
-  async getIncorrectErrorMessage() {
+  async getIncorrectCredentialsErrorMessage() {
     return this.page.getByText(errorLoggingIntoApp);
   }
 
