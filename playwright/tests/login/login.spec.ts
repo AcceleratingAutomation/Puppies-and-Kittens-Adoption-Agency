@@ -37,7 +37,7 @@ describe("Login Page", () => {
   });
 
   describe("should NOT login with", () => {
-    test.only("invalid credentials", async ({ page }) => {
+    test("invalid credentials", async ({ page }) => {
       await loginPage.login("invalid", "Invalid1$");
       await loginPage.getIncorrectErrorMessage();
       await expect(page).toHaveScreenshot(
