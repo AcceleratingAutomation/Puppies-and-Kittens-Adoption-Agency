@@ -1,12 +1,20 @@
 import { test, expect } from "@playwright/test";
 import { describe } from "node:test";
 import LoginPage from "../../pages/LoginPage.ts";
+import {
+  usernameText,
+  passwordText,
+  loginText,
+} from "../../../src/components/login/loginText";
 
 let loginPage: LoginPage;
 
 test.beforeEach(async ({ page }) => {
   loginPage = new LoginPage(page);
   await loginPage.navigate();
+  await expect.soft(page.getByText(usernameText)).toBeVisible();
+  await expect.soft(page.getByText(passwordText)).toBeVisible();
+  await expect.soft(page.getByText(loginText)).toBeVisible();
 });
 
 describe("visual comparison of", () => {
@@ -29,7 +37,7 @@ describe("Login Page", () => {
   });
 
   describe("should NOT login with", () => {
-    test("invalid credentials", async ({ page }) => {
+    test.only("invalid credentials", async ({ page }) => {
       await loginPage.login("invalid", "Invalid1$");
       await loginPage.getIncorrectErrorMessage();
       await expect(page).toHaveScreenshot(
