@@ -85,12 +85,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
-      - name: Print Gitleaks version
-        run: gitleaks --version
-
-      - name: Run Gitleaks
-        run: gitleaks --path . --config-path .gitleaks.toml
-
   playwright-visual-tests:
     name: Playwright Visual Tests
     timeout-minutes: 60
