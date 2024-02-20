@@ -1,0 +1,2 @@
+[allowlist]
+  files = ['src/components/login/loginText.js']
