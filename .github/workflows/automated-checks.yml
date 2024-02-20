@@ -43,6 +43,17 @@ jobs:
     runs-on: ubuntu-latest
     if: always()
 
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      deployments: read
+      issues: read
+      packages: read
+      pull-requests: read
+      repository-projects: read
+      statuses: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -59,7 +70,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
-    permissions: read-all
 
   playwright-visual-tests:
     name: Playwright Visual Tests
