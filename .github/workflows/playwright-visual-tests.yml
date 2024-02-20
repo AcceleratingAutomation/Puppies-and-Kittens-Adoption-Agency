@@ -1,20 +1,19 @@
 name: Playwright Visual Tests
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
-  schedule:
-    - cron: "0 5 * * 1-5" # Run this workflow at 5 AM every weekday
+  workflow_run:
+    workflows: ["Formatters and Linters Checks"]
+    types:
+      - completed
 
 jobs:
-  automated-tests:
-    name: Run Playwright Visual Tests
-    timeout-minutes: 120
-    # Running on windows because the OS matters for visual testing comparisons
+  playwright-visual-tests:
+    name: Playwright Visual Tests
+    timeout-minutes: 60
+    # Running on windows because the OS matters for visual testing comparisons.
     runs-on: windows-latest
+    # Only run if the Formatters and Linters Checks workflow has completed successfully.
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: Checkout code
