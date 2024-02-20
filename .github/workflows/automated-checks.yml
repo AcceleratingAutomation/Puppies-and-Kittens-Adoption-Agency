@@ -44,15 +44,9 @@ jobs:
     if: always()
 
     permissions:
-      actions: read
-      checks: read
       contents: read
-      deployments: read
-      issues: read
       packages: read
-      pull-requests: read
-      repository-projects: read
-      statuses: write
+      statuses: write # Needed to report GitHub Actions status checks for super-linter.
 
     steps:
       - name: Checkout code

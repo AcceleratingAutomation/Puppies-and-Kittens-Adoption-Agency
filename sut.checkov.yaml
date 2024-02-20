@@ -1,5 +1,0 @@
-skip-check CKV2_GHA_1
-# - check_id: CKV2_GHA_1
-#   suppress_comment: "Ignoring CKV2_GHA_1 because write permissions are needed to report GitHub Actions status checks for super-linter."
-#   files:
-#     - /.github/workflows/automated-checks.yml
