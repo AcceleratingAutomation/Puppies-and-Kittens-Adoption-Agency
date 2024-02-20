@@ -11,7 +11,7 @@ const atLeastOneUppercaseLetter =
 const atLeastOneNumber = "Password must contain at least one number.";
 const atLeastOneSpecialCharacter =
   "Password must contain at least one special character.";
-const errorLoggingIntoApp = "Username or password is incorrect";
+const errorLoggingIntoApp = "Username or password is incorrect.";
 
 module.exports = {
   required,
