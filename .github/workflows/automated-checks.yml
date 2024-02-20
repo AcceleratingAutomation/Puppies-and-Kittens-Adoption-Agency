@@ -59,6 +59,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
 
   playwright-visual-tests:
     name: Playwright Visual Tests
