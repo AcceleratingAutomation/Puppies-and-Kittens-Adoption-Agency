@@ -59,6 +59,16 @@ jobs:
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
 
+      - name: Install Gitleaks
+        run: |
+          GITLEAKS_VERSION=$(curl --silent "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          wget https://github.com/zricethezav/gitleaks/releases/download/$GITLEAKS_VERSION/gitleaks-linux-amd64
+          chmod +x gitleaks-linux-amd64
+          sudo mv gitleaks-linux-amd64 /usr/local/bin/gitleaks
+
+      - name: Print Gitleaks version
+        run: gitleaks --version
+
       - name: Run Gitleaks
         run: gitleaks --path . --config-path .gitleaks.toml
         if: always()
