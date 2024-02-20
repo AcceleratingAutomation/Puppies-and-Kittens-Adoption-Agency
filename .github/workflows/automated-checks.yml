@@ -6,8 +6,9 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  # Run this workflow at 12 PM UTC (which is 5 AM MST) every weekday. Doesn't account for daylight saving time.
   schedule:
-    - cron: "0 5 * * 1-5" # Run this workflow at 5 AM every weekday
+    - cron: "0 12 * * 1-5"
 
 jobs:
   prettier:
