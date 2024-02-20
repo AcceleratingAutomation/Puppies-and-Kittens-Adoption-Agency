@@ -79,7 +79,7 @@ jobs:
 
       - name: Install Gitleaks
         run: |
-          GITLEAKS_VERSION="8.18"
+          GITLEAKS_VERSION="8.18.2"
           wget https://github.com/zricethezav/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks-linux-amd64
           chmod +x gitleaks-linux-amd64
           sudo mv gitleaks-linux-amd64 /usr/local/bin/gitleaks
