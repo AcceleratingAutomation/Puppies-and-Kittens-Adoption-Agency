@@ -1,2 +1,4 @@
 # Ignore Playwright report
 playwright/playwright-report/index.html
+# json files
+*.json
