@@ -63,32 +63,13 @@ jobs:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_CHECKOV: false # Fails because super-linter needs write permissions for statuses
-          #   VALIDATE_GITLEAKS: false # Running Gitleaks separately so it can reference an ignore file.
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
-
-  gitleaks:
-    name: Gitleaks SAST Tool
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
-    if: always()
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Gitleaks
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
   playwright-visual-tests:
     name: Playwright Visual Tests
     timeout-minutes: 60
-    needs: [prettier, super-linter, gitleaks]
+    needs: [prettier, super-linter]
     # Running on windows because the OS matters for visual testing comparisons.
     runs-on: windows-latest
 
