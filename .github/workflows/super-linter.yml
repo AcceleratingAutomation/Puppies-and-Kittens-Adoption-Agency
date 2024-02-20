@@ -1,4 +1,4 @@
-name: Formatters and Linters Checks
+name: Super-Linter
 
 on:
   push:
@@ -10,32 +10,6 @@ on:
     - cron: "0 5 * * 1-5" # Run this workflow at 5 AM every weekday
 
 jobs:
-  prettier:
-    name: Prettier
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
-
-      - name: Print Node.js version
-        run: node --version
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Print Prettier version
-        run: npx prettier --version
-
-      - name: Run Prettier check
-        run: npx prettier --check .
-
   super-linter:
     name: Super-linter
     timeout-minutes: 15
@@ -65,23 +39,3 @@ jobs:
           VALIDATE_GITLEAKS: false # Running Gitleaks separately so it can reference an ignore file.
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
-
-  gitleaks:
-    name: Gitleaks
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Gitleaks
-        uses: gitleaks/gitleaks-action@v2
-
-      - name: Print Gitleaks version
-        run: gitleaks --version
-
-      - name: Run Gitleaks
-        run: gitleaks --path . --config-path .gitleaks.toml

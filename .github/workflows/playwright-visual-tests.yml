@@ -2,7 +2,7 @@ name: Playwright Visual Tests
 
 on:
   workflow_run:
-    workflows: ["Formatters and Linters Checks"]
+    workflows: ["Prettier", Super-Linter, Gitleaks]
     types:
       - completed
 
@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 60
     # Running on windows because the OS matters for visual testing comparisons.
     runs-on: windows-latest
-    # Only run if the Formatters and Linters Checks workflow has completed successfully.
+    # Only run if the workflows listed above completed successfully.
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
