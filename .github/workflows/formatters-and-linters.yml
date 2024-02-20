@@ -6,26 +6,18 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1-5" # Run this workflow at 5 AM every weekday
 
 jobs:
-  formatters-and-linters:
-    name: Prettier and Super-linter
+  prettier:
+    name: Prettier
     timeout-minutes: 15
     runs-on: ubuntu-latest
-
-    # Write permissions are needed to report GitHub Actions status checks for super-linter.
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          # super-linter needs the full git history to get the
-          # list of files that changed across commits
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -44,20 +36,46 @@ jobs:
       - name: Run Prettier check
         run: npx prettier --check .
 
-      - name: Print ESLint version
-        run: npx eslint --version
+  super-linter:
+    name: Super-linter
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    # Write permissions are needed to report GitHub Actions status checks for super-linter.
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
 
       - name: Super-linter
-        uses: super-linter/super-linter@v6.0.0 # x-release-please-version
-        if: always()
+        uses: super-linter/super-linter@v6.0.0
         env:
           DEFAULT_BRANCH: main
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_CHECKOV: false # Fails because super-linter needs write permissions for statuses
+          # VALIDATE_CHECKOV: false # Fails because super-linter needs write permissions for statuses
           VALIDATE_GITLEAKS: false # Running Gitleaks separately so it can reference an ignore file.
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
+
+  gitleaks:
+    name: Gitleaks
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install Gitleaks
         run: |
@@ -71,4 +89,3 @@ jobs:
 
       - name: Run Gitleaks
         run: gitleaks --path . --config-path .gitleaks.toml
-        if: always()
