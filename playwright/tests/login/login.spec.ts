@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { describe } from "node:test";
-import LoginPage from "../../pages/LoginPage.ts";
+import LoginPage from "../../pages/LoginPage";
 import {
   usernameText,
   passwordText,
@@ -17,7 +16,7 @@ test.beforeEach(async ({ page }) => {
   await expect.soft(page.getByText(loginText)).toBeVisible();
 });
 
-describe("visual comparison of", () => {
+test.describe("visual comparison of", () => {
   test("viewable page before scrolling", async ({ page }) => {
     await expect(page).toHaveScreenshot("login-page.png");
   });
@@ -29,14 +28,14 @@ describe("visual comparison of", () => {
   });
 });
 
-describe("Login Page", () => {
-  describe("should login with", () => {
+test.describe("Login Page", () => {
+  test.describe("should login with", () => {
     test.skip("valid credentials", async () => {
       await loginPage.login("username", "Password123!");
     });
   });
 
-  describe("should NOT login with", () => {
+  test.describe("should NOT login with", () => {
     test("invalid credentials", async ({ page }) => {
       await loginPage.login("invalid", "Invalid1$");
       await expect
