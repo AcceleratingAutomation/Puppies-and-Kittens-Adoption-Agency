@@ -43,11 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     if: always()
 
-    # checkov:skip=CKV2_GHA_1: Write permissions are needed to report GitHub Actions status checks for super-linter.
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
+    permissions: # checkov:skip=CKV2_GHA_1: Write permissions are needed to report GitHub Actions status checks for super-linter.
+      contents: read # checkov:skip=CKV2_GHA_1: Write permissions are needed to report GitHub Actions status checks for super-linter.
+      packages: read # checkov:skip=CKV2_GHA_1: Write permissions are needed to report GitHub Actions status checks for super-linter.
+      statuses: write # checkov:skip=CKV2_GHA_1: Write permissions are needed to report GitHub Actions status checks for super-linter.
 
     steps:
       - name: Checkout code
