@@ -44,10 +44,6 @@ jobs:
     if: always()
 
     # Write permissions are needed to report GitHub Actions status checks for super-linter.
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
 
     steps:
       - name: Checkout code
