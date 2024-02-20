@@ -77,12 +77,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Gitleaks
-        run: |
-          GITLEAKS_VERSION=$(curl --silent "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-          wget "https://github.com/gitleaks/gitleaks/releases/download/${GITLEAKS_VERSION}/gitleaks-linux-amd64"
-          chmod +x gitleaks-linux-amd64
-          sudo mv gitleaks-linux-amd64 /usr/local/bin/gitleaks
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
 
       - name: Print Gitleaks version
         run: gitleaks --version
