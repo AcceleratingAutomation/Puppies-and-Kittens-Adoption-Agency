@@ -61,7 +61,7 @@ jobs:
           DEFAULT_BRANCH: main
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # VALIDATE_CHECKOV: false # Fails because super-linter needs write permissions for statuses
+          VALIDATE_CHECKOV: false # Fails because super-linter needs write permissions for statuses
           VALIDATE_GITLEAKS: false # Running Gitleaks separately so it can reference an ignore file.
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
@@ -79,8 +79,8 @@ jobs:
 
       - name: Install Gitleaks
         run: |
-          GITLEAKS_VERSION=$(curl --silent "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-          wget https://github.com/zricethezav/gitleaks/releases/download/$GITLEAKS_VERSION/gitleaks-linux-amd64
+          GITLEAKS_VERSION="8.18"
+          wget https://github.com/zricethezav/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks-linux-amd64
           chmod +x gitleaks-linux-amd64
           sudo mv gitleaks-linux-amd64 /usr/local/bin/gitleaks
 
