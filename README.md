@@ -6,13 +6,7 @@
 
 ## Build Progress
 
-[![Prettier](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/prettier.yml/badge.svg)](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/prettier.yml)
-
-[![Super-Linter](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/super-linter.yml/badge.svg)](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/super-linter.yml)
-
-[![Gitleaks SAST Tool](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/gitleaks.yml)
-
-[![Playwright Visual Tests](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/playwright-visual-tests.yml/badge.svg)](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/playwright-visual-tests.yml)
+[![Automated Checks](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/automated-checks.yml/badge.svg)](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/automated-checks.yml)
 
 ### - How do I run the Client application in browser?
 

@@ -1,0 +1,135 @@
+name: Automated Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1-5" # Run this workflow at 5 AM every weekday
+
+jobs:
+  prettier:
+    name: Prettier
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Print Node.js version
+        run: node --version
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Print Prettier version
+        run: npx prettier --version
+
+      - name: Run Prettier check
+        run: npx prettier --check .
+
+  super-linter:
+    name: Super-linter
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    if: always()
+
+    # Write permissions are needed to report GitHub Actions status checks for super-linter.
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
+
+      - name: Super-linter
+        uses: super-linter/super-linter@v6.0.0
+        env:
+          DEFAULT_BRANCH: main
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_CHECKOV: false # Fails because super-linter needs write permissions for statuses
+          VALIDATE_GITLEAKS: false # Running Gitleaks separately so it can reference an ignore file.
+          VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
+          VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
+
+  gitleaks:
+    name: Gitleaks
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+
+      - name: Print Gitleaks version
+        run: gitleaks --version
+
+      - name: Run Gitleaks
+        run: gitleaks --path . --config-path .gitleaks.toml
+
+  playwright-visual-tests:
+    name: Playwright Visual Tests
+    timeout-minutes: 60
+    needs: [prettier, super-linter, gitleaks]
+    # Running on windows because the OS matters for visual testing comparisons.
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Print Node.js version
+        run: node --version
+
+      - name: Install development dependencies
+        run: npm ci
+
+      - name: Install Playwright dependencies
+        run: npm ci
+        working-directory: playwright
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+        working-directory: playwright
+
+      - name: Print Playwright version
+        run: npx playwright --version
+        working-directory: playwright
+
+      - name: Run Playwright tests
+        run: npx playwright test
+        working-directory: playwright
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright/playwright-report/
+          retention-days: 30
