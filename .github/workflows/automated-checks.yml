@@ -37,7 +37,7 @@ jobs:
         run: npx prettier --check .
 
   super-linter:
-    name: Super-linter
+    name: Super-Linter
     timeout-minutes: 15
     runs-on: ubuntu-latest
     if: always()
@@ -68,7 +68,7 @@ jobs:
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
 
   gitleaks:
-    name: Gitleaks
+    name: Gitleaks SAST Tool
     timeout-minutes: 15
     runs-on: ubuntu-latest
     if: always()
