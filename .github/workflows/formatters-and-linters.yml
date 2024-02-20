@@ -1,4 +1,4 @@
-name: Automated Checks
+name: Formatters and Linters Checks
 
 on:
   push:
@@ -49,6 +49,7 @@ jobs:
 
       - name: Super-linter
         uses: super-linter/super-linter@v6.0.0 # x-release-please-version
+        if: always()
         env:
           DEFAULT_BRANCH: main
           # To report GitHub Actions status checks
@@ -57,47 +58,3 @@ jobs:
           VALIDATE_GITLEAKS: false # Fails on const Password in code. Ignore file didn't work.
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
-
-  automated-tests:
-    name: Run Playwright Tests
-    timeout-minutes: 120
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
-
-      - name: Print Node.js version
-        run: node --version
-
-      - name: Install development dependencies
-        run: npm ci
-
-      - name: Install Playwright dependencies
-        run: npm ci
-        working-directory: playwright
-
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-        working-directory: playwright
-
-      - name: Print Playwright version
-        run: npx playwright --version
-        working-directory: playwright
-
-      - name: Run Playwright tests
-        run: npx playwright test
-        working-directory: playwright
-
-      - name: Upload Playwright report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright/playwright-report/
-          retention-days: 30

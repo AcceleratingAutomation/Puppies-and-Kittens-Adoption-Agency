@@ -10,9 +10,10 @@ on:
     - cron: "0 5 * * 1-5" # Run this workflow at 5 AM every weekday
 
 jobs:
-  playwright-visual-tests:
+  automated-tests:
     name: Run Playwright Visual Tests
     timeout-minutes: 120
+    # Running on windows because the OS matters for visual testing comparisons
     runs-on: windows-latest
 
     steps:
@@ -32,20 +33,24 @@ jobs:
 
       - name: Install Playwright dependencies
         run: npm ci
+        working-directory: playwright
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+        working-directory: playwright
 
       - name: Print Playwright version
         run: npx playwright --version
+        working-directory: playwright
 
       - name: Run Playwright tests
         run: npx playwright test
+        working-directory: playwright
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
-          path: playwright-report/
+          path: playwright/playwright-report/
           retention-days: 30
