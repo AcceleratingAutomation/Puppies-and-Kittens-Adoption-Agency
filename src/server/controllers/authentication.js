@@ -4,7 +4,7 @@ const {
   isPasswordCorrect,
   generateToken,
 } = require("../shared");
-const { errorLoggingIntoApp } = require("../../components/login/loginText");
+const { errorLoggingIntoApp } = require("../../accessibility/login/loginText");
 
 exports.login = (req, res) => {
   const base64Encoding = req.headers.authorization.split(" ")[1];

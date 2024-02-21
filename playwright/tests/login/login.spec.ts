@@ -4,7 +4,7 @@ import {
   usernameText,
   passwordText,
   loginText,
-} from "../../../src/components/login/loginText";
+} from "../../../src/accessibility/login/loginText";
 
 let loginPage: LoginPage;
 

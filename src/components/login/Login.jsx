@@ -12,7 +12,7 @@ import {
   atLeastOneUppercaseLetter,
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
-} from "./loginText";
+} from "../../accessibility/login/loginText";
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required(required),

@@ -5,7 +5,11 @@ import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import DisplayImage from "../DisplayImage";
-import { usernameText, passwordText, loginText } from "./loginText";
+import {
+  usernameText,
+  passwordText,
+  loginText,
+} from "../../accessibility/login/loginText";
 
 function LoginForm({ isSubmitting }) {
   return (

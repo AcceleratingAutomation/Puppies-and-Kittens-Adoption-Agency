@@ -10,7 +10,7 @@ import {
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
   errorLoggingIntoApp,
-} from "../../src/components/login/loginText";
+} from "../../src/accessibility/login/loginText";
 
 class LoginPage {
   readonly page: Page;
