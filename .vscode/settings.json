@@ -15,6 +15,7 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "prettier.trailingComma": "all",
   "cSpell.enableFiletypes": ["!json", "github-actions-workflow"],
   "cSpell.words": ["precached"]
 }

@@ -31,7 +31,7 @@ module.exports = {
     "import/no-extraneous-dependencies": [
       "error",
       {
-        devDependencies: ["playwright/**/*"],
+        devDependencies: ["**/__testHelpers__/**", "playwright/**/*"],
       },
     ],
   },
@@ -44,6 +44,7 @@ module.exports = {
   },
   overrides: [
     {
+      // Playwright
       files: ["**/*.ts", "**/*.tsx"],
       parser: "@typescript-eslint/parser",
       plugins: ["@typescript-eslint"],
@@ -51,6 +52,13 @@ module.exports = {
       rules: {
         // Playwright best practice
         "@typescript-eslint/no-floating-promises": "error",
+      },
+    },
+    {
+      // Jest
+      files: ["**/__testHelpers__/**/*.{js,jsx}"],
+      env: {
+        jest: true,
       },
     },
     {
