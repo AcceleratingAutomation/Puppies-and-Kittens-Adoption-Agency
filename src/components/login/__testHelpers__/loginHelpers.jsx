@@ -57,7 +57,14 @@ export const checkNoLoginOrRedirect = async (mockLogin, mockHistoryPush) => {
   });
 };
 
-export const checkErrorMessage = async (message, findByText) => {
-  const errorMessage = await findByText(message);
-  expect(errorMessage).toBeInTheDocument();
+export const checkErrorMessage = async (
+  findAllByText,
+  message,
+  expectedErrorCount = 1,
+) => {
+  const errorMessages = await findAllByText(message);
+  expect(errorMessages.length).toBe(expectedErrorCount);
+  errorMessages.forEach((errorMessage) => {
+    expect(errorMessage).toBeInTheDocument();
+  });
 };
