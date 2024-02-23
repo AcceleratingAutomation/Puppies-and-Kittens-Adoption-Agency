@@ -1,20 +1,12 @@
 import {
+  validLoginScenarios,
+  noLoginOrSubmitScenarios,
   setup,
   fillForm,
   checkSuccessfulLoginAndRedirect,
-  checkErrorMessage,
+  checkErrorMessages,
   checkNoLoginOrRedirect,
 } from "../loginHelpers";
-import {
-  required,
-  atLeast8Characters,
-  atLeastOneLowercaseLetter,
-  atLeastOneUppercaseLetter,
-  atLeastOneNumber,
-  atLeastOneSpecialCharacter,
-  errorLoggingIntoApp,
-} from "../../../../accessibility/login/loginText";
-import loginData from "../loginData.json";
 
 jest.mock("../../../../server/apiService/authApi", () => ({
   login: jest.fn(),
@@ -23,16 +15,6 @@ jest.mock("../../../../server/apiService/authApi", () => ({
 jest.mock("../../../../utils/utils", () => ({
   updateAppSettings: jest.fn(),
 }));
-
-const errorMessages = {
-  required,
-  atLeast8Characters,
-  atLeastOneLowercaseLetter,
-  atLeastOneUppercaseLetter,
-  atLeastOneNumber,
-  atLeastOneSpecialCharacter,
-  errorLoggingIntoApp,
-};
 
 describe("Login component", () => {
   let getByLabelText;
@@ -49,31 +31,36 @@ describe("Login component", () => {
       setup(mockLoginFunction));
   });
 
-  describe("should login with", () => {
-    it("valid credentials", async () => {
-      fillForm("username", "Password123!", getByLabelText, getByText);
+  describe.each(validLoginScenarios)(
+    "should login with",
+    (testTitle, username, password) => {
+      it(testTitle, async () => {
+        fillForm(username, password, getByLabelText, getByText);
 
-      await checkSuccessfulLoginAndRedirect(
-        "username",
-        "Password123!",
-        mockLogin,
-        mockHistoryPush,
-      );
-    });
-  });
+        await checkSuccessfulLoginAndRedirect(
+          username,
+          password,
+          mockLogin,
+          mockHistoryPush,
+        );
+      });
+    },
+  );
 
-  describe.each(loginData)("should not login with", (testData) => {
-    it(testData.testTitle, async () => {
-      fillForm(testData.username, testData.password, getByLabelText, getByText);
+  describe.each(noLoginOrSubmitScenarios)(
+    "should not login with",
+    (testTitle, username, password, expectedErrorMessages) => {
+      it(testTitle, async () => {
+        fillForm(username, password, getByLabelText, getByText);
 
-      const expectedErrorMessage =
-        errorMessages[testData.expectedErrorReference];
-      await checkErrorMessage(
-        findAllByText,
-        expectedErrorMessage,
-        testData.expectedErrorCount,
-      );
-      await checkNoLoginOrRedirect(mockLogin, mockHistoryPush);
-    });
-  });
+        // Ensure expectedErrorMessages is an array
+        const messages = Array.isArray(expectedErrorMessages)
+          ? expectedErrorMessages
+          : [expectedErrorMessages];
+
+        await checkErrorMessages(findAllByText, messages);
+        await checkNoLoginOrRedirect(mockLogin, mockHistoryPush);
+      });
+    },
+  );
 });
