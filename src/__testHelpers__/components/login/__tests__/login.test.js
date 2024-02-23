@@ -1,12 +1,11 @@
 import {
-  validLoginScenarios,
-  noLoginOrSubmitScenarios,
   setup,
   fillForm,
   checkSuccessfulLoginAndRedirect,
   checkErrorMessages,
   checkNoLoginOrRedirect,
 } from "../loginHelpers";
+import { validLoginScenarios, noLoginOrSubmitScenarios } from "../loginData";
 
 jest.mock("../../../../server/apiService/authApi", () => ({
   login: jest.fn(),
@@ -49,16 +48,11 @@ describe("Login component", () => {
 
   describe.each(noLoginOrSubmitScenarios)(
     "should not login with",
-    (testTitle, username, password, expectedErrorMessages) => {
+    (testTitle, username, password, expectedError1, expectedError2) => {
       it(testTitle, async () => {
         fillForm(username, password, getByLabelText, getByText);
 
-        // Ensure expectedErrorMessages is an array
-        const messages = Array.isArray(expectedErrorMessages)
-          ? expectedErrorMessages
-          : [expectedErrorMessages];
-
-        await checkErrorMessages(findAllByText, messages);
+        await checkErrorMessages(findAllByText, expectedError1, expectedError2);
         await checkNoLoginOrRedirect(mockLogin, mockHistoryPush);
       });
     },
