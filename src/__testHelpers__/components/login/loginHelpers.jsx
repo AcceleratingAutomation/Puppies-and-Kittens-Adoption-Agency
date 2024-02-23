@@ -5,7 +5,7 @@ import { act } from "react-dom/test-utils";
 import { waitFor } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { createMemoryHistory } from "history";
-import Login from "../Login";
+import Login from "../../../components/login/Login";
 import { login } from "../../../server/apiService/authApi";
 import {
   usernameText,
