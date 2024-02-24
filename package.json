@@ -39,7 +39,9 @@
     "start": "react-scripts start",
     "start:both": "concurrently \"npm run start\" \"cd src/server && node server.js\"",
     "test": "react-scripts test --onlyChanged",
-    "test:all": "react-scripts test --watchAll"
+    "test:coverage": "react-scripts test --onlyChanged --coverage",
+    "test:all": "react-scripts test --watchAll",
+    "test:all:coverage": "react-scripts test --watchAll --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
