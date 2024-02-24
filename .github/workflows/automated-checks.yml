@@ -64,10 +64,31 @@ jobs:
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
 
+  jest-tests:
+    name: Jest Tests
+    timeout-minutes: 15
+    needs: [prettier, super-linter]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Jest tests
+        run: npm test
+
   playwright-visual-tests:
     name: Playwright Visual Tests
     timeout-minutes: 60
-    needs: [prettier, super-linter]
+    needs: [jest-tests]
     # Running on windows because the OS matters for visual testing comparisons.
     runs-on: windows-latest
 
