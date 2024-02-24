@@ -48,7 +48,7 @@ export const fillForm = (username, password, getByLabelText, getByText) => {
 
 /**
  * Checks that the mock login function was called with the provided valid username and password.
- * Also, that the mock history push function was called with "/v1/rescues".
+ * Also, checks that after successful validation the mock history push function was called with "/v1/rescues".
  * @param {string} username - The expected username.
  * @param {string} password - The expected password.
  * @param {Function} mockLogin - The mock login function.
@@ -83,21 +83,26 @@ export const checkNoLoginOrRedirect = async (mockLogin, mockHistoryPush) => {
 };
 
 /**
- * Checks that the expected error messages are displayed.
+ * Checks that the expected error messages are displayed in the DOM.
  * @param {Function} findAllByText - The findAllByText function from @testing-library/react. Using findAllByText because 'Required' can show up twice.
- * @param {string} text1 - The first error message to check.
- * @param {string} [text2=""] - The second error message to check. Defaults to an empty string.
+ * @param {string} error1 - The first error message to check.
+ * @param {string} [error2=""] - The second error message to check. Defaults to an empty string because several scenarios only display one error.
+ * Note: Ran into React console errors, for scenarios that display multiple errors, when using an array of error messages instead of the two variables.
  */
-export const checkErrorMessages = async (findAllByText, text1, text2 = "") => {
-  if (text1) {
-    const errorMessages1 = await findAllByText(text1);
+export const checkErrorMessages = async (
+  findAllByText,
+  error1,
+  error2 = "",
+) => {
+  if (error1) {
+    const errorMessages1 = await findAllByText(error1);
     errorMessages1.forEach((errorMessage) => {
       expect(errorMessage).toBeInTheDocument();
     });
   }
 
-  if (text2) {
-    const errorMessages2 = await findAllByText(text2);
+  if (error2) {
+    const errorMessages2 = await findAllByText(error2);
     errorMessages2.forEach((errorMessage) => {
       expect(errorMessage).toBeInTheDocument();
     });

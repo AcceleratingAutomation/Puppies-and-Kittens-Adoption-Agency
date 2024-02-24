@@ -65,7 +65,7 @@ jobs:
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
 
   jest-tests:
-    name: Jest Tests
+    name: Jest Unit Tests
     timeout-minutes: 15
     needs: [prettier, super-linter]
     runs-on: ubuntu-latest
