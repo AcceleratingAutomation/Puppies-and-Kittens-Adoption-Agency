@@ -1,20 +1,25 @@
 import {
-  setup,
-  fillForm,
-  checkSuccessfulLoginAndRedirect,
   checkErrorMessages,
   checkNoLoginOrRedirect,
+  checkSuccessfulLoginAndRedirect,
+  fillForm,
+  setup,
 } from "../loginHelpers";
-import { validLoginScenarios, noLoginOrSubmitScenarios } from "../loginData";
+import { noLoginOrSubmitScenarios, validLoginScenarios } from "../loginData";
 
+// Mock the login function from the authApi module
 jest.mock("../../../../server/apiService/authApi", () => ({
   login: jest.fn(),
 }));
 
+// Mock the updateAppSettings function from the utils module
 jest.mock("../../../../utils/utils", () => ({
   updateAppSettings: jest.fn(),
 }));
 
+/**
+ * This test suite tests the functionality of the Login component.
+ */
 describe("Login component", () => {
   let getByLabelText;
   let getByText;
@@ -22,6 +27,9 @@ describe("Login component", () => {
   let mockLogin;
   let mockHistoryPush;
 
+  /**
+   * Before each test, set up the test environment and mock functions.
+   */
   beforeEach(() => {
     const mockLoginFunction = jest
       .fn()
@@ -30,9 +38,15 @@ describe("Login component", () => {
       setup(mockLoginFunction));
   });
 
+  /**
+   * This test suite tests the login functionality with valid login scenarios.
+   */
   describe.each(validLoginScenarios)(
     "should login with",
     (testTitle, username, password) => {
+      /**
+       * Each test fills the form with a username and password and checks that the login was successful and a redirect occurred.
+       */
       it(testTitle, async () => {
         fillForm(username, password, getByLabelText, getByText);
 
@@ -46,9 +60,15 @@ describe("Login component", () => {
     },
   );
 
+  /**
+   * This test suite tests the login functionality with scenarios where login or form submission should not occur.
+   */
   describe.each(noLoginOrSubmitScenarios)(
-    "should not login with",
+    "should not login or submit form with",
     (testTitle, username, password, expectedError1, expectedError2) => {
+      /**
+       * Each test fills the form with a username and password and checks that the expected error messages are displayed and no login or redirect occurred.
+       */
       it(testTitle, async () => {
         fillForm(username, password, getByLabelText, getByText);
 

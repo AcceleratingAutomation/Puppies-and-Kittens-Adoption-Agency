@@ -16,13 +16,19 @@ export const validLoginScenarios = [
 ];
 
 // testTitle, username, password, expectedErrorMessages
-export const noLoginOrSubmitScenarios = [
+// Mocking an incorrect username or password combination. The form should be submitted but the user should not get logged in.
+export const noLoginScenarios = [
   [
     "invalid credentials",
-    "invalid-username",
+    "invalid username",
     "Invalid1$-password",
     errorLoggingIntoApp,
   ],
+];
+
+// testTitle, username, password, expectedErrorMessages
+// These scenarios should not have a form submission because something is invalid.
+export const noLoginOrSubmitScenarios = [
   ["empty username and password", "", "", required, required],
   ["empty username", "", "Password123!", required],
   ["empty password", "username", "", required],
