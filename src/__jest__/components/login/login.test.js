@@ -4,16 +4,16 @@ import {
   checkSuccessfulLoginAndRedirect,
   fillForm,
   setup,
-} from "../loginHelpers";
-import { noLoginOrSubmitScenarios, validLoginScenarios } from "../loginData";
+} from "./loginHelpers";
+import { noLoginOrSubmitScenarios, validLoginScenarios } from "./loginData";
 
 // Mock the login function from the authApi module
-jest.mock("../../../../server/apiService/authApi", () => ({
+jest.mock("../../../server/apiService/authApi", () => ({
   login: jest.fn(),
 }));
 
 // Mock the updateAppSettings function from the utils module
-jest.mock("../../../../utils/utils", () => ({
+jest.mock("../../../utils/utils", () => ({
   updateAppSettings: jest.fn(),
 }));
 

@@ -5,18 +5,18 @@ const { Buffer } = require("buffer");
 const {
   login,
   logout,
-} = require("../../../../server/controllers/authenticationController");
+} = require("../../../server/controllers/authenticationController");
 const {
   getUserByUsername,
   isPasswordCorrect,
   generateToken,
-} = require("../../../../server/shared");
+} = require("../../../server/shared");
 const {
   errorLoggingIntoApp,
-} = require("../../../../accessibility/login/loginText");
+} = require("../../../accessibility/login/loginText");
 
-jest.mock("../../../../server/shared");
-jest.mock("../../../../accessibility/login/loginText");
+jest.mock("../../../server/shared");
+jest.mock("../../../accessibility/login/loginText");
 
 describe("Authentication Controller", () => {
   let req;
