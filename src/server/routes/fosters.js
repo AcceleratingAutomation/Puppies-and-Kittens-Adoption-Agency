@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const { fosterHandlers } = require("../controllers/createHandlers");
+const { fosterHandlers } = require("../controllers/createHandlersController");
 const { verifyToken } = require("../shared");
 
 router.route("/").get(verifyToken, fosterHandlers.getAll);

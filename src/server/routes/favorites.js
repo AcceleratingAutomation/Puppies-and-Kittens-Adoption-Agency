@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const favoritesController = require("../controllers/favorites");
+const favoritesController = require("../controllers/favoritesController");
 const { verifyToken } = require("../shared");
 
 router.route("/").get(verifyToken, favoritesController.getFavorites);

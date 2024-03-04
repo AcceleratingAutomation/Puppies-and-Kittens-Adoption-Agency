@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const { rescueHandlers } = require("../controllers/createHandlers");
+const { rescueHandlers } = require("../controllers/createHandlersController");
 const { verifyToken } = require("../shared");
 
 router.route("/").get(verifyToken, rescueHandlers.getAll);

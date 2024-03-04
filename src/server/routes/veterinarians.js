@@ -1,7 +1,9 @@
 const express = require("express");
 
 const router = express.Router();
-const { veterinarianHandlers } = require("../controllers/createHandlers");
+const {
+  veterinarianHandlers,
+} = require("../controllers/createHandlersController");
 const { verifyToken } = require("../shared");
 
 router.route("/").get(verifyToken, veterinarianHandlers.getAll);

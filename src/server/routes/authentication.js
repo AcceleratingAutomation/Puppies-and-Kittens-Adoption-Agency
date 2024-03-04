@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const authenticationController = require("../controllers/authentication");
+const authenticationController = require("../controllers/authenticationController");
 const { verifyToken } = require("../shared");
 
 router.post("/login", authenticationController.login);
