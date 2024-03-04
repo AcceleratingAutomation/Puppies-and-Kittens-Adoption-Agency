@@ -13,20 +13,25 @@ exports.login = (req, res) => {
     .split(":");
   const username = credentials[0];
   const password = credentials[1];
-  getUserByUsername(username).then((user) => {
-    if (user && !isEmptyObject(user)) {
-      isPasswordCorrect(user.key, password).then((result) => {
-        if (!result) {
-          res.status(401).send({ message: errorLoggingIntoApp });
-        } else {
-          generateToken(null, username).then((token) => {
-            res
-              .status(200)
-              .send({ username: user.username, role: user.role, token });
-          });
-        }
+
+  return getUserByUsername(username).then((user) => {
+    if (!user || isEmptyObject(user)) {
+      res.status(401).send({ message: errorLoggingIntoApp });
+      return Promise.resolve();
+    }
+
+    return isPasswordCorrect(user.key, password).then((result) => {
+      if (!result) {
+        res.status(401).send({ message: errorLoggingIntoApp });
+        return Promise.resolve();
+      }
+
+      return generateToken(null, username).then((token) => {
+        res
+          .status(200)
+          .send({ username: user.username, role: user.role, token });
       });
-    } else res.status(401).send({ message: errorLoggingIntoApp });
+    });
   });
 };
 
