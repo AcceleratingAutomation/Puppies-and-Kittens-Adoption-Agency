@@ -31,7 +31,7 @@ module.exports = {
     "import/no-extraneous-dependencies": [
       "error",
       {
-        devDependencies: ["**/__testHelpers__/**", "playwright/**/*"],
+        devDependencies: ["**/__jest__/**", "playwright/**/*"],
       },
     ],
   },
@@ -56,7 +56,7 @@ module.exports = {
     },
     {
       // Jest
-      files: ["**/__testHelpers__/**/*.{js,jsx}"],
+      files: ["**/__jest__/**/*.{js,jsx}"],
       env: {
         jest: true,
       },
