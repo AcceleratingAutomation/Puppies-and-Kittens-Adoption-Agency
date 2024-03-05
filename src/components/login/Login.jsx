@@ -52,9 +52,7 @@ export default function Login() {
         }
       }
     } catch (err) {
-      if (isMounted.current) {
-        throw new Error(`Error logging into app ${err.message}`);
-      }
+      setErrors({ login: err.message });
     }
   };
 

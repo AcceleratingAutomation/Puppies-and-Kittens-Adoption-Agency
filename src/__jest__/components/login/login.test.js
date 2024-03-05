@@ -1,5 +1,6 @@
 import {
   checkErrorMessages,
+  checkLoginCalledButNoRedirect,
   checkNoLoginOrRedirect,
   checkSuccessfulLoginAndRedirect,
   fillForm,
@@ -27,29 +28,24 @@ describe("Login component", () => {
   let mockLogin;
   let mockHistoryPush;
 
-  /**
-   * Before each test, set up the test environment and mock functions.
-   */
-  beforeEach(() => {
-    const mockLoginFunction = jest
-      .fn()
-      .mockResolvedValue({ token: "fakeToken" });
-    ({ getByLabelText, getByText, findAllByText, mockLogin, mockHistoryPush } =
-      setup(mockLoginFunction));
-  });
-
-  /**
-   * This test suite tests the login functionality with valid login scenarios.
-   */
   describe.each(validLoginScenarios)(
     "should login with",
     (testTitle, username, password) => {
-      /**
-       * Each test fills the form with a username and password and checks that the login was successful and a redirect occurred.
-       */
+      beforeEach(() => {
+        const mockLoginFunction = jest
+          .fn()
+          .mockResolvedValue({ token: "fakeToken" });
+        ({
+          getByLabelText,
+          getByText,
+          findAllByText,
+          mockLogin,
+          mockHistoryPush,
+        } = setup(mockLoginFunction));
+      });
+
       it(testTitle, async () => {
         fillForm(username, password, getByLabelText, getByText);
-
         await checkSuccessfulLoginAndRedirect(
           username,
           password,
@@ -60,21 +56,54 @@ describe("Login component", () => {
     },
   );
 
-  /**
-   * This test suite tests the login functionality with scenarios where login or form submission should not occur.
-   */
   describe.each(noLoginOrSubmitScenarios)(
     "should not login or submit form with",
     (testTitle, username, password, expectedError1, expectedError2) => {
-      /**
-       * Each test fills the form with a username and password and checks that the expected error messages are displayed and no login or redirect occurred.
-       */
+      beforeEach(() => {
+        const mockLoginFunction = jest
+          .fn()
+          .mockResolvedValue({ token: "fakeToken" });
+        ({
+          getByLabelText,
+          getByText,
+          findAllByText,
+          mockLogin,
+          mockHistoryPush,
+        } = setup(mockLoginFunction));
+      });
+
       it(testTitle, async () => {
         fillForm(username, password, getByLabelText, getByText);
-
         await checkErrorMessages(findAllByText, expectedError1, expectedError2);
         await checkNoLoginOrRedirect(mockLogin, mockHistoryPush);
       });
     },
   );
+
+  describe("should submit the form but not login", () => {
+    beforeEach(() => {
+      const mockLoginFunction = jest
+        .fn()
+        .mockRejectedValue(new Error("Error logging into app"));
+      ({
+        getByLabelText,
+        getByText,
+        findAllByText,
+        mockLogin,
+        mockHistoryPush,
+      } = setup(mockLoginFunction));
+    });
+
+    it("when a general error message is displayed", async () => {
+      fillForm("username", "Password1!", getByLabelText, getByText);
+      const errorMessages = await findAllByText(/Error logging into app/i);
+      expect(errorMessages).toHaveLength(1);
+      await checkLoginCalledButNoRedirect(
+        "username",
+        "Password1!",
+        mockLogin,
+        mockHistoryPush,
+      );
+    });
+  });
 });

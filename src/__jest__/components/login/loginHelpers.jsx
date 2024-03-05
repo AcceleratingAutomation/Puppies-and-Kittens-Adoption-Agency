@@ -69,6 +69,28 @@ export const checkSuccessfulLoginAndRedirect = async (
 };
 
 /**
+ * Checks that the mock login function was called with the provided valid username and password.
+ * Also, checks that the mock history push function was not called when an error occurred.
+ * @param {string} username - The expected username.
+ * @param {string} password - The expected password.
+ * @param {Function} mockLogin - The mock login function.
+ * @param {Function} mockHistoryPush - The mock history push function.
+ */
+export const checkLoginCalledButNoRedirect = async (
+  username,
+  password,
+  mockLogin,
+  mockHistoryPush,
+) => {
+  await act(async () => {
+    await waitFor(() => {
+      expect(mockLogin).toHaveBeenCalledWith(username, password);
+      expect(mockHistoryPush).not.toHaveBeenCalled();
+    });
+  });
+};
+
+/**
  * Checks that the mock login function and the mock history push function were not called with incomplete or incorrect form data.
  * @param {Function} mockLogin - The mock login function.
  * @param {Function} mockHistoryPush - The mock history push function.
