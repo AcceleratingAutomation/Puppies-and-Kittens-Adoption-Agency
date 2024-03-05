@@ -22,5 +22,5 @@ Your server is will run at port 5000 and the URL for server APIs is [http://loca
 Go inside the `server/` directory and run the command below.
 
 ```bash
-node server.js
+node startServer.js
 ```

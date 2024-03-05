@@ -1,6 +1,5 @@
 require("dotenv").config({ path: "./variables.env" });
 const express = require("express");
-const debug = require("debug")("app:server");
 const morgan = require("morgan");
 const cors = require("cors");
 
@@ -14,10 +13,6 @@ const authenticationRouter = require("./routes/authentication");
 
 const app = express();
 app.use(morgan("tiny"));
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  debug(`Server is running on port ${port}`);
-});
 app.use(express.json());
 app.use(cors());
 
@@ -31,5 +26,7 @@ app.use("/v1", authenticationRouter);
 
 // Health Check
 app.get("/health", (req, res) => {
-  res.status(200).send(`Server is running OK on port ${port}`);
+  res.status(200).send(`Server is running OK`);
 });
+
+module.exports = app;

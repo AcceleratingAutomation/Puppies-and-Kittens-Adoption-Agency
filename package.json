@@ -38,7 +38,7 @@
     "prettier": "npx prettier --check .",
     "prettier:fix": "npx prettier --write .",
     "start": "react-scripts start",
-    "start:both": "concurrently \"npm run start\" \"cd src/server && node server.js\"",
+    "start:both": "concurrently \"npm run start\" \"cd src/server && node startServer.js\"",
     "test": "react-scripts test --onlyChanged",
     "test:coverage": "react-scripts test --onlyChanged --coverage",
     "test:all": "react-scripts test --watchAll",

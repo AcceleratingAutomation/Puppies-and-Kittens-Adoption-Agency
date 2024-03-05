@@ -7,7 +7,7 @@
     "dotenv": "^8.2.0"
   },
   "scripts": {
-    "start:both": "concurrently \"cd .. && npm run start\" \"cd ../src/server && node server.js\""
+    "start:both": "concurrently \"cd .. && npm run start\" \"cd ../src/server && node startServer.js\""
   },
   "devDependencies": {
     "@playwright/test": "^1.41.2",
