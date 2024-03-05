@@ -1,146 +1,140 @@
-const request = require("supertest");
-const express = require("express");
-const favoritesController = require("../../../server/controllers/favoritesController");
-
-const app = express();
-app.use(express.json());
-app.get("/favorites", favoritesController.getFavorites);
-app.post("/favorites/:id", favoritesController.addFavorite);
-app.delete("/favorites/:id", favoritesController.deleteFavorite);
-
-jest.mock("../../../server/shared", () => ({
-  getFavoriteRescuesForUser: jest.fn(),
-  getAudienceFromToken: jest.fn(),
-  generateToken: jest.fn(),
-  addFavoriteRescue: jest.fn(),
-  deleteFavorite: jest.fn(),
-}));
-
+/* eslint-disable no-underscore-dangle */
+/* These are provided by the node-mocks-http library and are not something that can be renamed. */
+const httpMocks = require("node-mocks-http");
+const {
+  getFavorites,
+  addFavorite,
+  deleteFavorite,
+} = require("../../../server/controllers/favoritesController");
 const {
   getFavoriteRescuesForUser,
   getAudienceFromToken,
   generateToken,
   addFavoriteRescue,
-  deleteFavorite,
+  deleteFavorite: deleteFavoriteRescue,
 } = require("../../../server/shared");
+const Constants = require("../../../server/constants");
+
+jest.mock("../../../server/shared");
 
 describe("Favorites Controller", () => {
+  let req;
+  let res;
+
   beforeEach(() => {
-    jest.clearAllMocks();
+    req = httpMocks.createRequest();
+    res = httpMocks.createResponse();
+    req.headers.authorization = "Bearer testToken";
   });
 
-  test("getFavorites returns favorites and new token", async () => {
-    getFavoriteRescuesForUser.mockResolvedValue(["rescue1", "rescue2"]);
-    generateToken.mockResolvedValue("newToken");
+  describe("getFavorites", () => {
+    it("should successfully return favorites and a new token", async () => {
+      getFavoriteRescuesForUser.mockResolvedValue(["rescue1", "rescue2"]);
+      generateToken.mockResolvedValue("newToken");
 
-    const response = await request(app)
-      .get("/favorites")
-      .set("Authorization", "Bearer oldToken");
+      await getFavorites(req, res);
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual({
-      favorites: ["rescue1", "rescue2"],
-      token: "newToken",
+      expect(res._getStatusCode()).toBe(200);
+      expect(res._getData()).toEqual({
+        favorites: ["rescue1", "rescue2"],
+        token: "newToken",
+      });
+    });
+
+    it("should return a 500 error if there is an error", async () => {
+      getFavoriteRescuesForUser.mockRejectedValue(new Error("Test error"));
+
+      await getFavorites(req, res);
+
+      expect(res._getStatusCode()).toBe(500);
+      expect(res._getData()).toEqual({ message: "Test error" });
     });
   });
 
-  test("addFavorite adds a favorite and returns new token when authorized", async () => {
-    getAudienceFromToken.mockReturnValue(["ADD_FAVORITE_RESCUE"]);
-    addFavoriteRescue.mockResolvedValue(null);
-    generateToken.mockResolvedValue("newToken");
+  describe("addFavorite", () => {
+    beforeEach(() => {
+      req.params.id = "rescue1";
+    });
 
-    const response = await request(app)
-      .post("/favorites/123")
-      .set("Authorization", "Bearer oldToken");
+    it("should successfully add a favorite and return a new token", async () => {
+      getAudienceFromToken.mockReturnValue([Constants.ADD_FAVORITE_RESCUE]);
+      generateToken.mockResolvedValue("newToken");
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual({
-      message: "Rescue added to favorites successfully",
-      token: "newToken",
+      await addFavorite(req, res);
+
+      expect(res._getStatusCode()).toBe(200);
+      expect(res._getData()).toEqual({
+        message: "Rescue added to favorites successfully",
+        token: "newToken",
+      });
+    });
+
+    it("should return a 500 error if there is an error", async () => {
+      getAudienceFromToken.mockReturnValue([Constants.ADD_FAVORITE_RESCUE]);
+      addFavoriteRescue.mockRejectedValue(new Error("Test error"));
+
+      await addFavorite(req, res);
+
+      expect(res._getStatusCode()).toBe(500);
+      expect(res._getData()).toEqual({
+        message: "Cannot add this rescue to favorites",
+      });
+    });
+
+    it("should return a 403 error if the user is not authorized", async () => {
+      getAudienceFromToken.mockReturnValue([]);
+
+      await addFavorite(req, res);
+
+      expect(res._getStatusCode()).toBe(403);
+      expect(res._getData()).toEqual({
+        message: "Not authorized to add a rescue to favorites",
+        token: "testToken",
+      });
     });
   });
 
-  test("deleteFavorite deletes a favorite and returns new token when authorized", async () => {
-    getAudienceFromToken.mockReturnValue(["DELETE_FAVORITE"]);
-    deleteFavorite.mockResolvedValue();
-    generateToken.mockResolvedValue("newToken");
-
-    const response = await request(app)
-      .delete("/favorites/123")
-      .set("Authorization", "Bearer oldToken");
-
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual({
-      message: "Favorite deleted successfully",
-      token: "newToken",
+  describe("deleteFavorite", () => {
+    beforeEach(() => {
+      req.params.id = "rescue1";
     });
-  });
 
-  test("addFavorite returns 403 when not authorized", async () => {
-    getAudienceFromToken.mockReturnValue([]); // No permissions
+    it("should successfully delete a favorite and return a new token", async () => {
+      getAudienceFromToken.mockReturnValue([Constants.DELETE_FAVORITE]);
+      generateToken.mockResolvedValue("newToken");
 
-    const response = await request(app)
-      .post("/favorites/123")
-      .set("Authorization", "Bearer oldToken");
+      await deleteFavorite(req, res);
 
-    expect(response.statusCode).toBe(403);
-    expect(response.body).toEqual({
-      message: "Not authorized to add a rescue to favorites",
-      token: "oldToken",
+      expect(res._getStatusCode()).toBe(200);
+      expect(res._getData()).toEqual({
+        message: "Favorite deleted successfully",
+        token: "newToken",
+      });
     });
-  });
 
-  test("deleteFavorite returns 403 when not authorized", async () => {
-    getAudienceFromToken.mockReturnValue([]); // No permissions
+    it("should return a 500 error if there is an error", async () => {
+      getAudienceFromToken.mockReturnValue([Constants.DELETE_FAVORITE]);
+      deleteFavoriteRescue.mockRejectedValue(new Error("Test error"));
 
-    const response = await request(app)
-      .delete("/favorites/123")
-      .set("Authorization", "Bearer oldToken");
+      await deleteFavorite(req, res);
 
-    expect(response.statusCode).toBe(403);
-    expect(response.body).toEqual({
-      message: "Not authorized to delete a favorite",
-      token: "oldToken",
+      expect(res._getStatusCode()).toBe(500);
+      expect(res._getData()).toEqual({
+        message: "Cannot delete this favorite",
+        error: "Test error",
+      });
     });
-  });
 
-  test("getFavorites returns 500 when promise rejects", async () => {
-    getFavoriteRescuesForUser.mockRejectedValue(new Error("Error message"));
+    it("should return a 403 error if the user is not authorized", async () => {
+      getAudienceFromToken.mockReturnValue([]);
 
-    const response = await request(app)
-      .get("/favorites")
-      .set("Authorization", "Bearer oldToken");
+      await deleteFavorite(req, res);
 
-    expect(response.statusCode).toBe(500);
-    expect(response.body).toEqual({ message: "Error message" });
-  });
-
-  test("addFavorite returns 500 when promise rejects", async () => {
-    getAudienceFromToken.mockReturnValue(["ADD_FAVORITE_RESCUE"]);
-    addFavoriteRescue.mockRejectedValue(new Error("Error message"));
-
-    const response = await request(app)
-      .post("/favorites/123")
-      .set("Authorization", "Bearer oldToken");
-
-    expect(response.statusCode).toBe(500);
-    expect(response.body).toEqual({
-      message: "Cannot add this rescue to favorites",
-    });
-  });
-
-  test("deleteFavorite returns 500 when promise rejects", async () => {
-    getAudienceFromToken.mockReturnValue(["DELETE_FAVORITE"]);
-    deleteFavorite.mockRejectedValue(new Error("Error message"));
-
-    const response = await request(app)
-      .delete("/favorites/123")
-      .set("Authorization", "Bearer oldToken");
-
-    expect(response.statusCode).toBe(500);
-    expect(response.body).toEqual({
-      message: "Cannot delete this favorite",
-      error: "Error message",
+      expect(res._getStatusCode()).toBe(403);
+      expect(res._getData()).toEqual({
+        message: "Not authorized to delete a favorite",
+        token: "testToken",
+      });
     });
   });
 });

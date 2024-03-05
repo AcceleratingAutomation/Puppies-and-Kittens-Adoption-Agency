@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-/* _getData is a method provided by the node-mocks-http library, and it's not something that can be renamed. */
+/* These are provided by the node-mocks-http library and are not something that can be renamed. */
 const httpMocks = require("node-mocks-http");
 const { Buffer } = require("buffer");
 const {
