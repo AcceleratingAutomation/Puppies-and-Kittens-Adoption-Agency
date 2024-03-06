@@ -1,5 +1,11 @@
-import React, { useContext, useEffect, useCallback, useMemo } from "react";
-import { Grid } from "@material-ui/core";
+import React, {
+  useContext,
+  useEffect,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
+import { Grid, Button } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
@@ -16,6 +22,7 @@ import fetchData from "../../server/apiService/cardApi";
 
 export default function Rescues() {
   const { state, dispatch } = useContext(FavoritesContext);
+  const [page, setPage] = useState(0);
   const tabValue = tabs.findIndex((tab) => tab.label === "Rescues");
 
   useEffect(() => {
@@ -74,20 +81,22 @@ export default function Rescues() {
 
   const rescues = useMemo(
     () =>
-      state.rescues.map((rescue) => (
-        <RescueCard
-          key={rescue.id}
-          name={rescue.name}
-          id={rescue.id}
-          type={rescue.type}
-          gender={rescue.gender}
-          breed={rescue.breed}
-          onAddFavorite={onAddFavorite}
-          onRemoveFavorite={onRemoveFavorite}
-          isFavorite={state.favorites.includes(rescue.id)}
-        />
-      )),
-    [state.rescues, state.favorites, onAddFavorite, onRemoveFavorite],
+      state.rescues
+        .slice(page * 20, (page + 1) * 20) // Only show the rescues for the current page
+        .map((rescue) => (
+          <RescueCard
+            key={rescue.id}
+            name={rescue.name}
+            id={rescue.id}
+            type={rescue.type}
+            gender={rescue.gender}
+            breed={rescue.breed}
+            onAddFavorite={onAddFavorite}
+            onRemoveFavorite={onRemoveFavorite}
+            isFavorite={state.favorites.includes(rescue.id)}
+          />
+        )),
+    [state.rescues, state.favorites, onAddFavorite, onRemoveFavorite, page],
   );
 
   if (state.loading) {
@@ -95,11 +104,37 @@ export default function Rescues() {
   }
 
   return (
-    <div className="content">
-      <AppHeader tabValue={tabValue} />
-      <Grid item container justify="center">
-        {rescues}
-      </Grid>
-    </div>
+    <>
+      <div className="content">
+        <AppHeader tabValue={tabValue} />
+        <Grid item container justify="center">
+          {rescues}
+        </Grid>
+      </div>
+      <div>
+        <Grid item container justify="center">
+          <Button
+            style={{ margin: "0.625rem" }}
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => setPage(page - 1)}
+            disabled={page === 0}
+          >
+            Previous
+          </Button>
+          <Button
+            style={{ margin: "0.625rem" }}
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => setPage(page + 1)}
+            disabled={(page + 1) * 20 >= state.rescues.length}
+          >
+            Next
+          </Button>
+        </Grid>
+      </div>
+    </>
   );
 }
