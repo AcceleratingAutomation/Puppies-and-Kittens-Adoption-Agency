@@ -13,71 +13,76 @@ const {
 const Constants = require("../constants");
 
 const createHandlers = (type, db, permissions) => ({
-  getAll: (req, res) => {
+  getAll: async (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
-    if (getAudienceFromToken(token).includes(permissions.read)) {
-      getAllData(db).then((data) => {
+    try {
+      if (getAudienceFromToken(token).includes(permissions.read)) {
+        const data = await getAllData(db);
         if (data && data.length > 0) {
-          generateToken(token, null).then((newToken) => {
-            res.status(200).send({ [type]: data, token: newToken });
-          });
-        } else res.status(500).send({ [type]: [], token });
-      });
-    } else {
-      res
-        .status(403)
-        .send({ message: `Not authorized to view ${type}`, token });
+          const newToken = await generateToken(token, null);
+          res.status(200).send({ [type]: data, token: newToken });
+        } else {
+          res.status(500).send({ [type]: [], token });
+        }
+      } else {
+        res
+          .status(403)
+          .send({ message: `Not authorized to view ${type}`, token });
+      }
+    } catch (error) {
+      res.status(500).send({ error: "Database error" });
     }
   },
 
   delete: (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
-    if (getAudienceFromToken(token).includes(permissions.delete)) {
-      deleteData(req.params.id, db).then((err) => {
-        if (err)
-          res.status(500).send({ message: `Cannot delete this ${type}` });
-        else {
-          generateToken(token, null).then((newToken) => {
-            res.status(200).send({
-              message: `${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully`,
-              token: newToken,
-            });
-          });
-        }
-      });
-    } else {
-      res.status(403).send({
-        message: `Not authorized to delete a ${type}`,
-        token,
-      });
-    }
+    return new Promise((resolve, reject) => {
+      if (getAudienceFromToken(token).includes(permissions.delete)) {
+        deleteData(req.params.id, db)
+          .then((data) => {
+            if (!data || Object.keys(data).length === 0) {
+              res.status(404).send({ message: `Cannot delete this ${type}` });
+              resolve();
+            } else {
+              generateToken(token, null)
+                .then((newToken) => {
+                  res.status(200).send({ [type]: data, token: newToken });
+                  resolve();
+                })
+                .catch(reject);
+            }
+          })
+          .catch(reject);
+      } else {
+        res
+          .status(403)
+          .send({ message: `Not authorized to delete ${type}`, token });
+        resolve();
+      }
+    });
   },
 
-  getDetails: (req, res) => {
+  getDetails: async (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
-    if (getAudienceFromToken(token).includes(permissions.showDetails)) {
-      getDetails(req.params.id, db)
-        .then((data) => {
-          if (!data || Object.keys(data).length === 0) {
-            res
-              .status(404)
-              .send({ message: `Cannot get details for this ${type}` });
-          } else {
-            generateToken(token, null).then((newToken) => {
-              res.status(200).send({ [type]: data, token: newToken });
-            });
-          }
-        })
-        .catch((err) => {
+    try {
+      if (getAudienceFromToken(token).includes(permissions.showDetails)) {
+        const data = await getDetails(req.params.id, db);
+        if (!data || Object.keys(data).length === 0) {
           res
-            .status(500)
-            .send({ message: `Error retrieving ${type} details. ${err}` });
+            .status(404)
+            .send({ message: `Cannot get details for this ${type}` });
+        } else {
+          const newToken = await generateToken(token, null);
+          res.status(200).send({ [type]: data, token: newToken });
+        }
+      } else {
+        res.status(403).send({
+          message: `Not authorized to view ${type} details`,
+          token,
         });
-    } else {
-      res.status(403).send({
-        message: `Not authorized to view ${type} details`,
-        token,
-      });
+      }
+    } catch (error) {
+      res.status(500).send({ error: "Database error" });
     }
   },
 });
