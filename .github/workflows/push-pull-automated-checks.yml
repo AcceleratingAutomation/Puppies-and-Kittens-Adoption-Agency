@@ -1,10 +1,10 @@
-name: All Automated Checks
+name: Push and Pull Automated Checks
 
 on:
-  workflow_dispatch:
-  # Run this workflow at 12 PM UTC (which is 5 AM MST) every weekday. Doesn't account for daylight saving time.
-  schedule:
-    - cron: "0 12 * * 1-5"
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   prettier:
@@ -57,6 +57,7 @@ jobs:
           DEFAULT_BRANCH: main
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false # Only new or edited files will be parsed for validation
           VALIDATE_JAVASCRIPT_STANDARD: false # Using ESLint instead
           VALIDATE_TYPESCRIPT_STANDARD: false # Using ESLint instead
 
@@ -79,7 +80,7 @@ jobs:
         run: npm ci
 
       - name: Run Jest tests
-        run: npm run test:all:coverage
+        run: npm run test:coverage
 
       - name: Upload Jest coverage report
         uses: actions/upload-artifact@v4
@@ -122,7 +123,7 @@ jobs:
         working-directory: playwright
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --project chromium
         working-directory: playwright
 
       - name: Upload Playwright report
