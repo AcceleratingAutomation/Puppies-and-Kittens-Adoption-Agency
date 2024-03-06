@@ -105,7 +105,7 @@ export default function Rescues() {
 
   return (
     <>
-      <div className="content">
+      <div className="content" style={{ minHeight: "100rem" }}>
         <AppHeader tabValue={tabValue} />
         <Grid item container justify="center">
           {rescues}
