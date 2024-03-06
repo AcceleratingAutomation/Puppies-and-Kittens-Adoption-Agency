@@ -1,0 +1,308 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component should not login or submit form with empty password 1`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username 1`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password 1`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password 2`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password 3`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password 4`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password too short 1`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password too short 2`] = `
+<div
+  style="color: red;"
+>
+  Password must be at least 8 characters.
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password without lowercase letter 1`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password without lowercase letter 2`] = `
+<div
+  style="color: red;"
+>
+  Password must contain at least one lowercase letter.
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password without number 1`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password without number 2`] = `
+<div
+  style="color: red;"
+>
+  Password must contain at least one number.
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password without special character 1`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password without special character 2`] = `
+<div
+  style="color: red;"
+>
+  Password must contain at least one special character.
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password without uppercase letter 1`] = `
+<div
+  style="color: red;"
+>
+  Required
+</div>
+`;
+
+exports[`Login component should not login or submit form with empty username and password without uppercase letter 2`] = `
+<div
+  style="color: red;"
+>
+  Password must contain at least one uppercase letter.
+</div>
+`;
+
+exports[`Login component should not login or submit form with password too short 1`] = `
+<div
+  style="color: red;"
+>
+  Password must be at least 8 characters.
+</div>
+`;
+
+exports[`Login component should not login or submit form with password without lowercase letter 1`] = `
+<div
+  style="color: red;"
+>
+  Password must contain at least one lowercase letter.
+</div>
+`;
+
+exports[`Login component should not login or submit form with password without number 1`] = `
+<div
+  style="color: red;"
+>
+  Password must contain at least one number.
+</div>
+`;
+
+exports[`Login component should not login or submit form with password without special character 1`] = `
+<div
+  style="color: red;"
+>
+  Password must contain at least one special character.
+</div>
+`;
+
+exports[`Login component should not login or submit form with password without uppercase letter 1`] = `
+<div
+  style="color: red;"
+>
+  Password must contain at least one uppercase letter.
+</div>
+`;
+
+exports[`Login component snapshot comparison of setup renders correctly 1`] = `
+<DocumentFragment>
+  <form
+    action="#"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-align-items-xs-center"
+      style="margin-top: 3vh;"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item"
+        style="margin-bottom: 3vh;"
+      >
+        <h3
+          class="MuiTypography-root MuiTypography-h3"
+        >
+          Puppies and Kittens  Rescue and Adoption Agency!
+        </h3>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item"
+        style="margin-bottom: 3vh;"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+            data-shrink="false"
+            for="username-input"
+            id="username-input-label"
+          >
+            Username
+          </label>
+          <div
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input"
+              id="username-input"
+              name="username"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item"
+        style="margin-bottom: 5vh;"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+            data-shrink="false"
+            for="password-input"
+            id="password-input-label"
+          >
+            Password
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+              focusable="false"
+              style="margin-left: 10px;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"
+              />
+            </svg>
+          </label>
+          <div
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input"
+              id="password-input"
+              name="password"
+              type="password"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item"
+        style="margin-bottom: 2vh;"
+      >
+        <button
+          aria-label="login"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeLarge MuiButton-sizeLarge"
+          style="margin: 0.625rem;"
+          tabindex="0"
+          type="submit"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            LOGIN
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-center"
+        style="margin: 0px auto; max-width: 80%;"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+        >
+          <img
+            alt="Playful Puppy's picture"
+            class="makeStyles-responsiveImage-1"
+            src="/images/placeholders/puppy.webp"
+            style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover;"
+          />
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+        >
+          <img
+            alt="Playful Kitten's picture"
+            class="makeStyles-responsiveImage-1"
+            src="/images/placeholders/kitten.webp"
+            style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover;"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;

@@ -27,6 +27,15 @@ describe("Login component", () => {
   let findAllByText;
   let mockLogin;
   let mockHistoryPush;
+  let asFragment;
+
+  describe("snapshot comparison of setup", () => {
+    it("renders correctly", () => {
+      const { asFragment: fragment } = setup(mockLogin);
+      asFragment = fragment;
+      expect(asFragment()).toMatchSnapshot();
+    });
+  });
 
   describe.each(validLoginScenarios)(
     "should login with",

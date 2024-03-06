@@ -120,6 +120,7 @@ export const checkErrorMessages = async (
     const errorMessages1 = await findAllByText(error1);
     errorMessages1.forEach((errorMessage) => {
       expect(errorMessage).toBeInTheDocument();
+      expect(errorMessage).toMatchSnapshot();
     });
   }
 
@@ -127,6 +128,7 @@ export const checkErrorMessages = async (
     const errorMessages2 = await findAllByText(error2);
     errorMessages2.forEach((errorMessage) => {
       expect(errorMessage).toBeInTheDocument();
+      expect(errorMessage).toMatchSnapshot();
     });
   }
 };
