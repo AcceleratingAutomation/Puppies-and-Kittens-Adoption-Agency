@@ -1,15 +1,8 @@
 import { Locator, Page } from "@playwright/test";
 import {
-  required,
   usernameText,
   passwordText,
   loginText,
-  atLeast8Characters,
-  atLeastOneLowercaseLetter,
-  atLeastOneUppercaseLetter,
-  atLeastOneNumber,
-  atLeastOneSpecialCharacter,
-  errorLoggingIntoApp,
 } from "../../src/accessibility/login/loginText";
 
 class LoginPage {
@@ -50,33 +43,8 @@ class LoginPage {
     await this.clickLogin();
   }
 
-  // Error messages
-  async getRequiredErrorMessage() {
-    return this.page.getByText(required);
-  }
-
-  async getIncorrectCredentialsErrorMessage() {
-    return this.page.getByText(errorLoggingIntoApp);
-  }
-
-  async getPasswordLengthErrorMessage() {
-    return this.page.getByText(atLeast8Characters);
-  }
-
-  async getPasswordUpperCaseErrorMessage() {
-    return this.page.getByText(atLeastOneUppercaseLetter);
-  }
-
-  async getPasswordLowerCaseErrorMessage() {
-    return this.page.getByText(atLeastOneLowercaseLetter);
-  }
-
-  async getPasswordNumberErrorMessage() {
-    return this.page.getByText(atLeastOneNumber);
-  }
-
-  async getPasswordSpecialCharacterErrorMessage() {
-    return this.page.getByText(atLeastOneSpecialCharacter);
+  async getErrorMessage(errorMessage: string) {
+    return this.page.getByText(errorMessage);
   }
 }
 

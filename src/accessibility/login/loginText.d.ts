@@ -1,4 +1,5 @@
-export const required: string;
+export const usernameRequired: string;
+export const passwordRequired: string;
 export const usernameText: string;
 export const passwordText: string;
 export const loginText: string;

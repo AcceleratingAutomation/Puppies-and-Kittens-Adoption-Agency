@@ -2,7 +2,6 @@ const usernameText = "Username";
 // This is a reference to the word Password; not an actual password.
 const passwordText = "Password"; // gitleaks:allow
 const loginText = "LOGIN";
-const required = "Required";
 const usernameRequired = "Username Required";
 const passwordRequired = "Password Required";
 const atLeast8Characters = "Password must be at least 8 characters.";
@@ -16,7 +15,6 @@ const atLeastOneSpecialCharacter =
 const errorLoggingIntoApp = "Username or password is incorrect.";
 
 module.exports = {
-  required,
   usernameRequired,
   passwordRequired,
   usernameText,

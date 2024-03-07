@@ -4,6 +4,14 @@ import {
   usernameText,
   passwordText,
   loginText,
+  usernameRequired,
+  passwordRequired,
+  atLeast8Characters,
+  atLeastOneLowercaseLetter,
+  atLeastOneUppercaseLetter,
+  atLeastOneNumber,
+  atLeastOneSpecialCharacter,
+  errorLoggingIntoApp,
 } from "../../../src/accessibility/login/loginText";
 
 let loginPage: LoginPage;
@@ -39,7 +47,7 @@ test.describe("Login Page", () => {
     test("invalid credentials", async ({ page }) => {
       await loginPage.login("invalid", "Invalid1$");
       await expect
-        .soft(loginPage.getIncorrectCredentialsErrorMessage())
+        .soft(loginPage.getErrorMessage(errorLoggingIntoApp))
         .resolves.toBeInViewport();
       await expect(page).toHaveScreenshot(
         "login-error-incorrect-credentials.png",
@@ -47,14 +55,12 @@ test.describe("Login Page", () => {
     });
     test("empty username and password", async ({ page }) => {
       await loginPage.login("", "");
-      const firstErrorMessage = (
-        await loginPage.getRequiredErrorMessage()
-      ).first();
-      const secondErrorMessage = (
-        await loginPage.getRequiredErrorMessage()
-      ).nth(1);
-      await expect.soft(firstErrorMessage).toBeInViewport();
-      await expect.soft(secondErrorMessage).toBeInViewport();
+      await expect
+        .soft(loginPage.getErrorMessage(usernameRequired))
+        .resolves.toBeInViewport();
+      await expect
+        .soft(loginPage.getErrorMessage(passwordRequired))
+        .resolves.toBeInViewport();
       await expect(page).toHaveScreenshot(
         "login-error-required-credentials.png",
       );
@@ -62,28 +68,28 @@ test.describe("Login Page", () => {
     test("empty username", async ({ page }) => {
       await loginPage.login("", "Password123!");
       await expect
-        .soft(loginPage.getRequiredErrorMessage())
+        .soft(loginPage.getErrorMessage(usernameRequired))
         .resolves.toBeInViewport();
       await expect(page).toHaveScreenshot("login-error-required-username.png");
     });
     test("empty password", async ({ page }) => {
       await loginPage.login("username", "");
       await expect
-        .soft(loginPage.getRequiredErrorMessage())
+        .soft(loginPage.getErrorMessage(passwordRequired))
         .resolves.toBeInViewport();
       await expect(page).toHaveScreenshot("login-error-required-password.png");
     });
     test("password too short", async ({ page }) => {
       await loginPage.login("username", "1234567");
       await expect
-        .soft(loginPage.getPasswordLengthErrorMessage())
+        .soft(loginPage.getErrorMessage(atLeast8Characters))
         .resolves.toBeInViewport();
       await expect(page).toHaveScreenshot("login-error-password-length.png");
     });
     test("password without uppercase letter", async ({ page }) => {
       await loginPage.login("username", "password123!");
       await expect
-        .soft(loginPage.getPasswordUpperCaseErrorMessage())
+        .soft(loginPage.getErrorMessage(atLeastOneUppercaseLetter))
         .resolves.toBeInViewport();
       await expect(page).toHaveScreenshot(
         "login-error-password-without-uppercase.png",
@@ -92,7 +98,7 @@ test.describe("Login Page", () => {
     test("password without lowercase letter", async ({ page }) => {
       await loginPage.login("username", "PASSWORD123!");
       await expect
-        .soft(loginPage.getPasswordLowerCaseErrorMessage())
+        .soft(loginPage.getErrorMessage(atLeastOneLowercaseLetter))
         .resolves.toBeInViewport();
       await expect(page).toHaveScreenshot(
         "login-error-password-without-lowercase.png",
@@ -101,7 +107,7 @@ test.describe("Login Page", () => {
     test("password without number", async ({ page }) => {
       await loginPage.login("username", "Password!");
       await expect
-        .soft(loginPage.getPasswordNumberErrorMessage())
+        .soft(loginPage.getErrorMessage(atLeastOneNumber))
         .resolves.toBeInViewport();
       await expect(page).toHaveScreenshot(
         "login-error-password-without-number.png",
@@ -110,7 +116,7 @@ test.describe("Login Page", () => {
     test("password without special character", async ({ page }) => {
       await loginPage.login("username", "Password123");
       await expect
-        .soft(loginPage.getPasswordSpecialCharacterErrorMessage())
+        .soft(loginPage.getErrorMessage(atLeastOneSpecialCharacter))
         .resolves.toBeInViewport();
       await expect(page).toHaveScreenshot(
         "login-error-password-without-special-character.png",
