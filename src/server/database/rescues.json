@@ -10,7 +10,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "An amazing dog with a great personality. He loves to play outside and is very friendly with other dogs. He is very well trained and is very obedient. He is a great dog for a family with kids."
+    "bio": "An amazing dog with a great personality. He loves to play outside and is very friendly with other dogs. He is very well trained and is very obedient. He is a great dog for a family with kids.",
+    "image": 1
   },
   {
     "id": "2b551ff9-8561-4557-8264-63c1f5666648",
@@ -23,7 +24,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Buddy is an energetic and playful Golden Retriever. He loves outdoor activities and enjoys playing fetch. With his friendly nature, he gets along well with both humans and other dogs. Buddy is fully trained and would make a wonderful addition to an active family."
+    "bio": "Buddy is an energetic and playful Golden Retriever. He loves outdoor activities and enjoys playing fetch. With his friendly nature, he gets along well with both humans and other dogs. Buddy is fully trained and would make a wonderful addition to an active family.",
+    "image": 2
   },
   {
     "id": "57d91677-611f-4faf-b7f6-0ae877c52390",
@@ -36,7 +38,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Meet Luna, a sweet and gentle Labrador Retriever. Luna adores cuddling and is great with kids. She is well-behaved and has undergone thorough training. Luna is fully vaccinated and sterilized, making her a perfect companion for a loving family."
+    "bio": "Meet Luna, a sweet and gentle Labrador Retriever. Luna adores cuddling and is great with kids. She is well-behaved and has undergone thorough training. Luna is fully vaccinated and sterilized, making her a perfect companion for a loving family.",
+    "image": 3
   },
   {
     "id": "d6196daf-4dd9-4ba5-9da1-147cb5a17d37",
@@ -49,7 +52,8 @@
     "isSterilized": true,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Kitty is a playful Siamese cat who loves to chase laser pointers and curl up in cozy spots. While he might seem a bit aloof at first, Kitty enjoys affectionate moments and would be a perfect companion for someone who appreciates the independent charm of feline friends."
+    "bio": "Kitty is a playful Siamese cat who loves to chase laser pointers and curl up in cozy spots. While he might seem a bit aloof at first, Kitty enjoys affectionate moments and would be a perfect companion for someone who appreciates the independent charm of feline friends.",
+    "image": 1
   },
   {
     "id": "a596150d-5998-4959-bc94-dbebbbe7d190",
@@ -62,7 +66,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Rocky is an energetic and friendly Boxer. He loves going for long walks and is always ready to play. Rocky is great with children and is well-behaved indoors. His charming personality makes him a wonderful companion for an active household."
+    "bio": "Rocky is an energetic and friendly Boxer. He loves going for long walks and is always ready to play. Rocky is great with children and is well-behaved indoors. His charming personality makes him a wonderful companion for an active household.",
+    "image": 4
   },
   {
     "id": "95229b36-4855-45b3-9414-b56855e44df8",
@@ -75,7 +80,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Coco is a playful and affectionate Dachshund. She enjoys curling up on the couch and loves receiving belly rubs. Coco is good with other pets and is house-trained. Her charming demeanor makes her an ideal companion for someone looking for a loving lap dog."
+    "bio": "Coco is a playful and affectionate Dachshund. She enjoys curling up on the couch and loves receiving belly rubs. Coco is good with other pets and is house-trained. Her charming demeanor makes her an ideal companion for someone looking for a loving lap dog.",
+    "image": 5
   },
   {
     "id": "0b441687-ae90-4b77-af79-aee8c2cd753c",
@@ -88,7 +94,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": false,
-    "bio": "Athena, the majestic Maine Coon, enjoys lounging on high perches and batting at dangling toys. While she may take her time to warm up, Athena forms strong bonds with her human companions and appreciates a calm and quiet environment. She would be a great addition to a patient and loving household."
+    "bio": "Athena, the majestic Maine Coon, enjoys lounging on high perches and batting at dangling toys. While she may take her time to warm up, Athena forms strong bonds with her human companions and appreciates a calm and quiet environment. She would be a great addition to a patient and loving household.",
+    "image": 2
   },
   {
     "id": "653e5bd6-c1cf-4ce3-bc8c-c2ec0a42b3a4",
@@ -101,7 +108,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Oliver, the regal Persian cat, enjoys leisurely grooming sessions and lounging in sunny spots. He appreciates a calm and serene environment and would be an excellent companion for someone who enjoys quiet evenings and the soothing purr of a content feline friend."
+    "bio": "Oliver, the regal Persian cat, enjoys leisurely grooming sessions and lounging in sunny spots. He appreciates a calm and serene environment and would be an excellent companion for someone who enjoys quiet evenings and the soothing purr of a content feline friend.",
+    "image": 3
   },
   {
     "id": "c2dbf6c1-37bb-4d7d-8e65-ea35a7760d93",
@@ -114,7 +122,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Milo, the adventurous Bengal cat, loves to explore and engage in interactive play. He has a soft spot for feather toys and enjoys climbing on cat trees. Milo is a lively and social feline who would thrive in a home where he can receive ample attention and playtime."
+    "bio": "Milo, the adventurous Bengal cat, loves to explore and engage in interactive play. He has a soft spot for feather toys and enjoys climbing on cat trees. Milo is a lively and social feline who would thrive in a home where he can receive ample attention and playtime.",
+    "image": 4
   },
   {
     "id": "4f5e6d7c-8b9a-0d1e2f3a-4b5c6d7e8f9a",
@@ -127,7 +136,8 @@
     "isSterilized": true,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Ruby is a cheerful Beagle with a heart full of love. She enjoys sunbathing and is great with children. While Ruby is fully trained, she prefers a home without other pets. Her charming personality makes her an excellent choice for a loving family."
+    "bio": "Ruby is a cheerful Beagle with a heart full of love. She enjoys sunbathing and is great with children. While Ruby is fully trained, she prefers a home without other pets. Her charming personality makes her an excellent choice for a loving family.",
+    "image": 6
   },
   {
     "id": "9c4a3692-f008-4002-8f5b-c34e8aa84b68",
@@ -140,7 +150,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Smokey, the friendly Norwegian Forest cat, is great with kids and loves interactive play. He has a gentle nature and enjoys being around children. Smokey is fully vaccinated and would be an ideal companion for a family seeking a playful and affectionate feline friend."
+    "bio": "Smokey, the friendly Norwegian Forest cat, is great with kids and loves interactive play. He has a gentle nature and enjoys being around children. Smokey is fully vaccinated and would be an ideal companion for a family seeking a playful and affectionate feline friend.",
+    "image": 5
   },
   {
     "id": "ad304139-ca46-4758-ba6c-397bb0f95f42",
@@ -153,7 +164,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": false,
-    "bio": "Charlie is an adventurous Shiba Inu with a mischievous streak. He loves exploring and is quite independent. While Charlie is not a fan of other pets, he forms strong bonds with his human companions. An experienced dog owner would be perfect for Charlie's spirited nature."
+    "bio": "Charlie is an adventurous Shiba Inu with a mischievous streak. He loves exploring and is quite independent. While Charlie is not a fan of other pets, he forms strong bonds with his human companions. An experienced dog owner would be perfect for Charlie's spirited nature.",
+    "image": 7
   },
   {
     "id": "5e6f7a8b-9c0d1e2f-3a4b5c6d7e8f",
@@ -166,7 +178,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": false,
-    "bio": "Cleo, the charming Scottish Fold, enjoys lounging in cozy nooks and receiving gentle chin scratches. She may be a bit reserved at first, but once comfortable, Cleo becomes an affectionate companion. She would be a wonderful addition to a home that appreciates the gentle nature of feline friends."
+    "bio": "Cleo, the charming Scottish Fold, enjoys lounging in cozy nooks and receiving gentle chin scratches. She may be a bit reserved at first, but once comfortable, Cleo becomes an affectionate companion. She would be a wonderful addition to a home that appreciates the gentle nature of feline friends.",
+    "image": 6
   },
   {
     "id": "55d516bf-a7c5-43e9-aedb-13df58de0384",
@@ -179,7 +192,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Maximus, the majestic German Shepherd, is a loyal and protective companion. He requires an active lifestyle and enjoys obedience training. While Maximus is cautious with strangers, he forms strong bonds with his family. A secure and loving home is ideal for this noble dog."
+    "bio": "Maximus, the majestic German Shepherd, is a loyal and protective companion. He requires an active lifestyle and enjoys obedience training. While Maximus is cautious with strangers, he forms strong bonds with his family. A secure and loving home is ideal for this noble dog.",
+    "image": 8
   },
   {
     "id": "bfbcab59-c6b8-45b3-8b8f-3e8a751116b4",
@@ -192,7 +206,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": false,
-    "bio": "Sadie, the gentle Cavalier King Charles Spaniel, is a loving lap dog. She enjoys snuggling on the couch and is great with kids. While Sadie is fully trained, she prefers a calm environment without other pets. Her sweet nature makes her a wonderful companion for a relaxed household."
+    "bio": "Sadie, the gentle Cavalier King Charles Spaniel, is a loving lap dog. She enjoys snuggling on the couch and is great with kids. While Sadie is fully trained, she prefers a calm environment without other pets. Her sweet nature makes her a wonderful companion for a relaxed household.",
+    "image": 9
   },
   {
     "id": "b04af271-9c05-4049-a047-14ded3d95947",
@@ -205,7 +220,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Simba, the adventurous Bengal cat, loves exploring and is great with children. He enjoys interactive play and has a curious nature. Simba is well-behaved, fully vaccinated, sterilized, making him an ideal choice for a family seeking an active and playful feline friend."
+    "bio": "Simba, the adventurous Bengal cat, loves exploring and is great with children. He enjoys interactive play and has a curious nature. Simba is well-behaved, fully vaccinated, sterilized, making him an ideal choice for a family seeking an active and playful feline friend.",
+    "image": 7
   },
   {
     "id": "6f7a8b9c-0d1e2f3a-4b5c6d7e8f9a",
@@ -218,7 +234,8 @@
     "isSterilized": true,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Shadow, the mysterious Russian Blue, enjoys observing the world from quiet corners and engaging in playful pouncing sessions. He has a soft spot for feather wands and would be a perfect companion for someone who appreciates the elegance and enigmatic charm of feline friends."
+    "bio": "Shadow, the mysterious Russian Blue, enjoys observing the world from quiet corners and engaging in playful pouncing sessions. He has a soft spot for feather wands and would be a perfect companion for someone who appreciates the elegance and enigmatic charm of feline friends.",
+    "image": 8
   },
   {
     "id": "7a8b9c0d-1e2f3a4b-5c6d7e8f9a0b",
@@ -231,7 +248,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": false,
-    "bio": "Mittens, the gentle Ragdoll, enjoys being cradled in loving arms and participating in relaxed grooming sessions. She is known for her calm demeanor and would be a great match for someone seeking a laid-back and affectionate feline companion to share peaceful moments."
+    "bio": "Mittens, the gentle Ragdoll, enjoys being cradled in loving arms and participating in relaxed grooming sessions. She is known for her calm demeanor and would be a great match for someone seeking a laid-back and affectionate feline companion to share peaceful moments.",
+    "image": 9
   },
   {
     "id": "45fc3986-b0d8-43a7-9200-a7bca6eece41",
@@ -244,7 +262,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Zeus, the majestic Siberian Husky, is known for his striking appearance and friendly demeanor. He loves outdoor adventures and is great with children. While Zeus is not sterilized, his energy and playfulness make him an ideal companion for an active family ready for Husky antics."
+    "bio": "Zeus, the majestic Siberian Husky, is known for his striking appearance and friendly demeanor. He loves outdoor adventures and is great with children. While Zeus is not sterilized, his energy and playfulness make him an ideal companion for an active family ready for Husky antics.",
+    "image": 10
   },
   {
     "id": "8b9c0d1e-2f3a4b5c-6d7e8f9a-0b1c2d3e4f5a",
@@ -257,7 +276,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Oreo, the playful Sphynx, enjoys the warmth of human laps and interactive playtime. He may lack fur, but Oreo makes up for it with his affectionate nature. He would be a delightful companion for someone who appreciates the unique charm and outgoing personality of hairless cats."
+    "bio": "Oreo, the playful Sphynx, enjoys the warmth of human laps and interactive playtime. He may lack fur, but Oreo makes up for it with his affectionate nature. He would be a delightful companion for someone who appreciates the unique charm and outgoing personality of hairless cats.",
+    "image": 10
   },
   {
     "id": "c2197d1f-4576-40df-9c06-148a3801179a",
@@ -270,7 +290,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Oscar, the friendly American Shorthair, enjoys playful antics and chasing after toy mice. He is known for his adaptability and would be a great match for someone seeking an easygoing and entertaining feline friend to share lively moments in a loving home."
+    "bio": "Oscar, the friendly American Shorthair, enjoys playful antics and chasing after toy mice. He is known for his adaptability and would be a great match for someone seeking an easygoing and entertaining feline friend to share lively moments in a loving home.",
+    "image": 11
   },
   {
     "id": "d36e95b7-0b8c-4215-82e6-85e1fd92c8c9",
@@ -283,7 +304,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Milo, the charming Corgi, is full of energy and love. He enjoys playing fetch and is great with children. Milo is not sterilized, but his friendly nature makes him a delightful addition to any family ready for an active and affectionate companion."
+    "bio": "Milo, the charming Corgi, is full of energy and love. He enjoys playing fetch and is great with children. Milo is not sterilized, but his friendly nature makes him a delightful addition to any family ready for an active and affectionate companion.",
+    "image": 11
   },
   {
     "id": "a274e8f9-7053-434f-882e-c2f17bd1b3c7",
@@ -296,7 +318,8 @@
     "isSterilized": true,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Lucy, the playful American Curl, is known for her gentle disposition and is excellent with kids. She enjoys interactive play and is patient with children. Lucy is sterilized, fully vaccinated, and would make a wonderful addition to a family seeking a friendly and kid-friendly feline companion."
+    "bio": "Lucy, the playful American Curl, is known for her gentle disposition and is excellent with kids. She enjoys interactive play and is patient with children. Lucy is sterilized, fully vaccinated, and would make a wonderful addition to a family seeking a friendly and kid-friendly feline companion.",
+    "image": 12
   },
   {
     "id": "2f3a4b5c-6d7e-8f9a-0b1c2d3e4f5a",
@@ -309,7 +332,8 @@
     "isSterilized": true,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Daisy, the playful Dalmatian, is known for her distinctive spots and loving personality. She enjoys long walks and is great with kids. Daisy is fully trained and sterilized, making her an excellent choice for a family looking for a loyal and well-behaved companion."
+    "bio": "Daisy, the playful Dalmatian, is known for her distinctive spots and loving personality. She enjoys long walks and is great with kids. Daisy is fully trained and sterilized, making her an excellent choice for a family looking for a loyal and well-behaved companion.",
+    "image": 12
   },
   {
     "id": "7fe6803b-aa8a-4d4a-95cb-9cc3058c778f",
@@ -322,7 +346,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Sasha, the elegant Birman, enjoys basking in sunbeams and engaging in graceful leaps during playtime. She is known for her charming disposition and would be an ideal companion for someone seeking a sophisticated and graceful feline friend to share quiet moments and joyful activities."
+    "bio": "Sasha, the elegant Birman, enjoys basking in sunbeams and engaging in graceful leaps during playtime. She is known for her charming disposition and would be an ideal companion for someone seeking a sophisticated and graceful feline friend to share quiet moments and joyful activities.",
+    "image": 13
   },
   {
     "id": "4b5c6d7e-8f9a0b1c-2d3e4f5a-6b7c8d9e0f1a",
@@ -335,7 +360,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": false,
-    "bio": "Oscar, the lovable Bulldog, is known for his wrinkled face and gentle disposition. He enjoys lounging indoors and is great with children. While Oscar is not a fan of other pets, his affectionate nature makes him an ideal companion for a calm and loving household."
+    "bio": "Oscar, the lovable Bulldog, is known for his wrinkled face and gentle disposition. He enjoys lounging indoors and is great with children. While Oscar is not a fan of other pets, his affectionate nature makes him an ideal companion for a calm and loving household.",
+    "image": 13
   },
   {
     "id": "4bdef506-c1b8-4cf6-a50d-7a1db59b55bd",
@@ -348,7 +374,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Mittens is a majestic Persian cat with a luxurious coat. She enjoys being pampered and is great with children. Mittens is well-behaved, fully vaccinated, sterilized, and would make a perfect addition to any loving home seeking an affectionate feline companion."
+    "bio": "Mittens is a majestic Persian cat with a luxurious coat. She enjoys being pampered and is great with children. Mittens is well-behaved, fully vaccinated, sterilized, and would make a perfect addition to any loving home seeking an affectionate feline companion.",
+    "image": 14
   },
   {
     "id": "0b1c2d3e-4f5a6b7c-8d9e0f1a2b3c4d5e",
@@ -361,7 +388,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Bella, the adorable Shih Tzu, is known for her fluffy coat and friendly personality. She enjoys being pampered and is great with kids. Bella is not sterilized, but her gentle nature makes her a perfect lap dog for anyone seeking a loving and affectionate companion."
+    "bio": "Bella, the adorable Shih Tzu, is known for her fluffy coat and friendly personality. She enjoys being pampered and is great with kids. Bella is not sterilized, but her gentle nature makes her a perfect lap dog for anyone seeking a loving and affectionate companion.",
+    "image": 14
   },
   {
     "id": "317a22fd-8f94-49c2-9763-e1bcbf603429",
@@ -374,7 +402,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Meet Jax, the affectionate Shih Tzu. Jax is well-suited for senior or elderly individuals looking for a loyal companion. He enjoys gentle walks and indoor relaxation. Jax is well-trained, fully vaccinated, and sterilized, making him a perfect match for a calm and loving household."
+    "bio": "Meet Jax, the affectionate Shih Tzu. Jax is well-suited for senior or elderly individuals looking for a loyal companion. He enjoys gentle walks and indoor relaxation. Jax is well-trained, fully vaccinated, and sterilized, making him a perfect match for a calm and loving household.",
+    "image": 15
   },
   {
     "id": "6f37c83c-8312-48b0-a300-868a26446614",
@@ -387,7 +416,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Oliver, the charming Siamese cat, enjoys lounging in sunny spots and engaging in playful activities. He is great with children and forms strong bonds with his human companions. Oliver is well-behaved, fully vaccinated, sterilized, making him an ideal choice for a loving and active household."
+    "bio": "Oliver, the charming Siamese cat, enjoys lounging in sunny spots and engaging in playful activities. He is great with children and forms strong bonds with his human companions. Oliver is well-behaved, fully vaccinated, sterilized, making him an ideal choice for a loving and active household.",
+    "image": 15
   },
   {
     "id": "6a57cae6-50e5-4d8e-b3bf-9a973ac82a7b",
@@ -400,7 +430,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Daisy, the majestic Maine Coon, is known for her playful and affectionate nature. She enjoys interactive playtime and is great with children. Daisy is well-behaved, fully vaccinated, sterilized, and would be a delightful addition to any home seeking a loving and sociable feline companion."
+    "bio": "Daisy, the majestic Maine Coon, is known for her playful and affectionate nature. She enjoys interactive playtime and is great with children. Daisy is well-behaved, fully vaccinated, sterilized, and would be a delightful addition to any home seeking a loving and sociable feline companion.",
+    "image": 16
   },
   {
     "id": "8d9e0f1a-2b3c4d5e-6f7a8b9c-0d1e2f3a4b5c",
@@ -413,7 +444,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Bear, the strong and loyal Rottweiler, is known for his protective nature and intelligence. He enjoys outdoor activities and is great with children. Bear is fully trained and sterilized, making him an excellent choice for a family seeking a devoted and well-behaved companion."
+    "bio": "Bear, the strong and loyal Rottweiler, is known for his protective nature and intelligence. He enjoys outdoor activities and is great with children. Bear is fully trained and sterilized, making him an excellent choice for a family seeking a devoted and well-behaved companion.",
+    "image": 16
   },
   {
     "id": "5bf944c9-6224-4f6d-96aa-26c356b4bb3a",
@@ -426,7 +458,8 @@
     "isSterilized": true,
     "isVaccinated": false,
     "isAdoptable": false,
-    "bio": "Rosie, the laid-back Pug, enjoys lounging indoors and is great with children. While she is not a fan of other pets, her calm demeanor makes her an ideal companion for a quiet and relaxed household."
+    "bio": "Rosie, the laid-back Pug, enjoys lounging indoors and is great with children. While she is not a fan of other pets, her calm demeanor makes her an ideal companion for a quiet and relaxed household.",
+    "image": 17
   },
   {
     "id": "23ec5239-865a-47da-9ff6-e503bfb4fc61",
@@ -439,7 +472,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Chico, the tiny Chihuahua, prefers a cozy spot indoors and is great for apartment living. He is not a fan of other pets but forms strong bonds with his human companions. Chico is fully vaccinated and would make a wonderful lap dog for a single owner."
+    "bio": "Chico, the tiny Chihuahua, prefers a cozy spot indoors and is great for apartment living. He is not a fan of other pets but forms strong bonds with his human companions. Chico is fully vaccinated and would make a wonderful lap dog for a single owner.",
+    "image": 18
   },
   {
     "id": "43b46dcb-9697-46fc-ba4c-717de336e12e",
@@ -452,7 +486,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": false,
-    "bio": "Lola, the sweet Shih Tzu, enjoys a calm environment indoors and is great with children. While Lola is not a fan of other pets, her gentle and affectionate nature makes her an ideal companion for someone seeking a low-maintenance lap dog."
+    "bio": "Lola, the sweet Shih Tzu, enjoys a calm environment indoors and is great with children. While Lola is not a fan of other pets, her gentle and affectionate nature makes her an ideal companion for someone seeking a low-maintenance lap dog.",
+    "image": 19
   },
   {
     "id": "e7e9df5b-bb0c-4b1c-845f-e1b951f1ce46",
@@ -465,7 +500,8 @@
     "isSterilized": true,
     "isVaccinated": false,
     "isAdoptable": false,
-    "bio": "Jack, the easygoing French Bulldog, loves short walks and is great with children. He is not a fan of other pets, but Jack's compact size makes him a perfect indoor companion for anyone seeking a laid-back and affectionate dog."
+    "bio": "Jack, the easygoing French Bulldog, loves short walks and is great with children. He is not a fan of other pets, but Jack's compact size makes him a perfect indoor companion for anyone seeking a laid-back and affectionate dog.",
+    "image": 20
   },
   {
     "id": "4e9405b5-6720-4386-8f75-962179c77c60",
@@ -478,7 +514,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Sadie is a gentle Cavalier King Charles Spaniel with a calm demeanor. She enjoys quiet indoor activities and is great with children. Sadie is well-trained, fully vaccinated, and sterilized, making her an ideal companion for senior or elderly individuals seeking a loving and easygoing dog."
+    "bio": "Sadie is a gentle Cavalier King Charles Spaniel with a calm demeanor. She enjoys quiet indoor activities and is great with children. Sadie is well-trained, fully vaccinated, and sterilized, making her an ideal companion for senior or elderly individuals seeking a loving and easygoing dog.",
+    "image": 21
   },
   {
     "id": "689bae2c-92a1-41e3-8fee-706878c6049f",
@@ -491,7 +528,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Lulu, the charming Dachshund, is known for her playful antics and love for cuddles. She is not a fan of other pets but forms strong bonds with her human companions. Lulu is fully vaccinated and would make a delightful lap dog for a caring owner."
+    "bio": "Lulu, the charming Dachshund, is known for her playful antics and love for cuddles. She is not a fan of other pets but forms strong bonds with her human companions. Lulu is fully vaccinated and would make a delightful lap dog for a caring owner.",
+    "image": 22
   },
   {
     "id": "3483e24f-5d11-4faa-b32e-a7f03a4ce4ef",
@@ -504,7 +542,8 @@
     "isSterilized": false,
     "isVaccinated": true,
     "isAdoptable": false,
-    "bio": "Cooper, the laid-back Basset Hound, enjoys leisurely walks and is great with children. While he is not a fan of other pets, Cooper's calm demeanor makes him an ideal companion for someone seeking a relaxed and easygoing dog."
+    "bio": "Cooper, the laid-back Basset Hound, enjoys leisurely walks and is great with children. While he is not a fan of other pets, Cooper's calm demeanor makes him an ideal companion for someone seeking a relaxed and easygoing dog.",
+    "image": 23
   },
   {
     "id": "50e183c5-2505-4988-aeeb-e85e0538faf7",
@@ -517,7 +556,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Mia, the adorable Yorkshire Terrier, is known for her silky coat and playful spirit. She is not a fan of other pets but forms strong bonds with her human companions. Mia is fully vaccinated and would make a perfect companion for someone seeking a small and energetic dog."
+    "bio": "Mia, the adorable Yorkshire Terrier, is known for her silky coat and playful spirit. She is not a fan of other pets but forms strong bonds with her human companions. Mia is fully vaccinated and would make a perfect companion for someone seeking a small and energetic dog.",
+    "image": 24
   },
   {
     "id": "1a0152b8-3ce0-43b0-9cf9-5314732e2f85",
@@ -530,7 +570,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Charlie, the fluffy Pomeranian, is known for his vibrant personality and love for attention. He is not a fan of other pets but adores being the center of his owner's world. Charlie is fully vaccinated and would make a delightful companion for someone seeking a lively and affectionate dog."
+    "bio": "Charlie, the fluffy Pomeranian, is known for his vibrant personality and love for attention. He is not a fan of other pets but adores being the center of his owner's world. Charlie is fully vaccinated and would make a delightful companion for someone seeking a lively and affectionate dog.",
+    "image": 25
   },
   {
     "id": "2cab5e05-1b68-4133-a168-dccdc5834187",
@@ -543,7 +584,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Molly, the sweet Corgi, is well-suited for senior or elderly individuals seeking a friendly and easygoing companion. She enjoys short walks and is great with children. Molly is well-trained, fully vaccinated, and sterilized, making her a delightful addition to any home looking for a loving and gentle dog."
+    "bio": "Molly, the sweet Corgi, is well-suited for senior or elderly individuals seeking a friendly and easygoing companion. She enjoys short walks and is great with children. Molly is well-trained, fully vaccinated, and sterilized, making her a delightful addition to any home looking for a loving and gentle dog.",
+    "image": 26
   },
   {
     "id": "9c0d1e2f-3a4b5c6d-7e8f9a0b-1c2d3e4f5a6",
@@ -556,7 +598,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": false,
-    "bio": "Bentley, the independent Shiba Inu, enjoys exploring and is great with children. While he is not a fan of other pets, Bentley's loyalty to his owner is unwavering. Bentley would thrive in a home where he can be the sole focus of attention."
+    "bio": "Bentley, the independent Shiba Inu, enjoys exploring and is great with children. While he is not a fan of other pets, Bentley's loyalty to his owner is unwavering. Bentley would thrive in a home where he can be the sole focus of attention.",
+    "image": 27
   },
   {
     "id": "ab532fc4-5ab5-4181-8f83-ac195aa6375c",
@@ -569,7 +612,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Loki, the affectionate Bombay cat, is well-suited for families with kids. He enjoys playful interactions and is patient with children. Loki is fully vaccinated and sterilized, making him an ideal choice for a family seeking a loving and kid-friendly feline companion."
+    "bio": "Loki, the affectionate Bombay cat, is well-suited for families with kids. He enjoys playful interactions and is patient with children. Loki is fully vaccinated and sterilized, making him an ideal choice for a family seeking a loving and kid-friendly feline companion.",
+    "image": 17
   },
   {
     "id": "2cb05441-0273-4849-8410-266ff420efcb",
@@ -582,7 +626,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Sophie, the elegant Maltese, is known for her graceful demeanor and silky white coat. She is not a fan of other pets but forms deep connections with her human companions. Sophie is fully vaccinated and would make a wonderful lap dog for someone seeking a gentle and loving companion."
+    "bio": "Sophie, the elegant Maltese, is known for her graceful demeanor and silky white coat. She is not a fan of other pets but forms deep connections with her human companions. Sophie is fully vaccinated and would make a wonderful lap dog for someone seeking a gentle and loving companion.",
+    "image": 28
   },
   {
     "id": "24a0c617-4a3a-4f74-a68d-24a50decdcd8",
@@ -595,7 +640,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Teddy, the affectionate Pomeranian, is a wonderful choice for senior or elderly individuals seeking a small and loving companion. He enjoys indoor relaxation and is great with children. Teddy is well-trained, fully vaccinated, and sterilized, making him an ideal lap dog for those looking for a charming and easy-to-care-for pet."
+    "bio": "Teddy, the affectionate Pomeranian, is a wonderful choice for senior or elderly individuals seeking a small and loving companion. He enjoys indoor relaxation and is great with children. Teddy is well-trained, fully vaccinated, and sterilized, making him an ideal lap dog for those looking for a charming and easy-to-care-for pet.",
+    "image": 29
   },
   {
     "id": "3f5b8771-7581-4e3a-ada8-6bc9a137e9e1",
@@ -608,7 +654,8 @@
     "isSterilized": true,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Pixel, the curious Cornish Rex, enjoys exploring and engaging in quiet playtime. She may not seek constant attention but appreciates a calm and peaceful atmosphere. Pixel is sterilized, fully vaccinated, and would be an excellent choice for someone seeking a low-key and independent feline companion."
+    "bio": "Pixel, the curious Cornish Rex, enjoys exploring and engaging in quiet playtime. She may not seek constant attention but appreciates a calm and peaceful atmosphere. Pixel is sterilized, fully vaccinated, and would be an excellent choice for someone seeking a low-key and independent feline companion.",
+    "image": 18
   },
   {
     "id": "7d5efc9a-b67d-4811-981e-4b960bb8a28e",
@@ -621,7 +668,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Meet Oliver, the friendly Labrador Retriever. He loves outdoor activities and is great with kids. Oliver is well-trained, fully vaccinated, and sterilized, making him an ideal companion for an active family."
+    "bio": "Meet Oliver, the friendly Labrador Retriever. He loves outdoor activities and is great with kids. Oliver is well-trained, fully vaccinated, and sterilized, making him an ideal companion for an active family.",
+    "image": 30
   },
   {
     "id": "828f2e33-25aa-4d44-8dca-e9bc3fcdc03c",
@@ -634,7 +682,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Lily is a gentle Golden Retriever with a loving nature. She enjoys playing fetch and cuddling. Lily is well-behaved, fully vaccinated, and sterilized, making her a perfect companion for a family seeking a loyal and affectionate dog."
+    "bio": "Lily is a gentle Golden Retriever with a loving nature. She enjoys playing fetch and cuddling. Lily is well-behaved, fully vaccinated, and sterilized, making her a perfect companion for a family seeking a loyal and affectionate dog.",
+    "image": 31
   },
   {
     "id": "465dc6b4-e0ca-4863-a80c-27c198d768d7",
@@ -647,7 +696,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Cinnamon, the independent Egyptian Mau, enjoys exploring quiet corners and observing the surroundings. While not overly affectionate, Cinnamon appreciates a calm and laid-back environment. He is fully vaccinated and would be a great choice for someone seeking a low-maintenance feline friend."
+    "bio": "Cinnamon, the independent Egyptian Mau, enjoys exploring quiet corners and observing the surroundings. While not overly affectionate, Cinnamon appreciates a calm and laid-back environment. He is fully vaccinated and would be a great choice for someone seeking a low-maintenance feline friend.",
+    "image": 19
   },
   {
     "id": "c4ccee62-552d-4e6c-9664-ade7fec71832",
@@ -660,7 +710,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Rocky, the loyal German Shepherd, is known for his intelligence and protective nature. He is great with children and enjoys long walks. Rocky is well-trained, fully vaccinated, and sterilized, making him an excellent choice for an active and loving family."
+    "bio": "Rocky, the loyal German Shepherd, is known for his intelligence and protective nature. He is great with children and enjoys long walks. Rocky is well-trained, fully vaccinated, and sterilized, making him an excellent choice for an active and loving family.",
+    "image": 32
   },
   {
     "id": "2bc33b4f-0d4c-4720-9a3b-4586eec5e836",
@@ -673,7 +724,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Coco is an elegant Poodle with a gentle demeanor. She loves to be pampered and is great with kids. Coco is well-behaved, fully vaccinated, and sterilized, making her a delightful companion for a family seeking a stylish and affectionate dog."
+    "bio": "Coco is an elegant Poodle with a gentle demeanor. She loves to be pampered and is great with kids. Coco is well-behaved, fully vaccinated, and sterilized, making her a delightful companion for a family seeking a stylish and affectionate dog.",
+    "image": 33
   },
   {
     "id": "0d1e2f3a-4b5c6d7e-8f9a0b1c-2d3e4f5a6b7c",
@@ -686,7 +738,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Olive, the reserved Siberian cat, appreciates a calm and peaceful environment. While not a fan of high-energy play, Olive enjoys quiet moments and gentle interactions. She is fully vaccinated and would be a perfect match for someone seeking a serene and independent feline companion."
+    "bio": "Olive, the reserved Siberian cat, appreciates a calm and peaceful environment. While not a fan of high-energy play, Olive enjoys quiet moments and gentle interactions. She is fully vaccinated and would be a perfect match for someone seeking a serene and independent feline companion.",
+    "image": 20
   },
   {
     "id": "93ec7557-7f73-462a-ad65-22602003dadc",
@@ -699,7 +752,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Charlie, the playful Boxer, is full of energy and loves to play fetch. He is great with children and enjoys outdoor activities. Charlie is well-trained, fully vaccinated, and sterilized, making him a perfect match for an active and loving family."
+    "bio": "Charlie, the playful Boxer, is full of energy and loves to play fetch. He is great with children and enjoys outdoor activities. Charlie is well-trained, fully vaccinated, and sterilized, making him a perfect match for an active and loving family.",
+    "image": 34
   },
   {
     "id": "54eca74b-9a5b-4522-980a-54d859e01e5f",
@@ -712,7 +766,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Mia is a playful Dachshund with a charming personality. She enjoys cuddling and is great with kids. Mia is well-behaved, fully vaccinated, and sterilized, making her an ideal companion for a family seeking a small and affectionate dog."
+    "bio": "Mia is a playful Dachshund with a charming personality. She enjoys cuddling and is great with kids. Mia is well-behaved, fully vaccinated, and sterilized, making her an ideal companion for a family seeking a small and affectionate dog.",
+    "image": 1
   },
   {
     "id": "0e988fdf-3790-4ab4-8a8e-d87be70a10ad",
@@ -725,7 +780,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Maximus, the strong and loyal Rottweiler, is known for his protective nature. He is great with children and enjoys outdoor activities. Maximus is well-trained, fully vaccinated, and sterilized, making him a wonderful choice for a family seeking a devoted and confident dog."
+    "bio": "Maximus, the strong and loyal Rottweiler, is known for his protective nature. He is great with children and enjoys outdoor activities. Maximus is well-trained, fully vaccinated, and sterilized, making him a wonderful choice for a family seeking a devoted and confident dog.",
+    "image": 2
   },
   {
     "id": "736a5e5c-eab1-418b-a75c-e8a1eb10110c",
@@ -738,7 +794,8 @@
     "isSterilized": true,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Mocha, the easygoing British Shorthair, prefers a peaceful environment and gentle activities. She enjoys her alone time but is open to quiet companionship. Mocha is sterilized, fully vaccinated, and would be a wonderful addition to a home seeking a calm and independent feline friend."
+    "bio": "Mocha, the easygoing British Shorthair, prefers a peaceful environment and gentle activities. She enjoys her alone time but is open to quiet companionship. Mocha is sterilized, fully vaccinated, and would be a wonderful addition to a home seeking a calm and independent feline friend.",
+    "image": 21
   },
   {
     "id": "a824a532-c829-4785-a224-16eea912d009",
@@ -751,7 +808,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Sophie, the elegant Shih Tzu, is known for her gentle demeanor and affectionate nature. She enjoys indoor activities and is great with kids. Sophie is well-trained, fully vaccinated, and sterilized, making her a perfect companion for a family seeking a loving and graceful dog."
+    "bio": "Sophie, the elegant Shih Tzu, is known for her gentle demeanor and affectionate nature. She enjoys indoor activities and is great with kids. Sophie is well-trained, fully vaccinated, and sterilized, making her a perfect companion for a family seeking a loving and graceful dog.",
+    "image": 3
   },
   {
     "id": "949af83c-d9fc-4658-8479-bdf3919814d3",
@@ -764,7 +822,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Bentley, the affectionate Cavalier King Charles Spaniel, is known for his friendly demeanor. He enjoys cuddling and is great with kids. Bentley is well-trained, fully vaccinated, and sterilized, making him a delightful companion for a family seeking a loving and gentle dog."
+    "bio": "Bentley, the affectionate Cavalier King Charles Spaniel, is known for his friendly demeanor. He enjoys cuddling and is great with kids. Bentley is well-trained, fully vaccinated, and sterilized, making him a delightful companion for a family seeking a loving and gentle dog.",
+    "image": 4
   },
   {
     "id": "09e7cd5f-8b4a-425c-850c-bd556dbc5a6f",
@@ -777,7 +836,8 @@
     "isSterilized": false,
     "isVaccinated": false,
     "isAdoptable": true,
-    "bio": "Whiskey, the relaxed Ragdoll, enjoys lounging around and is great for a calm household. While not a fan of high-energy play, Whiskey is a great companion for quiet evenings and gentle strokes. He is fully vaccinated and would be an ideal choice for someone seeking a laid-back feline friend."
+    "bio": "Whiskey, the relaxed Ragdoll, enjoys lounging around and is great for a calm household. While not a fan of high-energy play, Whiskey is a great companion for quiet evenings and gentle strokes. He is fully vaccinated and would be an ideal choice for someone seeking a laid-back feline friend.",
+    "image": 22
   },
   {
     "id": "1717642a-59b7-4b13-851f-33da07232e71",
@@ -790,7 +850,8 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Zoe, the energetic Siberian Husky, is known for her playful spirit. She loves outdoor activities and is great with children. Zoe is well-trained, fully vaccinated, and sterilized, making her an ideal companion for an active and adventurous family."
+    "bio": "Zoe, the energetic Siberian Husky, is known for her playful spirit. She loves outdoor activities and is great with children. Zoe is well-trained, fully vaccinated, and sterilized, making her an ideal companion for an active and adventurous family.",
+    "image": 5
   },
   {
     "id": "ca21fb00-a06a-4b4a-9e8c-957c548368f1",
@@ -803,6 +864,7 @@
     "isSterilized": true,
     "isVaccinated": true,
     "isAdoptable": true,
-    "bio": "Whiskers, the playful Scottish Fold, loves chasing after feather toys and lounging in comfortable spots. He is great with children and enjoys receiving affection. Whiskers is well-behaved, fully vaccinated, sterilized, making him an ideal choice for a family seeking a lively and affectionate feline companion."
+    "bio": "Whiskers, the playful Scottish Fold, loves chasing after feather toys and lounging in comfortable spots. He is great with children and enjoys receiving affection. Whiskers is well-behaved, fully vaccinated, sterilized, making him an ideal choice for a family seeking a lively and affectionate feline companion.",
+    "image": 23
   }
 ]
