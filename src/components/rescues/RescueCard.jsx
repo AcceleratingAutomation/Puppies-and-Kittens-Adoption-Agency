@@ -9,6 +9,7 @@ import SummaryCard from "../SummaryCard";
 function RescueCard({
   name,
   id,
+  image,
   type,
   gender,
   breed,
@@ -20,6 +21,7 @@ function RescueCard({
   const rescue = {
     name,
     id,
+    image,
     type,
     gender,
     breed,
@@ -30,6 +32,7 @@ function RescueCard({
       directory={directory}
       type={type}
       id={rescue.id}
+      image={rescue.image}
       name={rescue.name}
       viewComponentDetailsUrl={`/v1/rescue/${rescue.id}`}
     >
@@ -75,6 +78,7 @@ RescueCard.defaultProps = {
 RescueCard.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  image: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,

@@ -22,6 +22,7 @@ export default function SummaryCard({
   children,
   type,
   id,
+  image,
   name,
   viewComponentDetailsUrl,
 }) {
@@ -36,8 +37,9 @@ export default function SummaryCard({
     <Paper elevation={2} className={`rescue ${classes.summaryCard}`}>
       <DisplayImage
         type={type}
-        directory="rescues"
+        directory={type.toLowerCase()}
         id={id}
+        image={image}
         name={name}
         width="15rem"
         height="18rem"
@@ -64,6 +66,7 @@ SummaryCard.propTypes = {
   children: PropTypes.node.isRequired,
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  image: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   viewComponentDetailsUrl: PropTypes.string.isRequired,
 };

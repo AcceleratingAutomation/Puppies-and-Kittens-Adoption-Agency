@@ -21,24 +21,26 @@ const useStyles = makeStyles({
   },
 });
 
-function DisplayImage({ directory, id, type, name, width, height }) {
+function DisplayImage({ directory, image, type, name, width, height }) {
   const classes = useStyles();
 
   useEffect(() => {
     const img = new Image();
-    img.src = getImageUrl(directory, id);
-  }, [directory, id]);
+    img.src = getImageUrl(directory, image);
+  }, [directory, image]);
 
   return (
     <img
       className={classes.responsiveImage}
       src={
-        id && directory
-          ? getImageUrl(directory, id)
+        image && directory
+          ? getImageUrl(directory, image)
           : getImageUrl("placeholders", getPlaceholderImage(type))
       }
       alt={
-        id && directory ? `${name}'s picture` : `${name}'s placeholder picture`
+        image && directory
+          ? `${name}'s picture`
+          : `${name}'s placeholder picture`
       }
       style={{
         borderRadius: "25%",
@@ -56,7 +58,7 @@ DisplayImage.defaultProps = {
 
 DisplayImage.propTypes = {
   directory: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  image: PropTypes.number.isRequired,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,

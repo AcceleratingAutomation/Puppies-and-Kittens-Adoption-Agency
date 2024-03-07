@@ -89,11 +89,12 @@ function RescueDetailsLayout({ rescue }) {
         </Grid>
         <Grid item xs={12} sm={4} md={3} style={{ textAlign: "center" }}>
           <DisplayImage
-            directory="rescues"
+            directory={type.toLowerCase()}
             id={id}
+            image={rescue.image}
             name={name}
-            width="12rem"
-            height="12rem"
+            width="15rem"
+            height="18rem"
           />
         </Grid>
         <Grid item xs={12} sm={8} md={3} style={{ textAlign: "left" }}>
@@ -116,6 +117,7 @@ RescueDetailsLayout.propTypes = {
     isVaccinated: PropTypes.bool.isRequired,
     isAdoptable: PropTypes.bool.isRequired,
     id: PropTypes.string.isRequired,
+    image: PropTypes.number.isRequired,
     bio: PropTypes.string.isRequired,
   }).isRequired,
 };

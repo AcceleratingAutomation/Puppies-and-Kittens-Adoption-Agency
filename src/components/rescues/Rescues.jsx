@@ -88,6 +88,7 @@ export default function Rescues() {
             key={rescue.id}
             name={rescue.name}
             id={rescue.id}
+            image={rescue.image}
             type={rescue.type}
             gender={rescue.gender}
             breed={rescue.breed}

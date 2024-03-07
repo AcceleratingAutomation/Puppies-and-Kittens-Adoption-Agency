@@ -51,6 +51,7 @@ export default function Favorites() {
             <RescueCard
               key={rescue.id}
               id={rescue.id}
+              image={rescue.image}
               name={rescue.name}
               type={rescue.type}
               gender={rescue.gender}
