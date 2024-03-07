@@ -35,7 +35,7 @@ function convertAllImagesInDirectory(directory) {
           directory,
           `${path.basename(file, path.extname(file))}.webp`,
         );
-        convertImage(inputPath, outputPath, 80, callback);
+        convertImage(inputPath, outputPath, callback, 80);
       },
       (newErr) => {
         if (newErr) {
@@ -46,8 +46,8 @@ function convertAllImagesInDirectory(directory) {
   });
 }
 
-// Only uncomment and run as needed to convert new images
-convertAllImagesInDirectory("../../public/images/placeholders");
+// Only run as needed to convert new images to new gen format of webp
+convertAllImagesInDirectory("../../public/images/users");
 
 module.exports = {
   convertImage,
