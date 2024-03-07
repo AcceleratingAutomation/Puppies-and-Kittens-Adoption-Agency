@@ -40,10 +40,10 @@
     "start": "react-scripts start",
     "start:both": "concurrently \"npm run start\" \"cd src/server && node startServer.js\"",
     "test": "react-scripts test --onlyChanged --coverage --verbose",
-    "test:coverage:ci": "git fetch origin && react-scripts test --changedSince=origin/main --coverage --verbose",
+    "test:coverage:ci": "git fetch origin && react-scripts test --changedSince=${GITHUB_REF#refs/heads/} --coverage --verbose",
     "test:all": "react-scripts test --watchAll --verbose",
     "test:all:coverage": "react-scripts test --watchAll --coverage --verbose",
-    "test:all:coverage:ci": "react-scripts test --watchAll --coverage --verbose"
+    "test:all:coverage:ci": "react-scripts test --coverage --verbose"
   },
   "eslintConfig": {
     "extends": "react-app"
