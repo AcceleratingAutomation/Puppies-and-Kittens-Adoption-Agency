@@ -94,7 +94,7 @@ describe("Login component", () => {
 
       const mockLoginFunction = jest
         .fn()
-        .mockRejectedValue(new Error(errorLoggingIntoApp));
+        .mockResolvedValue({ message: errorLoggingIntoApp });
       ({ getByLabelText, getByText, findByText, mockLogin, mockHistoryPush } =
         setup(mockLoginFunction));
 
