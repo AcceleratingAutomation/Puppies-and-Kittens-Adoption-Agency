@@ -89,6 +89,7 @@ describe("Login component", () => {
     });
 
     it("with invalid credential", async () => {
+      // This is a test of github actions
       const username = "invalid_username";
       const password = "Invalid1$-password";
 
