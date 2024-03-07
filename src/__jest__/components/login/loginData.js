@@ -1,37 +1,19 @@
 import {
-  required,
+  usernameRequired,
+  passwordRequired,
   atLeast8Characters,
   atLeastOneLowercaseLetter,
   atLeastOneUppercaseLetter,
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
-  errorLoggingIntoApp,
 } from "../../../accessibility/login/loginText";
 
-// Login Data Scenarios
-// testTitle, username, password
-// The username and password are just a mocked login. Do NOT add real passwords here.
-export const validLoginScenarios = [
-  ["valid credentials", "username", "Password123!"],
-];
-
-// testTitle, username, password, expectedErrorMessages
-// Mocking an incorrect username or password combination. The form should be submitted but the user should not get logged in.
-export const noLoginScenarios = [
-  [
-    "invalid credentials",
-    "invalid username",
-    "Invalid1$-password",
-    errorLoggingIntoApp,
-  ],
-];
-
-// testTitle, username, password, expectedErrorMessages
+// testTitle, username, password, expectedError1, expectedError2
 // These scenarios should not have a form submission because something is invalid.
-export const noLoginOrSubmitScenarios = [
-  ["empty username and password", "", "", required, required],
-  ["empty username", "", "Password123!", required],
-  ["empty password", "username", "", required],
+const noLoginOrSubmitScenarios = [
+  ["empty username and password", "", "", usernameRequired, passwordRequired],
+  ["empty username", "", "Password123!", usernameRequired],
+  ["empty password", "username", "", passwordRequired],
   ["password too short", "username", "1234567", atLeast8Characters],
   [
     "password without uppercase letter",
@@ -56,35 +38,37 @@ export const noLoginOrSubmitScenarios = [
     "empty username and password too short",
     "",
     "1234567",
-    required,
+    usernameRequired,
     atLeast8Characters,
   ],
   [
     "empty username and password without uppercase letter",
     "",
     "password123!",
-    required,
+    usernameRequired,
     atLeastOneUppercaseLetter,
   ],
   [
     "empty username and password without lowercase letter",
     "",
     "PASSWORD123!",
-    required,
+    usernameRequired,
     atLeastOneLowercaseLetter,
   ],
   [
     "empty username and password without number",
     "",
     "Password!",
-    required,
+    usernameRequired,
     atLeastOneNumber,
   ],
   [
     "empty username and password without special character",
     "",
     "Password123",
-    required,
+    usernameRequired,
     atLeastOneSpecialCharacter,
   ],
 ];
+
+export default noLoginOrSubmitScenarios;

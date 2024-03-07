@@ -1,62 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login component should not login or submit form with empty password 1`] = `
+exports[`Login component  should not login or submit form with empty password 1`] = `
 <div
   style="color: red;"
 >
-  Required
+  Password Required
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username 1`] = `
+exports[`Login component  should not login or submit form with empty username 1`] = `
 <div
   style="color: red;"
 >
-  Required
+  Username Required
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password 1`] = `
+exports[`Login component  should not login or submit form with empty username and password 1`] = `
 <div
   style="color: red;"
 >
-  Required
+  Username Required
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password 2`] = `
+exports[`Login component  should not login or submit form with empty username and password 2`] = `
 <div
   style="color: red;"
 >
-  Required
+  Password Required
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password 3`] = `
+exports[`Login component  should not login or submit form with empty username and password too short 1`] = `
 <div
   style="color: red;"
 >
-  Required
+  Username Required
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password 4`] = `
-<div
-  style="color: red;"
->
-  Required
-</div>
-`;
-
-exports[`Login component should not login or submit form with empty username and password too short 1`] = `
-<div
-  style="color: red;"
->
-  Required
-</div>
-`;
-
-exports[`Login component should not login or submit form with empty username and password too short 2`] = `
+exports[`Login component  should not login or submit form with empty username and password too short 2`] = `
 <div
   style="color: red;"
 >
@@ -64,15 +48,15 @@ exports[`Login component should not login or submit form with empty username and
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password without lowercase letter 1`] = `
+exports[`Login component  should not login or submit form with empty username and password without lowercase letter 1`] = `
 <div
   style="color: red;"
 >
-  Required
+  Username Required
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password without lowercase letter 2`] = `
+exports[`Login component  should not login or submit form with empty username and password without lowercase letter 2`] = `
 <div
   style="color: red;"
 >
@@ -80,15 +64,15 @@ exports[`Login component should not login or submit form with empty username and
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password without number 1`] = `
+exports[`Login component  should not login or submit form with empty username and password without number 1`] = `
 <div
   style="color: red;"
 >
-  Required
+  Username Required
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password without number 2`] = `
+exports[`Login component  should not login or submit form with empty username and password without number 2`] = `
 <div
   style="color: red;"
 >
@@ -96,15 +80,15 @@ exports[`Login component should not login or submit form with empty username and
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password without special character 1`] = `
+exports[`Login component  should not login or submit form with empty username and password without special character 1`] = `
 <div
   style="color: red;"
 >
-  Required
+  Username Required
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password without special character 2`] = `
+exports[`Login component  should not login or submit form with empty username and password without special character 2`] = `
 <div
   style="color: red;"
 >
@@ -112,15 +96,15 @@ exports[`Login component should not login or submit form with empty username and
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password without uppercase letter 1`] = `
+exports[`Login component  should not login or submit form with empty username and password without uppercase letter 1`] = `
 <div
   style="color: red;"
 >
-  Required
+  Username Required
 </div>
 `;
 
-exports[`Login component should not login or submit form with empty username and password without uppercase letter 2`] = `
+exports[`Login component  should not login or submit form with empty username and password without uppercase letter 2`] = `
 <div
   style="color: red;"
 >
@@ -128,7 +112,7 @@ exports[`Login component should not login or submit form with empty username and
 </div>
 `;
 
-exports[`Login component should not login or submit form with password too short 1`] = `
+exports[`Login component  should not login or submit form with password too short 1`] = `
 <div
   style="color: red;"
 >
@@ -136,7 +120,7 @@ exports[`Login component should not login or submit form with password too short
 </div>
 `;
 
-exports[`Login component should not login or submit form with password without lowercase letter 1`] = `
+exports[`Login component  should not login or submit form with password without lowercase letter 1`] = `
 <div
   style="color: red;"
 >
@@ -144,7 +128,7 @@ exports[`Login component should not login or submit form with password without l
 </div>
 `;
 
-exports[`Login component should not login or submit form with password without number 1`] = `
+exports[`Login component  should not login or submit form with password without number 1`] = `
 <div
   style="color: red;"
 >
@@ -152,7 +136,7 @@ exports[`Login component should not login or submit form with password without n
 </div>
 `;
 
-exports[`Login component should not login or submit form with password without special character 1`] = `
+exports[`Login component  should not login or submit form with password without special character 1`] = `
 <div
   style="color: red;"
 >
@@ -160,7 +144,7 @@ exports[`Login component should not login or submit form with password without s
 </div>
 `;
 
-exports[`Login component should not login or submit form with password without uppercase letter 1`] = `
+exports[`Login component  should not login or submit form with password without uppercase letter 1`] = `
 <div
   style="color: red;"
 >
@@ -168,7 +152,7 @@ exports[`Login component should not login or submit form with password without u
 </div>
 `;
 
-exports[`Login component snapshot comparison of setup renders correctly 1`] = `
+exports[`Login component should render correctly in snapshot comparison after setup 1`] = `
 <DocumentFragment>
   <form
     action="#"
@@ -286,7 +270,7 @@ exports[`Login component snapshot comparison of setup renders correctly 1`] = `
         >
           <img
             alt="Playful Puppy's picture"
-            class="makeStyles-responsiveImage-1"
+            class="makeStyles-responsiveImage-17"
             src="/images/placeholders/puppy.webp"
             style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover;"
           />
@@ -296,7 +280,7 @@ exports[`Login component snapshot comparison of setup renders correctly 1`] = `
         >
           <img
             alt="Playful Kitten's picture"
-            class="makeStyles-responsiveImage-1"
+            class="makeStyles-responsiveImage-17"
             src="/images/placeholders/kitten.webp"
             style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover;"
           />
@@ -305,4 +289,20 @@ exports[`Login component snapshot comparison of setup renders correctly 1`] = `
     </div>
   </form>
 </DocumentFragment>
+`;
+
+exports[`Login component should submit the form but not login when a general error message is displayed 1`] = `
+<div
+  style="color: red;"
+>
+  Error logging into app.
+</div>
+`;
+
+exports[`Login component should submit the form but not login with invalid credential 1`] = `
+<div
+  style="color: red;"
+>
+  Username or password is incorrect.
+</div>
 `;

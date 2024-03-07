@@ -106,29 +106,22 @@ export const checkNoLoginOrRedirect = async (mockLogin, mockHistoryPush) => {
 
 /**
  * Checks that the expected error messages are displayed in the DOM.
- * @param {Function} findAllByText - The findAllByText function from @testing-library/react. Using findAllByText because 'Required' can show up twice.
+ * @param {Function} findByText - The findByText function from @testing-library/react.
  * @param {string} error1 - The first error message to check.
  * @param {string} [error2=""] - The second error message to check. Defaults to an empty string because several scenarios only display one error.
  * Note: Ran into React console errors, for scenarios that display multiple errors, when using an array of error messages instead of the two variables.
  */
-export const checkErrorMessages = async (
-  findAllByText,
-  error1,
-  error2 = "",
-) => {
+export const checkErrorMessages = async (findByText, error1, error2 = "") => {
+  let errorMessage = "";
   if (error1) {
-    const errorMessages1 = await findAllByText(error1);
-    errorMessages1.forEach((errorMessage) => {
-      expect(errorMessage).toBeInTheDocument();
-      expect(errorMessage).toMatchSnapshot();
-    });
+    errorMessage = await findByText(error1);
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toMatchSnapshot();
   }
 
   if (error2) {
-    const errorMessages2 = await findAllByText(error2);
-    errorMessages2.forEach((errorMessage) => {
-      expect(errorMessage).toBeInTheDocument();
-      expect(errorMessage).toMatchSnapshot();
-    });
+    errorMessage = await findByText(error2);
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toMatchSnapshot();
   }
 };

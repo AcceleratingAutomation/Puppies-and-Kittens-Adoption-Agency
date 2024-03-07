@@ -6,7 +6,8 @@ import {
   fillForm,
   setup,
 } from "./loginHelpers";
-import { noLoginOrSubmitScenarios, validLoginScenarios } from "./loginData";
+import noLoginOrSubmitScenarios from "./loginData";
+import { errorLoggingIntoApp } from "../../../accessibility/login/loginText";
 
 // Mock the login function from the authApi module
 jest.mock("../../../server/apiService/authApi", () => ({
@@ -24,36 +25,25 @@ jest.mock("../../../utils/utils", () => ({
 describe("Login component", () => {
   let getByLabelText;
   let getByText;
-  let findAllByText;
+  let findByText;
   let mockLogin;
   let mockHistoryPush;
   let asFragment;
 
-  describe("snapshot comparison of setup", () => {
-    it("renders correctly", () => {
-      const { asFragment: fragment } = setup(mockLogin);
-      asFragment = fragment;
-      expect(asFragment()).toMatchSnapshot();
+  describe("", () => {
+    beforeEach(() => {
+      const mockLoginFunction = jest
+        .fn()
+        .mockResolvedValue({ token: "fakeToken" });
+      ({ getByLabelText, getByText, findByText, mockLogin, mockHistoryPush } =
+        setup(mockLoginFunction));
     });
-  });
 
-  describe.each(validLoginScenarios)(
-    "should login with",
-    (testTitle, username, password) => {
-      beforeEach(() => {
-        const mockLoginFunction = jest
-          .fn()
-          .mockResolvedValue({ token: "fakeToken" });
-        ({
-          getByLabelText,
-          getByText,
-          findAllByText,
-          mockLogin,
-          mockHistoryPush,
-        } = setup(mockLoginFunction));
-      });
-
-      it(testTitle, async () => {
+    describe("should login with", () => {
+      it("valid credentials", async () => {
+        // The username and password are just a mocked login. Do NOT add real passwords here.
+        const username = "username";
+        const password = "Password123!";
         fillForm(username, password, getByLabelText, getByText);
         await checkSuccessfulLoginAndRedirect(
           username,
@@ -62,57 +52,68 @@ describe("Login component", () => {
           mockHistoryPush,
         );
       });
-    },
-  );
-
-  describe.each(noLoginOrSubmitScenarios)(
-    "should not login or submit form with",
-    (testTitle, username, password, expectedError1, expectedError2) => {
-      beforeEach(() => {
-        const mockLoginFunction = jest
-          .fn()
-          .mockResolvedValue({ token: "fakeToken" });
-        ({
-          getByLabelText,
-          getByText,
-          findAllByText,
-          mockLogin,
-          mockHistoryPush,
-        } = setup(mockLoginFunction));
-      });
-
-      it(testTitle, async () => {
-        fillForm(username, password, getByLabelText, getByText);
-        await checkErrorMessages(findAllByText, expectedError1, expectedError2);
-        await checkNoLoginOrRedirect(mockLogin, mockHistoryPush);
-      });
-    },
-  );
-
-  describe("should submit the form but not login", () => {
-    beforeEach(() => {
-      const mockLoginFunction = jest
-        .fn()
-        .mockRejectedValue(new Error("Error logging into app"));
-      ({
-        getByLabelText,
-        getByText,
-        findAllByText,
-        mockLogin,
-        mockHistoryPush,
-      } = setup(mockLoginFunction));
     });
 
+    describe.each(noLoginOrSubmitScenarios)(
+      "should not login or submit form with",
+      (testTitle, username, password, expectedError1, expectedError2) => {
+        it(testTitle, async () => {
+          fillForm(username, password, getByLabelText, getByText);
+          await checkErrorMessages(findByText, expectedError1, expectedError2);
+          await checkNoLoginOrRedirect(mockLogin, mockHistoryPush);
+        });
+      },
+    );
+  });
+
+  describe("should submit the form but not login", () => {
     it("when a general error message is displayed", async () => {
-      fillForm("username", "Password1!", getByLabelText, getByText);
-      const errorMessages = await findAllByText(/Error logging into app/i);
-      expect(errorMessages).toHaveLength(1);
+      const username = "username";
+      const password = "Password1!";
+      const errorMessage = "Error logging into app.";
+
+      const mockLoginFunction = jest
+        .fn()
+        .mockRejectedValue(new Error(errorMessage));
+      ({ getByLabelText, getByText, findByText, mockLogin, mockHistoryPush } =
+        setup(mockLoginFunction));
+
+      fillForm(username, password, getByLabelText, getByText);
+      await checkErrorMessages(findByText, errorMessage);
       await checkLoginCalledButNoRedirect(
-        "username",
-        "Password1!",
+        username,
+        password,
         mockLogin,
         mockHistoryPush,
       );
+    });
+
+    it("with invalid credential", async () => {
+      const username = "invalid_username";
+      const password = "Invalid1$-password";
+
+      const mockLoginFunction = jest
+        .fn()
+        .mockRejectedValue(new Error(errorLoggingIntoApp));
+      ({ getByLabelText, getByText, findByText, mockLogin, mockHistoryPush } =
+        setup(mockLoginFunction));
+
+      fillForm(username, password, getByLabelText, getByText);
+      await checkErrorMessages(findByText, errorLoggingIntoApp);
+      await checkLoginCalledButNoRedirect(
+        username,
+        password,
+        mockLogin,
+        mockHistoryPush,
+      );
+    });
+  });
+
+  describe("should render correctly", () => {
+    it("in snapshot comparison after setup", () => {
+      const { asFragment: fragment } = setup(mockLogin);
+      asFragment = fragment;
+      expect(asFragment()).toMatchSnapshot();
     });
   });
 });

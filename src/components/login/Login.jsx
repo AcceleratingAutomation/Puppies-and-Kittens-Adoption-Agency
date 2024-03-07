@@ -6,7 +6,8 @@ import { updateAppSettings } from "../../utils/utils";
 import { login } from "../../server/apiService/authApi";
 import LoginForm from "./LoginForm";
 import {
-  required,
+  usernameRequired,
+  passwordRequired,
   atLeast8Characters,
   atLeastOneLowercaseLetter,
   atLeastOneUppercaseLetter,
@@ -15,9 +16,9 @@ import {
 } from "../../accessibility/login/loginText";
 
 const LoginSchema = Yup.object().shape({
-  username: Yup.string().required(required),
+  username: Yup.string().required(usernameRequired),
   password: Yup.string()
-    .required(required)
+    .required(passwordRequired)
     .min(8, atLeast8Characters)
     .matches(/[a-z]/, atLeastOneLowercaseLetter)
     .matches(/[A-Z]/, atLeastOneUppercaseLetter)
