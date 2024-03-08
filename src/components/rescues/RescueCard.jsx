@@ -13,7 +13,6 @@ function RescueCard({
   type,
   gender,
   breed,
-  directory,
   isFavorite,
   onAddFavorite,
   onRemoveFavorite,
@@ -29,7 +28,7 @@ function RescueCard({
 
   return (
     <SummaryCard
-      directory={directory}
+      directory={rescue.type.toLowerCase()}
       type={type}
       id={rescue.id}
       image={rescue.image}
@@ -71,7 +70,6 @@ function RescueCard({
 }
 
 RescueCard.defaultProps = {
-  directory: "", // TODO
   onAddFavorite: () => {}, // TODO
 };
 
@@ -82,7 +80,6 @@ RescueCard.propTypes = {
   type: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,
-  directory: PropTypes.string,
   isFavorite: PropTypes.bool.isRequired,
   onAddFavorite: PropTypes.func,
   onRemoveFavorite: PropTypes.func.isRequired,

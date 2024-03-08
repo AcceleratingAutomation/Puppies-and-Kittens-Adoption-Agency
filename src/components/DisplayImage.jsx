@@ -35,7 +35,7 @@ function DisplayImage({ directory, image, type, name, width, height }) {
       src={
         image && directory
           ? getImageUrl(directory, image)
-          : getImageUrl("placeholders", getPlaceholderImage(type))
+          : getImageUrl(directory, `placeholder-${getPlaceholderImage(type)}`)
       }
       alt={
         image && directory

@@ -25,6 +25,7 @@ export default function SummaryCard({
   image,
   name,
   viewComponentDetailsUrl,
+  directory = "users",
 }) {
   const classes = useStyles();
   const history = useHistory();
@@ -37,7 +38,7 @@ export default function SummaryCard({
     <Paper elevation={2} className={`rescue ${classes.summaryCard}`}>
       <DisplayImage
         type={type}
-        directory={type.toLowerCase()}
+        directory={directory}
         id={id}
         image={image}
         name={name}
@@ -69,4 +70,5 @@ SummaryCard.propTypes = {
   image: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   viewComponentDetailsUrl: PropTypes.string.isRequired,
+  directory: PropTypes.string.isRequired,
 };

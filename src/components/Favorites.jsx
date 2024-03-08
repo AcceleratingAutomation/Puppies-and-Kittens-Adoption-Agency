@@ -52,6 +52,7 @@ export default function Favorites() {
               key={rescue.id}
               id={rescue.id}
               image={rescue.image}
+              directory={rescue.type.toLowerCase()}
               name={rescue.name}
               type={rescue.type}
               gender={rescue.gender}
