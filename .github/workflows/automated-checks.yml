@@ -84,7 +84,7 @@ jobs:
       - name: Upload Jest coverage report
         uses: actions/upload-artifact@v4
         with:
-          name: test-coverage
+          name: coverage
           path: coverage/
 
   playwright-visual-tests:
