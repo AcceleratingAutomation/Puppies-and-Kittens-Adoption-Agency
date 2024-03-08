@@ -84,7 +84,7 @@ exports.deleteData = (id, db) =>
       // Find the item with the given id
       const itemIndex = items.findIndex((item) => item.id === id);
       if (itemIndex === -1) {
-        reject(new Error("Item not found"));
+        resolve(false); // Resolve with false when item is not found
         return;
       }
 
@@ -102,7 +102,7 @@ exports.deleteData = (id, db) =>
             return;
           }
 
-          resolve();
+          resolve(true); // Resolve with true when deletion is successful
         },
       );
     });

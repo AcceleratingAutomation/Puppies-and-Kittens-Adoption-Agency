@@ -145,7 +145,7 @@ handlers.forEach(({ type, name, handler, permissions }) => {
     });
 
     describe("delete sends", () => {
-      test("200 and data if authorized", () => {
+      test("200 and data if authorized", async () => {
         const req = httpMocks.createRequest({
           headers: {
             authorization: "Bearer token",
@@ -156,36 +156,18 @@ handlers.forEach(({ type, name, handler, permissions }) => {
         });
         const res = httpMocks.createResponse();
         getAudienceFromToken.mockReturnValue([permissions.delete]);
-        deleteData.mockResolvedValue("data");
+        deleteData.mockResolvedValue(true);
         generateToken.mockResolvedValue("newToken");
 
-        return handler.delete(req, res).then(() => {
-          expect(res.statusCode).toBe(200);
-          expect(res._getData()).toEqual({
-            [type]: "data",
-            token: "newToken",
-          });
+        await handler.delete(req, res);
+        expect(res.statusCode).toBe(200);
+        expect(res._getData()).toEqual({
+          message: `Successfully deleted ${type}`,
+          token: "newToken",
         });
       });
 
-      test("400 if not authorized", () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-          params: {
-            id: "1",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([]); // No permissions
-
-        return handler.delete(req, res).then(() => {
-          expect(res.statusCode).toBe(403);
-        });
-      });
-
-      test("404 if deletion is successful but returns an empty object", () => {
+      test("404 if not found", async () => {
         const req = httpMocks.createRequest({
           headers: {
             authorization: "Bearer token",
@@ -196,14 +178,16 @@ handlers.forEach(({ type, name, handler, permissions }) => {
         });
         const res = httpMocks.createResponse();
         getAudienceFromToken.mockReturnValue([permissions.delete]);
-        deleteData.mockResolvedValue({});
+        deleteData.mockResolvedValue(false);
 
-        return handler.delete(req, res).then(() => {
-          expect(res.statusCode).toBe(404);
+        await handler.delete(req, res);
+        expect(res.statusCode).toBe(404);
+        expect(res._getData()).toEqual({
+          message: `Cannot delete this ${type}`,
         });
       });
 
-      test("403 if not authorized", () => {
+      test("403 if not authorized", async () => {
         const req = httpMocks.createRequest({
           headers: {
             authorization: "Bearer token",
@@ -215,8 +199,11 @@ handlers.forEach(({ type, name, handler, permissions }) => {
         const res = httpMocks.createResponse();
         getAudienceFromToken.mockReturnValue([]); // No permissions
 
-        return handler.delete(req, res).then(() => {
-          expect(res.statusCode).toBe(403);
+        await handler.delete(req, res);
+        expect(res.statusCode).toBe(403);
+        expect(res._getData()).toEqual({
+          message: `Not authorized to delete ${type}`,
+          token: "token",
         });
       });
     });

@@ -39,17 +39,20 @@ const createHandlers = (type, db, permissions) => ({
     return new Promise((resolve, reject) => {
       if (getAudienceFromToken(token).includes(permissions.delete)) {
         deleteData(req.params.id, db)
-          .then((data) => {
-            if (!data || Object.keys(data).length === 0) {
-              res.status(404).send({ message: `Cannot delete this ${type}` });
-              resolve();
-            } else {
+          .then((result) => {
+            if (result === true) {
               generateToken(token, null)
                 .then((newToken) => {
-                  res.status(200).send({ [type]: data, token: newToken });
+                  res.status(200).send({
+                    message: `Successfully deleted ${type}`,
+                    token: newToken,
+                  });
                   resolve();
                 })
                 .catch(reject);
+            } else {
+              res.status(404).send({ message: `Cannot delete this ${type}` });
+              resolve();
             }
           })
           .catch(reject);
