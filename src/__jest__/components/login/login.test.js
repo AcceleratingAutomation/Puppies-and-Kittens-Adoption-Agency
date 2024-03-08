@@ -70,7 +70,7 @@ describe("Login component", () => {
     it("when a general error message is displayed", async () => {
       const username = "username";
       const password = "Password1!";
-      const errorMessage = "Error logging into app.";
+      const errorMessage = "Error logging into app: Failed to fetch";
 
       const mockLoginFunction = jest
         .fn()

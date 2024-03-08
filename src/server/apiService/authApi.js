@@ -12,7 +12,7 @@ export const login = (username, password) => {
   return fetch(loginUrl, { headers, method: "POST" })
     .then((res) => res.json())
     .catch((err) => {
-      throw new Error(`Error logging into app ${err.message}`);
+      throw new Error(`Error logging into app: ${err.message}`);
     });
 };
 

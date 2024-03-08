@@ -295,7 +295,7 @@ exports[`Login component should submit the form but not login when a general err
 <div
   style="color: red;"
 >
-  Error logging into app.
+  Error logging into app: Failed to fetch
 </div>
 `;
 
