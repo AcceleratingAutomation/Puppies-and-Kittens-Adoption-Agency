@@ -1,22 +1,46 @@
 const baseServerUrl = "http://localhost:5000";
-export const adopterDetailsEndpoint = "v1/adopters/:id";
-export const adoptersEndpoint = "/v1/adopters";
-export const favoritesEndpoint = "/v1/favorites";
-export const fosterDetailsEndpoint = "/v1/fosters:id";
-export const fostersEndpoint = "/v1/fosters";
-export const loginEndpoint = "/v1/login";
-export const logoutEndpoint = "/v1/logout";
-export const rescueDetailsEndpoint = "/v1/rescues/:id";
-export const rescuesEndpoint = "/v1/rescues";
-export const userDetailsEndpoint = "/v1/users/:id";
-export const usersEndpoint = "/v1/users";
-export const veterinarianDetailsEndpoint = "/v1/veterinarians/:id";
-export const veterinariansEndpoint = "/v1/veterinarians";
-export const adoptersUrl = `${baseServerUrl}${adoptersEndpoint}`;
-export const favoritesUrl = `${baseServerUrl}${favoritesEndpoint}`;
-export const fostersUrl = `${baseServerUrl}${fostersEndpoint}`;
-export const loginUrl = `${baseServerUrl}${loginEndpoint}`;
-export const logoutUrl = `${baseServerUrl}${logoutEndpoint}`;
-export const rescuesUrl = `${baseServerUrl}${rescuesEndpoint}`;
-export const usersUrl = `${baseServerUrl}${usersEndpoint}`;
-export const veterinariansUrl = `${baseServerUrl}${veterinariansEndpoint}`;
+const adopterDetailsEndpoint = "v1/adopters/:id";
+const adoptersEndpoint = "/v1/adopters";
+const favoritesEndpoint = "/v1/favorites";
+const fosterDetailsEndpoint = "/v1/fosters:id";
+const fostersEndpoint = "/v1/fosters";
+const loginEndpoint = "/v1/login";
+const logoutEndpoint = "/v1/logout";
+const rescueDetailsEndpoint = "/v1/rescues/:id";
+const rescuesEndpoint = "/v1/rescues";
+const userDetailsEndpoint = "/v1/users/:id";
+const usersEndpoint = "/v1/users";
+const veterinarianDetailsEndpoint = "/v1/veterinarians/:id";
+const veterinariansEndpoint = "/v1/veterinarians";
+const adoptersUrl = `${baseServerUrl}${adoptersEndpoint}`;
+const favoritesUrl = `${baseServerUrl}${favoritesEndpoint}`;
+const fostersUrl = `${baseServerUrl}${fostersEndpoint}`;
+const loginUrl = `${baseServerUrl}${loginEndpoint}`;
+const logoutUrl = `${baseServerUrl}${logoutEndpoint}`;
+const rescuesUrl = `${baseServerUrl}${rescuesEndpoint}`;
+const usersUrl = `${baseServerUrl}${usersEndpoint}`;
+const veterinariansUrl = `${baseServerUrl}${veterinariansEndpoint}`;
+
+module.exports = {
+  adopterDetailsEndpoint,
+  adoptersEndpoint,
+  favoritesEndpoint,
+  fosterDetailsEndpoint,
+  fostersEndpoint,
+  loginEndpoint,
+  logoutEndpoint,
+  rescueDetailsEndpoint,
+  rescuesEndpoint,
+  userDetailsEndpoint,
+  usersEndpoint,
+  veterinarianDetailsEndpoint,
+  veterinariansEndpoint,
+  adoptersUrl,
+  favoritesUrl,
+  fostersUrl,
+  loginUrl,
+  logoutUrl,
+  rescuesUrl,
+  usersUrl,
+  veterinariansUrl,
+};
