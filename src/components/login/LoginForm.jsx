@@ -100,8 +100,8 @@ function LoginForm({ isSubmitting }) {
         >
           <Grid item xs={12} sm={4}>
             <DisplayImage
-              directory="placeholders"
-              id="puppy"
+              directory="dog"
+              image="placeholder-puppy"
               name="Playful Puppy"
               width="15rem"
               height="15rem"
@@ -109,8 +109,8 @@ function LoginForm({ isSubmitting }) {
           </Grid>
           <Grid item xs={12} sm={4}>
             <DisplayImage
-              directory="placeholders"
-              id="kitten"
+              directory="cat"
+              image="placeholder-kitten"
               name="Playful Kitten"
               width="15rem"
               height="15rem"

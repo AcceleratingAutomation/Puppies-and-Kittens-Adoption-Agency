@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import { getImageUrl } from "../utils/componentUtils";
 
 const getPlaceholderImage = (type) => {
-  switch (type) {
-    case "Dog":
+  switch (type.toLowerCase()) {
+    case "dog":
       return "puppy";
-    case "Cat":
+    case "cat":
       return "kitten";
     default:
       return "users";
@@ -58,7 +58,7 @@ DisplayImage.defaultProps = {
 
 DisplayImage.propTypes = {
   directory: PropTypes.string.isRequired,
-  image: PropTypes.number.isRequired,
+  image: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
