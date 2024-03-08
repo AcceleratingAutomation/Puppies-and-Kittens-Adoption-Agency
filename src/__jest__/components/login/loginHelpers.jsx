@@ -12,6 +12,7 @@ import {
   passwordText,
   usernameText,
 } from "../../../accessibility/login/loginText";
+import { rescuesEndpoint } from "../../../server/apiService/apiConfig";
 
 /**
  * Sets up the test environment for the Login component.
@@ -48,7 +49,7 @@ export const fillForm = (username, password, getByLabelText, getByText) => {
 
 /**
  * Checks that the mock login function was called with the provided valid username and password.
- * Also, checks that after successful validation the mock history push function was called with "/v1/rescues".
+ * Also, checks that after successful validation the mock history push function was called.
  * @param {string} username - The expected username.
  * @param {string} password - The expected password.
  * @param {Function} mockLogin - The mock login function.
@@ -63,7 +64,7 @@ export const checkSuccessfulLoginAndRedirect = async (
   await act(async () => {
     await waitFor(() => {
       expect(mockLogin).toHaveBeenCalledWith(username, password);
-      expect(mockHistoryPush).toHaveBeenCalledWith("/v1/rescues");
+      expect(mockHistoryPush).toHaveBeenCalledWith(rescuesEndpoint);
     });
   });
 };

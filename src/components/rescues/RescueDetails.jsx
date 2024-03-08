@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { AppHeader, tabs } from "../header/AppHeader";
 import Loading from "../Loading";
-import { rescueDetailsUrl } from "../../server/apiService/apiConfig";
+import { rescuesEndpoint, rescuesUrl } from "../../server/apiService/apiConfig";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import DetailsButtons from "../DetailsButtons";
 import RescueDetailsLayout from "./RescueDetailsLayout";
@@ -29,7 +29,7 @@ export default function RescueDetails() {
   const tabValue = tabs.findIndex((tab) => tab.label === "Rescues");
 
   useEffect(() => {
-    fetchDetails(rescueDetailsUrl, id, dispatch, "setRescueDetails", "rescues");
+    fetchDetails(rescuesUrl, id, dispatch, "setRescueDetails", "rescues");
   }, [id, dispatch]);
 
   if (state.loading || !state.rescueDetails) {
@@ -60,16 +60,10 @@ export default function RescueDetails() {
         <RescueDetailsLayout rescue={state.rescueDetails} />
         <DetailsButtons
           rescue={state.rescueDetails}
-          onBack={() => navigateBack(history, "/v1/rescues")}
-          onEdit={() => navigateToEdit(history, id, "/v1/rescue")}
+          onBack={() => navigateBack(history, rescuesEndpoint)}
+          onEdit={() => navigateToEdit(history, id, rescuesEndpoint)}
           onDelete={() =>
-            deleteDetails(
-              rescueDetailsUrl,
-              id,
-              history,
-              dispatch,
-              "/v1/rescues",
-            )
+            deleteDetails(rescuesUrl, id, history, dispatch, rescuesEndpoint)
           }
           openDialog={state.openDialog}
           dispatch={dispatch}

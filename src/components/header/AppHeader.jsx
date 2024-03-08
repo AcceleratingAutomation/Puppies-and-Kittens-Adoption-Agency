@@ -6,6 +6,14 @@ import PropTypes from "prop-types";
 import DrawerComponent from "./DrawerComponent";
 import TabsComponent from "./TabsComponent";
 import { handleLogout } from "../../server/apiService/authApi";
+import {
+  adoptersEndpoint,
+  favoritesEndpoint,
+  fostersEndpoint,
+  rescuesEndpoint,
+  usersEndpoint,
+  veterinariansEndpoint,
+} from "../../server/apiService/apiConfig";
 
 const initialState = {
   anchorEl: null,
@@ -24,12 +32,12 @@ function reducer(state, action) {
 }
 
 export const tabs = [
-  { route: "/v1/favorites", label: "Favorites" },
-  { route: "/v1/rescues", label: "Rescues" },
-  { route: "/v1/adopters", label: "Adopters" },
-  { route: "/v1/fosters", label: "Fosters" },
-  { route: "/v1/veterinarians", label: "Veterinarians" },
-  { route: "/v1/users", label: "Users" },
+  { route: favoritesEndpoint, label: "Favorites" },
+  { route: rescuesEndpoint, label: "Rescues" },
+  { route: adoptersEndpoint, label: "Adopters" },
+  { route: fostersEndpoint, label: "Fosters" },
+  { route: veterinariansEndpoint, label: "Veterinarians" },
+  { route: usersEndpoint, label: "Users" },
 ];
 
 export function AppHeader({ tabValue }) {

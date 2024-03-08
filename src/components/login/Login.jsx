@@ -14,6 +14,7 @@ import {
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
 } from "../../accessibility/login/loginText";
+import { rescuesEndpoint } from "../../server/apiService/apiConfig";
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required(usernameRequired),
@@ -46,7 +47,7 @@ export default function Login() {
           setErrors({ login: json.message });
         } else {
           updateAppSettings(json.token);
-          history.push("/v1/rescues");
+          history.push(rescuesEndpoint);
         }
         if (isMounted.current) {
           setSubmitting(false);

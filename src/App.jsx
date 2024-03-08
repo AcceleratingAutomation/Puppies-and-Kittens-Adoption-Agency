@@ -10,6 +10,15 @@ import Veterinarians from "./components/veterinarians/Veterinarians";
 import Fosters from "./components/fosters/Fosters";
 import Adopters from "./components/adopters/Adopters";
 import { FavoritesProvider } from "./contexts/favoritesContext";
+import {
+  adoptersEndpoint,
+  favoritesEndpoint,
+  fostersEndpoint,
+  rescueDetailsEndpoint,
+  rescuesEndpoint,
+  usersEndpoint,
+  veterinariansEndpoint,
+} from "./server/apiService/apiConfig";
 
 export default function App() {
   return (
@@ -17,25 +26,25 @@ export default function App() {
       <div className="app">
         <Router>
           <Switch>
-            <Route exact path="/v1/rescues">
+            <Route exact path={rescuesEndpoint}>
               <Rescues />
             </Route>
-            <Route exact path="/v1/rescue/:id">
+            <Route exact path={rescueDetailsEndpoint}>
               <RescueDetails />
             </Route>
-            <Route exact path="/v1/users">
+            <Route exact path={usersEndpoint}>
               <Users />
             </Route>
-            <Route exact path="/v1/favorites">
+            <Route exact path={favoritesEndpoint}>
               <Favorites />
             </Route>
-            <Route exact path="/v1/veterinarians">
+            <Route exact path={veterinariansEndpoint}>
               <Veterinarians />
             </Route>
-            <Route exact path="/v1/fosters">
+            <Route exact path={fostersEndpoint}>
               <Fosters />
             </Route>
-            <Route exact path="/v1/adopters">
+            <Route exact path={adoptersEndpoint}>
               <Adopters />
             </Route>
             <Route path="/">

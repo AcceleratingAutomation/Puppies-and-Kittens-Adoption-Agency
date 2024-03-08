@@ -10,18 +10,26 @@ const fostersRouter = require("./routes/fosters");
 const veterinariansRouter = require("./routes/veterinarians");
 const usersRouter = require("./routes/users");
 const authenticationRouter = require("./routes/authentication");
+const {
+  favoritesEndpoint,
+  rescuesEndpoint,
+  adoptersEndpoint,
+  fostersEndpoint,
+  veterinariansEndpoint,
+  usersEndpoint,
+} = require("./apiService/apiConfig");
 
 const app = express();
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cors());
 
-app.use("/v1/favorites", favoritesRouter);
-app.use("/v1/rescues", rescuesRouter);
-app.use("/v1/adopters", adoptersRouter);
-app.use("/v1/fosters", fostersRouter);
-app.use("/v1/veterinarians", veterinariansRouter);
-app.use("/v1/users", usersRouter);
+app.use(favoritesEndpoint, favoritesRouter);
+app.use(rescuesEndpoint, rescuesRouter);
+app.use(adoptersEndpoint, adoptersRouter);
+app.use(fostersEndpoint, fostersRouter);
+app.use(veterinariansEndpoint, veterinariansRouter);
+app.use(usersEndpoint, usersRouter);
 app.use("/v1", authenticationRouter);
 
 // Health Check

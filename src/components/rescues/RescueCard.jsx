@@ -5,6 +5,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import "../../styles.css";
 import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
+import { rescuesEndpoint } from "../../server/apiService/apiConfig";
 
 function RescueCard({
   name,
@@ -33,7 +34,7 @@ function RescueCard({
       id={rescue.id}
       image={rescue.image}
       name={rescue.name}
-      viewComponentDetailsUrl={`/v1/rescue/${rescue.id}`}
+      viewComponentDetailsUrl={`${rescuesEndpoint}/${rescue.id}`}
     >
       <Grid item xs={12}>
         <Typography variant="h4">{rescue.name}</Typography>
