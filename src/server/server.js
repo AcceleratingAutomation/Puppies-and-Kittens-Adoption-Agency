@@ -30,7 +30,7 @@ app.use(adoptersEndpoint, adoptersRouter);
 app.use(fostersEndpoint, fostersRouter);
 app.use(veterinariansEndpoint, veterinariansRouter);
 app.use(usersEndpoint, usersRouter);
-app.use("/v1", authenticationRouter);
+app.use("", authenticationRouter);
 
 // Health Check
 app.get("/health", (req, res) => {
