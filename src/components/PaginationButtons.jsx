@@ -19,7 +19,7 @@ function PaginationButtons({ page, setPage, dataLength }) {
         style={{ margin: "0.625rem" }}
         variant="contained"
         color="primary"
-        size="small"
+        size="large"
         onClick={() => setPage(page + 1)}
         disabled={(page + 1) * 20 >= dataLength}
       >
