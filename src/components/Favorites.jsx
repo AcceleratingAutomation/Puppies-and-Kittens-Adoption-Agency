@@ -62,7 +62,7 @@ export default function Favorites() {
                 gender={rescue.gender}
                 breed={rescue.breed}
                 isFavorite
-                onRemoveFavorite={(handleRemoveFavorite, page)}
+                onRemoveFavorite={handleRemoveFavorite}
               />
             ))}
         </Grid>

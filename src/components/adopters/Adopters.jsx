@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Grid } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
@@ -8,10 +8,12 @@ import fetchData from "../../server/apiService/cardApi";
 import AdopterCard from "./AdopterCard";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
+import PaginationButtons from "../PaginationButtons";
 
 export default function Adopters() {
   const { state, dispatch } = useContext(FavoritesContext);
   const tabValue = tabs.findIndex((tab) => tab.label === "Adopters");
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     fetchData(adoptersUrl)
@@ -33,17 +35,26 @@ export default function Adopters() {
   return (
     <div className="content">
       <AppHeader tabValue={tabValue} />
-      <Grid item container justify="center">
-        {state.adopters.map((adopter) => (
-          <AdopterCard
-            key={adopter.id}
-            image={adopter.image}
-            displayName={adopter.displayName}
-            email={adopter.email}
-            numHouseholdPets={adopter.numHouseholdPets}
-            isAdopting={adopter.isAdopting}
+      <Grid container direction="column" alignItems="center">
+        <Grid item container direction="row" wrap="wrap" justify="center">
+          {state.adopters.slice(page * 20, (page + 1) * 20).map((adopter) => (
+            <AdopterCard
+              key={adopter.id}
+              image={adopter.image}
+              displayName={adopter.displayName}
+              email={adopter.email}
+              numHouseholdPets={adopter.numHouseholdPets}
+              isAdopting={adopter.isAdopting}
+            />
+          ))}
+        </Grid>
+        <Grid item>
+          <PaginationButtons
+            page={page}
+            setPage={setPage}
+            dataLength={state.adopters.length}
           />
-        ))}
+        </Grid>
       </Grid>
     </div>
   );

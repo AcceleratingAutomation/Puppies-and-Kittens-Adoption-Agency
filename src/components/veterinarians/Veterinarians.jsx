@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Grid } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
@@ -8,10 +8,12 @@ import { veterinariansUrl } from "../../server/apiService/apiConfig";
 import fetchData from "../../server/apiService/cardApi";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
+import PaginationButtons from "../PaginationButtons";
 
 export default function Veterinarians() {
   const { state, dispatch } = useContext(FavoritesContext);
   const tabValue = tabs.findIndex((tab) => tab.label === "Veterinarians");
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     fetchData(veterinariansUrl)
@@ -36,18 +38,29 @@ export default function Veterinarians() {
   return (
     <div className="content">
       <AppHeader tabValue={tabValue} />
-      <Grid item container justify="center">
-        {state.veterinarians.map((veterinarian) => (
-          <VeterinarianCard
-            key={veterinarian.id}
-            image={veterinarian.image}
-            displayName={veterinarian.displayName}
-            email={veterinarian.email}
-            numCurrentRescues={veterinarian.numCurrentRescues}
-            numTotalRescues={veterinarian.numTotalRescues}
-            isAccepting={veterinarian.isAccepting}
+      <Grid container direction="column" alignItems="center">
+        <Grid item container direction="row" wrap="wrap" justify="center">
+          {state.veterinarians
+            .slice(page * 20, (page + 1) * 20)
+            .map((veterinarian) => (
+              <VeterinarianCard
+                key={veterinarian.id}
+                image={veterinarian.image}
+                displayName={veterinarian.displayName}
+                email={veterinarian.email}
+                numCurrentRescues={veterinarian.numCurrentRescues}
+                numTotalRescues={veterinarian.numTotalRescues}
+                isAccepting={veterinarian.isAccepting}
+              />
+            ))}
+        </Grid>
+        <Grid item>
+          <PaginationButtons
+            page={page}
+            setPage={setPage}
+            dataLength={state.veterinarians.length}
           />
-        ))}
+        </Grid>
       </Grid>
     </div>
   );
