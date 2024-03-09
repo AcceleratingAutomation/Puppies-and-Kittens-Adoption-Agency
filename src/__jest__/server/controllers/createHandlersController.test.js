@@ -11,6 +11,7 @@ const {
 const {
   getDetails,
   getAllData,
+  getAllDataByType,
   getAudienceFromToken,
   generateToken,
   deleteData,
@@ -29,6 +30,8 @@ const handlers = [
       delete: Constants.DELETE_ADOPTER,
       showDetails: Constants.SHOW_ADOPTER_DETAILS,
     },
+    dbType: "Adopter",
+    useTypeFilter: true,
   },
   {
     type: "fosters",
@@ -39,6 +42,8 @@ const handlers = [
       delete: Constants.DELETE_FOSTER,
       showDetails: Constants.SHOW_FOSTER_DETAILS,
     },
+    dbType: "Foster",
+    useTypeFilter: true,
   },
   {
     type: "rescues",
@@ -69,221 +74,223 @@ const handlers = [
       delete: Constants.DELETE_VETERINARIAN,
       showDetails: Constants.SHOW_VETERINARIAN_DETAILS,
     },
+    dbType: "Veterinarian",
+    useTypeFilter: true,
   },
 ];
 
-handlers.forEach(({ type, name, handler, permissions }) => {
-  describe(name, () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-    });
+handlers.forEach(
+  ({ type, name, handler, permissions, dbType, useTypeFilter = false }) => {
+    describe(name, () => {
+      beforeEach(() => {
+        jest.clearAllMocks();
+      });
 
-    describe("getAll sends", () => {
-      test("200 and data if authorized", () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([permissions.read]);
-        getAllData.mockResolvedValue(["data"]);
-        generateToken.mockResolvedValue("newToken");
+      describe("getAll sends", () => {
+        test("200 and data if authorized", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([permissions.read]);
+          if (useTypeFilter) {
+            getAllDataByType.mockResolvedValue(["data"], dbType);
+          } else {
+            getAllData.mockResolvedValue(["data"]);
+          }
+          generateToken.mockResolvedValue("newToken");
 
-        return handler.getAll(req, res).then(() => {
+          await handler.getAll(req, res);
           expect(res.statusCode).toBe(200);
           expect(res._getData()).toEqual({
             [type]: ["data"],
             token: "newToken",
           });
         });
-      });
 
-      test("500 if data retrieval fails", () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([permissions.read]);
-        getAllData.mockRejectedValue(new Error("Database error"));
+        test("500 if data retrieval fails", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([permissions.read]);
+          getAllData.mockRejectedValue(new Error("Database error"));
 
-        return handler.getAll(req, res).then(() => {
+          await handler.getAll(req, res);
           expect(res.statusCode).toBe(500);
         });
-      });
 
-      test("500 and empty data if data retrieval is successful but returns an empty array", async () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
+        test("500 and empty data if data retrieval is successful but returns an empty array", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([permissions.read]);
+          getAllData.mockResolvedValue([]);
+          generateToken.mockResolvedValue("token");
+
+          await handler.getAll(req, res);
+          expect(res.statusCode).toBe(500);
+          expect(res._getData()).toEqual({ [type]: [], token: "token" });
         });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([permissions.read]);
-        getAllData.mockResolvedValue([]);
-        generateToken.mockResolvedValue("token");
 
-        await handler.getAll(req, res);
-        expect(res.statusCode).toBe(500);
-        expect(res._getData()).toEqual({ [type]: [], token: "token" });
-      });
+        test("403 if not authorized", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([]); // No permissions
 
-      test("403 if not authorized", async () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([]); // No permissions
-
-        await handler.getAll(req, res);
-        expect(res.statusCode).toBe(403);
-      });
-    });
-
-    describe("delete sends", () => {
-      test("200 and data if authorized", async () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-          params: {
-            id: "1",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([permissions.delete]);
-        deleteData.mockResolvedValue(true);
-        generateToken.mockResolvedValue("newToken");
-
-        await handler.delete(req, res);
-        expect(res.statusCode).toBe(200);
-        expect(res._getData()).toEqual({
-          message: `Successfully deleted ${type}`,
-          token: "newToken",
+          await handler.getAll(req, res);
+          expect(res.statusCode).toBe(403);
         });
       });
 
-      test("404 if not found", async () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-          params: {
-            id: "1",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([permissions.delete]);
-        deleteData.mockResolvedValue(false);
+      describe("delete sends", () => {
+        test("200 and data if authorized", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+            params: {
+              id: "1",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([permissions.delete]);
+          deleteData.mockResolvedValue(true);
+          generateToken.mockResolvedValue("newToken");
 
-        await handler.delete(req, res);
-        expect(res.statusCode).toBe(404);
-        expect(res._getData()).toEqual({
-          message: `Cannot delete this ${type}`,
+          await handler.delete(req, res);
+          expect(res.statusCode).toBe(200);
+          expect(res._getData()).toEqual({
+            message: `Successfully deleted ${type}`,
+            token: "newToken",
+          });
+        });
+
+        test("404 if not found", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+            params: {
+              id: "1",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([permissions.delete]);
+          deleteData.mockResolvedValue(false);
+
+          await handler.delete(req, res);
+          expect(res.statusCode).toBe(404);
+          expect(res._getData()).toEqual({
+            message: `Cannot delete this ${type}`,
+          });
+        });
+
+        test("403 if not authorized", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+            params: {
+              id: "1",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([]); // No permissions
+
+          await handler.delete(req, res);
+          expect(res.statusCode).toBe(403);
+          expect(res._getData()).toEqual({
+            message: `Not authorized to delete ${type}`,
+            token: "token",
+          });
         });
       });
 
-      test("403 if not authorized", async () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-          params: {
-            id: "1",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([]); // No permissions
+      describe("getDetails sends", () => {
+        test("200 and data if authorized", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+            params: {
+              id: "1",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([permissions.showDetails]);
+          getDetails.mockResolvedValue("data");
+          generateToken.mockResolvedValue("newToken");
 
-        await handler.delete(req, res);
-        expect(res.statusCode).toBe(403);
-        expect(res._getData()).toEqual({
-          message: `Not authorized to delete ${type}`,
-          token: "token",
-        });
-      });
-    });
-
-    describe("getDetails sends", () => {
-      test("200 and data if authorized", () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-          params: {
-            id: "1",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([permissions.showDetails]);
-        getDetails.mockResolvedValue("data");
-        generateToken.mockResolvedValue("newToken");
-
-        return handler.getDetails(req, res).then(() => {
+          await handler.getDetails(req, res);
           expect(res.statusCode).toBe(200);
           expect(res._getData()).toEqual({
             [type]: "data",
             token: "newToken",
           });
         });
-      });
 
-      test("500 if data retrieval fails", () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-          params: {
-            id: "1",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([permissions.showDetails]);
-        getDetails.mockRejectedValue(new Error("Database error"));
+        test("500 if data retrieval fails", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+            params: {
+              id: "1",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([permissions.showDetails]);
+          getDetails.mockRejectedValue(new Error("Database error"));
 
-        return handler.getDetails(req, res).then(() => {
+          await handler.getDetails(req, res);
           expect(res.statusCode).toBe(500);
         });
-      });
 
-      test("getDetails sends 404 if data retrieval is successful but returns an empty object", () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-          params: {
-            id: "1",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([permissions.showDetails]);
-        getDetails.mockResolvedValue({});
+        test("getDetails sends 404 if data retrieval is successful but returns an empty object", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+            params: {
+              id: "1",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([permissions.showDetails]);
+          getDetails.mockResolvedValue({});
 
-        return handler.getDetails(req, res).then(() => {
+          await handler.getDetails(req, res);
           expect(res.statusCode).toBe(404);
         });
-      });
 
-      test("403 if not authorized", () => {
-        const req = httpMocks.createRequest({
-          headers: {
-            authorization: "Bearer token",
-          },
-          params: {
-            id: "1",
-          },
-        });
-        const res = httpMocks.createResponse();
-        getAudienceFromToken.mockReturnValue([]); // No permissions
+        test("403 if not authorized", async () => {
+          const req = httpMocks.createRequest({
+            headers: {
+              authorization: "Bearer token",
+            },
+            params: {
+              id: "1",
+            },
+          });
+          const res = httpMocks.createResponse();
+          getAudienceFromToken.mockReturnValue([]); // No permissions
 
-        return handler.getDetails(req, res).then(() => {
+          await handler.getDetails(req, res);
           expect(res.statusCode).toBe(403);
         });
       });
     });
-  });
-});
+  },
+);

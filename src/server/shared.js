@@ -8,16 +8,10 @@ const Constants = require("./constants");
 // Define database paths
 const usersDB = "./database/users.json";
 const rescuesDB = "./database/rescues.json";
-const fostersDB = "./database/fosters.json";
-const adoptersDB = "./database/adopters.json";
-const veterinariansDB = "./database/veterinarians.json";
 
 // Export database paths
 exports.usersDB = usersDB;
 exports.rescuesDB = rescuesDB;
-exports.fostersDB = fostersDB;
-exports.adoptersDB = adoptersDB;
-exports.veterinariansDB = veterinariansDB;
 
 // Define helper functions
 const getUsernameFromToken = (token) => {
@@ -54,6 +48,15 @@ exports.getUserByUsername = getUserByUsername;
 exports.getAllData = async (db) => {
   try {
     return await jsonfile.readFile(db);
+  } catch (err) {
+    throw new Error(`Error reading data from ${db}: ${err}`);
+  }
+};
+
+exports.getAllDataByType = async (db, dbType) => {
+  try {
+    const allData = await jsonfile.readFile(db);
+    return allData.filter((data) => data.type === dbType);
   } catch (err) {
     throw new Error(`Error reading data from ${db}: ${err}`);
   }

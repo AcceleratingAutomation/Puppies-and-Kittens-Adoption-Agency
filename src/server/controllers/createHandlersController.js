@@ -1,23 +1,32 @@
 const {
   getDetails,
   getAllData,
+  getAllDataByType,
   getAudienceFromToken,
   generateToken,
   deleteData,
   rescuesDB,
-  adoptersDB,
-  fostersDB,
-  veterinariansDB,
   usersDB,
 } = require("../shared");
 const Constants = require("../constants");
 
-const createHandlers = (type, db, permissions) => ({
+const createHandlers = (
+  type,
+  db,
+  permissions,
+  dbType,
+  useTypeFilter = false,
+) => ({
   getAll: async (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
     try {
       if (getAudienceFromToken(token).includes(permissions.read)) {
-        const data = await getAllData(db);
+        let data;
+        if (useTypeFilter) {
+          data = await getAllDataByType(db, dbType);
+        } else {
+          data = await getAllData(db);
+        }
         if (data && data.length > 0) {
           const newToken = await generateToken(token, null);
           res.status(200).send({ [type]: data, token: newToken });
@@ -90,16 +99,28 @@ const createHandlers = (type, db, permissions) => ({
   },
 });
 
-exports.adopterHandlers = createHandlers("adopters", adoptersDB, {
-  read: Constants.SHOW_ADOPTERS,
-  delete: Constants.DELETE_ADOPTER,
-  showDetails: Constants.SHOW_ADOPTER_DETAILS,
-});
-exports.fosterHandlers = createHandlers("fosters", fostersDB, {
-  read: Constants.SHOW_FOSTERS,
-  delete: Constants.DELETE_FOSTER,
-  showDetails: Constants.SHOW_FOSTER_DETAILS,
-});
+exports.adopterHandlers = createHandlers(
+  "adopters",
+  usersDB,
+  {
+    read: Constants.SHOW_ADOPTERS,
+    delete: Constants.DELETE_ADOPTER,
+    showDetails: Constants.SHOW_ADOPTER_DETAILS,
+  },
+  "Adopter",
+  true,
+);
+exports.fosterHandlers = createHandlers(
+  "fosters",
+  usersDB,
+  {
+    read: Constants.SHOW_FOSTERS,
+    delete: Constants.DELETE_FOSTER,
+    showDetails: Constants.SHOW_FOSTER_DETAILS,
+  },
+  "Foster",
+  true,
+);
 exports.rescueHandlers = createHandlers("rescues", rescuesDB, {
   read: Constants.SHOW_RESCUES,
   delete: Constants.DELETE_RESCUE,
@@ -112,10 +133,12 @@ exports.userHandlers = createHandlers("users", usersDB, {
 });
 exports.veterinarianHandlers = createHandlers(
   "veterinarians",
-  veterinariansDB,
+  usersDB,
   {
     read: Constants.SHOW_VETERINARIANS,
     delete: Constants.DELETE_VETERINARIAN,
     showDetails: Constants.SHOW_VETERINARIAN_DETAILS,
   },
+  "Veterinarian",
+  true,
 );
