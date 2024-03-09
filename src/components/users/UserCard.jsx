@@ -3,6 +3,7 @@ import { Grid, Typography } from "@material-ui/core";
 import "../../styles.css";
 import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
+import { usersEndpoint } from "../../server/apiService/apiConfig";
 
 function UserCard({ username, id, role, favorite, image, email }) {
   const user = {
@@ -19,7 +20,7 @@ function UserCard({ username, id, role, favorite, image, email }) {
       type={user.role}
       image={user.image}
       name={user.username}
-      viewComponentDetailsUrl={`/v1/user/${user.id}`}
+      viewComponentDetailsUrl={`${usersEndpoint}/${user.id}`}
     >
       <Grid item xs={12}>
         <Typography variant="h4">{user.username}</Typography>

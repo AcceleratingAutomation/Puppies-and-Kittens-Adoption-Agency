@@ -3,6 +3,7 @@ import { Grid, Typography } from "@material-ui/core";
 import "../../styles.css";
 import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
+import { fostersEndpoint } from "../../server/apiService/apiConfig";
 
 function FosterCard({
   displayName,
@@ -28,7 +29,7 @@ function FosterCard({
       type="foster"
       image={foster.image}
       name={foster.displayName}
-      viewComponentDetailsUrl={`/v1/foster/${foster.id}`}
+      viewComponentDetailsUrl={`${fostersEndpoint}/${foster.id}`}
     >
       <Grid item xs={12}>
         <Typography variant="h4">{foster.displayName}</Typography>

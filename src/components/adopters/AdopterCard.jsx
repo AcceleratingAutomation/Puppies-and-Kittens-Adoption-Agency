@@ -3,6 +3,7 @@ import { Grid, Typography } from "@material-ui/core";
 import "../../styles.css";
 import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
+import { adoptersEndpoint } from "../../server/apiService/apiConfig";
 
 function AdopterCard({
   displayName,
@@ -26,7 +27,7 @@ function AdopterCard({
       type="adopter"
       image={adopter.image}
       name={adopter.displayName}
-      viewComponentDetailsUrl={`/v1/adopter/${adopter.id}`}
+      viewComponentDetailsUrl={`${adoptersEndpoint}/${adopter.id}`}
     >
       <Grid item xs={12}>
         <Typography variant="h4">{adopter.displayName}</Typography>
