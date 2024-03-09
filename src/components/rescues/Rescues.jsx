@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
@@ -19,6 +19,7 @@ import {
 } from "../../server/apiService/rescuesApi";
 import { rescuesUrl } from "../../server/apiService/apiConfig";
 import fetchData from "../../server/apiService/cardApi";
+import PaginationButtons from "../PaginationButtons";
 
 export default function Rescues() {
   const { state, dispatch } = useContext(FavoritesContext);
@@ -112,30 +113,11 @@ export default function Rescues() {
           {rescues}
         </Grid>
       </div>
-      <div>
-        <Grid item container justify="center">
-          <Button
-            style={{ margin: "0.625rem" }}
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={() => setPage(page - 1)}
-            disabled={page === 0}
-          >
-            Previous
-          </Button>
-          <Button
-            style={{ margin: "0.625rem" }}
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={() => setPage(page + 1)}
-            disabled={(page + 1) * 20 >= state.rescues.length}
-          >
-            Next
-          </Button>
-        </Grid>
-      </div>
+      <PaginationButtons
+        page={page}
+        setPage={setPage}
+        dataLength={state.rescues.length}
+      />
     </>
   );
 }
