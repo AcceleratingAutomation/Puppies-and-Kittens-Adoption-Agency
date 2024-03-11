@@ -40,6 +40,7 @@ export default function Adopters() {
           {state.adopters.slice(page * 20, (page + 1) * 20).map((adopter) => (
             <AdopterCard
               key={adopter.id}
+              id={adopter.id}
               image={adopter.image}
               displayName={adopter.displayName}
               email={adopter.email}

@@ -24,7 +24,9 @@ function AdopterCard({
 
   return (
     <SummaryCard
+      directory="users"
       type="adopter"
+      id={adopter.id}
       image={adopter.image}
       name={adopter.displayName}
       viewComponentDetailsUrl={`${adoptersEndpoint}/${adopter.id}`}
@@ -51,7 +53,7 @@ AdopterCard.propTypes = {
   id: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   numHouseholdPets: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isAdopting: PropTypes.bool.isRequired,
 };
 

@@ -7,7 +7,8 @@
     "firstName": "Member",
     "lastName": "User",
     "favorite": [],
-    "role": "member"
+    "role": "member",
+    "image": "placeholder-users"
   },
   {
     "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",

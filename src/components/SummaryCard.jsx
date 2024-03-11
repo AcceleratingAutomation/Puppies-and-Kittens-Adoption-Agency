@@ -67,7 +67,7 @@ SummaryCard.propTypes = {
   children: PropTypes.node.isRequired,
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  image: PropTypes.number.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   name: PropTypes.string.isRequired,
   viewComponentDetailsUrl: PropTypes.string.isRequired,
   directory: PropTypes.string.isRequired,

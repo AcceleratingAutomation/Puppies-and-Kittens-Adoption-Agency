@@ -43,6 +43,7 @@ export default function Users() {
             {state.users.slice(page * 20, (page + 1) * 20).map((user) => (
               <UserCard
                 key={user.id}
+                id={user.id}
                 image={user.image}
                 email={user.email}
                 username={user.username}

@@ -26,7 +26,9 @@ function VeterinarianCard({
 
   return (
     <SummaryCard
+      directory="users"
       type="veterinarian"
+      id={veterinarian.id}
       image={veterinarian.image}
       name={veterinarian.displayName}
       viewComponentDetailsUrl={`${veterinariansEndpoint}/${veterinarian.id}`}
@@ -57,7 +59,7 @@ VeterinarianCard.propTypes = {
   email: PropTypes.string.isRequired,
   numCurrentRescues: PropTypes.number.isRequired,
   numTotalRescues: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isAccepting: PropTypes.bool.isRequired,
 };
 

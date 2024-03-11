@@ -26,7 +26,9 @@ function FosterCard({
 
   return (
     <SummaryCard
+      directory="users"
       type="foster"
+      id={foster.id}
       image={foster.image}
       name={foster.displayName}
       viewComponentDetailsUrl={`${fostersEndpoint}/${foster.id}`}
@@ -57,7 +59,7 @@ FosterCard.propTypes = {
   email: PropTypes.string.isRequired,
   numCurrentRescues: PropTypes.number.isRequired,
   numTotalRescues: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isAccepting: PropTypes.bool.isRequired,
 };
 

@@ -45,6 +45,7 @@ export default function Veterinarians() {
             .map((veterinarian) => (
               <VeterinarianCard
                 key={veterinarian.id}
+                id={veterinarian.id}
                 image={veterinarian.image}
                 displayName={veterinarian.displayName}
                 email={veterinarian.email}

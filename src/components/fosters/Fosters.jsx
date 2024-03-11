@@ -40,6 +40,7 @@ export default function Fosters() {
           {state.fosters.slice(page * 20, (page + 1) * 20).map((foster) => (
             <FosterCard
               key={foster.id}
+              id={foster.id}
               image={foster.image}
               displayName={foster.displayName}
               email={foster.email}

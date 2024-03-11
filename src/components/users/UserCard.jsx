@@ -17,7 +17,9 @@ function UserCard({ username, id, role, favorite, image, email }) {
 
   return (
     <SummaryCard
+      directory="users"
       type={user.role}
+      id={user.id}
       image={user.image}
       name={user.username}
       viewComponentDetailsUrl={`${usersEndpoint}/${user.id}`}
@@ -44,7 +46,7 @@ UserCard.propTypes = {
   id: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   email: PropTypes.string.isRequired,
 };
 
