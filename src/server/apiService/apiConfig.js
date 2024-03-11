@@ -1,5 +1,5 @@
 const baseServerUrl = "http://localhost:5000";
-const adopterDetailsEndpoint = "v1/adopters/:id";
+const adopterDetailsEndpoint = "/v1/adopters/:id";
 const adoptersEndpoint = "/v1/adopters";
 const favoritesEndpoint = "/v1/favorites";
 const fosterDetailsEndpoint = "/v1/fosters/:id";

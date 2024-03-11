@@ -17,6 +17,8 @@ export function reducer(state, action) {
   switch (action.type) {
     case "setAdopters":
       return { ...state, adopters: action.value, loading: false };
+    case "setAdopterDetails":
+      return { ...state, adopterDetails: action.value, loading: false };
     case "setFosters":
       return { ...state, fosters: action.value, loading: false };
     case "setFosterDetails":
@@ -27,8 +29,12 @@ export function reducer(state, action) {
       return { ...state, rescueDetails: action.value, loading: false };
     case "setUsers":
       return { ...state, users: action.value, loading: false };
+    case "setUserDetails":
+      return { ...state, userDetails: action.value, loading: false };
     case "setVeterinarians":
       return { ...state, veterinarians: action.value, loading: false };
+    case "setVeterinarianDetails":
+      return { ...state, veterinarianDetails: action.value, loading: false };
     case "setFavorites":
       return { ...state, favorites: action.value, loading: false };
     case "addToFavorites":

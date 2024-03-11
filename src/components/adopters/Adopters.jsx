@@ -42,7 +42,7 @@ export default function Adopters() {
               key={adopter.id}
               id={adopter.id}
               image={adopter.image}
-              displayName={adopter.displayName}
+              name={adopter.name}
               email={adopter.email}
               numHouseholdPets={adopter.numHouseholdPets}
               isAdopting={adopter.isAdopting}

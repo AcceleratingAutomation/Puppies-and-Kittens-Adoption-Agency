@@ -5,16 +5,9 @@ import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
 import { adoptersEndpoint } from "../../server/apiService/apiConfig";
 
-function AdopterCard({
-  displayName,
-  id,
-  email,
-  numHouseholdPets,
-  image,
-  isAdopting,
-}) {
+function AdopterCard({ name, id, email, numHouseholdPets, image, isAdopting }) {
   const adopter = {
-    displayName,
+    name,
     id,
     email,
     numHouseholdPets,
@@ -28,11 +21,11 @@ function AdopterCard({
       type="adopter"
       id={adopter.id}
       image={adopter.image}
-      name={adopter.displayName}
+      name={adopter.name}
       viewComponentDetailsUrl={`${adoptersEndpoint}/${adopter.id}`}
     >
       <Grid item xs={12}>
-        <Typography variant="h4">{adopter.displayName}</Typography>
+        <Typography variant="h4">{adopter.name}</Typography>
       </Grid>
       <Typography variant="h5" gutterBottom>
         {adopter.email}
@@ -49,7 +42,7 @@ function AdopterCard({
 }
 
 AdopterCard.propTypes = {
-  displayName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   numHouseholdPets: PropTypes.number.isRequired,
