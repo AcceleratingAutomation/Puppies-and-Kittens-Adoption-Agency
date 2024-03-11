@@ -11,14 +11,14 @@ const useStyles = makeStyles({
 });
 
 function DetailsButtons({
-  rescue,
+  type,
   onBack,
   onEdit,
   onDelete,
   openDialog,
   dispatch,
 }) {
-  const { name, id } = rescue;
+  const { name, id } = type;
   const classes = useStyles();
 
   return (
@@ -57,7 +57,7 @@ function DetailsButtons({
 }
 
 DetailsButtons.propTypes = {
-  rescue: PropTypes.shape({
+  type: PropTypes.shape({
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,

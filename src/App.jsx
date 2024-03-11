@@ -8,11 +8,13 @@ import Favorites from "./components/Favorites";
 import RescueDetails from "./components/rescues/RescueDetails";
 import Veterinarians from "./components/veterinarians/Veterinarians";
 import Fosters from "./components/fosters/Fosters";
+import FosterDetails from "./components/fosters/FosterDetails";
 import Adopters from "./components/adopters/Adopters";
 import { FavoritesProvider } from "./contexts/favoritesContext";
 import {
   adoptersEndpoint,
   favoritesEndpoint,
+  fosterDetailsEndpoint,
   fostersEndpoint,
   rescueDetailsEndpoint,
   rescuesEndpoint,
@@ -43,6 +45,9 @@ export default function App() {
             </Route>
             <Route exact path={fostersEndpoint}>
               <Fosters />
+            </Route>
+            <Route exact path={fosterDetailsEndpoint}>
+              <FosterDetails />
             </Route>
             <Route exact path={adoptersEndpoint}>
               <Adopters />

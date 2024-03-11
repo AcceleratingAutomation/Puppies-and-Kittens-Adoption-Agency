@@ -6,7 +6,7 @@ import SummaryCard from "../SummaryCard";
 import { fostersEndpoint } from "../../server/apiService/apiConfig";
 
 function FosterCard({
-  displayName,
+  name,
   id,
   email,
   numCurrentRescues,
@@ -15,7 +15,7 @@ function FosterCard({
   isAccepting,
 }) {
   const foster = {
-    displayName,
+    name,
     id,
     email,
     numCurrentRescues,
@@ -30,11 +30,11 @@ function FosterCard({
       type="foster"
       id={foster.id}
       image={foster.image}
-      name={foster.displayName}
+      name={foster.name}
       viewComponentDetailsUrl={`${fostersEndpoint}/${foster.id}`}
     >
       <Grid item xs={12}>
-        <Typography variant="h4">{foster.displayName}</Typography>
+        <Typography variant="h4">{foster.name}</Typography>
       </Grid>
       <Typography variant="h5" gutterBottom>
         {foster.email}
@@ -54,7 +54,7 @@ function FosterCard({
 }
 
 FosterCard.propTypes = {
-  displayName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   numCurrentRescues: PropTypes.number.isRequired,

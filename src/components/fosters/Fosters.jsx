@@ -42,7 +42,7 @@ export default function Fosters() {
               key={foster.id}
               id={foster.id}
               image={foster.image}
-              displayName={foster.displayName}
+              name={foster.name}
               email={foster.email}
               numCurrentRescues={foster.numCurrentRescues}
               numTotalRescues={foster.numTotalRescues}

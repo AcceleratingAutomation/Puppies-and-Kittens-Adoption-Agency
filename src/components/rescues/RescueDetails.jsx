@@ -36,7 +36,7 @@ export default function RescueDetails() {
     return <Loading />;
   }
 
-  const { name } = state.rescueDetails;
+  const type = state.rescueDetails;
 
   return (
     <div className="content">
@@ -44,7 +44,7 @@ export default function RescueDetails() {
       <Grid container justify="center" alignItems="center" direction="column">
         <Grid item>
           <Typography variant="h3">
-            {name}
+            {type.name}
             &apos;s Details
           </Typography>
           <Button
@@ -52,14 +52,14 @@ export default function RescueDetails() {
             variant="contained"
             color="primary"
             size="large"
-            onClick={() => console.log(`Adopt ${name}!`)}
+            onClick={() => console.log(`Adopt ${type.name}!`)}
           >
-            ADOPT {name}
+            ADOPT {type.name}
           </Button>
         </Grid>
         <RescueDetailsLayout rescue={state.rescueDetails} />
         <DetailsButtons
-          rescue={state.rescueDetails}
+          type={type}
           onBack={() => navigateBack(history, rescuesEndpoint)}
           onEdit={() => navigateToEdit(history, id, rescuesEndpoint)}
           onDelete={() =>

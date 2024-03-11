@@ -19,6 +19,8 @@ export function reducer(state, action) {
       return { ...state, adopters: action.value, loading: false };
     case "setFosters":
       return { ...state, fosters: action.value, loading: false };
+    case "setFosterDetails":
+      return { ...state, fosterDetails: action.value, loading: false };
     case "setRescues":
       return { ...state, rescues: action.value, loading: false };
     case "setRescueDetails":
