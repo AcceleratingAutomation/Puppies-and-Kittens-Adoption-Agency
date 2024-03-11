@@ -47,7 +47,7 @@ export default function Veterinarians() {
                 key={veterinarian.id}
                 id={veterinarian.id}
                 image={veterinarian.image}
-                displayName={veterinarian.displayName}
+                name={veterinarian.name}
                 email={veterinarian.email}
                 numCurrentRescues={veterinarian.numCurrentRescues}
                 numTotalRescues={veterinarian.numTotalRescues}

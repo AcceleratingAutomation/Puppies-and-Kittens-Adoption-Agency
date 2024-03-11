@@ -6,7 +6,7 @@ import SummaryCard from "../SummaryCard";
 import { veterinariansEndpoint } from "../../server/apiService/apiConfig";
 
 function VeterinarianCard({
-  displayName,
+  name,
   id,
   email,
   numCurrentRescues,
@@ -15,7 +15,7 @@ function VeterinarianCard({
   isAccepting,
 }) {
   const veterinarian = {
-    displayName,
+    name,
     id,
     email,
     numCurrentRescues,
@@ -30,11 +30,11 @@ function VeterinarianCard({
       type="veterinarian"
       id={veterinarian.id}
       image={veterinarian.image}
-      name={veterinarian.displayName}
+      name={veterinarian.name}
       viewComponentDetailsUrl={`${veterinariansEndpoint}/${veterinarian.id}`}
     >
       <Grid item xs={12}>
-        <Typography variant="h4">{veterinarian.displayName}</Typography>
+        <Typography variant="h4">{veterinarian.name}</Typography>
       </Grid>
       <Typography variant="h5" gutterBottom>
         {veterinarian.email}
@@ -54,7 +54,7 @@ function VeterinarianCard({
 }
 
 VeterinarianCard.propTypes = {
-  displayName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   numCurrentRescues: PropTypes.number.isRequired,
