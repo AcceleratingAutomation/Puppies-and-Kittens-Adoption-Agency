@@ -10,6 +10,7 @@ router.route("/").get(verifyToken, veterinarianHandlers.getAll);
 router
   .route("/:id")
   .get(verifyToken, veterinarianHandlers.getDetails)
-  .delete(verifyToken, veterinarianHandlers.delete);
+  .delete(verifyToken, veterinarianHandlers.delete)
+  .put(verifyToken, veterinarianHandlers.edit);
 
 module.exports = router;

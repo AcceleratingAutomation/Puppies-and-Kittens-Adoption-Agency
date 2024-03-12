@@ -8,6 +8,7 @@ router.route("/").get(verifyToken, adminHandlers.getAll);
 router
   .route("/:id")
   .get(verifyToken, adminHandlers.getDetails)
-  .delete(verifyToken, adminHandlers.delete);
+  .delete(verifyToken, adminHandlers.delete)
+  .put(verifyToken, adminHandlers.edit);
 
 module.exports = router;

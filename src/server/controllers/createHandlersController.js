@@ -2,6 +2,7 @@ const {
   getDetails,
   getAllData,
   getAllDataByType,
+  updateData,
   getAudienceFromToken,
   generateToken,
   deleteData,
@@ -97,6 +98,28 @@ const createHandlers = (
       res.status(500).send({ error: "Database error" });
     }
   },
+
+  edit: async (req, res) => {
+    const token = req.headers.authorization.split(" ")[1];
+    try {
+      if (getAudienceFromToken(token).includes(permissions.edit)) {
+        const updatedData = await updateData(req.params.id, db, req.body);
+        if (!updatedData) {
+          res.status(404).send({ message: `Cannot update this ${type}` });
+        } else {
+          const newToken = await generateToken(token, null);
+          res.status(200).send({ [type]: updatedData, token: newToken });
+        }
+      } else {
+        res.status(403).send({
+          message: `Not authorized to edit ${type}`,
+          token,
+        });
+      }
+    } catch (error) {
+      res.status(500).send({ error: "Database error" });
+    }
+  },
 });
 
 exports.adopterHandlers = createHandlers(
@@ -106,6 +129,7 @@ exports.adopterHandlers = createHandlers(
     read: Constants.SHOW_ADOPTERS,
     delete: Constants.DELETE_ADOPTER,
     showDetails: Constants.SHOW_ADOPTER_DETAILS,
+    edit: Constants.EDIT_ADOPTER,
   },
   "Adopter",
   true,
@@ -117,6 +141,7 @@ exports.fosterHandlers = createHandlers(
     read: Constants.SHOW_FOSTERS,
     delete: Constants.DELETE_FOSTER,
     showDetails: Constants.SHOW_FOSTER_DETAILS,
+    edit: Constants.EDIT_FOSTER,
   },
   "Foster",
   true,
@@ -125,6 +150,7 @@ exports.rescueHandlers = createHandlers("rescues", rescuesDB, {
   read: Constants.SHOW_RESCUES,
   delete: Constants.DELETE_RESCUE,
   showDetails: Constants.SHOW_RESCUE_DETAILS,
+  edit: Constants.EDIT_RESCUE,
 });
 exports.adminHandlers = createHandlers(
   "admins",
@@ -133,6 +159,7 @@ exports.adminHandlers = createHandlers(
     read: Constants.SHOW_ADMINS,
     delete: Constants.DELETE_ADMIN,
     showDetails: Constants.SHOW_ADMIN_DETAILS,
+    edit: Constants.EDIT_ADMIN,
   },
   "Admin",
   true,
@@ -144,6 +171,7 @@ exports.veterinarianHandlers = createHandlers(
     read: Constants.SHOW_VETERINARIANS,
     delete: Constants.DELETE_VETERINARIAN,
     showDetails: Constants.SHOW_VETERINARIAN_DETAILS,
+    edit: Constants.EDIT_VETERINARIAN,
   },
   "Veterinarian",
   true,

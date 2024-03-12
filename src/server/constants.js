@@ -9,6 +9,12 @@ module.exports.JWT_OPTIONS = {
     "DELETE_RESCUE",
     "DELETE_ADMIN",
     "DELETE_VETERINARIAN",
+    "EDIT_ADOPTER",
+    "EDIT_FAVORITE",
+    "EDIT_FOSTER",
+    "EDIT_RESCUE",
+    "EDIT_ADMIN",
+    "EDIT_VETERINARIAN",
     "LOGIN",
     "SHOW_ADOPTER_DETAILS",
     "SHOW_ADOPTERS",
@@ -70,6 +76,12 @@ module.exports.DELETE_FOSTER = "DELETE_FOSTER";
 module.exports.DELETE_RESCUE = "DELETE_RESCUE";
 module.exports.DELETE_ADMIN = "DELETE_ADMIN";
 module.exports.DELETE_VETERINARIAN = "DELETE_VETERINARIAN";
+module.exports.EDIT_ADOPTER = "EDIT_ADOPTER";
+module.exports.EDIT_FAVORITE = "EDIT_FAVORITE";
+module.exports.EDIT_FOSTER = "EDIT_FOSTER";
+module.exports.EDIT_RESCUE = "EDIT_RESCUE";
+module.exports.EDIT_ADMIN = "EDIT_ADMIN";
+module.exports.EDIT_VETERINARIAN = "EDIT_VETERINARIAN";
 module.exports.LOGIN = "LOGIN";
 module.exports.SHOW_ADOPTER_DETAILS = "SHOW_ADOPTER_DETAILS";
 module.exports.SHOW_ADOPTERS = "SHOW_ADOPTERS";

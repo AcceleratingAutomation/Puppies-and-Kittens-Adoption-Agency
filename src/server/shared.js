@@ -111,6 +111,44 @@ exports.deleteData = (id, db) =>
     });
   });
 
+exports.updateData = (id, db, newData) =>
+  new Promise((resolve, reject) => {
+    // Read the existing data
+    fs.readFile(path.join(__dirname, db), "utf8", (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      const items = JSON.parse(data);
+
+      // Find the item with the given id
+      const itemIndex = items.findIndex((item) => item.id === id);
+      if (itemIndex === -1) {
+        resolve(false); // Resolve with false when item is not found
+        return;
+      }
+
+      // Update the item with new data
+      items[itemIndex] = { ...items[itemIndex], ...newData };
+
+      // Write the updated items back to the file
+      fs.writeFile(
+        path.join(__dirname, db),
+        JSON.stringify(items, null, 2),
+        "utf8",
+        (updateErr) => {
+          if (updateErr) {
+            reject(updateErr);
+            return;
+          }
+
+          resolve(true); // Resolve with true when update is successful
+        },
+      );
+    });
+  });
+
 // Favorites
 
 exports.getFavoriteRescuesForUser = async (token) => {
