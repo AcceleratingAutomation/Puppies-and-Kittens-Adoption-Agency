@@ -5,6 +5,7 @@ import AdminDetails from "./components/admins/AdminDetails";
 import Admins from "./components/admins/Admins";
 import AdopterDetails from "./components/adopters/AdopterDetails";
 import Adopters from "./components/adopters/Adopters";
+import EditAdopterDetails from "./components/adopters/EditAdopterDetails";
 import Favorites from "./components/Favorites";
 import { FavoritesProvider } from "./contexts/favoritesContext";
 import FosterDetails from "./components/fosters/FosterDetails";
@@ -42,6 +43,9 @@ export default function App() {
             </Route>
             <Route exact path={adopterDetailsEndpoint}>
               <AdopterDetails />
+            </Route>
+            <Route exact path={`${adopterDetailsEndpoint}/edit`}>
+              <EditAdopterDetails />
             </Route>
             <Route exact path={adoptersEndpoint}>
               <Adopters />
