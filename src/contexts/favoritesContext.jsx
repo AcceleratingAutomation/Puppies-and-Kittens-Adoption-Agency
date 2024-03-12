@@ -10,7 +10,7 @@ export const initialState = {
   rescueDetails: null,
   rescues: [],
   veterinarians: [],
-  users: [],
+  admins: [],
 };
 
 export function reducer(state, action) {
@@ -27,8 +27,8 @@ export function reducer(state, action) {
       return { ...state, rescues: action.value, loading: false };
     case "setRescueDetails":
       return { ...state, rescueDetails: action.value, loading: false };
-    case "setUsers":
-      return { ...state, users: action.value, loading: false };
+    case "set":
+      return { ...state, admins: action.value, loading: false };
     case "setUserDetails":
       return { ...state, userDetails: action.value, loading: false };
     case "setVeterinarians":

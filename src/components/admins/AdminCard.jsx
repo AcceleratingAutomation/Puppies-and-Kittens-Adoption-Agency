@@ -3,10 +3,10 @@ import { Grid, Typography } from "@material-ui/core";
 import "../../styles.css";
 import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
-import { usersEndpoint } from "../../server/apiService/apiConfig";
+import { adminsEndpoint } from "../../server/apiService/apiConfig";
 
-function UserCard({ username, id, role, favorite, image, email }) {
-  const user = {
+function AdminCard({ username, id, role, favorite, image, email }) {
+  const admin = {
     username,
     id,
     role,
@@ -18,30 +18,30 @@ function UserCard({ username, id, role, favorite, image, email }) {
   return (
     <SummaryCard
       directory="users"
-      type={user.role}
-      id={user.id}
-      image={user.image}
-      name={user.username}
-      viewComponentDetailsUrl={`${usersEndpoint}/${user.id}`}
+      type={admin.role}
+      id={admin.id}
+      image={admin.image}
+      name={admin.username}
+      viewComponentDetailsUrl={`${adminsEndpoint}/${admin.id}`}
     >
       <Grid item xs={12}>
-        <Typography variant="h4">{user.username}</Typography>
+        <Typography variant="h4">{admin.username}</Typography>
       </Grid>
       <Typography variant="h5" gutterBottom>
-        {user.email}
+        {admin.email}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        {user.role}
+        {admin.role}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Favorites: {user.favorite.length}
+        Favorites: {admin.favorite.length}
       </Typography>
       <Grid item xs={12} container justify="center" />
     </SummaryCard>
   );
 }
 
-UserCard.propTypes = {
+AdminCard.propTypes = {
   username: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
@@ -50,4 +50,4 @@ UserCard.propTypes = {
   email: PropTypes.string.isRequired,
 };
 
-export default UserCard;
+export default AdminCard;

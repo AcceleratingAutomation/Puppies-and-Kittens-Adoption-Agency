@@ -126,11 +126,17 @@ exports.rescueHandlers = createHandlers("rescues", rescuesDB, {
   delete: Constants.DELETE_RESCUE,
   showDetails: Constants.SHOW_RESCUE_DETAILS,
 });
-exports.userHandlers = createHandlers("users", usersDB, {
-  read: Constants.SHOW_USERS,
-  delete: Constants.DELETE_USER,
-  showDetails: Constants.SHOW_USER_DETAILS,
-});
+exports.adminHandlers = createHandlers(
+  "admins",
+  usersDB,
+  {
+    read: Constants.SHOW_ADMINS,
+    delete: Constants.DELETE_ADMIN,
+    showDetails: Constants.SHOW_ADMIN_DETAILS,
+  },
+  "Admin",
+  true,
+);
 exports.veterinarianHandlers = createHandlers(
   "veterinarians",
   usersDB,

@@ -11,7 +11,7 @@ import {
   favoritesEndpoint,
   fostersEndpoint,
   rescuesEndpoint,
-  usersEndpoint,
+  adminsEndpoint,
   veterinariansEndpoint,
 } from "../../server/apiService/apiConfig";
 
@@ -37,7 +37,7 @@ export const tabs = [
   { route: adoptersEndpoint, label: "Adopters" },
   { route: fostersEndpoint, label: "Fosters" },
   { route: veterinariansEndpoint, label: "Veterinarians" },
-  { route: usersEndpoint, label: "Users" },
+  { route: adminsEndpoint, label: "Admins" },
 ];
 
 export function AppHeader({ tabValue }) {

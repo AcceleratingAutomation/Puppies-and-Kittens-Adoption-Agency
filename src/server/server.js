@@ -8,7 +8,7 @@ const rescuesRouter = require("./routes/rescues");
 const adoptersRouter = require("./routes/adopters");
 const fostersRouter = require("./routes/fosters");
 const veterinariansRouter = require("./routes/veterinarians");
-const usersRouter = require("./routes/users");
+const adminsRouter = require("./routes/admins");
 const authenticationRouter = require("./routes/authentication");
 const {
   favoritesEndpoint,
@@ -16,7 +16,7 @@ const {
   adoptersEndpoint,
   fostersEndpoint,
   veterinariansEndpoint,
-  usersEndpoint,
+  adminsEndpoint,
 } = require("./apiService/apiConfig");
 
 const app = express();
@@ -29,7 +29,7 @@ app.use(rescuesEndpoint, rescuesRouter);
 app.use(adoptersEndpoint, adoptersRouter);
 app.use(fostersEndpoint, fostersRouter);
 app.use(veterinariansEndpoint, veterinariansRouter);
-app.use(usersEndpoint, usersRouter);
+app.use(adminsEndpoint, adminsRouter);
 app.use("", authenticationRouter);
 
 // Health Check

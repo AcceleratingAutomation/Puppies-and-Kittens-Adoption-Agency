@@ -10,7 +10,7 @@ import Fosters from "./components/fosters/Fosters";
 import Login from "./components/login/Login";
 import RescueDetails from "./components/rescues/RescueDetails";
 import Rescues from "./components/rescues/Rescues";
-import Users from "./components/users/Users";
+import Admins from "./components/admins/Admins";
 import VeterinarianDetails from "./components/veterinarians/VeterinarianDetails";
 import Veterinarians from "./components/veterinarians/Veterinarians";
 import {
@@ -21,7 +21,7 @@ import {
   fostersEndpoint,
   rescueDetailsEndpoint,
   rescuesEndpoint,
-  usersEndpoint,
+  adminsEndpoint,
   veterinarianDetailsEndpoint,
   veterinariansEndpoint,
 } from "./server/apiService/apiConfig";
@@ -53,8 +53,8 @@ export default function App() {
             <Route exact path={rescuesEndpoint}>
               <Rescues />
             </Route>
-            <Route exact path={usersEndpoint}>
-              <Users />
+            <Route exact path={adminsEndpoint}>
+              <Admins />
             </Route>
             <Route exact path={veterinarianDetailsEndpoint}>
               <VeterinarianDetails />

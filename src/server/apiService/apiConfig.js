@@ -8,8 +8,8 @@ const loginEndpoint = "/v1/login";
 const logoutEndpoint = "/v1/logout";
 const rescueDetailsEndpoint = "/v1/rescues/:id";
 const rescuesEndpoint = "/v1/rescues";
-const userDetailsEndpoint = "/v1/users/:id";
-const usersEndpoint = "/v1/users";
+const userDetailsEndpoint = "/v1/admins/:id";
+const adminsEndpoint = "/v1/admins";
 const veterinarianDetailsEndpoint = "/v1/veterinarians/:id";
 const veterinariansEndpoint = "/v1/veterinarians";
 const adoptersUrl = `${baseServerUrl}${adoptersEndpoint}`;
@@ -18,7 +18,7 @@ const fostersUrl = `${baseServerUrl}${fostersEndpoint}`;
 const loginUrl = `${baseServerUrl}${loginEndpoint}`;
 const logoutUrl = `${baseServerUrl}${logoutEndpoint}`;
 const rescuesUrl = `${baseServerUrl}${rescuesEndpoint}`;
-const usersUrl = `${baseServerUrl}${usersEndpoint}`;
+const adminsUrl = `${baseServerUrl}${adminsEndpoint}`;
 const veterinariansUrl = `${baseServerUrl}${veterinariansEndpoint}`;
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
   rescueDetailsEndpoint,
   rescuesEndpoint,
   userDetailsEndpoint,
-  usersEndpoint,
+  adminsEndpoint,
   veterinarianDetailsEndpoint,
   veterinariansEndpoint,
   adoptersUrl,
@@ -41,6 +41,6 @@ module.exports = {
   loginUrl,
   logoutUrl,
   rescuesUrl,
-  usersUrl,
+  adminsUrl,
   veterinariansUrl,
 };

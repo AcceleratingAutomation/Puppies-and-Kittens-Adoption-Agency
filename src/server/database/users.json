@@ -1,16 +1,5 @@
 [
   {
-    "id": "f2775f38-92fc-42e5-98a5-b137a0887a40",
-    "email": "member@email.com",
-    "key": "$2b$10$kdcxgpr/RO9jyzgCU8Zm.un3i/9oQ4wib0DsvrnEzBdhUsQfc9zFO",
-    "username": "jason",
-    "firstName": "Member",
-    "lastName": "User",
-    "favorite": [],
-    "role": "member",
-    "image": "placeholder-users"
-  },
-  {
     "id": "677c96e2-cb5e-11ea-87d0-0242ac130004",
     "email": "admin@email.com",
     "key": "$2b$10$kdcxgpr/RO9jyzgCU8Zm.un3i/9oQ4wib0DsvrnEzBdhUsQfc9zFO",
@@ -43,6 +32,7 @@
       "2f3a4b5c-6d7e-8f9a-0b1c2d3e4f5a",
       "c2197d1f-4576-40df-9c06-148a3801179a"
     ],
+    "type": "Admin",
     "role": "admin",
     "image": 0
   },

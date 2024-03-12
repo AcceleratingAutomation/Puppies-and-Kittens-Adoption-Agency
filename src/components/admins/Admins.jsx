@@ -3,29 +3,29 @@ import { Grid } from "@material-ui/core";
 import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
-import { usersUrl } from "../../server/apiService/apiConfig";
+import { adminsUrl } from "../../server/apiService/apiConfig";
 import fetchData from "../../server/apiService/cardApi";
-import UserCard from "./UserCard";
+import AdminCard from "./AdminCard";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
 
-export default function Users() {
+export default function Admins() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex((tab) => tab.label === "Users");
+  const tabValue = tabs.findIndex((tab) => tab.label === "Admins");
   const [page, setPage] = useState(0);
   const showPage = true; // Define the 'showPage' variable
 
   useEffect(() => {
-    fetchData(usersUrl)
+    fetchData(adminsUrl)
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          dispatch({ type: "setUsers", value: [...json.users] });
+          dispatch({ type: "set", value: [...json.admins] });
         }
       })
       .catch((err) => {
-        throw new Error(`Error fetching users ${err.message}`);
+        throw new Error(`Error fetching admins ${err.message}`);
       });
   }, [dispatch]);
 
@@ -40,15 +40,15 @@ export default function Users() {
       {showPage && (
         <Grid container direction="column" alignItems="center">
           <Grid item container direction="row" wrap="wrap" justify="center">
-            {state.users.slice(page * 20, (page + 1) * 20).map((user) => (
-              <UserCard
-                key={user.id}
-                id={user.id}
-                image={user.image}
-                email={user.email}
-                username={user.username}
-                role={user.role}
-                favorite={user.favorite}
+            {state.admins.slice(page * 20, (page + 1) * 20).map((admin) => (
+              <AdminCard
+                key={admin.id}
+                id={admin.id}
+                image={admin.image}
+                email={admin.email}
+                username={admin.username}
+                role={admin.role}
+                favorite={admin.favorite}
               />
             ))}
           </Grid>
@@ -56,7 +56,7 @@ export default function Users() {
             <PaginationButtons
               page={page}
               setPage={setPage}
-              dataLength={state.users.length}
+              dataLength={state.admins.length}
             />
           </Grid>
         </Grid>

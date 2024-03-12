@@ -5,7 +5,7 @@ const {
   adopterHandlers,
   fosterHandlers,
   rescueHandlers,
-  userHandlers,
+  adminHandlers,
   veterinarianHandlers,
 } = require("../../../server/controllers/createHandlersController");
 const {
@@ -56,14 +56,16 @@ const handlers = [
     },
   },
   {
-    type: "users",
-    name: "userHandlers",
-    handler: userHandlers,
+    type: "admins",
+    name: "adminHandlers",
+    handler: adminHandlers,
     permissions: {
-      read: Constants.SHOW_USERS,
-      delete: Constants.DELETE_USER,
-      showDetails: Constants.SHOW_USER_DETAILS,
+      read: Constants.SHOW_ADMINS,
+      delete: Constants.DELETE_ADMIN,
+      showDetails: Constants.SHOW_ADMIN_DETAILS,
     },
+    dbType: "Admin",
+    useTypeFilter: true,
   },
   {
     type: "veterinarians",
