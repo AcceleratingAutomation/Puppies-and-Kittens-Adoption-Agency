@@ -5,11 +5,22 @@ import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
 import { adminsEndpoint } from "../../server/apiService/apiConfig";
 
-function AdminCard({ username, id, role, favorite, image, email }) {
+function AdminCard({
+  name,
+  id,
+  numCurrentRescues,
+  numTotalRescues,
+  numHouseholdPets,
+  favorite,
+  image,
+  email,
+}) {
   const admin = {
-    username,
+    name,
     id,
-    role,
+    numCurrentRescues,
+    numTotalRescues,
+    numHouseholdPets,
     favorite,
     image,
     email,
@@ -18,20 +29,26 @@ function AdminCard({ username, id, role, favorite, image, email }) {
   return (
     <SummaryCard
       directory="users"
-      type={admin.role}
+      type="admin"
       id={admin.id}
       image={admin.image}
-      name={admin.username}
+      name={admin.name}
       viewComponentDetailsUrl={`${adminsEndpoint}/${admin.id}`}
     >
       <Grid item xs={12}>
-        <Typography variant="h4">{admin.username}</Typography>
+        <Typography variant="h4">{admin.name}</Typography>
       </Grid>
       <Typography variant="h5" gutterBottom>
         {admin.email}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        {admin.role}
+        Current Rescues: {admin.numCurrentRescues}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        Total Rescues: {admin.numTotalRescues}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        Household Pets: {admin.numHouseholdPets}
       </Typography>
       <Typography variant="h5" gutterBottom>
         Favorites: {admin.favorite.length}
@@ -42,9 +59,11 @@ function AdminCard({ username, id, role, favorite, image, email }) {
 }
 
 AdminCard.propTypes = {
-  username: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
+  numCurrentRescues: PropTypes.number.isRequired,
+  numTotalRescues: PropTypes.number.isRequired,
+  numHouseholdPets: PropTypes.number.isRequired,
   favorite: PropTypes.bool.isRequired,
   image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   email: PropTypes.string.isRequired,

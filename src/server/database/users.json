@@ -34,6 +34,12 @@
     ],
     "type": "Admin",
     "role": "admin",
+    "name": "Jason",
+    "hasBackgroundCheck": true,
+    "numCurrentRescues": 3,
+    "numTotalRescues": 7,
+    "numHouseholdPets": 1,
+    "bio": "I like dogs.",
     "image": 0
   },
   {

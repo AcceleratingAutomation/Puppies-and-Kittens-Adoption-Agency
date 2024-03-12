@@ -46,8 +46,10 @@ export default function Admins() {
                 id={admin.id}
                 image={admin.image}
                 email={admin.email}
-                username={admin.username}
-                role={admin.role}
+                name={admin.name}
+                numCurrentRescues={admin.numCurrentRescues}
+                numTotalRescues={admin.numTotalRescues}
+                numHouseholdPets={admin.numHouseholdPets}
                 favorite={admin.favorite}
               />
             ))}

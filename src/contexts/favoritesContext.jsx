@@ -29,8 +29,8 @@ export function reducer(state, action) {
       return { ...state, rescueDetails: action.value, loading: false };
     case "set":
       return { ...state, admins: action.value, loading: false };
-    case "setUserDetails":
-      return { ...state, userDetails: action.value, loading: false };
+    case "setAdminDetails":
+      return { ...state, adminDetails: action.value, loading: false };
     case "setVeterinarians":
       return { ...state, veterinarians: action.value, loading: false };
     case "setVeterinarianDetails":

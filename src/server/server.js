@@ -11,12 +11,12 @@ const veterinariansRouter = require("./routes/veterinarians");
 const adminsRouter = require("./routes/admins");
 const authenticationRouter = require("./routes/authentication");
 const {
-  favoritesEndpoint,
-  rescuesEndpoint,
-  adoptersEndpoint,
-  fostersEndpoint,
-  veterinariansEndpoint,
   adminsEndpoint,
+  adoptersEndpoint,
+  favoritesEndpoint,
+  fostersEndpoint,
+  rescuesEndpoint,
+  veterinariansEndpoint,
 } = require("./apiService/apiConfig");
 
 const app = express();
@@ -24,13 +24,13 @@ app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cors());
 
-app.use(favoritesEndpoint, favoritesRouter);
-app.use(rescuesEndpoint, rescuesRouter);
-app.use(adoptersEndpoint, adoptersRouter);
-app.use(fostersEndpoint, fostersRouter);
-app.use(veterinariansEndpoint, veterinariansRouter);
-app.use(adminsEndpoint, adminsRouter);
 app.use("", authenticationRouter);
+app.use(adminsEndpoint, adminsRouter);
+app.use(adoptersEndpoint, adoptersRouter);
+app.use(favoritesEndpoint, favoritesRouter);
+app.use(fostersEndpoint, fostersRouter);
+app.use(rescuesEndpoint, rescuesRouter);
+app.use(veterinariansEndpoint, veterinariansRouter);
 
 // Health Check
 app.get("/health", (req, res) => {

@@ -1,4 +1,6 @@
 const baseServerUrl = "http://localhost:5000";
+const adminDetailsEndpoint = "/v1/admins/:id";
+const adminsEndpoint = "/v1/admins";
 const adopterDetailsEndpoint = "/v1/adopters/:id";
 const adoptersEndpoint = "/v1/adopters";
 const favoritesEndpoint = "/v1/favorites";
@@ -8,17 +10,15 @@ const loginEndpoint = "/v1/login";
 const logoutEndpoint = "/v1/logout";
 const rescueDetailsEndpoint = "/v1/rescues/:id";
 const rescuesEndpoint = "/v1/rescues";
-const userDetailsEndpoint = "/v1/admins/:id";
-const adminsEndpoint = "/v1/admins";
 const veterinarianDetailsEndpoint = "/v1/veterinarians/:id";
 const veterinariansEndpoint = "/v1/veterinarians";
+const adminsUrl = `${baseServerUrl}${adminsEndpoint}`;
 const adoptersUrl = `${baseServerUrl}${adoptersEndpoint}`;
 const favoritesUrl = `${baseServerUrl}${favoritesEndpoint}`;
 const fostersUrl = `${baseServerUrl}${fostersEndpoint}`;
 const loginUrl = `${baseServerUrl}${loginEndpoint}`;
 const logoutUrl = `${baseServerUrl}${logoutEndpoint}`;
 const rescuesUrl = `${baseServerUrl}${rescuesEndpoint}`;
-const adminsUrl = `${baseServerUrl}${adminsEndpoint}`;
 const veterinariansUrl = `${baseServerUrl}${veterinariansEndpoint}`;
 
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
   logoutEndpoint,
   rescueDetailsEndpoint,
   rescuesEndpoint,
-  userDetailsEndpoint,
+  adminDetailsEndpoint,
   adminsEndpoint,
   veterinarianDetailsEndpoint,
   veterinariansEndpoint,

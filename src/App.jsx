@@ -1,6 +1,8 @@
 import React from "react";
 import "./styles.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AdminDetails from "./components/admins/AdminDetails";
+import Admins from "./components/admins/Admins";
 import AdopterDetails from "./components/adopters/AdopterDetails";
 import Adopters from "./components/adopters/Adopters";
 import Favorites from "./components/Favorites";
@@ -10,10 +12,11 @@ import Fosters from "./components/fosters/Fosters";
 import Login from "./components/login/Login";
 import RescueDetails from "./components/rescues/RescueDetails";
 import Rescues from "./components/rescues/Rescues";
-import Admins from "./components/admins/Admins";
 import VeterinarianDetails from "./components/veterinarians/VeterinarianDetails";
 import Veterinarians from "./components/veterinarians/Veterinarians";
 import {
+  adminDetailsEndpoint,
+  adminsEndpoint,
   adopterDetailsEndpoint,
   adoptersEndpoint,
   favoritesEndpoint,
@@ -21,7 +24,6 @@ import {
   fostersEndpoint,
   rescueDetailsEndpoint,
   rescuesEndpoint,
-  adminsEndpoint,
   veterinarianDetailsEndpoint,
   veterinariansEndpoint,
 } from "./server/apiService/apiConfig";
@@ -32,6 +34,12 @@ export default function App() {
       <div className="app">
         <Router>
           <Switch>
+            <Route exact path={adminsEndpoint}>
+              <Admins />
+            </Route>
+            <Route exact path={adminDetailsEndpoint}>
+              <AdminDetails />
+            </Route>
             <Route exact path={adopterDetailsEndpoint}>
               <AdopterDetails />
             </Route>
@@ -52,9 +60,6 @@ export default function App() {
             </Route>
             <Route exact path={rescuesEndpoint}>
               <Rescues />
-            </Route>
-            <Route exact path={adminsEndpoint}>
-              <Admins />
             </Route>
             <Route exact path={veterinarianDetailsEndpoint}>
               <VeterinarianDetails />
