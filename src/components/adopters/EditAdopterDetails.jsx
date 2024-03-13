@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import {
+  Grid,
+  Container,
+  Typography,
+  Button,
+  TextField,
+} from "@material-ui/core";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { constructHeader } from "../../utils/utils";
 import { adoptersUrl } from "../../server/apiService/apiConfig";
+import { AppHeader, tabs } from "../header/AppHeader";
 
 export default function EditAdopterDetails() {
   const { id } = useParams();
   const history = useHistory();
+  const tabValue = tabs.findIndex((tab) => tab.label === "Adopters");
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -18,7 +27,6 @@ export default function EditAdopterDetails() {
   const [hasBackgroundCheck, setHasBackgroundCheck] = useState(false);
   const [hasApplication, setHasApplication] = useState(false);
   const [bio, setBio] = useState("");
-  const [image, setImage] = useState("");
 
   useEffect(() => {
     const url = `${adoptersUrl}/${id}`;
@@ -34,46 +42,41 @@ export default function EditAdopterDetails() {
         setHasBackgroundCheck(data.adopters.hasBackgroundCheck);
         setHasApplication(data.adopters.hasApplication);
         setBio(data.adopters.bio);
-        setImage(data.adopters.image);
       });
   }, [id]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleSubmit = (values, { setSubmitting }) => {
     const updatedAdopter = {
-      firstName,
-      lastName,
-      name,
-      isAdopting,
-      numHouseholdPeople,
-      numHouseholdPets,
-      hasBackgroundCheck,
-      hasApplication,
-      bio,
-      image,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      name: values.name,
+      isAdopting: values.isAdopting,
+      numHouseholdPeople: values.numHouseholdPeople,
+      numHouseholdPets: values.numHouseholdPets,
+      hasBackgroundCheck: values.hasBackgroundCheck,
+      hasApplication: values.hasApplication,
+      bio: values.bio,
     };
-
     fetch(`${adoptersUrl}/${id}`, {
       method: "PUT",
       headers: constructHeader(),
       body: JSON.stringify(updatedAdopter),
     }).then(() => {
       history.push(`/v1/adopters/${id}`);
+      setSubmitting(false);
     });
   };
 
   const validationSchema = Yup.object({
-    firstName: Yup.string(),
-    lastName: Yup.string(),
-    name: Yup.string(),
-    isAdopting: Yup.boolean(),
-    numHouseholdPeople: Yup.number(),
-    numHouseholdPets: Yup.number(),
-    hasBackgroundCheck: Yup.boolean(),
-    hasApplication: Yup.boolean(),
-    bio: Yup.string(),
-    image: Yup.number(),
+    firstName: Yup.string().required("First Name Required"),
+    lastName: Yup.string().required("Last Name Required"),
+    name: Yup.string().required("Display Name Required"),
+    isAdopting: Yup.boolean().required("Looking to Adopt Required"),
+    numHouseholdPeople: Yup.number().required("Number of People Required"),
+    numHouseholdPets: Yup.number().required("Number of Pets Required"),
+    hasBackgroundCheck: Yup.boolean().required("Background Check Required"),
+    hasApplication: Yup.boolean().required("Application Required"),
+    bio: Yup.string().required("Bio Required"),
   });
 
   return (
@@ -88,98 +91,201 @@ export default function EditAdopterDetails() {
         hasBackgroundCheck,
         hasApplication,
         bio,
-        image,
       }}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
       enableReinitialize
     >
       {({ errors, touched }) => (
-        <Form>
-          <label htmlFor="firstName">
-            First Name:
-            <Field id="firstName" name="firstName" type="text" />
-            {errors.firstName && touched.firstName ? (
-              <div>{errors.firstName}</div>
-            ) : null}
-          </label>
-          <label htmlFor="lastName">
-            Last Name:
-            <Field id="lastName" name="lastName" type="text" />
-            {errors.lastName && touched.lastName ? (
-              <div>{errors.lastName}</div>
-            ) : null}
-          </label>
-          <label htmlFor="name">
-            Name:
-            <Field id="name" name="name" type="text" />
-            {errors.name && touched.name ? <div>{errors.name}</div> : null}
-          </label>
-          <label htmlFor="isAdopting">
-            Is Adopting:
-            <Field id="isAdopting" name="isAdopting" type="checkbox" />
-            {errors.isAdopting && touched.isAdopting ? (
-              <div>{errors.isAdopting}</div>
-            ) : null}
-          </label>
-          <label htmlFor="numHouseholdPeople">
-            Number of People in Household:
-            <Field
-              id="numHouseholdPeople"
-              name="numHouseholdPeople"
-              type="number"
-            />
-            {errors.numHouseholdPeople && touched.numHouseholdPeople ? (
-              <div>{errors.numHouseholdPeople}</div>
-            ) : null}
-          </label>
-          <label htmlFor="numHouseholdPets">
-            Number of Pets in Household:
-            <Field
-              id="numHouseholdPets"
-              name="numHouseholdPets"
-              type="number"
-            />
-            {errors.numHouseholdPets && touched.numHouseholdPets ? (
-              <div>{errors.numHouseholdPets}</div>
-            ) : null}
-          </label>
-          <label htmlFor="hasBackgroundCheck">
-            Has Background Check:
-            <Field
-              id="hasBackgroundCheck"
-              name="hasBackgroundCheck"
-              type="checkbox"
-            />
-            {errors.hasBackgroundCheck && touched.hasBackgroundCheck ? (
-              <div>{errors.hasBackgroundCheck}</div>
-            ) : null}
-          </label>
-          <label htmlFor="hasApplication">
-            Has Application:
-            <Field id="hasApplication" name="hasApplication" type="checkbox" />
-            {errors.hasApplication && touched.hasApplication ? (
-              <div>{errors.hasApplication}</div>
-            ) : null}
-          </label>
-          <label htmlFor="bio">
-            Bio:
-            <Field id="bio" name="bio" as="textarea" />
-            {errors.bio && touched.bio ? <div>{errors.bio}</div> : null}
-          </label>
-          <label htmlFor="image">
-            Image URL:
-            <Field id="image" name="image" type="text" />
-            {errors.image && touched.image ? <div>{errors.image}</div> : null}
-          </label>
-          <button type="submit">Submit</button>
-          <button
-            type="button"
-            onClick={() => history.push(`/v1/adopters/${id}`)}
+        <div className="content">
+          <AppHeader tabValue={tabValue} />
+          <Grid
+            container
+            justify="center"
+            alignItems="center"
+            direction="column"
           >
-            Cancel
-          </button>
-        </Form>
+            <Grid item style={{ marginBottom: "2vh" }}>
+              <Typography variant="h3">Edit {name}</Typography>
+            </Grid>
+            <Form>
+              <Container>
+                <Grid
+                  container
+                  justify="center"
+                  alignItems="flex-start"
+                  direction="row"
+                >
+                  <Grid item xs={12} sm={6} style={{ textAlign: "left" }}>
+                    <Grid item xs={12}>
+                      <label htmlFor="firstName">
+                        <strong>First Name</strong>
+                        <Field
+                          id="firstName"
+                          name="firstName"
+                          type="text"
+                          style={{ margin: "0.625rem" }}
+                        />
+                        {errors.firstName && touched.firstName ? (
+                          <div style={{ color: "red" }}>{errors.firstName}</div>
+                        ) : null}
+                      </label>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <label htmlFor="lastName">
+                        <strong>Last Name</strong>
+                        <Field
+                          id="lastName"
+                          name="lastName"
+                          type="text"
+                          style={{ margin: "0.625rem" }}
+                        />
+                        {errors.lastName && touched.lastName ? (
+                          <div style={{ color: "red" }}>{errors.lastName}</div>
+                        ) : null}
+                      </label>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <label htmlFor="name">
+                        <strong>Display Name</strong>
+                        <Field
+                          id="name"
+                          name="name"
+                          type="text"
+                          style={{ margin: "0.625rem" }}
+                        />
+                        {errors.name && touched.name ? (
+                          <div style={{ color: "red" }}>{errors.name}</div>
+                        ) : null}
+                      </label>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <label htmlFor="isAdopting">
+                        <strong>Is Adopting</strong>
+                        <Field
+                          id="isAdopting"
+                          name="isAdopting"
+                          type="checkbox"
+                          style={{ margin: "0.625rem" }}
+                        />
+                        {errors.isAdopting && touched.isAdopting ? (
+                          <div style={{ color: "red" }}>
+                            {errors.isAdopting}
+                          </div>
+                        ) : null}
+                      </label>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <label htmlFor="numHouseholdPeople">
+                        <strong>Number of People in Household</strong>
+                        <Field
+                          id="numHouseholdPeople"
+                          name="numHouseholdPeople"
+                          type="number"
+                          style={{ margin: "0.625rem" }}
+                        />
+                        {errors.numHouseholdPeople &&
+                        touched.numHouseholdPeople ? (
+                          <div style={{ color: "red" }}>
+                            {errors.numHouseholdPeople}
+                          </div>
+                        ) : null}
+                      </label>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <label htmlFor="numHouseholdPets">
+                        <strong>Number of Pets in Household</strong>
+                        <Field
+                          id="numHouseholdPets"
+                          name="numHouseholdPets"
+                          type="number"
+                          style={{ margin: "0.625rem" }}
+                        />
+                        {errors.numHouseholdPets && touched.numHouseholdPets ? (
+                          <div style={{ color: "red" }}>
+                            {errors.numHouseholdPets}
+                          </div>
+                        ) : null}
+                      </label>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <label htmlFor="hasBackgroundCheck">
+                        <strong>Has Background Check</strong>
+                        <Field
+                          id="hasBackgroundCheck"
+                          name="hasBackgroundCheck"
+                          type="checkbox"
+                          style={{ margin: "0.625rem" }}
+                        />
+                        {errors.hasBackgroundCheck &&
+                        touched.hasBackgroundCheck ? (
+                          <div style={{ color: "red" }}>
+                            {errors.hasBackgroundCheck}
+                          </div>
+                        ) : null}
+                      </label>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <label htmlFor="hasApplication">
+                        <strong>Has Application</strong>
+                        <Field
+                          id="hasApplication"
+                          name="hasApplication"
+                          type="checkbox"
+                          style={{ margin: "0.625rem" }}
+                        />
+                        {errors.hasApplication && touched.hasApplication ? (
+                          <div style={{ color: "red" }}>
+                            {errors.hasApplication}
+                          </div>
+                        ) : null}
+                      </label>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={12} sm={6} style={{ textAlign: "left" }}>
+                    <Grid item xs={12}>
+                      <label htmlFor="bio">
+                        <strong>Bio</strong>
+                        <Field
+                          as={TextField}
+                          id="bio"
+                          name="bio"
+                          multiline
+                          rows={10}
+                          variant="outlined"
+                          style={{ margin: "0.625rem", width: "100%" }}
+                        />
+                        {errors.bio && touched.bio ? (
+                          <div style={{ color: "red" }}>{errors.bio}</div>
+                        ) : null}
+                      </label>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Container>
+              <Grid item container justify="center">
+                <Button
+                  type="submit"
+                  style={{ margin: "0.625rem" }}
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                >
+                  Save
+                </Button>
+                <Button
+                  style={{ margin: "0.625rem" }}
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  onClick={() => history.push(`/v1/adopters/${id}`)}
+                >
+                  Cancel
+                </Button>
+              </Grid>
+            </Form>
+          </Grid>
+        </div>
       )}
     </Formik>
   );
