@@ -2,7 +2,6 @@ import React, { useReducer, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Grid, Container, Typography } from "@material-ui/core";
 import { Formik, Form } from "formik";
-import { constructHeader } from "../../utils/utils";
 import {
   adoptersUrl,
   adoptersEndpoint,
@@ -11,6 +10,7 @@ import { AppHeader, tabs } from "../header/AppHeader";
 import { FormField, MultiLineFormField } from "../FormField";
 import adoptersValidationSchema from "./adoptersValidationSchema";
 import FormButtons from "../FormButtons";
+import { fetchDetails, editDetails } from "../../utils/componentUtils";
 
 const initialState = {
   firstName: "",
@@ -26,8 +26,8 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "SET_ADOPTER":
-      return { ...state, ...action.payload };
+    case "setAdopter":
+      return { ...state, ...action.value };
     default:
       throw new Error();
   }
@@ -40,27 +40,12 @@ export default function EditAdopterDetails() {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const url = `${adoptersUrl}/${id}`;
-
   useEffect(() => {
-    fetch(url, { headers: constructHeader() })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch({ type: "SET_ADOPTER", payload: data.adopters });
-      });
+    fetchDetails(adoptersUrl, id, dispatch, "setAdopter", "adopters");
   }, [id]);
 
   const handleSubmit = (values) => {
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        ...constructHeader(),
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    }).then(() => {
-      history.push(`/v1/adopters/${id}`);
-    });
+    editDetails(adoptersUrl, id, values, history, adoptersEndpoint);
   };
 
   return (

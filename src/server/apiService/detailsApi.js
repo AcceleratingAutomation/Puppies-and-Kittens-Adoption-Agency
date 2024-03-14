@@ -12,3 +12,15 @@ export const deleteDetailsApi = async (url, id) => {
   });
   return response.ok;
 };
+
+export const editDetailsApi = async (url, id, values) => {
+  const response = await fetch(`${url}/${id}`, {
+    method: "PUT",
+    headers: {
+      ...constructHeader(),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(values),
+  });
+  return response.ok;
+};

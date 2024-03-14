@@ -1,6 +1,7 @@
 import {
-  fetchDetailsApi,
   deleteDetailsApi,
+  editDetailsApi,
+  fetchDetailsApi,
 } from "../server/apiService/detailsApi";
 
 export const fetchDetails = async (url, id, dispatch, setType, name) => {
@@ -23,6 +24,16 @@ export const deleteDetails = async (url, id, history, dispatch, path) => {
     }
   } catch (err) {
     throw new Error(`Error deleting ${id} ${err}`);
+  }
+};
+
+export const editDetails = async (url, id, values, history, endpoint) => {
+  try {
+    if (await editDetailsApi(url, id, values)) {
+      history.push(`${endpoint}/${id}`);
+    }
+  } catch (err) {
+    throw new Error(`Error editing ${id} ${err}`);
   }
 };
 
