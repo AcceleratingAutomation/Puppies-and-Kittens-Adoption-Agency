@@ -16,6 +16,7 @@ import {
 } from "../../utils/componentUtils";
 import { adoptersText } from "../../accessibility/header/headerText";
 import adoptersValidationSchema from "../../validations/adoptersValidationSchema";
+import editReducer from "../../reducers/editReducer";
 
 const initialState = {
   firstName: "",
@@ -29,24 +30,15 @@ const initialState = {
   bio: "",
 };
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "setAdopter":
-      return { ...state, ...action.value };
-    default:
-      throw new Error();
-  }
-}
-
 export default function EditAdopterDetails() {
   const { id } = useParams();
   const history = useHistory();
   const tabValue = getTabValue(tabs, adoptersText);
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(editReducer, initialState);
 
   useEffect(() => {
-    fetchDetails(adoptersUrl, id, dispatch, "setAdopter", "adopters");
+    fetchDetails(adoptersUrl, id, dispatch, "setAdopterEdit", "adopters");
   }, [id]);
 
   const handleSubmit = useCallback(
