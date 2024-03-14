@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useCallback } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Grid, Container, Typography } from "@material-ui/core";
 import { Formik, Form } from "formik";
@@ -62,9 +62,12 @@ export default function EditAdopterDetails() {
     fetchDetails(adoptersUrl, id, dispatch, "setAdopter", "adopters");
   }, [id]);
 
-  const handleSubmit = (values) => {
-    editDetails(adoptersUrl, id, values, history, adoptersEndpoint);
-  };
+  const handleSubmit = useCallback(
+    (values) => {
+      editDetails(adoptersUrl, id, values, history, adoptersEndpoint);
+    },
+    [adoptersUrl, id, history, adoptersEndpoint],
+  );
 
   return (
     <Formik
