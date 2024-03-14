@@ -6,6 +6,7 @@ import Admins from "./components/admins/Admins";
 import AdopterDetails from "./components/adopters/AdopterDetails";
 import Adopters from "./components/adopters/Adopters";
 import EditAdopterDetails from "./components/adopters/EditAdopterDetails";
+import EditFosterDetails from "./components/fosters/EditFosterDetails";
 import Favorites from "./components/Favorites";
 import { FavoritesProvider } from "./contexts/favoritesContext";
 import FosterDetails from "./components/fosters/FosterDetails";
@@ -23,6 +24,7 @@ import {
   adoptersEndpoint,
   favoritesEndpoint,
   fosterDetailsEndpoint,
+  fosterEditEndpoint,
   fostersEndpoint,
   rescueDetailsEndpoint,
   rescuesEndpoint,
@@ -56,6 +58,9 @@ export default function App() {
             </Route>
             <Route exact path={fosterDetailsEndpoint}>
               <FosterDetails />
+            </Route>
+            <Route exact path={fosterEditEndpoint}>
+              <EditFosterDetails />
             </Route>
             <Route exact path={fostersEndpoint}>
               <Fosters />
