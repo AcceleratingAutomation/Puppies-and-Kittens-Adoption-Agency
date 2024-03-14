@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Grid, Container, Typography, Button } from "@material-ui/core";
+import { Grid, Container, Typography } from "@material-ui/core";
 import { Formik, Form } from "formik";
 import { constructHeader } from "../../utils/utils";
-import { adoptersUrl } from "../../server/apiService/apiConfig";
+import {
+  adoptersUrl,
+  adoptersEndpoint,
+} from "../../server/apiService/apiConfig";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { FormField, MultiLineFormField } from "../FormField";
 import adoptersValidationSchema from "./adoptersValidationSchema";
+import FormButtons from "../FormButtons";
 
 export default function EditAdopterDetails() {
   const { id } = useParams();
@@ -179,26 +183,7 @@ export default function EditAdopterDetails() {
                   </Grid>
                 </Grid>
               </Container>
-              <Grid item container justify="center">
-                <Button
-                  type="submit"
-                  style={{ margin: "0.625rem" }}
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                >
-                  Save
-                </Button>
-                <Button
-                  style={{ margin: "0.625rem" }}
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  onClick={() => history.push(`/v1/adopters/${id}`)}
-                >
-                  Cancel
-                </Button>
-              </Grid>
+              <FormButtons id={id} endpoint={adoptersEndpoint} />
             </Form>
           </Grid>
         </div>
