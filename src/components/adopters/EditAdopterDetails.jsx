@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Grid, Container, Typography } from "@material-ui/core";
 import { Formik, Form } from "formik";
@@ -12,20 +12,33 @@ import { FormField, MultiLineFormField } from "../FormField";
 import adoptersValidationSchema from "./adoptersValidationSchema";
 import FormButtons from "../FormButtons";
 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  name: "",
+  isAdopting: false,
+  numHouseholdPeople: 0,
+  numHouseholdPets: 0,
+  hasBackgroundCheck: false,
+  hasApplication: false,
+  bio: "",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "SET_ADOPTER":
+      return { ...state, ...action.payload };
+    default:
+      throw new Error();
+  }
+}
+
 export default function EditAdopterDetails() {
   const { id } = useParams();
   const history = useHistory();
   const tabValue = tabs.findIndex((tab) => tab.label === "Adopters");
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [name, setName] = useState("");
-  const [isAdopting, setIsAdopting] = useState(false);
-  const [numHouseholdPeople, setNumHouseholdPeople] = useState(0);
-  const [numHouseholdPets, setNumHouseholdPets] = useState(0);
-  const [hasBackgroundCheck, setHasBackgroundCheck] = useState(false);
-  const [hasApplication, setHasApplication] = useState(false);
-  const [bio, setBio] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const url = `${adoptersUrl}/${id}`;
 
@@ -33,37 +46,18 @@ export default function EditAdopterDetails() {
     fetch(url, { headers: constructHeader() })
       .then((response) => response.json())
       .then((data) => {
-        setFirstName(data.adopters.firstName);
-        setLastName(data.adopters.lastName);
-        setName(data.adopters.name);
-        setIsAdopting(data.adopters.isAdopting);
-        setNumHouseholdPeople(data.adopters.numHouseholdPeople);
-        setNumHouseholdPets(data.adopters.numHouseholdPets);
-        setHasBackgroundCheck(data.adopters.hasBackgroundCheck);
-        setHasApplication(data.adopters.hasApplication);
-        setBio(data.adopters.bio);
+        dispatch({ type: "SET_ADOPTER", payload: data.adopters });
       });
   }, [id]);
 
   const handleSubmit = (values) => {
-    const updatedAdopter = {
-      firstName: values.firstName,
-      lastName: values.lastName,
-      name: values.name,
-      isAdopting: values.isAdopting,
-      numHouseholdPeople: values.numHouseholdPeople,
-      numHouseholdPets: values.numHouseholdPets,
-      hasBackgroundCheck: values.hasBackgroundCheck,
-      hasApplication: values.hasApplication,
-      bio: values.bio,
-    };
     fetch(url, {
       method: "PUT",
       headers: {
         ...constructHeader(),
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedAdopter),
+      body: JSON.stringify(values),
     }).then(() => {
       history.push(`/v1/adopters/${id}`);
     });
@@ -71,17 +65,7 @@ export default function EditAdopterDetails() {
 
   return (
     <Formik
-      initialValues={{
-        firstName,
-        lastName,
-        name,
-        isAdopting,
-        numHouseholdPeople,
-        numHouseholdPets,
-        hasBackgroundCheck,
-        hasApplication,
-        bio,
-      }}
+      initialValues={state}
       validationSchema={adoptersValidationSchema}
       onSubmit={handleSubmit}
       enableReinitialize
@@ -96,7 +80,7 @@ export default function EditAdopterDetails() {
             direction="column"
           >
             <Grid item style={{ marginBottom: "2vh" }}>
-              <Typography variant="h3">Edit {name}</Typography>
+              <Typography variant="h3">Edit {state.name}</Typography>
             </Grid>
             <Form>
               <Container>
