@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import {
-  Grid,
-  Container,
-  Typography,
-  Button,
-  TextField,
-} from "@material-ui/core";
-import { Formik, Field, Form } from "formik";
+import { Grid, Container, Typography, Button } from "@material-ui/core";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { constructHeader } from "../../utils/utils";
 import { adoptersUrl } from "../../server/apiService/apiConfig";
 import { AppHeader, tabs } from "../header/AppHeader";
+import { FormField, MultiLineFormField } from "../FormField";
 
 export default function EditAdopterDetails() {
   const { id } = useParams();
@@ -120,149 +115,79 @@ export default function EditAdopterDetails() {
                   direction="row"
                 >
                   <Grid item xs={12} sm={6} style={{ textAlign: "left" }}>
-                    <Grid item xs={12}>
-                      <label htmlFor="firstName">
-                        <strong>First Name</strong>
-                        <Field
-                          id="firstName"
-                          name="firstName"
-                          type="text"
-                          style={{ margin: "0.625rem" }}
-                        />
-                        {errors.firstName && touched.firstName ? (
-                          <div style={{ color: "red" }}>{errors.firstName}</div>
-                        ) : null}
-                      </label>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <label htmlFor="lastName">
-                        <strong>Last Name</strong>
-                        <Field
-                          id="lastName"
-                          name="lastName"
-                          type="text"
-                          style={{ margin: "0.625rem" }}
-                        />
-                        {errors.lastName && touched.lastName ? (
-                          <div style={{ color: "red" }}>{errors.lastName}</div>
-                        ) : null}
-                      </label>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <label htmlFor="name">
-                        <strong>Display Name</strong>
-                        <Field
-                          id="name"
-                          name="name"
-                          type="text"
-                          style={{ margin: "0.625rem" }}
-                        />
-                        {errors.name && touched.name ? (
-                          <div style={{ color: "red" }}>{errors.name}</div>
-                        ) : null}
-                      </label>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <label htmlFor="isAdopting">
-                        <strong>Is Adopting</strong>
-                        <Field
-                          id="isAdopting"
-                          name="isAdopting"
-                          type="checkbox"
-                          style={{ margin: "0.625rem" }}
-                        />
-                        {errors.isAdopting && touched.isAdopting ? (
-                          <div style={{ color: "red" }}>
-                            {errors.isAdopting}
-                          </div>
-                        ) : null}
-                      </label>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <label htmlFor="numHouseholdPeople">
-                        <strong>Number of People in Household</strong>
-                        <Field
-                          id="numHouseholdPeople"
-                          name="numHouseholdPeople"
-                          type="number"
-                          style={{ margin: "0.625rem" }}
-                        />
-                        {errors.numHouseholdPeople &&
-                        touched.numHouseholdPeople ? (
-                          <div style={{ color: "red" }}>
-                            {errors.numHouseholdPeople}
-                          </div>
-                        ) : null}
-                      </label>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <label htmlFor="numHouseholdPets">
-                        <strong>Number of Pets in Household</strong>
-                        <Field
-                          id="numHouseholdPets"
-                          name="numHouseholdPets"
-                          type="number"
-                          style={{ margin: "0.625rem" }}
-                        />
-                        {errors.numHouseholdPets && touched.numHouseholdPets ? (
-                          <div style={{ color: "red" }}>
-                            {errors.numHouseholdPets}
-                          </div>
-                        ) : null}
-                      </label>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <label htmlFor="hasBackgroundCheck">
-                        <strong>Has Background Check</strong>
-                        <Field
-                          id="hasBackgroundCheck"
-                          name="hasBackgroundCheck"
-                          type="checkbox"
-                          style={{ margin: "0.625rem" }}
-                        />
-                        {errors.hasBackgroundCheck &&
-                        touched.hasBackgroundCheck ? (
-                          <div style={{ color: "red" }}>
-                            {errors.hasBackgroundCheck}
-                          </div>
-                        ) : null}
-                      </label>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <label htmlFor="hasApplication">
-                        <strong>Has Application</strong>
-                        <Field
-                          id="hasApplication"
-                          name="hasApplication"
-                          type="checkbox"
-                          style={{ margin: "0.625rem" }}
-                        />
-                        {errors.hasApplication && touched.hasApplication ? (
-                          <div style={{ color: "red" }}>
-                            {errors.hasApplication}
-                          </div>
-                        ) : null}
-                      </label>
-                    </Grid>
+                    <FormField
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      label="First Name"
+                      errors={errors}
+                      touched={touched}
+                    />
+                    <FormField
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      label="Last Name"
+                      errors={errors}
+                      touched={touched}
+                    />
+                    <FormField
+                      id="name"
+                      name="name"
+                      type="text"
+                      label="Display Name"
+                      errors={errors}
+                      touched={touched}
+                    />
+                    <FormField
+                      id="isAdopting"
+                      name="isAdopting"
+                      type="checkbox"
+                      label="Is Adopting"
+                      errors={errors}
+                      touched={touched}
+                    />
+                    <FormField
+                      id="numHouseholdPeople"
+                      name="numHouseholdPeople"
+                      type="number"
+                      label="Number of People in Household"
+                      errors={errors}
+                      touched={touched}
+                    />
+                    <FormField
+                      id="numHouseholdPets"
+                      name="numHouseholdPets"
+                      type="number"
+                      label="Number of Pets in Household"
+                      errors={errors}
+                      touched={touched}
+                    />
+                    <FormField
+                      id="hasBackgroundCheck"
+                      name="hasBackgroundCheck"
+                      type="checkbox"
+                      label="Has Background Check"
+                      errors={errors}
+                      touched={touched}
+                    />
+                    <FormField
+                      id="hasApplication"
+                      name="hasApplication"
+                      type="checkbox"
+                      label="Has Application"
+                      errors={errors}
+                      touched={touched}
+                    />
                   </Grid>
                   <Grid item xs={12} sm={6} style={{ textAlign: "left" }}>
-                    <Grid item xs={12}>
-                      <label htmlFor="bio">
-                        <strong>Bio</strong>
-                        <Field
-                          as={TextField}
-                          id="bio"
-                          name="bio"
-                          multiline
-                          rows={10}
-                          variant="outlined"
-                          style={{ margin: "0.625rem", width: "100%" }}
-                        />
-                        {errors.bio && touched.bio ? (
-                          <div style={{ color: "red" }}>{errors.bio}</div>
-                        ) : null}
-                      </label>
-                    </Grid>
+                    <MultiLineFormField
+                      id="bio"
+                      name="bio"
+                      label="Bio"
+                      errors={errors}
+                      touched={touched}
+                    />
                   </Grid>
                 </Grid>
               </Container>
