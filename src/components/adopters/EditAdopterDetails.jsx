@@ -1,14 +1,12 @@
 import React, { useReducer, useEffect, useCallback } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Grid, Container, Typography } from "@material-ui/core";
-import { Formik, Form } from "formik";
+import { Grid, Typography } from "@material-ui/core";
+import { Formik } from "formik";
 import {
   adoptersUrl,
   adoptersEndpoint,
 } from "../../server/apiService/apiConfig";
 import { AppHeader, tabs } from "../header/AppHeader";
-import { FormField, MultiLineFormField } from "../FormField";
-import FormButtons from "../FormButtons";
 import {
   fetchDetails,
   editDetails,
@@ -17,6 +15,7 @@ import {
 import { adoptersText } from "../../accessibility/header/headerText";
 import adoptersValidationSchema from "../../validations/adoptersValidationSchema";
 import editReducer from "../../reducers/editReducer";
+import EditAdopterForm from "./EditAdopterForm";
 
 const initialState = {
   firstName: "",
@@ -67,93 +66,12 @@ export default function EditAdopterDetails() {
             <Grid item style={{ marginBottom: "2vh" }}>
               <Typography variant="h3">Edit {state.name}</Typography>
             </Grid>
-            <Form>
-              <Container>
-                <Grid
-                  container
-                  justify="center"
-                  alignItems="flex-start"
-                  direction="row"
-                >
-                  <Grid item xs={12} sm={6} style={{ textAlign: "left" }}>
-                    <FormField
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      label="First Name"
-                      errors={errors}
-                      touched={touched}
-                    />
-                    <FormField
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      label="Last Name"
-                      errors={errors}
-                      touched={touched}
-                    />
-                    <FormField
-                      id="name"
-                      name="name"
-                      type="text"
-                      label="Display Name"
-                      errors={errors}
-                      touched={touched}
-                    />
-                    <FormField
-                      id="isAdopting"
-                      name="isAdopting"
-                      type="checkbox"
-                      label="Is Adopting"
-                      errors={errors}
-                      touched={touched}
-                    />
-                    <FormField
-                      id="numHouseholdPeople"
-                      name="numHouseholdPeople"
-                      type="number"
-                      label="Number of People in Household"
-                      errors={errors}
-                      touched={touched}
-                    />
-                    <FormField
-                      id="numHouseholdPets"
-                      name="numHouseholdPets"
-                      type="number"
-                      label="Number of Pets in Household"
-                      errors={errors}
-                      touched={touched}
-                    />
-                    <FormField
-                      id="hasBackgroundCheck"
-                      name="hasBackgroundCheck"
-                      type="checkbox"
-                      label="Has Background Check"
-                      errors={errors}
-                      touched={touched}
-                    />
-                    <FormField
-                      id="hasApplication"
-                      name="hasApplication"
-                      type="checkbox"
-                      label="Has Application"
-                      errors={errors}
-                      touched={touched}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6} style={{ textAlign: "left" }}>
-                    <MultiLineFormField
-                      id="bio"
-                      name="bio"
-                      label="Bio"
-                      errors={errors}
-                      touched={touched}
-                    />
-                  </Grid>
-                </Grid>
-              </Container>
-              <FormButtons id={id} endpoint={adoptersEndpoint} />
-            </Form>
+            <EditAdopterForm
+              errors={errors}
+              touched={touched}
+              id={id}
+              endpoint={adoptersEndpoint}
+            />
           </Grid>
         </div>
       )}
