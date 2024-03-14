@@ -9,10 +9,12 @@ import fetchData from "../../server/apiService/cardApi";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
+import { veterinariansText } from "../../accessibility/header/headerText";
+import { getTabValue } from "../../utils/componentUtils";
 
 export default function Veterinarians() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex((tab) => tab.label === "Veterinarians");
+  const tabValue = getTabValue(tabs, veterinariansText);
   const [page, setPage] = useState(0);
 
   useEffect(() => {

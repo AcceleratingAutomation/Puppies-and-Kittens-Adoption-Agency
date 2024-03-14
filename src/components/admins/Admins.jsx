@@ -9,10 +9,12 @@ import AdminCard from "./AdminCard";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
+import { adminsText } from "../../accessibility/header/headerText";
+import { getTabValue } from "../../utils/componentUtils";
 
 export default function Admins() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex((tab) => tab.label === "Admins");
+  const tabValue = getTabValue(tabs, adminsText);
   const [page, setPage] = useState(0);
   const showPage = true; // Define the 'showPage' variable
 

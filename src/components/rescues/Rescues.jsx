@@ -20,11 +20,13 @@ import {
 import { rescuesUrl } from "../../server/apiService/apiConfig";
 import fetchData from "../../server/apiService/cardApi";
 import PaginationButtons from "../PaginationButtons";
+import { rescuesText } from "../../accessibility/header/headerText";
+import { getTabValue } from "../../utils/componentUtils";
 
 export default function Rescues() {
   const { state, dispatch } = useContext(FavoritesContext);
   const [page, setPage] = useState(0);
-  const tabValue = tabs.findIndex((tab) => tab.label === "Rescues");
+  const tabValue = getTabValue(tabs, rescuesText);
 
   useEffect(() => {
     fetchData(rescuesUrl)

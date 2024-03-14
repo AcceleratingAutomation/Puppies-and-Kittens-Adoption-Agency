@@ -9,11 +9,13 @@ import { FavoritesContext } from "../../contexts/favoritesContext";
 import DetailsButtons from "../DetailsButtons";
 import RescueDetailsLayout from "./RescueDetailsLayout";
 import {
-  navigateBack,
-  navigateToEdit,
   deleteDetails,
   fetchDetails,
+  getTabValue,
+  navigateBack,
+  navigateToEdit,
 } from "../../utils/componentUtils";
+import { rescuesText } from "../../accessibility/header/headerText";
 
 const useStyles = makeStyles({
   muiButton: {
@@ -26,7 +28,7 @@ export default function RescueDetails() {
   const { id } = useParams();
   const { state, dispatch } = useContext(FavoritesContext);
   const history = useHistory();
-  const tabValue = tabs.findIndex((tab) => tab.label === "Rescues");
+  const tabValue = getTabValue(tabs, rescuesText);
 
   useEffect(() => {
     fetchDetails(rescuesUrl, id, dispatch, "setRescueDetails", "rescues");

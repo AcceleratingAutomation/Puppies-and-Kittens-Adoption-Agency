@@ -10,11 +10,11 @@ import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
 import { getTabValue } from "../../utils/componentUtils";
-import { AdoptersText } from "../../accessibility/adopters/adoptersText";
+import { adoptersText } from "../../accessibility/header/headerText";
 
 export default function Adopters() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = getTabValue(tabs, AdoptersText);
+  const tabValue = getTabValue(tabs, adoptersText);
   const [page, setPage] = useState(0);
 
   useEffect(() => {

@@ -8,17 +8,19 @@ import { FavoritesContext } from "../../contexts/favoritesContext";
 import DetailsButtons from "../DetailsButtons";
 import FosterDetailsLayout from "./FosterDetailsLayout";
 import {
-  navigateBack,
-  navigateToEdit,
   deleteDetails,
   fetchDetails,
+  getTabValue,
+  navigateBack,
+  navigateToEdit,
 } from "../../utils/componentUtils";
+import { fostersText } from "../../accessibility/header/headerText";
 
 export default function FosterDetails() {
   const { id } = useParams();
   const { state, dispatch } = useContext(FavoritesContext);
   const history = useHistory();
-  const tabValue = tabs.findIndex((tab) => tab.label === "Fosters");
+  const tabValue = getTabValue(tabs, fostersText);
 
   useEffect(() => {
     fetchDetails(fostersUrl, id, dispatch, "setFosterDetails", "fosters");

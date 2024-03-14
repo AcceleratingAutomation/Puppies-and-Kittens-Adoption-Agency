@@ -15,7 +15,7 @@ import {
   editDetails,
   getTabValue,
 } from "../../utils/componentUtils";
-import { AdoptersText } from "../../accessibility/adopters/adoptersText";
+import { adoptersText } from "../../accessibility/header/headerText";
 
 const initialState = {
   firstName: "",
@@ -41,7 +41,7 @@ function reducer(state, action) {
 export default function EditAdopterDetails() {
   const { id } = useParams();
   const history = useHistory();
-  const tabValue = getTabValue(tabs, AdoptersText);
+  const tabValue = getTabValue(tabs, adoptersText);
 
   const [state, dispatch] = useReducer(reducer, initialState);
 

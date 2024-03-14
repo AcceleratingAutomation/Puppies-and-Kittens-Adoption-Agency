@@ -14,7 +14,14 @@ import {
   adminsEndpoint,
   veterinariansEndpoint,
 } from "../../server/apiService/apiConfig";
-import { AdoptersText } from "../../accessibility/adopters/adoptersText";
+import {
+  adminsText,
+  adoptersText,
+  favoritesText,
+  fostersText,
+  rescuesText,
+  veterinariansText,
+} from "../../accessibility/header/headerText";
 
 const initialState = {
   anchorEl: null,
@@ -33,12 +40,12 @@ function reducer(state, action) {
 }
 
 export const tabs = [
-  { route: favoritesEndpoint, label: "Favorites" },
-  { route: rescuesEndpoint, label: "Rescues" },
-  { route: adoptersEndpoint, label: AdoptersText },
-  { route: fostersEndpoint, label: "Fosters" },
-  { route: veterinariansEndpoint, label: "Veterinarians" },
-  { route: adminsEndpoint, label: "Admins" },
+  { route: favoritesEndpoint, label: favoritesText },
+  { route: rescuesEndpoint, label: rescuesText },
+  { route: adoptersEndpoint, label: adoptersText },
+  { route: fostersEndpoint, label: fostersText },
+  { route: veterinariansEndpoint, label: veterinariansText },
+  { route: adminsEndpoint, label: adminsText },
 ];
 
 export function AppHeader({ tabValue }) {

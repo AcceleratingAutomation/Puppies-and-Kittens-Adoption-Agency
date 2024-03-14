@@ -17,13 +17,13 @@ import {
   fetchDetails,
   getTabValue,
 } from "../../utils/componentUtils";
-import { AdoptersText } from "../../accessibility/adopters/adoptersText";
+import { adoptersText } from "../../accessibility/header/headerText";
 
 export default function AdopterDetails() {
   const { id } = useParams();
   const { state, dispatch } = useContext(FavoritesContext);
   const history = useHistory();
-  const tabValue = getTabValue(tabs, AdoptersText);
+  const tabValue = getTabValue(tabs, adoptersText);
 
   useEffect(() => {
     fetchDetails(adoptersUrl, id, dispatch, "setAdopterDetails", "adopters");

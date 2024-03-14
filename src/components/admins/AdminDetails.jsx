@@ -8,17 +8,19 @@ import { FavoritesContext } from "../../contexts/favoritesContext";
 import DetailsButtons from "../DetailsButtons";
 import AdminDetailsLayout from "./AdminDetailsLayout";
 import {
-  navigateBack,
-  navigateToEdit,
   deleteDetails,
   fetchDetails,
+  getTabValue,
+  navigateBack,
+  navigateToEdit,
 } from "../../utils/componentUtils";
+import { adminsText } from "../../accessibility/header/headerText";
 
 export default function AdminDetails() {
   const { id } = useParams();
   const { state, dispatch } = useContext(FavoritesContext);
   const history = useHistory();
-  const tabValue = tabs.findIndex((tab) => tab.label === "Admins");
+  const tabValue = getTabValue(tabs, adminsText);
 
   useEffect(() => {
     fetchDetails(adminsUrl, id, dispatch, "setAdminDetails", "admins");

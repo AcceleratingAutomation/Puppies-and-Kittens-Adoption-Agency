@@ -11,17 +11,19 @@ import { FavoritesContext } from "../../contexts/favoritesContext";
 import DetailsButtons from "../DetailsButtons";
 import VeterinarianDetailsLayout from "./VeterinarianDetailsLayout";
 import {
-  navigateBack,
-  navigateToEdit,
   deleteDetails,
   fetchDetails,
+  getTabValue,
+  navigateBack,
+  navigateToEdit,
 } from "../../utils/componentUtils";
+import { veterinariansText } from "../../accessibility/header/headerText";
 
 export default function VeterinarianDetails() {
   const { id } = useParams();
   const { state, dispatch } = useContext(FavoritesContext);
   const history = useHistory();
-  const tabValue = tabs.findIndex((tab) => tab.label === "Veterinarians");
+  const tabValue = getTabValue(tabs, veterinariansText);
 
   useEffect(() => {
     fetchDetails(

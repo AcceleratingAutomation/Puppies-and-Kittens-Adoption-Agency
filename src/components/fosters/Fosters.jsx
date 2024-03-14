@@ -9,10 +9,12 @@ import FosterCard from "./FosterCard";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
+import { fostersText } from "../../accessibility/header/headerText";
+import { getTabValue } from "../../utils/componentUtils";
 
 export default function Fosters() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex((tab) => tab.label === "Fosters");
+  const tabValue = getTabValue(tabs, fostersText);
   const [page, setPage] = useState(0);
 
   useEffect(() => {

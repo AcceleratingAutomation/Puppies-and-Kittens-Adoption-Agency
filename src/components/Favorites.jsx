@@ -10,10 +10,12 @@ import {
   removeFavorite,
 } from "../server/apiService/favoritesApi";
 import PaginationButtons from "./PaginationButtons";
+import { favoritesText } from "../accessibility/header/headerText";
+import { getTabValue } from "../utils/componentUtils";
 
 export default function Favorites() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex((tab) => tab.label === "Favorites");
+  const tabValue = getTabValue(tabs, favoritesText);
   const [page, setPage] = useState(0);
 
   const fetchAndSetFavorites = useCallback(async () => {
