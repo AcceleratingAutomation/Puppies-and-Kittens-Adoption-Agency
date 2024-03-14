@@ -1,16 +1,26 @@
 const baseServerUrl = "http://localhost:5000";
+const adminAddEndpoint = "/v1/admins/:id/add";
 const adminDetailsEndpoint = "/v1/admins/:id";
+const adminEditEndpoint = "/v1/admins/:id/edit";
 const adminsEndpoint = "/v1/admins";
+const adopterAddEndpoint = "/v1/adopters/:id/add";
 const adopterDetailsEndpoint = "/v1/adopters/:id";
+const adopterEditEndpoint = "/v1/adopters/:id/edit";
 const adoptersEndpoint = "/v1/adopters";
 const favoritesEndpoint = "/v1/favorites";
+const fosterAddEndpoint = "/v1/fosters/:id/add";
 const fosterDetailsEndpoint = "/v1/fosters/:id";
+const fosterEditEndpoint = "/v1/fosters/:id/edit";
 const fostersEndpoint = "/v1/fosters";
 const loginEndpoint = "/v1/login";
 const logoutEndpoint = "/v1/logout";
+const rescueAddEndpoint = "/v1/rescues/:id/add";
 const rescueDetailsEndpoint = "/v1/rescues/:id";
+const rescueEditEndpoint = "/v1/rescues/:id/edit";
 const rescuesEndpoint = "/v1/rescues";
+const veterinarianAddEndpoint = "/v1/veterinarians/:id/add";
 const veterinarianDetailsEndpoint = "/v1/veterinarians/:id";
+const veterinarianEditEndpoint = "/v1/veterinarians/:id/edit";
 const veterinariansEndpoint = "/v1/veterinarians";
 const adminsUrl = `${baseServerUrl}${adminsEndpoint}`;
 const adoptersUrl = `${baseServerUrl}${adoptersEndpoint}`;
@@ -22,25 +32,35 @@ const rescuesUrl = `${baseServerUrl}${rescuesEndpoint}`;
 const veterinariansUrl = `${baseServerUrl}${veterinariansEndpoint}`;
 
 module.exports = {
+  adminAddEndpoint,
+  adminDetailsEndpoint,
+  adminEditEndpoint,
+  adminsEndpoint,
+  adopterAddEndpoint,
   adopterDetailsEndpoint,
+  adopterEditEndpoint,
   adoptersEndpoint,
   favoritesEndpoint,
+  fosterAddEndpoint,
   fosterDetailsEndpoint,
+  fosterEditEndpoint,
   fostersEndpoint,
   loginEndpoint,
   logoutEndpoint,
+  rescueAddEndpoint,
   rescueDetailsEndpoint,
+  rescueEditEndpoint,
   rescuesEndpoint,
-  adminDetailsEndpoint,
-  adminsEndpoint,
+  veterinarianAddEndpoint,
   veterinarianDetailsEndpoint,
+  veterinarianEditEndpoint,
   veterinariansEndpoint,
+  adminsUrl,
   adoptersUrl,
   favoritesUrl,
   fostersUrl,
   loginUrl,
   logoutUrl,
   rescuesUrl,
-  adminsUrl,
   veterinariansUrl,
 };

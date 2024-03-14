@@ -19,6 +19,7 @@ import {
   adminDetailsEndpoint,
   adminsEndpoint,
   adopterDetailsEndpoint,
+  adopterEditEndpoint,
   adoptersEndpoint,
   favoritesEndpoint,
   fosterDetailsEndpoint,
@@ -44,7 +45,7 @@ export default function App() {
             <Route exact path={adopterDetailsEndpoint}>
               <AdopterDetails />
             </Route>
-            <Route exact path={`${adopterDetailsEndpoint}/edit`}>
+            <Route exact path={adopterEditEndpoint}>
               <EditAdopterDetails />
             </Route>
             <Route exact path={adoptersEndpoint}>
