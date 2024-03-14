@@ -28,8 +28,9 @@ export default function EditAdopterDetails() {
   const [hasApplication, setHasApplication] = useState(false);
   const [bio, setBio] = useState("");
 
+  const url = `${adoptersUrl}/${id}`;
+
   useEffect(() => {
-    const url = `${adoptersUrl}/${id}`;
     fetch(url, { headers: constructHeader() })
       .then((response) => response.json())
       .then((data) => {
@@ -45,7 +46,7 @@ export default function EditAdopterDetails() {
       });
   }, [id]);
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (values) => {
     const updatedAdopter = {
       firstName: values.firstName,
       lastName: values.lastName,
@@ -57,13 +58,15 @@ export default function EditAdopterDetails() {
       hasApplication: values.hasApplication,
       bio: values.bio,
     };
-    fetch(`${adoptersUrl}/${id}`, {
+    fetch(url, {
       method: "PUT",
-      headers: constructHeader(),
+      headers: {
+        ...constructHeader(),
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(updatedAdopter),
     }).then(() => {
       history.push(`/v1/adopters/${id}`);
-      setSubmitting(false);
     });
   };
 
