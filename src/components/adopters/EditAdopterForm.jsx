@@ -4,41 +4,52 @@ import { Grid, Container } from "@material-ui/core";
 import { Form } from "formik";
 import { FormField, MultiLineFormField } from "../FormField";
 import FormButtons from "../FormButtons";
+import {
+  bioLabel,
+  displayNameLabel,
+  firstNameLabel,
+  hasApplicationLabel,
+  hasBackgroundCheckLabel,
+  isAdoptingLabel,
+  lastNameLabel,
+  numHouseholdPeopleLabel,
+  numHouseholdPetsLabel,
+} from "../../accessibility/users/usersText";
 
 function EditAdopterForm({ errors, touched, id, endpoint }) {
   const formFields = [
-    { id: "firstName", name: "firstName", type: "text", label: "First Name" },
-    { id: "lastName", name: "lastName", type: "text", label: "Last Name" },
-    { id: "name", name: "name", type: "text", label: "Display Name" },
+    { id: "firstName", name: "firstName", type: "text", label: firstNameLabel },
+    { id: "lastName", name: "lastName", type: "text", label: lastNameLabel },
+    { id: "name", name: "name", type: "text", label: displayNameLabel },
     {
       id: "isAdopting",
       name: "isAdopting",
       type: "checkbox",
-      label: "Is Adopting",
+      label: isAdoptingLabel,
     },
     {
       id: "numHouseholdPeople",
       name: "numHouseholdPeople",
       type: "number",
-      label: "Number of People in Household",
+      label: numHouseholdPeopleLabel,
     },
     {
       id: "numHouseholdPets",
       name: "numHouseholdPets",
       type: "number",
-      label: "Number of Pets in Household",
+      label: numHouseholdPetsLabel,
     },
     {
       id: "hasBackgroundCheck",
       name: "hasBackgroundCheck",
       type: "checkbox",
-      label: "Has Background Check",
+      label: hasBackgroundCheckLabel,
     },
     {
       id: "hasApplication",
       name: "hasApplication",
       type: "checkbox",
-      label: "Has Application",
+      label: hasApplicationLabel,
     },
   ];
 
@@ -68,7 +79,7 @@ function EditAdopterForm({ errors, touched, id, endpoint }) {
             <MultiLineFormField
               id="bio"
               name="bio"
-              label="Bio"
+              label={bioLabel}
               errors={errors}
               touched={touched}
             />
