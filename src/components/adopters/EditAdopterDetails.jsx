@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Grid, Container, Typography, Button } from "@material-ui/core";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import { constructHeader } from "../../utils/utils";
 import { adoptersUrl } from "../../server/apiService/apiConfig";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { FormField, MultiLineFormField } from "../FormField";
+import adoptersValidationSchema from "./adoptersValidationSchema";
 
 export default function EditAdopterDetails() {
   const { id } = useParams();
@@ -65,18 +65,6 @@ export default function EditAdopterDetails() {
     });
   };
 
-  const validationSchema = Yup.object({
-    firstName: Yup.string().required("First Name Required"),
-    lastName: Yup.string().required("Last Name Required"),
-    name: Yup.string().required("Display Name Required"),
-    isAdopting: Yup.boolean().required("Looking to Adopt Required"),
-    numHouseholdPeople: Yup.number().required("Number of People Required"),
-    numHouseholdPets: Yup.number().required("Number of Pets Required"),
-    hasBackgroundCheck: Yup.boolean().required("Background Check Required"),
-    hasApplication: Yup.boolean().required("Application Required"),
-    bio: Yup.string().required("Bio Required"),
-  });
-
   return (
     <Formik
       initialValues={{
@@ -90,7 +78,7 @@ export default function EditAdopterDetails() {
         hasApplication,
         bio,
       }}
-      validationSchema={validationSchema}
+      validationSchema={adoptersValidationSchema}
       onSubmit={handleSubmit}
       enableReinitialize
     >
