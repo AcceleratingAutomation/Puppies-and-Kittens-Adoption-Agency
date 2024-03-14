@@ -5,27 +5,13 @@ import * as Yup from "yup";
 import { updateAppSettings } from "../../utils/utils";
 import { login } from "../../server/apiService/authApi";
 import LoginForm from "./LoginForm";
-import {
-  usernameRequired,
-  passwordRequired,
-  atLeast8Characters,
-  atLeastOneLowercaseLetter,
-  atLeastOneUppercaseLetter,
-  atLeastOneNumber,
-  atLeastOneSpecialCharacter,
-} from "../../accessibility/login/loginText";
 import { rescuesEndpoint } from "../../server/apiService/apiConfig";
+import yupValidationSchema from "../../validations/yupValidationSchema";
 
 const LoginSchema = Yup.object().shape({
-  username: Yup.string().required(usernameRequired),
-  password: Yup.string()
-    .required(passwordRequired)
-    .min(8, atLeast8Characters)
-    .matches(/[a-z]/, atLeastOneLowercaseLetter)
-    .matches(/[A-Z]/, atLeastOneUppercaseLetter)
-    .matches(/[0-9]/, atLeastOneNumber)
-    .matches(/[\^$*.[\]{}()?\-"!@#%&/,><':;|_~`]/, atLeastOneSpecialCharacter),
-  login: Yup.string(),
+  username: yupValidationSchema.fields.username,
+  password: yupValidationSchema.fields.password,
+  login: yupValidationSchema.fields.login,
 });
 
 export default function Login() {
