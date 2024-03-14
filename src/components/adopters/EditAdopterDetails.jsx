@@ -2,7 +2,6 @@ import React, { useReducer, useEffect, useCallback } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Grid, Container, Typography } from "@material-ui/core";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import {
   adoptersUrl,
   adoptersEndpoint,
@@ -16,7 +15,7 @@ import {
   getTabValue,
 } from "../../utils/componentUtils";
 import { adoptersText } from "../../accessibility/header/headerText";
-import yupValidationSchema from "../../validations/yupValidationSchema";
+import adoptersValidationSchema from "../../validations/adoptersValidationSchema";
 
 const initialState = {
   firstName: "",
@@ -39,18 +38,6 @@ function reducer(state, action) {
   }
 }
 
-const AdoptersValidationSchema = Yup.object().shape({
-  firstName: yupValidationSchema.fields.firstName,
-  lastName: yupValidationSchema.fields.lastName,
-  name: yupValidationSchema.fields.displayName,
-  isAdopting: yupValidationSchema.fields.isAdopting,
-  numHouseholdPeople: yupValidationSchema.fields.numHouseholdPeople,
-  numHouseholdPets: yupValidationSchema.fields.numHouseholdPets,
-  hasBackgroundCheck: yupValidationSchema.fields.hasBackgroundCheck,
-  hasApplication: yupValidationSchema.fields.hasApplication,
-  bio: yupValidationSchema.fields.bio,
-});
-
 export default function EditAdopterDetails() {
   const { id } = useParams();
   const history = useHistory();
@@ -72,7 +59,7 @@ export default function EditAdopterDetails() {
   return (
     <Formik
       initialValues={state}
-      validationSchema={AdoptersValidationSchema}
+      validationSchema={adoptersValidationSchema}
       onSubmit={handleSubmit}
       enableReinitialize
     >

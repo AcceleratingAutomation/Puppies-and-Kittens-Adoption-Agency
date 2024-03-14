@@ -1,18 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
-import * as Yup from "yup";
 import { updateAppSettings } from "../../utils/utils";
 import { login } from "../../server/apiService/authApi";
 import LoginForm from "./LoginForm";
 import { rescuesEndpoint } from "../../server/apiService/apiConfig";
-import yupValidationSchema from "../../validations/yupValidationSchema";
-
-const LoginSchema = Yup.object().shape({
-  username: yupValidationSchema.fields.username,
-  password: yupValidationSchema.fields.password,
-  login: yupValidationSchema.fields.login,
-});
+import loginSchema from "../../validations/loginValidationSchema";
 
 export default function Login() {
   const history = useHistory();
@@ -47,7 +40,7 @@ export default function Login() {
   return (
     <Formik
       initialValues={{ username: "", password: "", login: "" }}
-      validationSchema={LoginSchema}
+      validationSchema={loginSchema}
       onSubmit={onSubmit}
     >
       {({ isSubmitting }) => <LoginForm isSubmitting={isSubmitting} />}
