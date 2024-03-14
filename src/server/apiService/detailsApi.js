@@ -1,12 +1,16 @@
 import { constructHeader } from "../../utils/utils";
 
+const constructUrl = (url, id) => `${url}/${id}`;
+
 export const fetchDetailsApi = async (url, id) => {
-  const response = await fetch(`${url}/${id}`, { headers: constructHeader() });
+  const response = await fetch(constructUrl(url, id), {
+    headers: constructHeader(),
+  });
   return response.json();
 };
 
 export const deleteDetailsApi = async (url, id) => {
-  const response = await fetch(`${url}/${id}`, {
+  const response = await fetch(constructUrl(url, id), {
     method: "DELETE",
     headers: constructHeader(),
   });
@@ -14,7 +18,7 @@ export const deleteDetailsApi = async (url, id) => {
 };
 
 export const editDetailsApi = async (url, id, values) => {
-  const response = await fetch(`${url}/${id}`, {
+  const response = await fetch(constructUrl(url, id), {
     method: "PUT",
     headers: {
       ...constructHeader(),
