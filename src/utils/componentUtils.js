@@ -48,3 +48,6 @@ export const navigateToEdit = (history, id, path) => {
 export function getImageUrl(directory, imageId) {
   return `/images/${directory}/${imageId}.webp`;
 }
+
+export const getTabValue = (tabs, label) =>
+  tabs.findIndex((tab) => tab.label === label);

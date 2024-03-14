@@ -15,13 +15,15 @@ import {
   navigateToEdit,
   deleteDetails,
   fetchDetails,
+  getTabValue,
 } from "../../utils/componentUtils";
+import { AdoptersText } from "../../accessibility/adopters/adoptersText";
 
 export default function AdopterDetails() {
   const { id } = useParams();
   const { state, dispatch } = useContext(FavoritesContext);
   const history = useHistory();
-  const tabValue = tabs.findIndex((tab) => tab.label === "Adopters");
+  const tabValue = getTabValue(tabs, AdoptersText);
 
   useEffect(() => {
     fetchDetails(adoptersUrl, id, dispatch, "setAdopterDetails", "adopters");

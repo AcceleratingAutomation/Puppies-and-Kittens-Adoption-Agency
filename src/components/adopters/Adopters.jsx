@@ -9,10 +9,12 @@ import AdopterCard from "./AdopterCard";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
+import { getTabValue } from "../../utils/componentUtils";
+import { AdoptersText } from "../../accessibility/adopters/adoptersText";
 
 export default function Adopters() {
   const { state, dispatch } = useContext(FavoritesContext);
-  const tabValue = tabs.findIndex((tab) => tab.label === "Adopters");
+  const tabValue = getTabValue(tabs, AdoptersText);
   const [page, setPage] = useState(0);
 
   useEffect(() => {

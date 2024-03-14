@@ -14,6 +14,7 @@ import {
   adminsEndpoint,
   veterinariansEndpoint,
 } from "../../server/apiService/apiConfig";
+import { AdoptersText } from "../../accessibility/adopters/adoptersText";
 
 const initialState = {
   anchorEl: null,
@@ -34,7 +35,7 @@ function reducer(state, action) {
 export const tabs = [
   { route: favoritesEndpoint, label: "Favorites" },
   { route: rescuesEndpoint, label: "Rescues" },
-  { route: adoptersEndpoint, label: "Adopters" },
+  { route: adoptersEndpoint, label: AdoptersText },
   { route: fostersEndpoint, label: "Fosters" },
   { route: veterinariansEndpoint, label: "Veterinarians" },
   { route: adminsEndpoint, label: "Admins" },

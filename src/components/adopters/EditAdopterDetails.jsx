@@ -10,7 +10,12 @@ import { AppHeader, tabs } from "../header/AppHeader";
 import { FormField, MultiLineFormField } from "../FormField";
 import adoptersValidationSchema from "./adoptersValidationSchema";
 import FormButtons from "../FormButtons";
-import { fetchDetails, editDetails } from "../../utils/componentUtils";
+import {
+  fetchDetails,
+  editDetails,
+  getTabValue,
+} from "../../utils/componentUtils";
+import { AdoptersText } from "../../accessibility/adopters/adoptersText";
 
 const initialState = {
   firstName: "",
@@ -36,7 +41,7 @@ function reducer(state, action) {
 export default function EditAdopterDetails() {
   const { id } = useParams();
   const history = useHistory();
-  const tabValue = tabs.findIndex((tab) => tab.label === "Adopters");
+  const tabValue = getTabValue(tabs, AdoptersText);
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
