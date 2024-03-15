@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Container } from "@material-ui/core";
-import { Form } from "formik";
+import {
+  Container,
+  FormControl,
+  FormHelperText,
+  Grid,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
+import { Form, useFormikContext } from "formik";
 import { FormField, MultiLineFormField } from "../FormField";
 import FormButtons from "../FormButtons";
 import {
@@ -18,6 +25,8 @@ import {
 } from "../../accessibility/rescues/rescuesText";
 
 function EditRescueForm({ errors, touched, id, endpoint }) {
+  const { values, handleChange } = useFormikContext();
+
   const formFields = [
     { id: "name", name: "name", type: "text", label: nameLabel },
     {
@@ -77,17 +86,49 @@ function EditRescueForm({ errors, touched, id, endpoint }) {
           direction="row"
         >
           <Grid item xs={12} sm={6} style={{ textAlign: "left" }}>
-            {formFields.map((field) => (
-              <FormField
-                key={field.id}
-                id={field.id}
-                name={field.name}
-                type={field.type}
-                label={field.label}
-                errors={errors}
-                touched={touched}
-              />
-            ))}
+            {formFields.map((field) =>
+              field.type === "select" ? (
+                <Grid container alignItems="center" spacing={2} key={field.id}>
+                  <Grid item>
+                    <label htmlFor="name" style={{ fontWeight: "bold" }}>
+                      {field.label}
+                    </label>
+                  </Grid>
+                  <Grid item>
+                    <FormControl
+                      key={field.id}
+                      error={touched[field.name] && Boolean(errors[field.name])}
+                    >
+                      <Select
+                        id={field.id}
+                        name={field.name}
+                        value={values[field.name]}
+                        onChange={handleChange}
+                      >
+                        {field.options.map((option) => (
+                          <MenuItem key={option} value={option}>
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {touched[field.name] && errors[field.name] && (
+                        <FormHelperText>{errors[field.name]}</FormHelperText>
+                      )}
+                    </FormControl>
+                  </Grid>
+                </Grid>
+              ) : (
+                <FormField
+                  key={field.id}
+                  id={field.id}
+                  name={field.name}
+                  type={field.type}
+                  label={field.label}
+                  errors={errors}
+                  touched={touched}
+                />
+              ),
+            )}
           </Grid>
           <Grid item xs={12} sm={6} style={{ textAlign: "left" }}>
             <MultiLineFormField
