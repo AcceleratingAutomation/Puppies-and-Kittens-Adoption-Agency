@@ -5,6 +5,7 @@ import AdminDetails from "./components/admins/AdminDetails";
 import Admins from "./components/admins/Admins";
 import AdopterDetails from "./components/adopters/AdopterDetails";
 import Adopters from "./components/adopters/Adopters";
+import EditAdminDetails from "./components/admins/EditAdminDetails";
 import EditAdopterDetails from "./components/adopters/EditAdopterDetails";
 import EditFosterDetails from "./components/fosters/EditFosterDetails";
 import EditVeterinarianDetails from "./components/veterinarians/EditVeterinarianDetails";
@@ -19,6 +20,7 @@ import VeterinarianDetails from "./components/veterinarians/VeterinarianDetails"
 import Veterinarians from "./components/veterinarians/Veterinarians";
 import {
   adminDetailsEndpoint,
+  adminEditEndpoint,
   adminsEndpoint,
   adopterDetailsEndpoint,
   adopterEditEndpoint,
@@ -40,11 +42,14 @@ export default function App() {
       <div className="app">
         <Router>
           <Switch>
-            <Route exact path={adminsEndpoint}>
-              <Admins />
-            </Route>
             <Route exact path={adminDetailsEndpoint}>
               <AdminDetails />
+            </Route>
+            <Route exact path={adminEditEndpoint}>
+              <EditAdminDetails />
+            </Route>
+            <Route exact path={adminsEndpoint}>
+              <Admins />
             </Route>
             <Route exact path={adopterDetailsEndpoint}>
               <AdopterDetails />
