@@ -7,6 +7,7 @@ import AdopterDetails from "./components/adopters/AdopterDetails";
 import Adopters from "./components/adopters/Adopters";
 import EditAdopterDetails from "./components/adopters/EditAdopterDetails";
 import EditFosterDetails from "./components/fosters/EditFosterDetails";
+import EditVeterinarianDetails from "./components/veterinarians/EditVeterinarianDetails";
 import Favorites from "./components/Favorites";
 import { FavoritesProvider } from "./contexts/favoritesContext";
 import FosterDetails from "./components/fosters/FosterDetails";
@@ -29,6 +30,7 @@ import {
   rescueDetailsEndpoint,
   rescuesEndpoint,
   veterinarianDetailsEndpoint,
+  veterinarianEditEndpoint,
   veterinariansEndpoint,
 } from "./server/apiService/apiConfig";
 
@@ -73,6 +75,9 @@ export default function App() {
             </Route>
             <Route exact path={veterinarianDetailsEndpoint}>
               <VeterinarianDetails />
+            </Route>
+            <Route exact path={veterinarianEditEndpoint}>
+              <EditVeterinarianDetails />
             </Route>
             <Route exact path={veterinariansEndpoint}>
               <Veterinarians />
