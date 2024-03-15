@@ -22,17 +22,40 @@ import {
   numHouseholdPetsRequired,
   numTotalRescuesRequired,
 } from "../accessibility/users/usersText";
+import {
+  breedRequired,
+  genderOptions,
+  genderRequired,
+  hasFosterRequired,
+  hasVetRequired,
+  isAdoptableRequired,
+  isSterilizedRequired,
+  isVaccinatedRequired,
+  nameRequired,
+  typeOptions,
+  typeRequired,
+} from "../accessibility/rescues/rescuesText";
 
 const yupValidationSchema = Yup.object({
   bio: Yup.string().required(bioRequired),
+  breed: Yup.string().required(breedRequired),
   displayName: Yup.string().required(displayNameRequired),
   firstName: Yup.string().required(firstNameRequired),
+  gender: Yup.string()
+    .required(genderRequired)
+    .oneOf(["Male", "Female"], genderOptions),
   hasApplication: Yup.boolean().required(hasApplicationRequired),
   hasBackgroundCheck: Yup.boolean().required(hasBackgroundCheckRequired),
+  hasFoster: Yup.boolean().required(hasFosterRequired),
+  hasVet: Yup.boolean().required(hasVetRequired),
   isAccepting: Yup.boolean().required(isAcceptingRequired),
+  isAdoptable: Yup.boolean().required(isAdoptableRequired),
   isAdopting: Yup.boolean().required(isAdoptingRequired),
+  isSterilized: Yup.boolean().required(isSterilizedRequired),
+  isVaccinated: Yup.boolean().required(isVaccinatedRequired),
   lastName: Yup.string().required(lastNameRequired),
   login: Yup.string(),
+  name: Yup.string().required(nameRequired),
   numCurrentRescues: Yup.number().required(numCurrentRescuesRequired),
   numHouseholdPeople: Yup.number().required(numHouseholdPeopleRequired),
   numHouseholdPets: Yup.number().required(numHouseholdPetsRequired),
@@ -44,6 +67,7 @@ const yupValidationSchema = Yup.object({
     .matches(/[A-Z]/, atLeastOneUppercaseLetter)
     .matches(/[0-9]/, atLeastOneNumber)
     .matches(/[\^$*.[\]{}()?\-"!@#%&/,><':;|_~`]/, atLeastOneSpecialCharacter),
+  type: Yup.string().required(typeRequired).oneOf(["Cat", "Dog"], typeOptions),
   username: Yup.string().required(usernameRequired),
 });
 
