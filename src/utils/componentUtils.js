@@ -1,4 +1,5 @@
 import {
+  createDetailsApi,
   deleteDetailsApi,
   editDetailsApi,
   fetchDetailsApi,
@@ -13,6 +14,16 @@ export const fetchDetails = async (url, id, dispatch, setType, name) => {
     });
   } catch (err) {
     throw new Error(`Error fetching ${name} ${err.message}`);
+  }
+};
+
+export const createDetails = async (url, values, history, endpoint) => {
+  try {
+    if (await createDetailsApi(url, values)) {
+      history.push(endpoint);
+    }
+  } catch (err) {
+    throw new Error(`Error creating details ${err}`);
   }
 };
 

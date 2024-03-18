@@ -5,6 +5,7 @@ import AdminDetails from "./components/admins/AdminDetails";
 import Admins from "./components/admins/Admins";
 import AdopterDetails from "./components/adopters/AdopterDetails";
 import Adopters from "./components/adopters/Adopters";
+import CreateRescueDetails from "./components/rescues/CreateRescueDetails";
 import EditAdminDetails from "./components/admins/EditAdminDetails";
 import EditAdopterDetails from "./components/adopters/EditAdopterDetails";
 import EditFosterDetails from "./components/fosters/EditFosterDetails";
@@ -30,6 +31,7 @@ import {
   fosterDetailsEndpoint,
   fosterEditEndpoint,
   fostersEndpoint,
+  rescueAddEndpoint,
   rescueDetailsEndpoint,
   rescueEditEndpoint,
   rescuesEndpoint,
@@ -73,6 +75,9 @@ export default function App() {
             </Route>
             <Route exact path={fostersEndpoint}>
               <Fosters />
+            </Route>
+            <Route exact path={rescueAddEndpoint}>
+              <CreateRescueDetails />
             </Route>
             <Route exact path={rescueDetailsEndpoint}>
               <RescueDetails />

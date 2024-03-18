@@ -12,7 +12,7 @@ export const updateAppSettings = (token) => {
 //   const token = localStorage.getItem('token');
 //   if (token) {
 //     const audience = jwtDecode(token).aud;
-//     return !audience.includes('SHOW_ADMINS') && !audience.includes('ADD_PET');
+//     return !audience.includes('SHOW_ADMINS') && !audience.includes('ADD_RESCUE');
 //   }
 // };
 

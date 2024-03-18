@@ -5,6 +5,7 @@ const { adopterHandlers } = require("../controllers/createHandlersController");
 const { verifyToken } = require("../shared");
 
 router.route("/").get(verifyToken, adopterHandlers.getAll);
+router.route("/add").post(verifyToken, adopterHandlers.create);
 router
   .route("/:id")
   .get(verifyToken, adopterHandlers.getDetails)

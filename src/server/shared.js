@@ -45,6 +45,37 @@ exports.getUserByUsername = getUserByUsername;
 
 // common
 
+exports.createData = (db, newData) =>
+  new Promise((resolve, reject) => {
+    // Read the existing data
+    fs.readFile(path.join(__dirname, db), "utf8", (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      const items = JSON.parse(data);
+
+      // Add the new data to the array
+      items.push(newData);
+
+      // Write the updated items back to the file
+      fs.writeFile(
+        path.join(__dirname, db),
+        JSON.stringify(items, null, 2),
+        "utf8",
+        (createErr) => {
+          if (createErr) {
+            reject(createErr);
+            return;
+          }
+
+          resolve(newData); // Resolve with the new data when creation is successful
+        },
+      );
+    });
+  });
+
 exports.getAllData = async (db) => {
   try {
     return await jsonfile.readFile(db);

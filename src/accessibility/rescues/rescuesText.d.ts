@@ -7,6 +7,8 @@ export const hasFosterLabel: string;
 export const hasFosterRequired: string;
 export const hasVetLabel: string;
 export const hasVetRequired: string;
+export const imageLabel: string;
+export const imageRequired: string;
 export const isAdoptableLabel: string;
 export const isAdoptableRequired: string;
 export const isSterilizedLabel: string;

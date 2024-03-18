@@ -1,4 +1,6 @@
+const { uuid } = require("uuidv4");
 const {
+  createData,
   getDetails,
   getAllData,
   getAllDataByType,
@@ -120,6 +122,29 @@ const createHandlers = (
       res.status(500).send({ error: "Database error" });
     }
   },
+
+  create: async (req, res) => {
+    const token = req.headers.authorization.split(" ")[1];
+    try {
+      if (getAudienceFromToken(token).includes(permissions.create)) {
+        const dataWithId = { id: uuid(), ...req.body };
+        const newData = await createData(db, dataWithId);
+        if (!newData) {
+          res.status(500).send({ message: `Cannot create this ${type}` });
+        } else {
+          const newToken = await generateToken(token, null);
+          res.status(201).send({ [type]: newData, token: newToken });
+        }
+      } else {
+        res.status(403).send({
+          message: `Not authorized to create ${type}`,
+          token,
+        });
+      }
+    } catch (error) {
+      res.status(500).send({ error: "Database error" });
+    }
+  },
 });
 
 exports.adopterHandlers = createHandlers(
@@ -130,6 +155,7 @@ exports.adopterHandlers = createHandlers(
     delete: Constants.DELETE_ADOPTER,
     showDetails: Constants.SHOW_ADOPTER_DETAILS,
     edit: Constants.EDIT_ADOPTER,
+    create: Constants.CREATE_ADOPTER,
   },
   "Adopter",
   true,
@@ -142,6 +168,7 @@ exports.fosterHandlers = createHandlers(
     delete: Constants.DELETE_FOSTER,
     showDetails: Constants.SHOW_FOSTER_DETAILS,
     edit: Constants.EDIT_FOSTER,
+    create: Constants.CREATE_FOSTER,
   },
   "Foster",
   true,
@@ -151,6 +178,7 @@ exports.rescueHandlers = createHandlers("rescues", rescuesDB, {
   delete: Constants.DELETE_RESCUE,
   showDetails: Constants.SHOW_RESCUE_DETAILS,
   edit: Constants.EDIT_RESCUE,
+  create: Constants.CREATE_RESCUE,
 });
 exports.adminHandlers = createHandlers(
   "admins",
@@ -160,6 +188,7 @@ exports.adminHandlers = createHandlers(
     delete: Constants.DELETE_ADMIN,
     showDetails: Constants.SHOW_ADMIN_DETAILS,
     edit: Constants.EDIT_ADMIN,
+    create: Constants.CREATE_ADMIN,
   },
   "Admin",
   true,
@@ -172,6 +201,7 @@ exports.veterinarianHandlers = createHandlers(
     delete: Constants.DELETE_VETERINARIAN,
     showDetails: Constants.SHOW_VETERINARIAN_DETAILS,
     edit: Constants.EDIT_VETERINARIAN,
+    create: Constants.CREATE_VETERINARIAN,
   },
   "Veterinarian",
   true,

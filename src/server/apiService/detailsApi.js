@@ -28,3 +28,15 @@ export const editDetailsApi = async (url, id, values) => {
   });
   return response.ok;
 };
+
+export const createDetailsApi = async (url, values) => {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      ...constructHeader(),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(values),
+  });
+  return response.ok;
+};

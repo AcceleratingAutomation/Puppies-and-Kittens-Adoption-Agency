@@ -10,6 +10,7 @@ import {
   adoptersEndpoint,
   favoritesEndpoint,
   fostersEndpoint,
+  rescueAddEndpoint,
   rescuesEndpoint,
   adminsEndpoint,
   veterinariansEndpoint,
@@ -88,6 +89,10 @@ export function AppHeader({ tabValue }) {
     handleLogout(history);
   }, [history]);
 
+  const onAddRescue = useCallback(() => {
+    history.push(rescueAddEndpoint);
+  });
+
   return (
     <header style={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -121,6 +126,7 @@ export function AppHeader({ tabValue }) {
             aria-label="User menu options"
           >
             <MenuItem>{localStorage.getItem("displayName")}</MenuItem>
+            <MenuItem onClick={onAddRescue}>Add Rescue</MenuItem>
             <MenuItem onClick={onClickLogout}>Logout</MenuItem>
           </Menu>
         </Toolbar>

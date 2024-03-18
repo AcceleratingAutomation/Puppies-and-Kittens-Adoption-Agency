@@ -7,6 +7,7 @@ const {
 const { verifyToken } = require("../shared");
 
 router.route("/").get(verifyToken, veterinarianHandlers.getAll);
+router.route("/add").post(verifyToken, veterinarianHandlers.create);
 router
   .route("/:id")
   .get(verifyToken, veterinarianHandlers.getDetails)

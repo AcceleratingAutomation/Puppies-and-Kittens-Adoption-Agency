@@ -1,8 +1,11 @@
 module.exports.JWT_OPTIONS = {
   ADMIN_AUDIENCE: [
     "ADD_FAVORITE_RESCUE",
-    "ADD_RESCUE",
-    "ADD_PET",
+    "CREATE_ADOPTER",
+    "CREATE_FOSTER",
+    "CREATE_RESCUE",
+    "CREATE_ADMIN",
+    "CREATE_VETERINARIAN",
     "DELETE_ADOPTER",
     "DELETE_FAVORITE",
     "DELETE_FOSTER",
@@ -40,7 +43,6 @@ module.exports.JWT_OPTIONS = {
   ],
   FOSTER_AUDIENCE: [
     "ADD_FAVORITE_RESCUE",
-    "ADD_RESCUE",
     "DELETE_FAVORITE",
     "LOGIN",
     "SHOW_FAVORITES",
@@ -58,7 +60,6 @@ module.exports.JWT_OPTIONS = {
   ],
   VET_AUDIENCE: [
     "ADD_FAVORITE_RESCUE",
-    "ADD_RESCUE",
     "DELETE_FAVORITE",
     "LOGIN",
     "SHOW_FAVORITES",
@@ -69,7 +70,11 @@ module.exports.JWT_OPTIONS = {
 };
 
 module.exports.ADD_FAVORITE_RESCUE = "ADD_FAVORITE_RESCUE";
-module.exports.ADD_RESCUE = "ADD_RESCUE";
+module.exports.CREATE_ADOPTER = "DELETE_ADOPTER";
+module.exports.CREATE_FOSTER = "CREATE_FOSTER";
+module.exports.CREATE_RESCUE = "CREATE_RESCUE";
+module.exports.CREATE_ADMIN = "CREATE_ADMIN";
+module.exports.CREATE_VETERINARIAN = "CREATE_VETERINARIAN";
 module.exports.DELETE_ADOPTER = "DELETE_ADOPTER";
 module.exports.DELETE_FAVORITE = "DELETE_FAVORITE";
 module.exports.DELETE_FOSTER = "DELETE_FOSTER";

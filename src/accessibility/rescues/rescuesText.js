@@ -9,6 +9,8 @@ const hasFosterLabel = "Has Foster";
 const hasFosterRequired = "Foster Required";
 const hasVetLabel = "Has Veterinarian";
 const hasVetRequired = "Veterinarian Required";
+const imageLabel = "Image";
+const imageRequired = "Image Required";
 const isAdoptableLabel = "Is Adoptable";
 const isAdoptableRequired = "Adoptable Required";
 const isSterilizedLabel = "Is Sterilized";
@@ -33,6 +35,8 @@ export {
   hasFosterRequired,
   hasVetLabel,
   hasVetRequired,
+  imageLabel,
+  imageRequired,
   isAdoptableLabel,
   isAdoptableRequired,
   isSterilizedLabel,

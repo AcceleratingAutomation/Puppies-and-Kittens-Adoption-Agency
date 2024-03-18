@@ -22,7 +22,7 @@ function FormButtons({ id, endpoint }) {
         variant="contained"
         color="primary"
         size="large"
-        onClick={() => history.push(`${endpoint}/${id}`)}
+        onClick={() => history.push(id ? `${endpoint}/${id}` : endpoint)}
       >
         Cancel
       </Button>
@@ -30,8 +30,12 @@ function FormButtons({ id, endpoint }) {
   );
 }
 
+FormButtons.defaultProps = {
+  id: "",
+};
+
 FormButtons.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   endpoint: PropTypes.string.isRequired,
 };
 
