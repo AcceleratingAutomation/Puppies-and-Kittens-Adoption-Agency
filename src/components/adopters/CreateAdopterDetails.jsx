@@ -2,40 +2,47 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 import { Formik } from "formik";
-import { rescuesEndpoint, rescuesUrl } from "../../server/apiService/apiConfig";
+import {
+  adoptersUrl,
+  adoptersEndpoint,
+} from "../../server/apiService/apiConfig";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { createDetails, getTabValue } from "../../utils/componentUtils";
-import { rescuesText } from "../../accessibility/header/headerText";
-import rescuesValidationSchema from "../../validations/rescuesValidationSchema";
-import CreateRescueForm from "./CreateRescueForm";
+import { adoptersText } from "../../accessibility/header/headerText";
+import adoptersValidationSchema from "../../validations/adoptersValidationSchema";
+import CreateAdopterForm from "./CreateAdopterForm";
 
-export default function CreateRescueDetails() {
+export default function CreateAdopterDetails() {
   const history = useHistory();
-  const tabValue = getTabValue(tabs, rescuesText);
+  const tabValue = getTabValue(tabs, adoptersText);
 
   const handleSubmit = useCallback(
     (values) => {
-      createDetails(`${rescuesUrl}/add`, values, history, rescuesEndpoint);
+      createDetails(`${adoptersUrl}/add`, values, history, adoptersEndpoint);
     },
-    [rescuesUrl, history, rescuesEndpoint],
+    [adoptersUrl, history, adoptersEndpoint],
   );
 
   return (
     <Formik
       initialValues={{
+        email: "",
+        password: "",
+        username: "",
+        firstName: "",
+        lastName: "",
         name: "",
         type: "",
-        gender: "",
-        breed: "",
-        isSterilized: false,
-        isVaccinated: false,
-        isAdoptable: false,
-        hasFoster: false,
-        hasVet: false,
-        image: "",
+        role: "",
+        isAdopting: false,
+        numHouseholdPeople: 0,
+        numHouseholdPets: 0,
+        hasBackgroundCheck: false,
+        hasApplication: false,
         bio: "",
+        image: "",
       }}
-      validationSchema={rescuesValidationSchema}
+      validationSchema={adoptersValidationSchema}
       onSubmit={handleSubmit}
     >
       {({ errors, touched }) => (
@@ -48,12 +55,12 @@ export default function CreateRescueDetails() {
             direction="column"
           >
             <Grid item style={{ marginBottom: "2vh" }}>
-              <Typography variant="h3">Add New Rescue</Typography>
+              <Typography variant="h3">Add New Adopter</Typography>
             </Grid>
-            <CreateRescueForm
+            <CreateAdopterForm
               errors={errors}
               touched={touched}
-              endpoint={rescuesEndpoint}
+              endpoint={adoptersEndpoint}
             />
           </Grid>
         </div>

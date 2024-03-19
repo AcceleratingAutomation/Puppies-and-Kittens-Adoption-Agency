@@ -5,6 +5,7 @@ import AdminDetails from "./components/admins/AdminDetails";
 import Admins from "./components/admins/Admins";
 import AdopterDetails from "./components/adopters/AdopterDetails";
 import Adopters from "./components/adopters/Adopters";
+import CreateAdopterDetails from "./components/adopters/CreateAdopterDetails";
 import CreateRescueDetails from "./components/rescues/CreateRescueDetails";
 import EditAdminDetails from "./components/admins/EditAdminDetails";
 import EditAdopterDetails from "./components/adopters/EditAdopterDetails";
@@ -24,6 +25,7 @@ import {
   adminDetailsEndpoint,
   adminEditEndpoint,
   adminsEndpoint,
+  adopterAddEndpoint,
   adopterDetailsEndpoint,
   adopterEditEndpoint,
   adoptersEndpoint,
@@ -54,6 +56,9 @@ export default function App() {
             </Route>
             <Route exact path={adminsEndpoint}>
               <Admins />
+            </Route>
+            <Route exact path={adopterAddEndpoint}>
+              <CreateAdopterDetails />
             </Route>
             <Route exact path={adopterDetailsEndpoint}>
               <AdopterDetails />

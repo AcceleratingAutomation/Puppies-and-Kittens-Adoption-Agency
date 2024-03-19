@@ -12,6 +12,7 @@ const rescuesValidationSchema = Yup.object().shape({
   isVaccinated: yupValidationSchema.fields.isVaccinated,
   isAdoptable: yupValidationSchema.fields.isAdoptable,
   bio: yupValidationSchema.fields.bio,
+  image: yupValidationSchema.fields.image,
 });
 
 export default rescuesValidationSchema;
