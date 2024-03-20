@@ -32,6 +32,7 @@ const rescuesUrl = `${baseServerUrl}${rescuesEndpoint}`;
 const veterinariansUrl = `${baseServerUrl}${veterinariansEndpoint}`;
 
 module.exports = {
+  baseServerUrl,
   adminAddEndpoint,
   adminDetailsEndpoint,
   adminEditEndpoint,

@@ -19,6 +19,7 @@ const {
   fostersEndpoint,
   rescuesEndpoint,
   veterinariansEndpoint,
+  baseServerUrl,
 } = require("./apiService/apiConfig");
 
 const app = express();
@@ -30,13 +31,13 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "Rescue API",
+      title: "Puppies and Kittens Adoption and Rescue API",
       version: "1.0.0",
-      description: "API for managing rescues",
+      description: "API for managing puppy and kitten rescues",
     },
     servers: [
       {
-        url: "http://localhost:5000/v1/rescues",
+        url: baseServerUrl,
       },
     ],
     components: {
