@@ -2,6 +2,8 @@ require("dotenv").config({ path: "./variables.env" });
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 const favoritesRouter = require("./routes/favorites");
 const rescuesRouter = require("./routes/rescues");
@@ -24,6 +26,37 @@ app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cors());
 
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Rescue API",
+      version: "1.0.0",
+      description: "API for managing rescues",
+    },
+    servers: [
+      {
+        url: "http://localhost:5000/v1/rescues",
+      },
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+  },
+  apis: ["./routes/*.js"],
+};
+
 app.use("", authenticationRouter);
 app.use(adminsEndpoint, adminsRouter);
 app.use(adoptersEndpoint, adoptersRouter);
@@ -31,6 +64,9 @@ app.use(favoritesEndpoint, favoritesRouter);
 app.use(fostersEndpoint, fostersRouter);
 app.use(rescuesEndpoint, rescuesRouter);
 app.use(veterinariansEndpoint, veterinariansRouter);
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Health Check
 app.get("/health", (req, res) => {

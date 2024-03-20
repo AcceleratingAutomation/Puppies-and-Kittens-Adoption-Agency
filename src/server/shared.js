@@ -336,11 +336,15 @@ exports.generateToken = async (prevToken, userName) => {
 
 exports.verifyToken = (req, res, next) => {
   if (!req.headers.authorization)
-    res.status(401).send({ message: "Not authorized to access data" });
+    res
+      .status(401)
+      .send({ message: "Not authorized to access data: No authorization." });
   else {
     const token = req.headers.authorization.split(" ")[1];
     if (!token)
-      res.status(401).send({ message: "Not Authorized to access data" });
+      res
+        .status(401)
+        .send({ message: "Not Authorized to access data: No token." });
     else {
       jwt.verify(token, process.env.SECRET, (err) => {
         if (err) {
