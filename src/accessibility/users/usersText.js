@@ -26,7 +26,8 @@ const numHouseholdPetsLabel = "Number of Pets in Household";
 const numHouseholdPetsRequired = "Number of Pets Required";
 const numTotalRescuesLabel = "Total Number of Rescues";
 const numTotalRescuesRequired = "Total Number of Rescues Required";
-const passwordLabel = "Password";
+// This is a reference to the word Password; not an actual password.
+const passwordLabel = "Password"; // gitleaks:allow
 const passwordRequired = "Password Required";
 const roleLabel = "Role";
 const roleRequired = "Role Required";
