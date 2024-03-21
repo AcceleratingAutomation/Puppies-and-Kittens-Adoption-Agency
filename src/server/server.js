@@ -42,6 +42,10 @@ const swaggerOptions = {
     ],
     components: {
       securitySchemes: {
+        basicAuth: {
+          type: "http",
+          scheme: "basic",
+        },
         bearerAuth: {
           type: "http",
           scheme: "bearer",
@@ -51,6 +55,7 @@ const swaggerOptions = {
     },
     security: [
       {
+        basicAuth: [],
         bearerAuth: [],
       },
     ],
