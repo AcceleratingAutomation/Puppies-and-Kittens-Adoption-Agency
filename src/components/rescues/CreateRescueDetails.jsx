@@ -8,6 +8,7 @@ import { createDetails, getTabValue } from "../../utils/componentUtils";
 import { rescuesText } from "../../accessibility/accessibilityText";
 import rescuesValidationSchema from "../../validations/rescuesValidationSchema";
 import CreateRescueForm from "./CreateRescueForm";
+import { rescueInitialValues } from "../../utils/formInitialValues";
 
 export default function CreateRescueDetails() {
   const history = useHistory();
@@ -22,19 +23,7 @@ export default function CreateRescueDetails() {
 
   return (
     <Formik
-      initialValues={{
-        name: "",
-        type: "",
-        gender: "",
-        breed: "",
-        isSterilized: false,
-        isVaccinated: false,
-        isAdoptable: false,
-        hasFoster: false,
-        hasVet: false,
-        image: "",
-        bio: "",
-      }}
+      initialValues={rescueInitialValues}
       validationSchema={rescuesValidationSchema}
       onSubmit={handleSubmit}
     >

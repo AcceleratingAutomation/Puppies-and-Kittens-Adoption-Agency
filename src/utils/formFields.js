@@ -16,7 +16,72 @@ const {
   userTypeLabel,
   roleLabel,
   imageLabel,
+  nameLabel,
+  typeLabel,
+  genderLabel,
+  breedLabel,
+  isSterilizedLabel,
+  isVaccinatedLabel,
+  isAdoptableLabel,
+  hasFosterLabel,
+  hasVetLabel,
 } = require("../accessibility/accessibilityText");
+
+// Rescue form fields
+const rescueFormFields = [
+  { id: "name", name: "name", type: "text", label: nameLabel },
+  {
+    id: "type",
+    name: "type",
+    type: "select",
+    label: typeLabel,
+    options: ["Cat", "Dog"],
+  },
+  {
+    id: "gender",
+    name: "gender",
+    type: "select",
+    label: genderLabel,
+    options: ["Male", "Female"],
+  },
+  { id: "breed", name: "breed", type: "text", label: breedLabel },
+  {
+    id: "isSterilized",
+    name: "isSterilized",
+    type: "checkbox",
+    label: isSterilizedLabel,
+  },
+  {
+    id: "isVaccinated",
+    name: "isVaccinated",
+    type: "checkbox",
+    label: isVaccinatedLabel,
+  },
+  {
+    id: "isAdoptable",
+    name: "isAdoptable",
+    type: "checkbox",
+    label: isAdoptableLabel,
+  },
+  {
+    id: "hasFoster",
+    name: "hasFoster",
+    type: "checkbox",
+    label: hasFosterLabel,
+  },
+  {
+    id: "hasVet",
+    name: "hasVet",
+    type: "checkbox",
+    label: hasVetLabel,
+  },
+  {
+    id: "image",
+    name: "image",
+    type: "number",
+    label: imageLabel,
+  },
+];
 
 // Add user form fields
 const addUserFormFields = [
@@ -131,5 +196,6 @@ export {
   adminFormFields,
   adopterFormFields,
   fosterFormFields,
+  rescueFormFields,
   veterinarianFormFields,
 };

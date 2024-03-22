@@ -13,26 +13,14 @@ import { rescuesText } from "../../accessibility/accessibilityText";
 import rescuesValidationSchema from "../../validations/rescuesValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditRescueForm from "./EditRescueForm";
-
-const initialState = {
-  name: "",
-  type: "",
-  gender: "",
-  breed: "",
-  isSterilized: false,
-  isVaccinated: false,
-  isAdoptable: false,
-  hasFoster: false,
-  hasVet: false,
-  bio: "",
-};
+import { rescueInitialValues } from "../../utils/formInitialValues";
 
 export default function EditRescueDetails() {
   const { id } = useParams();
   const history = useHistory();
   const tabValue = getTabValue(tabs, rescuesText);
 
-  const [state, dispatch] = useReducer(editReducer, initialState);
+  const [state, dispatch] = useReducer(editReducer, rescueInitialValues);
 
   useEffect(() => {
     fetchDetails(rescuesUrl, id, dispatch, "setRescueEdit", "rescues");
