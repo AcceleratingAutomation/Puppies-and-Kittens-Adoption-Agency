@@ -13,7 +13,7 @@ import {
   getTabValue,
 } from "../../utils/componentUtils";
 import { veterinariansText } from "../../accessibility/accessibilityText";
-import veterinariansValidationSchema from "../../validations/veterinariansValidationSchema";
+import { veterinariansValidationSchema } from "../../validations/usersValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditVeterinarianForm from "./EditVeterinarianForm";
 import { veterinarianInitialValues } from "../../utils/formInitialValues";

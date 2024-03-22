@@ -13,7 +13,7 @@ import {
   getTabValue,
 } from "../../utils/componentUtils";
 import { adoptersText } from "../../accessibility/accessibilityText";
-import { adoptersEditValidationSchema } from "../../validations/adoptersValidationSchema";
+import { adoptersValidationSchema } from "../../validations/usersValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditAdopterForm from "./EditAdopterForm";
 import { adopterInitialValues } from "../../utils/formInitialValues";
@@ -39,7 +39,7 @@ export default function EditAdopterDetails() {
   return (
     <Formik
       initialValues={state}
-      validationSchema={adoptersEditValidationSchema}
+      validationSchema={adoptersValidationSchema}
       onSubmit={handleSubmit}
       enableReinitialize
     >

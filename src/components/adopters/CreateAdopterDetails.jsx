@@ -9,8 +9,9 @@ import {
 import { AppHeader, tabs } from "../header/AppHeader";
 import { createDetails, getTabValue } from "../../utils/componentUtils";
 import { adoptersText } from "../../accessibility/accessibilityText";
-import { adoptersValidationSchema } from "../../validations/adoptersValidationSchema";
+import { adoptersValidationSchema } from "../../validations/usersValidationSchema";
 import CreateAdopterForm from "./CreateAdopterForm";
+import { adopterInitialValues } from "../../utils/formInitialValues";
 
 export default function CreateAdopterDetails() {
   const history = useHistory();
@@ -25,23 +26,7 @@ export default function CreateAdopterDetails() {
 
   return (
     <Formik
-      initialValues={{
-        email: "",
-        password: "",
-        username: "",
-        firstName: "",
-        lastName: "",
-        name: "",
-        type: "",
-        role: "",
-        isAdopting: false,
-        numHouseholdPeople: 0,
-        numHouseholdPets: 0,
-        hasBackgroundCheck: false,
-        hasApplication: false,
-        bio: "",
-        image: "",
-      }}
+      initialValues={adopterInitialValues}
       validationSchema={adoptersValidationSchema}
       onSubmit={handleSubmit}
     >
