@@ -5,8 +5,11 @@ import AdminDetails from "./components/admins/AdminDetails";
 import Admins from "./components/admins/Admins";
 import AdopterDetails from "./components/adopters/AdopterDetails";
 import Adopters from "./components/adopters/Adopters";
+import CreateAdminDetails from "./components/admins/CreateAdminDetails";
 import CreateAdopterDetails from "./components/adopters/CreateAdopterDetails";
+import CreateFosterDetails from "./components/fosters/CreateFosterDetails";
 import CreateRescueDetails from "./components/rescues/CreateRescueDetails";
+import CreateVeterinarianDetails from "./components/veterinarians/CreateVeterinarianDetails";
 import EditAdminDetails from "./components/admins/EditAdminDetails";
 import EditAdopterDetails from "./components/adopters/EditAdopterDetails";
 import EditFosterDetails from "./components/fosters/EditFosterDetails";
@@ -22,6 +25,7 @@ import Rescues from "./components/rescues/Rescues";
 import VeterinarianDetails from "./components/veterinarians/VeterinarianDetails";
 import Veterinarians from "./components/veterinarians/Veterinarians";
 import {
+  adminAddEndpoint,
   adminDetailsEndpoint,
   adminEditEndpoint,
   adminsEndpoint,
@@ -30,6 +34,7 @@ import {
   adopterEditEndpoint,
   adoptersEndpoint,
   favoritesEndpoint,
+  fosterAddEndpoint,
   fosterDetailsEndpoint,
   fosterEditEndpoint,
   fostersEndpoint,
@@ -37,6 +42,7 @@ import {
   rescueDetailsEndpoint,
   rescueEditEndpoint,
   rescuesEndpoint,
+  veterinarianAddEndpoint,
   veterinarianDetailsEndpoint,
   veterinarianEditEndpoint,
   veterinariansEndpoint,
@@ -48,6 +54,9 @@ export default function App() {
       <div className="app">
         <Router>
           <Switch>
+            <Route exact path={adminAddEndpoint}>
+              <CreateAdminDetails />
+            </Route>
             <Route exact path={adminDetailsEndpoint}>
               <AdminDetails />
             </Route>
@@ -72,6 +81,9 @@ export default function App() {
             <Route exact path={favoritesEndpoint}>
               <Favorites />
             </Route>
+            <Route exact path={fosterAddEndpoint}>
+              <CreateFosterDetails />
+            </Route>
             <Route exact path={fosterDetailsEndpoint}>
               <FosterDetails />
             </Route>
@@ -92,6 +104,9 @@ export default function App() {
             </Route>
             <Route exact path={rescuesEndpoint}>
               <Rescues />
+            </Route>
+            <Route exact path={veterinarianAddEndpoint}>
+              <CreateVeterinarianDetails />
             </Route>
             <Route exact path={veterinarianDetailsEndpoint}>
               <VeterinarianDetails />

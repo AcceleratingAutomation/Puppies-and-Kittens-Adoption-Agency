@@ -9,6 +9,7 @@ const rescueInitialValues = {
   hasFoster: false,
   hasVet: false,
   bio: "",
+  image: "",
 };
 
 const commonUserInitialValues = {
@@ -19,7 +20,7 @@ const commonUserInitialValues = {
   numHouseholdPets: 0,
   hasBackgroundCheck: false,
   bio: "",
-  image: 0,
+  image: "",
 };
 
 const numRescuesInitialValues = {
