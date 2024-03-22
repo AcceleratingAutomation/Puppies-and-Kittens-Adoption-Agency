@@ -13,25 +13,14 @@ import { adminsText } from "../../accessibility/accessibilityText";
 import adminsValidationSchema from "../../validations/adminsValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditAdminForm from "./EditAdminForm";
-
-const initialState = {
-  firstName: "",
-  lastName: "",
-  name: "",
-  numCurrentRescues: 0,
-  numTotalRescues: 0,
-  numHouseholdPeople: 0,
-  numHouseholdPets: 0,
-  hasBackgroundCheck: false,
-  bio: "",
-};
+import { adminInitialValues } from "../../utils/formInitialValues";
 
 export default function EditAdminDetails() {
   const { id } = useParams();
   const history = useHistory();
   const tabValue = getTabValue(tabs, adminsText);
 
-  const [state, dispatch] = useReducer(editReducer, initialState);
+  const [state, dispatch] = useReducer(editReducer, adminInitialValues);
 
   useEffect(() => {
     fetchDetails(adminsUrl, id, dispatch, "setAdminEdit", "admins");

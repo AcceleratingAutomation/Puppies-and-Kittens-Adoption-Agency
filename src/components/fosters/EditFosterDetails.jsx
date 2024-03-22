@@ -13,26 +13,14 @@ import { fostersText } from "../../accessibility/accessibilityText";
 import fostersValidationSchema from "../../validations/fostersValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditFosterForm from "./EditFosterForm";
-
-const initialState = {
-  firstName: "",
-  lastName: "",
-  name: "",
-  isAccepting: false,
-  numCurrentRescues: 0,
-  numTotalRescues: 0,
-  numHouseholdPeople: 0,
-  numHouseholdPets: 0,
-  hasBackgroundCheck: false,
-  bio: "",
-};
+import { fosterInitialValues } from "../../utils/formInitialValues";
 
 export default function EditFosterDetails() {
   const { id } = useParams();
   const history = useHistory();
   const tabValue = getTabValue(tabs, fostersText);
 
-  const [state, dispatch] = useReducer(editReducer, initialState);
+  const [state, dispatch] = useReducer(editReducer, fosterInitialValues);
 
   useEffect(() => {
     fetchDetails(fostersUrl, id, dispatch, "setFosterEdit", "fosters");

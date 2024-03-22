@@ -16,25 +16,14 @@ import { adoptersText } from "../../accessibility/accessibilityText";
 import { adoptersEditValidationSchema } from "../../validations/adoptersValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditAdopterForm from "./EditAdopterForm";
-
-const initialState = {
-  firstName: "",
-  lastName: "",
-  name: "",
-  isAdopting: false,
-  numHouseholdPeople: 0,
-  numHouseholdPets: 0,
-  hasBackgroundCheck: false,
-  hasApplication: false,
-  bio: "",
-};
+import { adopterInitialValues } from "../../utils/formInitialValues";
 
 export default function EditAdopterDetails() {
   const { id } = useParams();
   const history = useHistory();
   const tabValue = getTabValue(tabs, adoptersText);
 
-  const [state, dispatch] = useReducer(editReducer, initialState);
+  const [state, dispatch] = useReducer(editReducer, adopterInitialValues);
 
   useEffect(() => {
     fetchDetails(adoptersUrl, id, dispatch, "setAdopterEdit", "adopters");

@@ -16,26 +16,14 @@ import { veterinariansText } from "../../accessibility/accessibilityText";
 import veterinariansValidationSchema from "../../validations/veterinariansValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditVeterinarianForm from "./EditVeterinarianForm";
-
-const initialState = {
-  firstName: "",
-  lastName: "",
-  name: "",
-  isAccepting: false,
-  numCurrentRescues: 0,
-  numTotalRescues: 0,
-  numHouseholdPeople: 0,
-  numHouseholdPets: 0,
-  hasBackgroundCheck: false,
-  bio: "",
-};
+import { veterinarianInitialValues } from "../../utils/formInitialValues";
 
 export default function EditVeterinarianDetails() {
   const { id } = useParams();
   const history = useHistory();
   const tabValue = getTabValue(tabs, veterinariansText);
 
-  const [state, dispatch] = useReducer(editReducer, initialState);
+  const [state, dispatch] = useReducer(editReducer, veterinarianInitialValues);
 
   useEffect(() => {
     fetchDetails(

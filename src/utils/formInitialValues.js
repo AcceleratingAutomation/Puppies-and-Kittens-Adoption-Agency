@@ -11,6 +11,54 @@ const rescueInitialValues = {
   bio: "",
 };
 
-const sut = {};
+const commonUserInitialValues = {
+  firstName: "",
+  lastName: "",
+  name: "",
+  numHouseholdPeople: 0,
+  numHouseholdPets: 0,
+  hasBackgroundCheck: false,
+  bio: "",
+  image: 0,
+};
 
-export { rescueInitialValues, sut };
+const numRescuesInitialValues = {
+  numCurrentRescues: 0,
+  numTotalRescues: 0,
+};
+
+const isAcceptingRescuesInitialValues = {
+  isAccepting: false,
+};
+
+const adoptersOnlyInitialValues = {
+  isAdopting: false,
+  hasApplication: false,
+};
+
+const adminInitialValues = {
+  ...commonUserInitialValues,
+  ...numRescuesInitialValues,
+};
+const adopterInitialValues = {
+  ...commonUserInitialValues,
+  ...adoptersOnlyInitialValues,
+};
+const fosterInitialValues = {
+  ...commonUserInitialValues,
+  ...numRescuesInitialValues,
+  ...isAcceptingRescuesInitialValues,
+};
+const veterinarianInitialValues = {
+  ...commonUserInitialValues,
+  ...numRescuesInitialValues,
+  ...isAcceptingRescuesInitialValues,
+};
+
+export {
+  adminInitialValues,
+  adopterInitialValues,
+  fosterInitialValues,
+  rescueInitialValues,
+  veterinarianInitialValues,
+};
