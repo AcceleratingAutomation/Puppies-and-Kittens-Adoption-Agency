@@ -20,7 +20,7 @@ import {
 import { rescuesUrl } from "../../server/apiService/apiConfig";
 import fetchData from "../../server/apiService/cardApi";
 import PaginationButtons from "../PaginationButtons";
-import { rescuesText } from "../../accessibility/header/headerText";
+import { rescuesText } from "../../accessibility/accessibilityText";
 import { getTabValue } from "../../utils/componentUtils";
 
 export default function Rescues() {

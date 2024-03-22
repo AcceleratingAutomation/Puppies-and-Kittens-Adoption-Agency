@@ -10,7 +10,7 @@ import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
 import { getTabValue } from "../../utils/componentUtils";
-import { adoptersText } from "../../accessibility/header/headerText";
+import { adoptersText } from "../../accessibility/accessibilityText";
 
 export default function Adopters() {
   const { state, dispatch } = useContext(FavoritesContext);

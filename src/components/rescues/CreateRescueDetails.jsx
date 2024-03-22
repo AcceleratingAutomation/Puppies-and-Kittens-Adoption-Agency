@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import { rescuesEndpoint, rescuesUrl } from "../../server/apiService/apiConfig";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { createDetails, getTabValue } from "../../utils/componentUtils";
-import { rescuesText } from "../../accessibility/header/headerText";
+import { rescuesText } from "../../accessibility/accessibilityText";
 import rescuesValidationSchema from "../../validations/rescuesValidationSchema";
 import CreateRescueForm from "./CreateRescueForm";
 

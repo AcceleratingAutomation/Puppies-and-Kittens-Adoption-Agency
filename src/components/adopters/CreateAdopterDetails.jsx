@@ -8,7 +8,7 @@ import {
 } from "../../server/apiService/apiConfig";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { createDetails, getTabValue } from "../../utils/componentUtils";
-import { adoptersText } from "../../accessibility/header/headerText";
+import { adoptersText } from "../../accessibility/accessibilityText";
 import { adoptersValidationSchema } from "../../validations/adoptersValidationSchema";
 import CreateAdopterForm from "./CreateAdopterForm";
 

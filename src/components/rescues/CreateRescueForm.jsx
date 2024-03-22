@@ -11,7 +11,7 @@ import {
   isSterilizedLabel,
   isVaccinatedLabel,
   isAdoptableLabel,
-} from "../../accessibility/rescues/rescuesText";
+} from "../../accessibility/accessibilityText";
 import AddOrEditForm from "../AddOrEditForm";
 
 function CreateRescueForm({ errors, touched, endpoint }) {

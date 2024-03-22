@@ -14,7 +14,7 @@ import {
   navigateBack,
   navigateToEdit,
 } from "../../utils/componentUtils";
-import { fostersText } from "../../accessibility/header/headerText";
+import { fostersText } from "../../accessibility/accessibilityText";
 
 export default function FosterDetails() {
   const { id } = useParams();

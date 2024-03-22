@@ -9,7 +9,7 @@ import FosterCard from "./FosterCard";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
-import { fostersText } from "../../accessibility/header/headerText";
+import { fostersText } from "../../accessibility/accessibilityText";
 import { getTabValue } from "../../utils/componentUtils";
 
 export default function Fosters() {

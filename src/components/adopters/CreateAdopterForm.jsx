@@ -15,7 +15,7 @@ import {
   roleLabel,
   usernameLabel,
   userTypeLabel,
-} from "../../accessibility/users/usersText";
+} from "../../accessibility/accessibilityText";
 import AddOrEditForm from "../AddOrEditForm";
 
 function CreateAdopterForm({ errors, touched, endpoint }) {

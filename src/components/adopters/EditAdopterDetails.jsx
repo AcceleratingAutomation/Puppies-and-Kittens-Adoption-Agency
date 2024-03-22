@@ -12,7 +12,7 @@ import {
   editDetails,
   getTabValue,
 } from "../../utils/componentUtils";
-import { adoptersText } from "../../accessibility/header/headerText";
+import { adoptersText } from "../../accessibility/accessibilityText";
 import { adoptersEditValidationSchema } from "../../validations/adoptersValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditAdopterForm from "./EditAdopterForm";

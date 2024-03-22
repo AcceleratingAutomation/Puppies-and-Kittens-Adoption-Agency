@@ -22,7 +22,7 @@ import {
   fostersText,
   rescuesText,
   veterinariansText,
-} from "../../accessibility/header/headerText";
+} from "../../accessibility/accessibilityText";
 
 const initialState = {
   anchorEl: null,

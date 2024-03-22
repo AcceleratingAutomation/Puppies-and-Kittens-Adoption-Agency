@@ -10,7 +10,7 @@ import {
   isSterilizedLabel,
   isVaccinatedLabel,
   isAdoptableLabel,
-} from "../../accessibility/rescues/rescuesText";
+} from "../../accessibility/accessibilityText";
 import AddOrEditForm from "../AddOrEditForm";
 
 function EditRescueForm({ errors, touched, id, endpoint }) {

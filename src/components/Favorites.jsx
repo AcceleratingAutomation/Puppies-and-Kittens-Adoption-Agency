@@ -10,7 +10,7 @@ import {
   removeFavorite,
 } from "../server/apiService/favoritesApi";
 import PaginationButtons from "./PaginationButtons";
-import { favoritesText } from "../accessibility/header/headerText";
+import { favoritesText } from "../accessibility/accessibilityText";
 import { getTabValue } from "../utils/componentUtils";
 
 export default function Favorites() {

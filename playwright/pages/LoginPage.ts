@@ -1,9 +1,9 @@
 import { Locator, Page } from "@playwright/test";
 import {
-  usernameText,
-  passwordText,
+  usernameLabel,
+  passwordLabel,
   loginText,
-} from "../../src/accessibility/login/loginText";
+} from "../../src/accessibility/accessibilityText";
 
 class LoginPage {
   readonly page: Page;
@@ -16,8 +16,8 @@ class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.getByLabel(usernameText);
-    this.passwordInput = page.getByLabel(passwordText);
+    this.usernameInput = page.getByLabel(usernameLabel);
+    this.passwordInput = page.getByLabel(passwordLabel);
     this.submitButton = this.page.getByText(loginText);
   }
 

@@ -9,9 +9,9 @@ import Login from "../../../components/login/Login";
 import { login } from "../../../server/apiService/authApi";
 import {
   loginText,
-  passwordText,
-  usernameText,
-} from "../../../accessibility/login/loginText";
+  passwordLabel,
+  usernameLabel,
+} from "../../../accessibility/accessibilityText";
 import { rescuesEndpoint } from "../../../server/apiService/apiConfig";
 
 /**
@@ -42,8 +42,8 @@ export const setup = (mockLogin) => {
  * @param {Function} getByText - The getByText function from @testing-library/react.
  */
 export const fillForm = (username, password, getByLabelText, getByText) => {
-  userEvent.type(getByLabelText(usernameText), username);
-  userEvent.type(getByLabelText(passwordText), password);
+  userEvent.type(getByLabelText(usernameLabel), username);
+  userEvent.type(getByLabelText(passwordLabel), password);
   userEvent.click(getByText(loginText));
 };
 

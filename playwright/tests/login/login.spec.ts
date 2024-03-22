@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
 import LoginPage from "../../pages/LoginPage";
 import {
-  usernameText,
-  passwordText,
+  usernameLabel,
+  passwordLabel,
   loginText,
   usernameRequired,
   passwordRequired,
@@ -12,15 +12,15 @@ import {
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
   errorLoggingIntoApp,
-} from "../../../src/accessibility/login/loginText";
+} from "../../../src/accessibility/accessibilityText";
 
 let loginPage: LoginPage;
 
 test.beforeEach(async ({ page }) => {
   loginPage = new LoginPage(page);
   await loginPage.navigate();
-  await expect.soft(page.getByText(usernameText)).toBeInViewport();
-  await expect.soft(page.getByText(passwordText)).toBeInViewport();
+  await expect.soft(page.getByText(usernameLabel)).toBeInViewport();
+  await expect.soft(page.getByText(passwordLabel)).toBeInViewport();
   await expect.soft(page.getByText(loginText)).toBeInViewport();
 });
 

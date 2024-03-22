@@ -9,7 +9,7 @@ import {
   editDetails,
   getTabValue,
 } from "../../utils/componentUtils";
-import { fostersText } from "../../accessibility/header/headerText";
+import { fostersText } from "../../accessibility/accessibilityText";
 import fostersValidationSchema from "../../validations/fostersValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditFosterForm from "./EditFosterForm";

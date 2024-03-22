@@ -9,7 +9,7 @@ import {
   editDetails,
   getTabValue,
 } from "../../utils/componentUtils";
-import { adminsText } from "../../accessibility/header/headerText";
+import { adminsText } from "../../accessibility/accessibilityText";
 import adminsValidationSchema from "../../validations/adminsValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditAdminForm from "./EditAdminForm";

@@ -13,10 +13,10 @@ const {
 } = require("../../../server/shared");
 const {
   errorLoggingIntoApp,
-} = require("../../../accessibility/login/loginText");
+} = require("../../../accessibility/accessibilityText");
 
 jest.mock("../../../server/shared");
-jest.mock("../../../accessibility/login/loginText");
+jest.mock("../../../accessibility/accessibilityText");
 
 describe("Authentication Controller", () => {
   let req;

@@ -17,7 +17,7 @@ import {
   navigateBack,
   navigateToEdit,
 } from "../../utils/componentUtils";
-import { veterinariansText } from "../../accessibility/header/headerText";
+import { veterinariansText } from "../../accessibility/accessibilityText";
 
 export default function VeterinarianDetails() {
   const { id } = useParams();

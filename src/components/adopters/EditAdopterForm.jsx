@@ -9,7 +9,7 @@ import {
   lastNameLabel,
   numHouseholdPeopleLabel,
   numHouseholdPetsLabel,
-} from "../../accessibility/users/usersText";
+} from "../../accessibility/accessibilityText";
 import AddOrEditForm from "../AddOrEditForm";
 
 function EditAdopterForm({ errors, touched, id, endpoint }) {

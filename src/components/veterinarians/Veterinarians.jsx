@@ -9,7 +9,7 @@ import fetchData from "../../server/apiService/cardApi";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
-import { veterinariansText } from "../../accessibility/header/headerText";
+import { veterinariansText } from "../../accessibility/accessibilityText";
 import { getTabValue } from "../../utils/componentUtils";
 
 export default function Veterinarians() {

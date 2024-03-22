@@ -10,7 +10,7 @@ import {
   numHouseholdPeopleLabel,
   numHouseholdPetsLabel,
   numTotalRescuesLabel,
-} from "../../accessibility/users/usersText";
+} from "../../accessibility/accessibilityText";
 import AddOrEditForm from "../AddOrEditForm";
 
 function EditFosterForm({ errors, touched, id, endpoint }) {

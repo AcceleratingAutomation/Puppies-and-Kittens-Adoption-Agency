@@ -12,7 +12,7 @@ import {
   editDetails,
   getTabValue,
 } from "../../utils/componentUtils";
-import { veterinariansText } from "../../accessibility/header/headerText";
+import { veterinariansText } from "../../accessibility/accessibilityText";
 import veterinariansValidationSchema from "../../validations/veterinariansValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditVeterinarianForm from "./EditVeterinarianForm";

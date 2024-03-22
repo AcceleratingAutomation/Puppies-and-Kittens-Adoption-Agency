@@ -7,8 +7,6 @@ import {
   atLeastOneUppercaseLetter,
   passwordRequired,
   usernameRequired,
-} from "../accessibility/login/loginText";
-import {
   bioRequired,
   displayNameRequired,
   emailRequired,
@@ -25,8 +23,6 @@ import {
   numTotalRescuesRequired,
   roleRequired,
   userTypeRequired,
-} from "../accessibility/users/usersText";
-import {
   breedRequired,
   genderOptions,
   genderRequired,
@@ -38,7 +34,7 @@ import {
   nameRequired,
   typeOptions,
   typeRequired,
-} from "../accessibility/rescues/rescuesText";
+} from "../accessibility/accessibilityText";
 
 const yupValidationSchema = Yup.object({
   bio: Yup.string().required(bioRequired),

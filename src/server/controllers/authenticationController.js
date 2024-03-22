@@ -5,7 +5,9 @@ const {
   isPasswordCorrect,
   generateToken,
 } = require("../shared");
-const { errorLoggingIntoApp } = require("../../accessibility/login/loginText");
+const {
+  errorLoggingIntoApp,
+} = require("../../accessibility/accessibilityText");
 
 exports.login = async (req, res) => {
   if (!req.headers.authorization) {

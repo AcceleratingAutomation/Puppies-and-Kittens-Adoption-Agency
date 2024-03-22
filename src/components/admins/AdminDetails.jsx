@@ -14,7 +14,7 @@ import {
   navigateBack,
   navigateToEdit,
 } from "../../utils/componentUtils";
-import { adminsText } from "../../accessibility/header/headerText";
+import { adminsText } from "../../accessibility/accessibilityText";
 
 export default function AdminDetails() {
   const { id } = useParams();

@@ -9,7 +9,7 @@ import AdminCard from "./AdminCard";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
-import { adminsText } from "../../accessibility/header/headerText";
+import { adminsText } from "../../accessibility/accessibilityText";
 import { getTabValue } from "../../utils/componentUtils";
 
 export default function Admins() {

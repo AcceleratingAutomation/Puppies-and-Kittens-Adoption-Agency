@@ -7,7 +7,7 @@ import {
   setup,
 } from "./loginHelpers";
 import noLoginOrSubmitScenarios from "./loginData";
-import { errorLoggingIntoApp } from "../../../accessibility/login/loginText";
+import { errorLoggingIntoApp } from "../../../accessibility/accessibilityText";
 
 // Mock the login function from the authApi module
 jest.mock("../../../server/apiService/authApi", () => ({

@@ -6,7 +6,7 @@ import {
   atLeastOneUppercaseLetter,
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
-} from "../../../accessibility/login/loginText";
+} from "../../../accessibility/accessibilityText";
 
 // testTitle, username, password, expectedError1, expectedError2
 // These scenarios should not have a form submission because something is invalid.

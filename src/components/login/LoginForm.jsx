@@ -6,10 +6,10 @@ import { Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import DisplayImage from "../DisplayImage";
 import {
-  usernameText,
-  passwordText,
+  usernameLabel,
+  passwordLabel,
   loginText,
-} from "../../accessibility/login/loginText";
+} from "../../accessibility/accessibilityText";
 
 function LoginForm({ isSubmitting }) {
   return (
@@ -34,7 +34,7 @@ function LoginForm({ isSubmitting }) {
             name="username"
             as={TextField}
             id="username-input"
-            label={usernameText}
+            label={usernameLabel}
           />
           <ErrorMessage
             name="username"
@@ -49,7 +49,7 @@ function LoginForm({ isSubmitting }) {
             id="password-input"
             label={
               <>
-                {passwordText}
+                {passwordLabel}
                 <Tooltip
                   title={
                     <Typography variant="body2" style={{ fontSize: "1.2em" }}>

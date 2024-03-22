@@ -11,7 +11,7 @@ import {
 import { Form, useFormikContext } from "formik";
 import { FormField, MultiLineFormField } from "./FormField";
 import FormButtons from "./FormButtons";
-import { bioLabel } from "../accessibility/users/usersText";
+import { bioLabel } from "../accessibility/accessibilityText";
 
 function AddOrEditForm({ errors, touched, formFields, endpoint, id }) {
   const { values, handleChange } = useFormikContext();
