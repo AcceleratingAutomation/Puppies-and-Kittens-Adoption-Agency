@@ -9,7 +9,7 @@ import {
 import { AppHeader, tabs } from "../header/AppHeader";
 import { createDetails, getTabValue } from "../../utils/componentUtils";
 import { adoptersText } from "../../accessibility/header/headerText";
-import adoptersValidationSchema from "../../validations/adoptersValidationSchema";
+import { adoptersValidationSchema } from "../../validations/adoptersValidationSchema";
 import CreateAdopterForm from "./CreateAdopterForm";
 
 export default function CreateAdopterDetails() {
