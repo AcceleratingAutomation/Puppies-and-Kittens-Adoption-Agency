@@ -24,6 +24,7 @@ const initialState = {
   isAccepting: false,
   numCurrentRescues: 0,
   numTotalRescues: 0,
+  numHouseholdPeople: 0,
   numHouseholdPets: 0,
   hasBackgroundCheck: false,
   bio: "",
