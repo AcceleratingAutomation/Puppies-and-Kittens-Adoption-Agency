@@ -3,7 +3,7 @@ import {
   usernameLabel,
   passwordLabel,
   loginText,
-} from "../../src/accessibility/accessibilityText";
+} from "../../../src/accessibility/accessibilityText";
 
 class LoginPage {
   readonly page: Page;

@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import LoginPage from "../../pages/LoginPage";
+import LoginPage from "../../../../ui/pages/LoginPage";
 import {
   usernameLabel,
   passwordLabel,
@@ -12,7 +12,7 @@ import {
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
   errorLoggingIntoApp,
-} from "../../../src/accessibility/accessibilityText";
+} from "../../../../../src/accessibility/accessibilityText";
 
 let loginPage: LoginPage;
 
