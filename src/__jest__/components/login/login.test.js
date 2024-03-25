@@ -6,7 +6,7 @@ import {
   fillForm,
   setup,
 } from "./loginHelpers";
-import noLoginOrSubmitScenarios from "./loginData";
+import noLoginOrSubmitScenarios from "../../../../testData/login/loginData";
 import { errorLoggingIntoApp } from "../../../accessibility/accessibilityText";
 
 // Mock the login function from the authApi module
