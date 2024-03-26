@@ -8,6 +8,7 @@ on:
 
 env:
   ENV: ${{ vars.ENV }}
+  REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
 
 jobs:
   prettier:
