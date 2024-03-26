@@ -6,6 +6,7 @@ import {
   atLeastOneUppercaseLetter,
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
+  errorLoggingIntoApp,
 } from "../../src/accessibility/accessibilityText";
 
 type Scenario = [
@@ -20,6 +21,7 @@ type Scenario = [
     | typeof atLeastOneUppercaseLetter
     | typeof atLeastOneNumber
     | typeof atLeastOneSpecialCharacter
+    | typeof errorLoggingIntoApp
   ), // expectedError1
   (
     | typeof usernameRequired
@@ -29,9 +31,11 @@ type Scenario = [
     | typeof atLeastOneUppercaseLetter
     | typeof atLeastOneNumber
     | typeof atLeastOneSpecialCharacter
+    | typeof errorLoggingIntoApp
   ), // expectedError2
 ];
 
+declare const noLoginScenarios: Scenario[];
 declare const noLoginOrSubmitScenarios: Scenario[];
 
-export default noLoginOrSubmitScenarios;
+export { noLoginScenarios, noLoginOrSubmitScenarios };

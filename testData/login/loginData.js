@@ -6,7 +6,19 @@ import {
   atLeastOneUppercaseLetter,
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
+  errorLoggingIntoApp,
 } from "../../src/accessibility/accessibilityText";
+
+// testTitle, username, password, expectedError1, expectedError2
+// This scenario should not login but there should be a backend network call to check the credentials on server.
+const noLoginScenarios = [
+  [
+    "invalid credentials",
+    "invalid-username",
+    "Invalid1$-Password",
+    errorLoggingIntoApp,
+  ],
+];
 
 // testTitle, username, password, expectedError1, expectedError2
 // These scenarios should not have a network backend call on form submission because something is invalid.
@@ -71,4 +83,4 @@ const noLoginOrSubmitScenarios = [
   ],
 ];
 
-export default noLoginOrSubmitScenarios;
+export { noLoginScenarios, noLoginOrSubmitScenarios };

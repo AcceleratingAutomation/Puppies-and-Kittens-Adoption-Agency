@@ -4,16 +4,11 @@ import {
   usernameLabel,
   passwordLabel,
   loginText,
-  usernameRequired,
-  passwordRequired,
-  atLeast8Characters,
-  atLeastOneLowercaseLetter,
-  atLeastOneUppercaseLetter,
-  atLeastOneNumber,
-  atLeastOneSpecialCharacter,
-  errorLoggingIntoApp,
 } from "../../../../../src/accessibility/accessibilityText";
-import noLoginOrSubmitScenarios from "../../../../../testData/login/loginData";
+import {
+  noLoginScenarios,
+  noLoginOrSubmitScenarios,
+} from "../../../../../testData/login/loginData";
 
 let loginPage: LoginPage;
 
@@ -64,12 +59,16 @@ test.describe("Login Page", () => {
   });
 
   test.describe("should NOT login with", () => {
-    test("invalid credentials", async ({ page }) => {
-      await loginPage.login("invalid", "Invalid1$");
-      await expect
-        .soft(loginPage.getErrorMessage(errorLoggingIntoApp))
-        .resolves.toBeInViewport();
-      await expect(page).toHaveScreenshot();
-    });
+    noLoginScenarios.forEach(
+      ([testTitle, username, password, expectedError1]) => {
+        test(testTitle, async ({ page }) => {
+          await loginPage.login(username, password);
+          await expect
+            .soft(loginPage.getErrorMessage(expectedError1))
+            .resolves.toBeInViewport();
+          await expect(page).toHaveScreenshot(`Login-Page-${testTitle}.png`);
+        });
+      },
+    );
   });
 });
