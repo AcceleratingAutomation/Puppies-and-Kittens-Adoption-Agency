@@ -1,4 +1,9 @@
-const baseServerUrl = "http://localhost:5000";
+const baseEnvUrl = require("../../utils/baseEnvironmentUrls");
+
+const baseServerUrl =
+  process.env.REACT_APP_ENV === "local"
+    ? baseEnvUrl.local.api
+    : baseEnvUrl.production.api;
 const adminAddEndpoint = "/v1/admins/add";
 const adminDetailsEndpoint = "/v1/admins/:id";
 const adminEditEndpoint = "/v1/admins/:id/edit";

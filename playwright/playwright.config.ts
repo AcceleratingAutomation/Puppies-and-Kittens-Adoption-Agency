@@ -1,5 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
-import baseEnvUrl from "./utils/baseEnvironmentUrls";
+import baseEnvUrl from "../src/utils/baseEnvironmentUrls";
 import "dotenv/config"; // https://github.com/motdotla/dotenv
 
 /**

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   local: {
     api: "http://localhost:5000",
     ui: "http://localhost:3000",

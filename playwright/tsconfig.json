@@ -5,7 +5,8 @@
     "moduleResolution": "Node",
     "sourceMap": true,
     "outDir": "../tests-out",
-    "strict": true
+    "strict": true,
+    "esModuleInterop": true,
   },
   "include": [
     "**/*.ts",

@@ -6,6 +6,9 @@ on:
   schedule:
     - cron: "0 12 * * 1-5"
 
+env:
+  ENV: ${{ vars.ENV }}
+
 jobs:
   prettier:
     name: Prettier
