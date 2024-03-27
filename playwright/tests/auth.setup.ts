@@ -1,4 +1,5 @@
 import { test as setup } from "@playwright/test";
+import { authFile } from "../playwright.config";
 import {
   usernameLabel,
   passwordLabel,
@@ -11,7 +12,6 @@ import {
 
 const username = process.env.TEST_USERNAME || "Set_Your_TEST_USERNAME";
 const password = process.env.TEST_PASSWORD || "Set_Your_TEST_PASSWORD";
-const authFile = "./.auth/user.json";
 
 setup("authenticate", async ({ page }) => {
   await page.goto(loginEndpoint);

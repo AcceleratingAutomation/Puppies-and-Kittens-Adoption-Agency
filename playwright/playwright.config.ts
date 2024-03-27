@@ -2,7 +2,8 @@ import { defineConfig, devices } from "@playwright/test";
 import baseEnvUrl from "../src/utils/baseEnvironmentUrls";
 import "dotenv/config"; // https://github.com/motdotla/dotenv
 
-const authFile = "./.auth/user.json";
+export const authFile = "./.auth/user.json";
+const authSetup = "auth-setup";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -40,7 +41,7 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     // Setup project
-    { name: "setup", testMatch: /.*\.setup\.ts/ },
+    { name: authSetup, testMatch: /.*\.setup\.ts/ },
 
     /* Test against browser engines. */
     {
@@ -49,17 +50,18 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         storageState: authFile,
       },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
+      testIgnore: ["**/*.setup.ts"],
     },
     {
       name: "firefox",
       use: { ...devices["Desktop Firefox"], storageState: authFile },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
     {
       name: "webkit",
       use: { ...devices["Desktop Safari"], storageState: authFile },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
 
     /* Test against tablet viewports. */
@@ -69,7 +71,7 @@ export default defineConfig({
         ...devices["Pixel 7 landscape"],
         storageState: authFile,
       },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
     {
       name: "iPad Pro 12 Safari",
@@ -79,7 +81,7 @@ export default defineConfig({
         storageState: authFile,
         viewport: { width: 1024, height: 1366 },
       },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
 
     /* Test against mobile viewports. */
@@ -90,7 +92,7 @@ export default defineConfig({
         storageState: authFile,
         viewport: { width: 360, height: 780 },
       },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
     {
       name: "Galaxy S21 landscape Chrome",
@@ -99,7 +101,7 @@ export default defineConfig({
         storageState: authFile,
         viewport: { width: 800, height: 360 },
       },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
     {
       name: "iPhone 14 Pro Max Safari",
@@ -107,7 +109,7 @@ export default defineConfig({
         ...devices["iPhone 14 Pro Max"],
         storageState: authFile,
       },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
     {
       name: "iPhone 12 landscape Chrome",
@@ -117,7 +119,7 @@ export default defineConfig({
         viewport: { width: 750, height: 340 },
         defaultBrowserType: "chromium",
       },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
 
     /* Test against branded browsers. */
@@ -128,7 +130,7 @@ export default defineConfig({
         storageState: authFile,
         channel: "msedge",
       },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
     {
       name: "Google Chrome",
@@ -137,7 +139,7 @@ export default defineConfig({
         storageState: authFile,
         channel: "chrome",
       },
-      dependencies: ["setup"],
+      dependencies: [authSetup],
     },
   ],
 

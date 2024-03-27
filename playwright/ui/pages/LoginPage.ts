@@ -4,6 +4,7 @@ import {
   passwordLabel,
   loginText,
 } from "../../../src/accessibility/accessibilityText";
+import { loginEndpoint } from "../../../src/server/apiService/apiConfig";
 
 class LoginPage {
   readonly page: Page;
@@ -22,7 +23,7 @@ class LoginPage {
   }
 
   async navigate() {
-    await this.page.goto("/login");
+    await this.page.goto(loginEndpoint);
   }
 
   private async setUsername(username: string) {
