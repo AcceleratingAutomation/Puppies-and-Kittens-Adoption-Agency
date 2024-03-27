@@ -33,12 +33,6 @@ test.describe("Login Page", () => {
     });
   });
 
-  test.describe("should login with", () => {
-    test.skip("valid credentials", async () => {
-      await loginPage.login("username", "Password123!");
-    });
-  });
-
   test.describe("should NOT login or make network call with", () => {
     noLoginOrSubmitScenarios.forEach(
       ([testTitle, username, password, expectedError1, expectedError2]) => {

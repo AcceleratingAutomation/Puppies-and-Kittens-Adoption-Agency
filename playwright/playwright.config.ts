@@ -2,6 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 import baseEnvUrl from "../src/utils/baseEnvironmentUrls";
 import "dotenv/config"; // https://github.com/motdotla/dotenv
 
+const authFile = "./.auth/user.json";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -38,66 +39,105 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // Setup project
+    { name: "setup", testMatch: /.*\.setup\.ts/ },
+
+    /* Test against browser engines. */
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: authFile,
+      },
+      dependencies: ["setup"],
     },
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      use: { ...devices["Desktop Firefox"], storageState: authFile },
+      dependencies: ["setup"],
     },
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      use: { ...devices["Desktop Safari"], storageState: authFile },
+      dependencies: ["setup"],
     },
 
     /* Test against tablet viewports. */
     {
       name: "Pixel 7 landscape Chrome",
-      use: { ...devices["Pixel 7 landscape"] },
+      use: {
+        ...devices["Pixel 7 landscape"],
+        storageState: authFile,
+      },
+      dependencies: ["setup"],
     },
     {
       name: "iPad Pro 12 Safari",
       use: {
         /* iPad Pro 11 is the latest available in playwright devices. Manually setting viewport to iPad Pro 12 (2021). */
         ...devices["iPad Pro 11"],
+        storageState: authFile,
         viewport: { width: 1024, height: 1366 },
       },
+      dependencies: ["setup"],
     },
 
     /* Test against mobile viewports. */
     {
       name: "Galaxy S23 Chrome",
-      use: { ...devices["Galaxy S9+"], viewport: { width: 360, height: 780 } },
+      use: {
+        ...devices["Galaxy S9+"],
+        storageState: authFile,
+        viewport: { width: 360, height: 780 },
+      },
+      dependencies: ["setup"],
     },
     {
       name: "Galaxy S21 landscape Chrome",
       use: {
         ...devices["Galaxy S9+ landscape"],
+        storageState: authFile,
         viewport: { width: 800, height: 360 },
       },
+      dependencies: ["setup"],
     },
     {
       name: "iPhone 14 Pro Max Safari",
-      use: { ...devices["iPhone 14 Pro Max"] },
+      use: {
+        ...devices["iPhone 14 Pro Max"],
+        storageState: authFile,
+      },
+      dependencies: ["setup"],
     },
     {
       name: "iPhone 12 landscape Chrome",
       use: {
         ...devices["iPhone 12 landscape"],
+        storageState: authFile,
         viewport: { width: 750, height: 340 },
         defaultBrowserType: "chromium",
       },
+      dependencies: ["setup"],
     },
 
     /* Test against branded browsers. */
     {
       name: "Microsoft Edge",
-      use: { ...devices["Desktop Edge"], channel: "msedge" },
+      use: {
+        ...devices["Desktop Edge"],
+        storageState: authFile,
+        channel: "msedge",
+      },
+      dependencies: ["setup"],
     },
     {
       name: "Google Chrome",
-      use: { ...devices["Desktop Chrome"], channel: "chrome" },
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: authFile,
+        channel: "chrome",
+      },
+      dependencies: ["setup"],
     },
   ],
 
