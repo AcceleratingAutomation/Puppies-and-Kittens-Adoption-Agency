@@ -8,9 +8,9 @@ on:
 
 env:
   REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
-  ENV: ${{ vars.TEST_ENV }}
-  USERNAME: ${{ secrets.TEST_USERNAME }}
-  PASSWORD: ${{ secrets.TEST_PASSWORD }}
+  TEST_ENV: ${{ vars.TEST_ENV }}
+  TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+  TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
 
 jobs:
   prettier:

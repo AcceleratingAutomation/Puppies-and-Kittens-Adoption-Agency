@@ -10,8 +10,8 @@ import {
   rescuesEndpoint,
 } from "../../src/server/apiService/apiConfig";
 
-const username = process.env.TEST_USERNAME || "Set_Your_TEST_USERNAME";
-const password = process.env.TEST_PASSWORD || "Set_Your_TEST_PASSWORD";
+const username = process.env.TEST_USERNAME || "Set_ENV_TEST_USERNAME";
+const password = process.env.TEST_PASSWORD || "Set_ENV_TEST_PASSWORD";
 
 setup("authenticate", async ({ page }) => {
   await page.goto(loginEndpoint);
