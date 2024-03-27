@@ -26,9 +26,9 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL:
-      process.env.ENV === "local"
-        ? baseEnvUrl.local.ui
-        : baseEnvUrl.production.ui,
+      process.env.TEST_ENV === "production"
+        ? baseEnvUrl.production.ui
+        : baseEnvUrl.local.ui,
 
     /* Collect trace, video, and screenshot when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
@@ -105,9 +105,9 @@ export default defineConfig({
   webServer: {
     command: "npm run start:both",
     url:
-      process.env.ENV === "local"
-        ? baseEnvUrl.local.ui
-        : baseEnvUrl.production.ui,
+      process.env.TEST_ENV === "production"
+        ? baseEnvUrl.production.ui
+        : baseEnvUrl.local.ui,
     reuseExistingServer: !process.env.CI,
   },
 });
