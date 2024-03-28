@@ -51,7 +51,6 @@ export default defineConfig({
         storageState: authFile,
       },
       dependencies: [authSetup],
-      testIgnore: ["**/*.setup.ts"],
     },
     {
       name: "firefox",
