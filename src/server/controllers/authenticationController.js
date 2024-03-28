@@ -44,7 +44,9 @@ exports.login = async (req, res) => {
     res.status(200).send({ username: user.username, role: user.role, token });
   } catch (error) {
     debug(error);
-    res.status(500).send({ message: "Internal server error" });
+    res
+      .status(500)
+      .send({ message: "Internal server error", error: error.message });
   }
 };
 

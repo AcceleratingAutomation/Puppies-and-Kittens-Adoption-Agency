@@ -33,7 +33,7 @@ export default defineConfig({
         : baseEnvUrl.local.ui,
 
     /* Collect trace, video, and screenshot when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on",
+    trace: "on-first-retry",
     video: "on-first-retry",
     screenshot: "only-on-failure",
   },
