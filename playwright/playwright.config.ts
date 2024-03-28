@@ -128,6 +128,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Edge"],
         storageState: authFile,
+        viewport: { width: 1920, height: 910 },
         channel: "msedge",
       },
       dependencies: [authSetup],
@@ -137,6 +138,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         storageState: authFile,
+        viewport: { width: 2560, height: 910 },
         channel: "chrome",
       },
       dependencies: [authSetup],
