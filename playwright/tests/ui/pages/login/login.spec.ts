@@ -54,11 +54,11 @@ test.describe("Login Page", () => {
 
   test.describe("should NOT login with", () => {
     noLoginScenarios.forEach(
-      ([testTitle, username, password, expectedError1]) => {
+      ([testTitle, username, password, expectedError]) => {
         test(testTitle, async ({ page }) => {
           await loginPage.login(username, password);
           await expect
-            .soft(loginPage.getErrorMessage(expectedError1))
+            .soft(loginPage.getErrorMessage(expectedError))
             .resolves.toBeInViewport();
           await expect(page).toHaveScreenshot(`Login-Page-${testTitle}.png`);
         });

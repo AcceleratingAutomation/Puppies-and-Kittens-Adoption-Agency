@@ -9,7 +9,7 @@ import {
   errorLoggingIntoApp,
 } from "../../src/accessibility/accessibilityText";
 
-// testTitle, username, password, expectedError1, expectedError2
+// testTitle, username, password, expectedError
 // This scenario should not login but there should be a backend network call to check the credentials on server.
 const noLoginScenarios = [
   [
