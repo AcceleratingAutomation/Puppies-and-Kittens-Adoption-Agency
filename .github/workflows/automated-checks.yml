@@ -8,6 +8,10 @@ on:
 
 env:
   REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
+  ALGORITHM: ${{ vars.ALGORITHM }}
+  EXPIRY: ${{ vars.EXPIRY }}
+  ISSUER: ${{ vars.ISSUER }}
+  SECRET: ${{ secrets.SECRET }}
   TEST_ENV: ${{ vars.TEST_ENV }}
   TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
   TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
