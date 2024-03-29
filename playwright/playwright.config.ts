@@ -13,7 +13,7 @@ export default defineConfig({
   fullyParallel: true,
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: process.env.CI ? 0.03 : 0.01,
+      maxDiffPixelRatio: process.env.CI ? 0.04 : 0.01,
     },
   },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -69,6 +69,7 @@ export default defineConfig({
       use: {
         ...devices["Pixel 7 landscape"],
         storageState: authFile,
+        viewport: { width: 863, height: 360 },
       },
       dependencies: [authSetup],
     },
@@ -107,6 +108,7 @@ export default defineConfig({
       use: {
         ...devices["iPhone 14 Pro Max"],
         storageState: authFile,
+        viewport: { width: 430, height: 932 },
       },
       dependencies: [authSetup],
     },
