@@ -7,5 +7,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Add Admin Page", () => {
-  visualComparisons();
+  visualComparisons("Add Admin");
 });

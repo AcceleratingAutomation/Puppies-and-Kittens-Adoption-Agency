@@ -9,6 +9,7 @@ import {
   noLoginScenarios,
   noLoginOrSubmitScenarios,
 } from "../../../../../testData/login/loginData";
+import visualComparisons from "../../../../utils/testHelpers";
 
 let loginPage: LoginPage;
 
@@ -21,17 +22,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Login Page", () => {
-  test.describe("visual comparison of", () => {
-    test("viewable page before scrolling", async ({ page }) => {
-      await expect(page).toHaveScreenshot();
-    });
-
-    test("entire page", async ({ page }) => {
-      await expect(page).toHaveScreenshot({
-        fullPage: true,
-      });
-    });
-  });
+  visualComparisons("Login");
 
   test.describe("should NOT login or make network call with", () => {
     noLoginOrSubmitScenarios.forEach(
@@ -46,7 +37,9 @@ test.describe("Login Page", () => {
               .soft(loginPage.getErrorMessage(expectedError2))
               .resolves.toBeInViewport();
           }
-          await expect(page).toHaveScreenshot(`Login-Page-${testTitle}.png`);
+          await expect(page).toHaveScreenshot(
+            `Login Page ${testTitle} ${process.env.TEST_ENV} env.png`,
+          );
         });
       },
     );
@@ -60,7 +53,9 @@ test.describe("Login Page", () => {
           await expect
             .soft(loginPage.getErrorMessage(expectedError))
             .resolves.toBeInViewport();
-          await expect(page).toHaveScreenshot(`Login-Page-${testTitle}.png`);
+          await expect(page).toHaveScreenshot(
+            `Login Page ${testTitle} ${process.env.TEST_ENV} env.png`,
+          );
         });
       },
     );

@@ -7,5 +7,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Veterinarians Page", () => {
-  visualComparisons();
+  visualComparisons("Veterinarians");
 });

@@ -6,6 +6,6 @@ test.beforeEach(async ({ page }) => {
   await page.goto(rescueAddEndpoint);
 });
 
-test.describe.only("Add Rescue Page", () => {
-  visualComparisons();
+test.describe("Add Rescue Page", () => {
+  visualComparisons("Add Rescue");
 });
