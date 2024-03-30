@@ -1,0 +1,32 @@
+username: GitHub-CI
+pretext: Triggered via ${{ github.event_name }} by ${{ github.actor }} ${{ github.ref }}
+title: GitHub Actions
+title_link: https://support.github.com
+text: |
+  *<${{ github.run_id }}|Workflow _${{ github.workflow }}_ job _${{ github.job }}_ triggered by _${{ github.event_name }}_ is _${{ job.status }}_>* for <${{ github.ref }}|`${{ github.ref }}`>
+fallback: |-
+  [GitHub] ${{ github.workflow }} #${{ github.run_number }} ${{ github.job }} is ${{ job.status }}
+fields: |
+  {
+    "Job Steps": "${{ toJson(steps) }}",
+    "Job Matrix": "${{ toJson(matrix) }}",
+    "Workflow": "<${{ github.workflow_url }}|${{ github.workflow }}>",
+    "Git Ref": "${{ github.ref }} (${{ github.ref_type }})",
+    "Run ID": "<${{ github.run_id }}|${{ github.run_id }}>",
+    "Run Number": "${{ github.run_number }}",
+    "Actor": "${{ github.actor }}",
+    "Job Status": "${{ job.status }}"
+  }
+footer: >-
+  <${{ github.repository_url }}|${{ github.repository_name }}> ${{ github.workflow }} #${{ github.run_number }}
+colors:
+  success: "#5DADE2"
+  failure: "#884EA0"
+  cancelled: "#A569BD"
+  default: "#7D3C98"
+icons:
+  success: ":white_check_mark:"
+  failure: ":grimacing:"
+  cancelled: ":x:"
+  skipped: ":heavy_minus_sign:"
+  default: ":interrobang:"
