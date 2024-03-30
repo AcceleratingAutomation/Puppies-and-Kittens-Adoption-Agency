@@ -104,11 +104,11 @@ export default defineConfig({
       dependencies: [authSetup],
     },
     {
-      name: "iPhone 14 Pro Max Safari",
+      name: "iPhone 15 Pro Safari",
       use: {
-        ...devices["iPhone 14 Pro Max"],
+        ...devices["iPhone 15 Pro"],
         storageState: authFile,
-        viewport: { width: 430, height: 932 },
+        viewport: { width: 393, height: 852 },
       },
       dependencies: [authSetup],
     },
