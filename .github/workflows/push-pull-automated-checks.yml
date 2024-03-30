@@ -151,7 +151,7 @@ jobs:
 
   merge-playwright-reports:
     needs: [playwright-visual-tests]
-    if: needs.playwright-visual-tests.result != 'skipped'
+    if: always() && needs.playwright-visual-tests.result != 'skipped'
 
     runs-on: ubuntu-latest
     steps:

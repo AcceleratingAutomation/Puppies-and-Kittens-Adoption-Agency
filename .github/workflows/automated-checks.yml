@@ -106,8 +106,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2, 3, 4]
-        shardTotal: [4]
+        shardIndex: [1, 2, 3, 4, 5, 6]
+        shardTotal: [6]
 
     steps:
       - name: Checkout code
@@ -150,7 +150,7 @@ jobs:
 
   merge-playwright-reports:
     needs: [playwright-visual-tests]
-    if: needs.playwright-visual-tests.result != 'skipped'
+    if: always() && needs.playwright-visual-tests.result != 'skipped'
 
     runs-on: ubuntu-latest
     steps:
