@@ -152,8 +152,8 @@ jobs:
   merge-playwright-reports:
     needs: [playwright-visual-tests]
     if: always() && needs.playwright-visual-tests.result != 'skipped'
-
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -190,3 +190,18 @@ jobs:
           name: playwright-html-report
           path: playwright/playwright-report
           retention-days: 30
+
+  slack-notification:
+    name: Slack Notification
+    needs: [merge-playwright-reports]
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify Slack
+        uses: act10ns/slack@v2
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

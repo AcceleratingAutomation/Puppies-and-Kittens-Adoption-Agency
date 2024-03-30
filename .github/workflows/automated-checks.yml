@@ -106,8 +106,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2, 3, 4, 5, 6]
-        shardTotal: [6]
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
 
     steps:
       - name: Checkout code
@@ -151,8 +151,8 @@ jobs:
   merge-playwright-reports:
     needs: [playwright-visual-tests]
     if: always() && needs.playwright-visual-tests.result != 'skipped'
-
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -189,3 +189,18 @@ jobs:
           name: playwright-html-report
           path: playwright/playwright-report
           retention-days: 30
+
+  slack-notification:
+    name: Slack Notification
+    needs: [merge-playwright-reports]
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify Slack
+        uses: act10ns/slack@v2
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
