@@ -197,10 +197,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Notify Slack
-        uses: act10ns/slack@v2
+      - name: Slack Notification
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          config: .github/config/slack.yml
+          fields: repo,message,workflow,pullRequest,author,commit,eventName,ref
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

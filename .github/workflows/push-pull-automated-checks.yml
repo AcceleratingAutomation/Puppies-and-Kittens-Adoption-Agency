@@ -202,7 +202,6 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          job_name: Slack Notification
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest,workflowRun # selectable (default: repo,message)
+          fields: repo,message,workflow,pullRequest,author,commit,eventName,ref
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
