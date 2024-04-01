@@ -64,7 +64,7 @@ AdminCard.propTypes = {
   numCurrentRescues: PropTypes.number.isRequired,
   numTotalRescues: PropTypes.number.isRequired,
   numHouseholdPets: PropTypes.number.isRequired,
-  favorite: PropTypes.bool.isRequired,
+  favorite: PropTypes.arrayOf(PropTypes.string).isRequired,
   image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   email: PropTypes.string.isRequired,
 };

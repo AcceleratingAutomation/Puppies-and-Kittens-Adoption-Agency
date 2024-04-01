@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Admin Card matches snapshot comparison 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiPaper-root rescue makeStyles-summaryCard-1 MuiPaper-elevation2 MuiPaper-rounded"
+  >
+    <img
+      alt="John Doe's picture"
+      class="makeStyles-responsiveImage-3"
+      src="/images/users/thumbnail-image.webp"
+      style="border-radius: 25%; width: 15rem; height: 18rem; object-fit: cover;"
+    />
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+      >
+        <h4
+          class="MuiTypography-root MuiTypography-h4"
+        >
+          John Doe
+        </h4>
+      </div>
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+      >
+        john.doe@example.com
+      </h5>
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+      >
+        Current Rescues: 5
+      </h5>
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+      >
+        Total Rescues: 10
+      </h5>
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+      >
+        Household Pets: 3
+      </h5>
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+      >
+        Favorites: 3
+      </h5>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-justify-xs-center MuiGrid-grid-xs-12"
+      />
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-justify-xs-center MuiGrid-grid-xs-12"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-muiButton-2 MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            VIEW DETAILS
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

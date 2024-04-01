@@ -77,7 +77,7 @@ RescueCard.defaultProps = {
 RescueCard.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  image: PropTypes.number.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   type: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,
