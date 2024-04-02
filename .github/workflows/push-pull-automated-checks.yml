@@ -201,7 +201,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Get commit messages
+      - name: Get commit messages - second commit for testing
         id: get_commits
         run: |
           commits=$(git log --format='[%h](https://github.com/<OWNER>/<REPO>/commit/%H) %s' -n $(git rev-list --count HEAD ^origin/main))
