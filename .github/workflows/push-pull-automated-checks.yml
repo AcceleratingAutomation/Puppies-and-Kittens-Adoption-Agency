@@ -218,7 +218,11 @@ jobs:
               repo: context.repo.repo,
               run_id: runId,
             });
-            return jobs.jobs.map(job => `${job.name}: ${job.conclusion || job.status}`).join('\n');
+            return jobs.jobs.map(job => {
+              const status = job.conclusion || job.status;
+              const emoji = status === 'success' ? ':heavy_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
+              return `${emoji} ${job.name}: ${status}`;
+            }).join('\n');
 
       - name: Get commit messages
         id: get_commits
