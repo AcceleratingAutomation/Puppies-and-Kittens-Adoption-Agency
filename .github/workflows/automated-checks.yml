@@ -220,7 +220,7 @@ jobs:
               const emoji = status === 'success' ? ':white_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
               return `${job.name}: ${status} ${emoji}`;
             });
-            return jobStatuses.join('\n');
+            return jobStatuses.join('%0A');
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
