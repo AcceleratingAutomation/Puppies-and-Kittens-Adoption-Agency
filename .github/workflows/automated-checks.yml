@@ -149,6 +149,8 @@ jobs:
           retention-days: 1
 
   merge-playwright-reports:
+    name: Merge Playwright Reports
+    timeout-minutes: 10
     needs: [playwright-visual-tests]
     if: always() && needs.playwright-visual-tests.result != 'skipped'
     runs-on: ubuntu-latest
@@ -192,6 +194,7 @@ jobs:
 
   slack-notification:
     name: Slack Notification
+    timeout-minutes: 10
     needs:
       [
         prettier,
