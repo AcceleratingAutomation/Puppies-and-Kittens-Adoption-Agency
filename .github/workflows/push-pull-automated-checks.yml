@@ -221,13 +221,14 @@ jobs:
               const emoji = status === 'success' ? ':white_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
               return `${job.name}: ${status} ${emoji}`;
             });
+            return jobStatuses.join('\n');
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
         with:
           text: |
             Job Statuses:
-            ${{ join('\n', steps.get_job_statuses.outputs.result) }}
+            ${{ steps.get_job_statuses.outputs.result }}
             Slack Notification: ${{ job.status }} :white_check_mark:
           status: ${{ job.status }}
           fields: repo,message,commit,author,eventName,ref,workflow,pullRequest

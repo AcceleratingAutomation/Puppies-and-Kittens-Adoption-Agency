@@ -226,7 +226,7 @@ jobs:
         with:
           text: |
             Job Statuses:
-            ${{ join('\n', steps.get_job_statuses.outputs.result) }}
+            ${{ steps.get_job_statuses.outputs.result }}
             Slack Notification: ${{ job.status }} :white_check_mark:
           status: ${{ job.status }}
           fields: repo,eventName,ref,workflow
