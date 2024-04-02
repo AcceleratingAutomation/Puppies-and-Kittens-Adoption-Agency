@@ -23,7 +23,7 @@ export default function Admins() {
       .then((json) => {
         if (json) {
           updateAppSettings(json.token);
-          dispatch({ type: "set", value: [...json.admins] });
+          dispatch({ type: "setAdmins", value: [...json.admins] });
         }
       })
       .catch((err) => {
