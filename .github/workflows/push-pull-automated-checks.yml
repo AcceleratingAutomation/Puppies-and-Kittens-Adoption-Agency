@@ -221,20 +221,13 @@ jobs:
             return jobs.jobs.map(job => {
               const status = job.conclusion || job.status;
               const emoji = status === 'success' ? ':white_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
-              return `${job.name}: ${status} ${emoji}<br>`;
+              return `${job.name}: ${status} ${emoji}`;
             });
-
-      - name: Replace br placeholder with newline
-        id: replace_placeholder
-        run: |
-          "echo "job_statuses=${{ steps.get_job_statuses.outputs.result }}" | tr '<br>' '\n' > $GITHUB_ENV"
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
         with:
-          text: |
-            Job Statuses:
-            ${{ env.job_statuses }}
+          text: "Job Statuses:\n${{ steps.get_job_statuses.outputs.result }}"
           status: ${{ job.status }}
           fields: repo,message,commit,author,eventName,ref,workflow,pullRequest
         env:
