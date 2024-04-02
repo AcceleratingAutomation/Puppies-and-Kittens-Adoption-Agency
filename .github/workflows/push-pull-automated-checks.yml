@@ -227,7 +227,7 @@ jobs:
       - name: Replace br placeholder with newline
         id: replace_placeholder
         run: |
-          echo "job_statuses=${{ steps.get_job_statuses.outputs.result }}" | tr '<br>' '\n' > $GITHUB_ENV
+          "echo "job_statuses=${{ steps.get_job_statuses.outputs.result }}" | tr '<br>' '\n' > $GITHUB_ENV"
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
