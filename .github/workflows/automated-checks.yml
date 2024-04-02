@@ -215,11 +215,12 @@ jobs:
               repo: context.repo.repo,
               run_id: runId,
             });
-            return jobs.jobs.filter(job => job.name !== 'Slack Notification').map(job => {
+            const jobStatuses = jobs.jobs.filter(job => job.name !== 'Slack Notification').map(job => {
               const status = job.conclusion || job.status;
               const emoji = status === 'success' ? ':white_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
               return `${job.name}: ${status} ${emoji}`;
             });
+            return jobStatuses.join('\n');
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
