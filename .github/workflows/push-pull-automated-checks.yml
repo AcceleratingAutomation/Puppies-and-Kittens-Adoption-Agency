@@ -193,15 +193,34 @@ jobs:
 
   slack-notification:
     name: Slack Notification
-    needs: [merge-playwright-reports]
+    needs:
+      [
+        prettier,
+        super-linter,
+        jest-tests,
+        playwright-visual-tests,
+        merge-playwright-reports,
+      ]
     if: always()
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      - name: Get commit messages - second commit for testing
+      - name: Get job statuses
+        id: get_job_statuses
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const runId = context.runId;
+            const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: runId,
+            });
+            return jobs.jobs.map(job => `${job.name}: ${job.conclusion || job.status}`).join('\n');
+
+      - name: Get commit messages
         id: get_commits
         run: |
           commits=$(git log --format='[%h](https://github.com/<OWNER>/<REPO>/commit/%H) %s' -n $(git rev-list --count HEAD ^origin/main))
@@ -211,7 +230,10 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          text: ${{ steps.get_commits.outputs.commits }}
+          text: |
+            ${{ steps.get_commits.outputs.commits }}
+            Job Statuses:
+            ${{ steps.get_job_statuses.outputs.result }}
           fields: repo,message,commit,author,eventName,ref,workflow,pullRequest
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
