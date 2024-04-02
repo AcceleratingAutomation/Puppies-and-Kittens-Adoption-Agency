@@ -220,9 +220,9 @@ jobs:
             });
             return jobs.jobs.map(job => {
               const status = job.conclusion || job.status;
-              const emoji = status === 'success' ? ':heavy_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
-              return `${emoji} ${job.name}: ${status}`;
-            }).join(\n);
+              const emoji = status === 'success' ? ':white_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
+              return `${job.name}: ${status} ${emoji}\n`;
+            }).join('\n');
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
