@@ -198,10 +198,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get commit messages
+        id: get_commits
+        run: |
+          echo "::set-output name=commits::$(git log --format='[%h](https://github.com/<OWNER>/<REPO>/commit/%H) %s' -n $(git rev-list --count HEAD ^origin/main))"
+
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
+          text: ${{ steps.get_commits.outputs.commits }}
           fields: repo,message,workflow,pullRequest,author,commit,eventName,ref
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
