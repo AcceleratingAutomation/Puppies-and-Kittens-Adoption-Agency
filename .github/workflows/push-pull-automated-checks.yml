@@ -222,19 +222,13 @@ jobs:
               const status = job.conclusion || job.status;
               const emoji = status === 'success' ? ':heavy_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
               return `${emoji} ${job.name}: ${status}`;
-            }).join('\\n');
-
-      - name: Get commit messages
-        id: get_commits
-        run: |
-          commits=$(git log --format='[%h](https://github.com/<OWNER>/<REPO>/commit/%H) %s' -n "$(git rev-list --count HEAD ^origin/main)")
-          echo "commits=\"${commits}\"" >> $GITHUB_ENV
+            }).join(\n);
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          text: "${{ steps.get_commits.outputs.commits }}\nJob Statuses:\n${{ steps.get_job_statuses.outputs.result }}"
+          text: "Job Statuses:\n${{ steps.get_job_statuses.outputs.result }}"
           fields: repo,message,commit,author,eventName,ref,workflow,pullRequest
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
