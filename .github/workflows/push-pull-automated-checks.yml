@@ -234,10 +234,7 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          text: |
-            ${{ steps.get_commits.outputs.commits }}
-            Job Statuses:
-            ${{ steps.get_job_statuses.outputs.result }}
+          text: "${{ steps.get_commits.outputs.commits }}\nJob Statuses:\n${{ steps.get_job_statuses.outputs.result }}"
           fields: repo,message,commit,author,eventName,ref,workflow,pullRequest
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
