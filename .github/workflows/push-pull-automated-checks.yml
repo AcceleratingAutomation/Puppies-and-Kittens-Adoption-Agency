@@ -209,7 +209,7 @@ jobs:
 
       - name: Get job statuses
         id: get_job_statuses
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         with:
           script: |
             const runId = context.runId;
