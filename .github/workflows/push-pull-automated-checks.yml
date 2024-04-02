@@ -211,6 +211,6 @@ jobs:
         with:
           status: ${{ job.status }}
           text: ${{ steps.get_commits.outputs.commits }}
-          fields: repo,message,workflow,pullRequest,author,commit,eventName,ref
+          fields: repo,message,commit,author,eventName,ref,workflow,pullRequest
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
