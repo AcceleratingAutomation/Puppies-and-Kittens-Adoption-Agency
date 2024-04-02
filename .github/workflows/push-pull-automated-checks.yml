@@ -223,7 +223,7 @@ jobs:
       - name: Get commit messages
         id: get_commits
         run: |
-          commits=$(git log --format='[%h](https://github.com/<OWNER>/<REPO>/commit/%H) %s' -n $(git rev-list --count HEAD ^origin/main))
+          commits=$(git log --format='[%h](https://github.com/<OWNER>/<REPO>/commit/%H) %s' -n "$(git rev-list --count HEAD ^origin/main)")
           echo "commits=$commits" >> $GITHUB_ENV
 
       - name: Slack Notification
