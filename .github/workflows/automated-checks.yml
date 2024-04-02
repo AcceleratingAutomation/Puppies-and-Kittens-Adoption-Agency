@@ -192,14 +192,41 @@ jobs:
 
   slack-notification:
     name: Slack Notification
-    needs: [merge-playwright-reports]
+    needs:
+      [
+        prettier,
+        super-linter,
+        jest-tests,
+        playwright-visual-tests,
+        merge-playwright-reports,
+      ]
     if: always()
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get job statuses
+        id: get_job_statuses
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runId = context.runId;
+            const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: runId,
+            });
+            return jobs.jobs.map(job => {
+              const status = job.conclusion || job.status;
+              const emoji = status === 'success' ? ':white_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
+              return `${job.name}: ${status} ${emoji}`;
+            }).join('\n');;
+
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
         with:
+          text: |
+            Job Statuses:
+            ${{ steps.get_job_statuses.outputs.result }}
           status: ${{ job.status }}
           fields: repo,eventName,ref,workflow
         env:

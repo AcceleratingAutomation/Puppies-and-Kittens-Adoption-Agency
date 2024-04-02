@@ -203,10 +203,8 @@ jobs:
       ]
     if: always()
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
+    steps:
       - name: Get job statuses
         id: get_job_statuses
         uses: actions/github-script@v7
@@ -222,12 +220,14 @@ jobs:
               const status = job.conclusion || job.status;
               const emoji = status === 'success' ? ':white_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
               return `${job.name}: ${status} ${emoji}`;
-            });
+            }).join('\n');;
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
         with:
-          text: "Job Statuses:\n${{ steps.get_job_statuses.outputs.result }}"
+          text: |
+            Job Statuses:
+            ${{ steps.get_job_statuses.outputs.result }}
           status: ${{ job.status }}
           fields: repo,message,commit,author,eventName,ref,workflow,pullRequest
         env:
