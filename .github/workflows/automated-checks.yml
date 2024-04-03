@@ -253,8 +253,8 @@ jobs:
             const commitDetails = commits.map(commit => {
               const shortSha = commit.sha.substring(0, 8);
               const commitUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${commit.sha}`;
-              return `[${shortSha}](${commitUrl}) ${commit.commit.message} by ${commit.commit.author.name}`;
-            }).join('/n');
+              return `<${commitUrl}|${shortSha}> ${commit.commit.message} by ${commit.commit.author.name}`;
+            }).join('\n');
             return commitDetails;
 
       - name: Get job statuses
