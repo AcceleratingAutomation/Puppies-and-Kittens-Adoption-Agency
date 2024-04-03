@@ -250,7 +250,11 @@ jobs:
               repo: context.repo.repo,
               per_page: 10
             });
-            const commitDetails = commits.map(commit => `${commit.sha} ${commit.commit.author.name} ${commit.commit.message}`).join(' - ');
+            const commitDetails = commits.map(commit => {
+              const shortSha = commit.sha.substring(0, 8);
+              const commitUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${commit.sha}`;
+              return `[${shortSha}](${commitUrl}) ${commit.commit.message} by ${commit.commit.author.name}`;
+            }).join('/n');
             return commitDetails;
 
       - name: Get job statuses
@@ -275,13 +279,15 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           text: |
-            Job Statuses:
+            *Job Statuses:*
             ${{ steps.get_job_statuses.outputs.result }}
             *Slack Notification:* ${{ job.status }} :white_check_mark:
-            Last 10 Commits:
+
+            *Last 10 Commits:*
             ${{ steps.get_commits.outputs.result }}
-            Additional details about last commit:
+
+            Additional details for last commit:
           status: ${{ job.status }}
-          fields: repo,eventName,ref,workflow
+          fields: repo,message,commit,author,eventName,ref,workflow,pullRequest
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
