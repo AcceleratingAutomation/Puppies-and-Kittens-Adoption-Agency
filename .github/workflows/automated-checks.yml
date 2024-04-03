@@ -2,6 +2,31 @@ name: All Automated Checks
 
 on:
   workflow_dispatch:
+    inputs:
+      prettier:
+        description: "Run Prettier job"
+        required: false
+        default: "true"
+      super-linter:
+        description: "Run Super-Linter job"
+        required: false
+        default: "true"
+      jest-tests:
+        description: "Run Jest Unit Tests job"
+        required: false
+        default: "true"
+      playwright-visual-tests:
+        description: "Run Playwright Visual Tests job"
+        required: false
+        default: "true"
+      merge-playwright-reports:
+        description: "Run Merge Playwright Reports job"
+        required: false
+        default: "true"
+      slack-notification:
+        description: "Run Slack Notification job"
+        required: false
+        default: "true"
   # Run this workflow at 12 PM UTC (which is 5 AM MST) every weekday. Doesn't account for daylight saving time.
   schedule:
     - cron: "0 12 * * 1-5"
@@ -19,6 +44,7 @@ env:
 jobs:
   prettier:
     name: Prettier
+    if: ${{ github.event.inputs.prettier == 'true' }}
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
@@ -45,9 +71,9 @@ jobs:
 
   super-linter:
     name: Super-Linter
+    if: always() && ${{ github.event.inputs.super-linter == 'true' }}
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    if: always()
 
     permissions:
       contents: read
@@ -72,6 +98,7 @@ jobs:
 
   jest-tests:
     name: Jest Unit Tests
+    if: always() && ${{ github.event.inputs.jest-tests == 'true' }}
     timeout-minutes: 15
     needs: [prettier, super-linter]
     runs-on: ubuntu-latest
@@ -99,6 +126,7 @@ jobs:
 
   playwright-visual-tests:
     name: Playwright Visual Tests
+    if: ${{ github.event.inputs.playwright-visual-tests == 'true' }}
     timeout-minutes: 60
     needs: [jest-tests]
     # Running on windows because the OS matters for visual testing comparisons.
@@ -150,9 +178,9 @@ jobs:
 
   merge-playwright-reports:
     name: Merge Playwright Reports
+    if: always() && needs.playwright-visual-tests.result != 'skipped' && ${{ github.event.inputs.merge-playwright-reports == 'true' }}
     timeout-minutes: 10
     needs: [playwright-visual-tests]
-    if: always() && needs.playwright-visual-tests.result != 'skipped'
     runs-on: ubuntu-latest
 
     steps:
@@ -194,6 +222,7 @@ jobs:
 
   slack-notification:
     name: Slack Notification
+    if: always() && ${{ github.event.inputs.slack-notification == 'true' }}
     timeout-minutes: 10
     needs:
       [
@@ -203,7 +232,6 @@ jobs:
         playwright-visual-tests,
         merge-playwright-reports,
       ]
-    if: always()
     runs-on: ubuntu-latest
 
     steps:
