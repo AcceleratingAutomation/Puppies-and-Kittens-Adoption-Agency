@@ -207,6 +207,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history so we can compare
+
+      - name: Get commit details
+        id: get_commits
+        run: |
+          COMMITS=$(git log --format="%H %an %s" -n 10)
+          echo "COMMITS=$COMMITS" >> $GITHUB_ENV
+
       - name: Get job statuses
         id: get_job_statuses
         uses: actions/github-script@v7
@@ -232,6 +243,9 @@ jobs:
             Job Statuses:
             ${{ steps.get_job_statuses.outputs.result }}
             *Slack Notification:* ${{ job.status }} :white_check_mark:
+            Last 10 Commits:
+            ${{ env.COMMITS }}
+            Additional details about last commit:
           status: ${{ job.status }}
           fields: repo,eventName,ref,workflow
         env:
