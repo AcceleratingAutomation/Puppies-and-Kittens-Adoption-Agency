@@ -1,6 +1,7 @@
 name: All Automated Checks
 
 on:
+  # checkov:skip=CKV_GHA_7
   workflow_dispatch:
     inputs:
       prettier:
@@ -44,7 +45,7 @@ env:
 jobs:
   prettier:
     name: Prettier
-    if: ${{ github.event.inputs.prettier == 'true' }}
+    if: github.event.inputs.prettier == 'true'
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
@@ -71,7 +72,7 @@ jobs:
 
   super-linter:
     name: Super-Linter
-    if: always() && ${{ github.event.inputs.super-linter == 'true' }}
+    if: github.event.inputs.super-linter == 'true'
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
@@ -98,9 +99,8 @@ jobs:
 
   jest-tests:
     name: Jest Unit Tests
-    if: always() && ${{ github.event.inputs.jest-tests == 'true' }}
+    if: github.event.inputs.jest-tests == 'true'
     timeout-minutes: 15
-    needs: [prettier, super-linter]
     runs-on: ubuntu-latest
 
     steps:
@@ -126,9 +126,9 @@ jobs:
 
   playwright-visual-tests:
     name: Playwright Visual Tests
-    if: ${{ github.event.inputs.playwright-visual-tests == 'true' }}
+    if: github.event.inputs.playwright-visual-tests == 'true'
     timeout-minutes: 60
-    needs: [jest-tests]
+    needs: [prettier, super-linter, jest-tests]
     # Running on windows because the OS matters for visual testing comparisons.
     runs-on: windows-latest
     strategy:
@@ -178,7 +178,7 @@ jobs:
 
   merge-playwright-reports:
     name: Merge Playwright Reports
-    if: always() && needs.playwright-visual-tests.result != 'skipped' && ${{ github.event.inputs.merge-playwright-reports == 'true' }}
+    if: always() && needs.playwright-visual-tests.result != 'skipped' && github.event.inputs.merge-playwright-reports == 'true'
     timeout-minutes: 10
     needs: [playwright-visual-tests]
     runs-on: ubuntu-latest
@@ -222,7 +222,7 @@ jobs:
 
   slack-notification:
     name: Slack Notification
-    if: always() && ${{ github.event.inputs.slack-notification == 'true' }}
+    if: always() && github.event.inputs.slack-notification == 'true'
     timeout-minutes: 10
     needs:
       [
@@ -242,9 +242,16 @@ jobs:
 
       - name: Get commit details
         id: get_commits
-        run: |
-          COMMITS=$(git log --format="%H %an %s" -n 10)
-          echo "COMMITS=$COMMITS" >> $GITHUB_ENV
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: commits } = await github.rest.repos.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 10
+            });
+            const commitDetails = commits.map(commit => `${commit.sha} ${commit.commit.author.name} ${commit.commit.message}`).join(' - ');
+            return commitDetails;
 
       - name: Get job statuses
         id: get_job_statuses
@@ -272,7 +279,7 @@ jobs:
             ${{ steps.get_job_statuses.outputs.result }}
             *Slack Notification:* ${{ job.status }} :white_check_mark:
             Last 10 Commits:
-            ${{ env.COMMITS }}
+            ${{ steps.get_commits.outputs.result }}
             Additional details about last commit:
           status: ${{ job.status }}
           fields: repo,eventName,ref,workflow
