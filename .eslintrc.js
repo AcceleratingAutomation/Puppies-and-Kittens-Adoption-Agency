@@ -31,7 +31,12 @@ module.exports = {
     "import/no-extraneous-dependencies": [
       "error",
       {
-        devDependencies: ["**/__jest__/**", "playwright/**/*"],
+        devDependencies: [
+          "**/__jest__/**",
+          "playwright/**/*",
+          "cypress/**/*",
+          "cypress.config.js",
+        ],
       },
     ],
   },
@@ -59,6 +64,14 @@ module.exports = {
       files: ["**/__jest__/**/*.{js,jsx}"],
       env: {
         jest: true,
+      },
+    },
+    {
+      // Cypress
+      files: ["cypress/**/*", "src/**/*.cy.{js,jsx,ts,tsx}"],
+      plugins: ["cypress"],
+      env: {
+        "cypress/globals": true,
       },
     },
     {
