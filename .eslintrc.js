@@ -33,6 +33,7 @@ module.exports = {
       {
         devDependencies: [
           "**/__jest__/**",
+          "**/__tests__/**",
           "playwright/**/*",
           "cypress/**/*",
           "cypress.config.js",
@@ -61,7 +62,7 @@ module.exports = {
     },
     {
       // Jest
-      files: ["**/__jest__/**/*.{js,jsx}"],
+      files: ["**/__jest__/**/*.{js,jsx}", "**/__tests__/**/*test.{js,jsx}"],
       env: {
         jest: true,
       },

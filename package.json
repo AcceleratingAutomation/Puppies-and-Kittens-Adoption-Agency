@@ -51,6 +51,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "jest": {
+    "testMatch": ["**/__jest__/**/*test.[jt]s?(x)", "**/__tests__/**/*test.[jt]s?(x)", "!**/__tests__/**/*.cy.[jt]s?(x)"]
+  },
   "lint-staged": {
     "*.{css,html,js,jsx,json,md,ts,tsx,yaml,yml}": "prettier --write",
     "*.{js,jsx,ts,tsx}": "eslint --fix",

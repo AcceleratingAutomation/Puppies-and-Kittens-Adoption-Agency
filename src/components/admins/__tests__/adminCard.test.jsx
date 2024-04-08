@@ -1,40 +1,13 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import AdminCard from "../../../components/admins/AdminCard";
-
-function renderAdminCard(props) {
-  return render(
-    <AdminCard
-      id={props.id}
-      name={props.name}
-      email={props.email}
-      numCurrentRescues={props.numCurrentRescues}
-      numTotalRescues={props.numTotalRescues}
-      numHouseholdPets={props.numHouseholdPets}
-      favorite={props.favorite}
-      image={props.image}
-    />,
-  );
-}
+import { adminProps, getAdminCard } from "./adminsData";
 
 describe("Admin Card", () => {
-  const adminProps = {
-    id: "1",
-    name: "John Doe",
-    email: "john.doe@example.com",
-    numCurrentRescues: 5,
-    numTotalRescues: 10,
-    numHouseholdPets: 3,
-    favorite: ["1", "2", "3"],
-    image: "thumbnail-image",
-  };
-
   beforeEach(() => {
-    renderAdminCard(adminProps);
+    render(getAdminCard());
   });
 
   test("matches snapshot comparison", () => {
-    const { asFragment } = renderAdminCard(adminProps);
+    const { asFragment } = render(getAdminCard());
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -68,5 +41,9 @@ describe("Admin Card", () => {
     expect(
       screen.getByText(`Favorites: ${adminProps.favorite.length}`),
     ).toBeInTheDocument();
+  });
+
+  test("displays view details button", () => {
+    expect(screen.getByText("VIEW DETAILS")).toBeInTheDocument();
   });
 });

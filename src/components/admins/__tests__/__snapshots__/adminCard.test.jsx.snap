@@ -8,7 +8,7 @@ exports[`Admin Card matches snapshot comparison 1`] = `
     <img
       alt="John Doe's picture"
       class="makeStyles-responsiveImage-3"
-      src="/images/users/thumbnail-image.webp"
+      src="/images/users/placeholder-users.webp"
       style="border-radius: 25%; width: 15rem; height: 18rem; object-fit: cover;"
     />
     <div
