@@ -1,7 +1,7 @@
 import React from "react";
-import { Grid, Typography, IconButton } from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import { Grid, Typography, IconButton } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "../../styles.css";
 import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
@@ -48,10 +48,10 @@ function RescueCard({
       <Typography variant="h5" gutterBottom>
         {rescue.breed}
       </Typography>
-      <Grid item xs={12} container justify="center">
+      <Grid item xs={12} container justifyContent="center">
         {isFavorite ? (
           <IconButton
-            color="secondary"
+            color="error"
             onClick={() => onRemoveFavorite(rescue.id)}
             aria-label="Remove from favorites"
           >

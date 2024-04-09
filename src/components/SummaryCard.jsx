@@ -1,6 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Paper, Button } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Grid, Paper, Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import DisplayImage from "./DisplayImage";
@@ -47,7 +47,7 @@ export default function SummaryCard({
       />
       <Grid container direction="column">
         {children}
-        <Grid item xs={12} container justify="center">
+        <Grid item xs={12} container justifyContent="center">
           <Button
             className={classes.muiButton}
             variant="contained"

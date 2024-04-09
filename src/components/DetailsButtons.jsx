@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Button, Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import PropTypes from "prop-types";
 import ConfirmationDialog from "./ConfirmationDialog";
 
@@ -23,7 +23,7 @@ function DetailsButtons({
 
   return (
     <>
-      <Grid item xs={12} container justify="center">
+      <Grid item xs={12} container justifyContent="center">
         <Button
           className={classes.muiButton}
           variant="contained"
@@ -41,11 +41,11 @@ function DetailsButtons({
           Edit {name}
         </Button>
       </Grid>
-      <Grid item xs={12} container justify="center">
+      <Grid item xs={12} container justifyContent="center">
         <Button
           className={classes.muiButton}
           variant="contained"
-          color="secondary"
+          color="error"
           onClick={() => dispatch({ type: "openDialog" })}
         >
           DELETE {name}

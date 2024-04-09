@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
@@ -41,7 +41,13 @@ export default function Admins() {
       {!showPage && <div />}
       {showPage && (
         <Grid container direction="column" alignItems="center">
-          <Grid item container direction="row" wrap="wrap" justify="center">
+          <Grid
+            item
+            container
+            direction="row"
+            wrap="wrap"
+            justifyContent="center"
+          >
             {state.admins.slice(page * 20, (page + 1) * 20).map((admin) => (
               <AdminCard
                 key={admin.id}

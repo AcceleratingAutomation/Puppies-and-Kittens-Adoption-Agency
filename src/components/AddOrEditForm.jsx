@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Grid,
   Container,
   FormControl,
   FormHelperText,
-  Select,
+  Grid,
   MenuItem,
-} from "@material-ui/core";
+  Select,
+} from "@mui/material";
 import { Form, useFormikContext } from "formik";
 import { FormField, MultiLineFormField } from "./FormField";
 import FormButtons from "./FormButtons";
@@ -21,7 +21,7 @@ function AddOrEditForm({ errors, touched, formFields, endpoint, id }) {
       <Container>
         <Grid
           container
-          justify="center"
+          justifyContent="center"
           alignItems="flex-start"
           direction="row"
         >
@@ -44,6 +44,8 @@ function AddOrEditForm({ errors, touched, formFields, endpoint, id }) {
                         name={field.name}
                         value={values[field.name]}
                         onChange={handleChange}
+                        variant="standard"
+                        sx={{ pl: 1 }}
                       >
                         {field.options.map((option) => (
                           <MenuItem key={option} value={option}>

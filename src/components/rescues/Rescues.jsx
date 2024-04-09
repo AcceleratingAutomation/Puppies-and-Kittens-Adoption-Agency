@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
@@ -111,7 +111,7 @@ export default function Rescues() {
     <>
       <div className="content" style={{ minHeight: "100rem" }}>
         <AppHeader tabValue={tabValue} />
-        <Grid item container justify="center">
+        <Grid item container justifyContent="center">
           {rescues}
         </Grid>
       </div>

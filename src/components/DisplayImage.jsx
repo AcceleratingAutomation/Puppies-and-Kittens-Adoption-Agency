@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 import PropTypes from "prop-types";
 import { getImageUrl } from "../utils/componentUtils";
 

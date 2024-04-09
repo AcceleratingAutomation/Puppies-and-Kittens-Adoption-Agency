@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid } from "@mui/material";
 
 function PaginationButtons({ page, setPage, dataLength }) {
   return (
-    <Grid item container justify="center">
+    <Grid item container justifyContent="center">
       <Button
         style={{ margin: "0.625rem" }}
         variant="contained"

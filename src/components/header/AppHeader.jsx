@@ -1,7 +1,7 @@
 import React, { useReducer, useCallback } from "react";
-import { AppBar, MenuItem, IconButton, Menu, Toolbar } from "@material-ui/core";
+import { AppBar, MenuItem, IconButton, Menu, Toolbar } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import PropTypes from "prop-types";
 import DrawerComponent from "./DrawerComponent";
 import TabsComponent from "./TabsComponent";

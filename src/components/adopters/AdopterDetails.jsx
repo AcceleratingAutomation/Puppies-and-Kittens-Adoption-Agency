@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@mui/material";
 import { AppHeader, tabs } from "../header/AppHeader";
 import Loading from "../Loading";
 import {
@@ -38,7 +38,12 @@ export default function AdopterDetails() {
   return (
     <div className="content">
       <AppHeader tabValue={tabValue} />
-      <Grid container justify="center" alignItems="center" direction="column">
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        direction="column"
+      >
         <Grid item>
           <Typography variant="h3">
             {type.name}

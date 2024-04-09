@@ -1,5 +1,5 @@
 import React from "react";
-import { Tab, Tabs, Hidden } from "@material-ui/core";
+import { Tab, Tabs, Hidden } from "@mui/material";
 import PropTypes from "prop-types";
 
 function TabsComponent({ tabs, tabValue, handleTabClick, shouldDisable }) {

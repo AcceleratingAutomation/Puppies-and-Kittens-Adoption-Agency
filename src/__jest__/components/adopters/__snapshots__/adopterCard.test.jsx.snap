@@ -3,7 +3,7 @@
 exports[`AdopterCard matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiPaper-root rescue makeStyles-summaryCard-1 MuiPaper-elevation2 MuiPaper-rounded"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation2 rescue makeStyles-summaryCard-1 css-1mbunh-MuiPaper-root"
   >
     <img
       alt="John Doe's picture"
@@ -12,50 +12,46 @@ exports[`AdopterCard matches snapshot 1`] = `
       style="border-radius: 25%; width: 15rem; height: 18rem; object-fit: cover;"
     />
     <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column"
+      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1vpwcmr-MuiGrid-root"
     >
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
       >
         <h4
-          class="MuiTypography-root MuiTypography-h4"
+          class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
         >
           John Doe
         </h4>
       </div>
       <h5
-        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
       >
         john.doe@example.com
       </h5>
       <h5
-        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
       >
         Currently Looking: Yes
       </h5>
       <h5
-        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
       >
         Current Pets: 3
       </h5>
       <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-justify-xs-center MuiGrid-grid-xs-12"
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
       />
       <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-justify-xs-center MuiGrid-grid-xs-12"
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-muiButton-2 MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary makeStyles-muiButton-2 css-11qr2p8-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
         >
+          VIEW DETAILS
           <span
-            class="MuiButton-label"
-          >
-            VIEW DETAILS
-          </span>
-          <span
-            class="MuiTouchRipple-root"
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
           />
         </button>
       </div>

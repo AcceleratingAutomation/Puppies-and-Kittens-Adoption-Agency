@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Container } from "@material-ui/core";
+import { Grid, Container } from "@mui/material";
 import PropTypes from "prop-types";
 import DisplayImage from "../DisplayImage";
 
@@ -21,7 +21,12 @@ function AdopterDetailsLayout({ adopter }) {
 
   return (
     <Container maxWidth="lg">
-      <Grid container justify="center" alignItems="center" direction="row">
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        direction="row"
+      >
         <Grid item xs={12} sm={4} md={3} style={{ textAlign: "center" }}>
           <Grid container>
             <Grid item xs={6}>

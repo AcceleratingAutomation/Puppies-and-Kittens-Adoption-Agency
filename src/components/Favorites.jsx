@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useCallback, useState } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import "../styles.css";
 import { AppHeader, tabs } from "./header/AppHeader";
 import RescueCard from "./rescues/RescueCard";
@@ -49,7 +49,13 @@ export default function Favorites() {
     <main className="content">
       <AppHeader tabValue={tabValue} />
       <Grid container direction="column" alignItems="center">
-        <Grid item container direction="row" wrap="wrap" justify="center">
+        <Grid
+          item
+          container
+          direction="row"
+          wrap="wrap"
+          justifyContent="center"
+        >
           {state.rescues
             .filter((rescue) => state.favorites.includes(rescue.id))
             .slice(page * 20, (page + 1) * 20)

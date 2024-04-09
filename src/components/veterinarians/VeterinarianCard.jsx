@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@mui/material";
 import "../../styles.css";
 import SummaryCard from "../SummaryCard";
 import { veterinariansEndpoint } from "../../server/apiService/apiConfig";
@@ -48,7 +48,7 @@ function VeterinarianCard({
       <Typography variant="h5" gutterBottom>
         Total Rescues: {veterinarian.numTotalRescues}
       </Typography>
-      <Grid item xs={12} container justify="center" />
+      <Grid item xs={12} container justifyContent="center" />
     </SummaryCard>
   );
 }

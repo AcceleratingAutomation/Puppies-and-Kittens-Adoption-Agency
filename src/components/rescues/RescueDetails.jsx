@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Typography } from "@mui/material";
 import { AppHeader, tabs } from "../header/AppHeader";
 import Loading from "../Loading";
 import { rescuesEndpoint, rescuesUrl } from "../../server/apiService/apiConfig";
@@ -43,7 +43,12 @@ export default function RescueDetails() {
   return (
     <div className="content">
       <AppHeader tabValue={tabValue} />
-      <Grid container justify="center" alignItems="center" direction="column">
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        direction="column"
+      >
         <Grid item>
           <Typography variant="h3">
             {type.name}

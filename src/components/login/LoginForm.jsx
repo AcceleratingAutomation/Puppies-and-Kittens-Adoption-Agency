@@ -1,7 +1,7 @@
 import React from "react";
-import { Grid, Typography, TextField, Button, Hidden } from "@material-ui/core";
-import Tooltip from "@material-ui/core/Tooltip";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import { Grid, Typography, TextField, Button, Hidden } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import DisplayImage from "../DisplayImage";
@@ -96,7 +96,7 @@ function LoginForm({ isSubmitting }) {
         <Grid
           container
           style={{ margin: "0 auto", maxWidth: "80%" }}
-          justify="center"
+          justifyContent="center"
         >
           <Grid item xs={12} sm={4}>
             <DisplayImage

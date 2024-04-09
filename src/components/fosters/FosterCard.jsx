@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@mui/material";
 import "../../styles.css";
 import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
@@ -48,7 +48,7 @@ function FosterCard({
       <Typography variant="h5" gutterBottom>
         Total Rescues: {foster.numTotalRescues}
       </Typography>
-      <Grid item xs={12} container justify="center" />
+      <Grid item xs={12} container justifyContent="center" />
     </SummaryCard>
   );
 }

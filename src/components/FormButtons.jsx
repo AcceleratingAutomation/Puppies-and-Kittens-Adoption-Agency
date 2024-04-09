@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button } from "@mui/material";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 
@@ -7,7 +7,7 @@ function FormButtons({ id, endpoint }) {
   const history = useHistory();
 
   return (
-    <Grid item container justify="center">
+    <Grid item container justifyContent="center">
       <Button
         type="submit"
         style={{ margin: "0.625rem" }}

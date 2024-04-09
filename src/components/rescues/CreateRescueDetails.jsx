@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@mui/material";
 import { Formik } from "formik";
 import { rescuesEndpoint, rescuesUrl } from "../../server/apiService/apiConfig";
 import { AppHeader, tabs } from "../header/AppHeader";
@@ -32,7 +32,7 @@ export default function CreateRescueDetails() {
           <AppHeader tabValue={tabValue} />
           <Grid
             container
-            justify="center"
+            justifyContent="center"
             alignItems="center"
             direction="column"
           >
