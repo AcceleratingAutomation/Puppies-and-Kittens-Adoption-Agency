@@ -13,7 +13,7 @@ import "../styles.css";
 function ConfirmationDialog({ open, onClose, onConfirm }) {
   return (
     <Dialog open={open} onClose={onClose} PaperProps={{ className: "dialog" }}>
-      <DialogTitle className="dialogTitle">
+      <DialogTitle className="dialog-title">
         Are you sure you want to delete?
       </DialogTitle>
       <DialogContent>
@@ -21,7 +21,7 @@ function ConfirmationDialog({ open, onClose, onConfirm }) {
       </DialogContent>
       <DialogActions>
         <Button
-          className="cancelButton"
+          className="cancel-button"
           variant="contained"
           color="primary"
           onClick={onClose}
@@ -29,7 +29,7 @@ function ConfirmationDialog({ open, onClose, onConfirm }) {
           Cancel
         </Button>
         <Button
-          className="deleteButton"
+          className="delete-button"
           variant="contained"
           color="error"
           onClick={onConfirm}

@@ -21,7 +21,7 @@ export default function SummaryCard({
   };
 
   return (
-    <Paper elevation={2} className="summaryCard">
+    <Paper elevation={2} className="summary-card">
       <DisplayImage
         type={type}
         directory={directory}
@@ -35,7 +35,7 @@ export default function SummaryCard({
         {children}
         <Grid item xs={12} container justifyContent="center">
           <Button
-            className="summaryCardButton"
+            className="summary-card-button"
             variant="contained"
             color="primary"
             size="small"

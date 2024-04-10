@@ -22,7 +22,7 @@ function DisplayImage({ directory, image, type, name, width, height }) {
 
   return (
     <img
-      className="responsiveImage"
+      className="responsive-image"
       src={
         image && directory
           ? getImageUrl(directory, image)

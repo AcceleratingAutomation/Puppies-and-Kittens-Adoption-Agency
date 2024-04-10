@@ -2,21 +2,21 @@
   text-align: center;
 }
 
-button.muiButton {
+button.mui-button {
   margin: 0.625rem;
 }
 
-button.summaryCardButton {
+button.summary-card-button {
   margin: 0.625rem;
   width: 65%;
 }
 
-.cancelButton {
+.cancel-button {
   background-color: #3f51b5;
   color: white;
 }
 
-.cancelButton:hover {
+.cancel-button:hover {
   background-color: #00f;
 }
 
@@ -28,12 +28,12 @@ button.summaryCardButton {
   min-height: 20vh;
 }
 
-.deleteButton {
+.delete-button {
   background-color: red;
   color: white;
 }
 
-.deleteButton:hover {
+.delete-button:hover {
   background-color: #f00;
 }
 
@@ -41,17 +41,17 @@ button.summaryCardButton {
   border: 2px solid black;
 }
 
-.dialogTitle {
+.dialog-title {
   background-color: #3f51b5;
   color: white;
 }
 
-.responsiveImage {
+.responsive-image {
   height: auto;
   max-width: 100%;
 }
 
-.summaryCard {
+.summary-card {
   border: 2px solid gray;
   margin: 2em;
   max-width: 20rem;

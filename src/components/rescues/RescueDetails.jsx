@@ -48,7 +48,7 @@ export default function RescueDetails() {
             &apos;s Details
           </Typography>
           <Button
-            className="muiButton"
+            className="mui-button"
             variant="contained"
             color="primary"
             size="large"

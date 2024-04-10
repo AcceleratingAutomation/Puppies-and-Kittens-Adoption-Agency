@@ -18,7 +18,7 @@ function DetailsButtons({
     <>
       <Grid item xs={12} container justifyContent="center">
         <Button
-          className="muiButton"
+          className="mui-button"
           variant="contained"
           color="primary"
           onClick={onBack}
@@ -26,7 +26,7 @@ function DetailsButtons({
           Back
         </Button>
         <Button
-          className="muiButton"
+          className="mui-button"
           variant="contained"
           color="primary"
           onClick={() => onEdit(id)}
@@ -36,7 +36,7 @@ function DetailsButtons({
       </Grid>
       <Grid item xs={12} container justifyContent="center">
         <Button
-          className="muiButton"
+          className="mui-button"
           variant="contained"
           color="error"
           onClick={() => dispatch({ type: "openDialog" })}
