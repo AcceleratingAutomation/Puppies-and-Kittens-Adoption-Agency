@@ -305,7 +305,7 @@ exports[`Login component should render correctly in snapshot comparison after se
         >
           <img
             alt="Playful Puppy's picture"
-            class="responsiveImage"
+            class="responsive-image"
             data-testid="display-image"
             src="/images/dog/placeholder-puppy.webp"
             style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover;"
@@ -316,7 +316,7 @@ exports[`Login component should render correctly in snapshot comparison after se
         >
           <img
             alt="Playful Kitten's picture"
-            class="responsiveImage"
+            class="responsive-image"
             data-testid="display-image"
             src="/images/cat/placeholder-kitten.webp"
             style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover;"
