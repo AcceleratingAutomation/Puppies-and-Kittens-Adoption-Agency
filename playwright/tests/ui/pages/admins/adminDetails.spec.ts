@@ -6,5 +6,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Admin Details Page", () => {
-  visualComparisons("Admin Details");
+  visualComparisons("Admin Details", true);
 });

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { makeStyles } from "@mui/styles";
 import PropTypes from "prop-types";
+import "../styles.css";
 import { getImageUrl } from "../utils/componentUtils";
 
 const getPlaceholderImage = (type) => {
@@ -14,16 +14,7 @@ const getPlaceholderImage = (type) => {
   }
 };
 
-const useStyles = makeStyles({
-  responsiveImage: {
-    maxWidth: "100%",
-    height: "auto",
-  },
-});
-
 function DisplayImage({ directory, image, type, name, width, height }) {
-  const classes = useStyles();
-
   useEffect(() => {
     const img = new Image();
     img.src = getImageUrl(directory, image);
@@ -31,7 +22,7 @@ function DisplayImage({ directory, image, type, name, width, height }) {
 
   return (
     <img
-      className={classes.responsiveImage}
+      className="responsiveImage"
       src={
         image && directory
           ? getImageUrl(directory, image)
@@ -48,6 +39,7 @@ function DisplayImage({ directory, image, type, name, width, height }) {
         height,
         objectFit: "cover",
       }}
+      data-testid="display-image"
     />
   );
 }

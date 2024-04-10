@@ -1,22 +1,9 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
 import { Grid, Paper, Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+import "../styles.css";
 import DisplayImage from "./DisplayImage";
-
-const useStyles = makeStyles({
-  summaryCard: {
-    width: "100%", // Full width on mobile devices
-    maxWidth: "20rem",
-    wordWrap: "break-word",
-    minHeight: "10rem",
-  },
-  muiButton: {
-    width: "65%",
-    margin: "0.625rem",
-  },
-});
 
 export default function SummaryCard({
   children,
@@ -27,7 +14,6 @@ export default function SummaryCard({
   viewComponentDetailsUrl,
   directory = "users",
 }) {
-  const classes = useStyles();
   const history = useHistory();
 
   const onViewDetails = () => {
@@ -35,7 +21,7 @@ export default function SummaryCard({
   };
 
   return (
-    <Paper elevation={2} className={`rescue ${classes.summaryCard}`}>
+    <Paper elevation={2} className="summaryCard">
       <DisplayImage
         type={type}
         directory={directory}
@@ -49,7 +35,7 @@ export default function SummaryCard({
         {children}
         <Grid item xs={12} container justifyContent="center">
           <Button
-            className={classes.muiButton}
+            className="summaryCardButton"
             variant="contained"
             color="primary"
             size="small"

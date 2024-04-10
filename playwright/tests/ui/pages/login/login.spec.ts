@@ -16,8 +16,8 @@ let loginPage: LoginPage;
 test.beforeEach(async ({ page }) => {
   loginPage = new LoginPage(page);
   await loginPage.navigate();
-  await expect.soft(page.getByText(usernameLabel)).toBeInViewport();
-  await expect.soft(page.getByText(passwordLabel)).toBeInViewport();
+  await expect.soft(page.getByLabel(usernameLabel)).toBeInViewport();
+  await expect.soft(page.getByLabel(passwordLabel)).toBeInViewport();
   await expect.soft(page.getByText(loginText)).toBeInViewport();
 });
 

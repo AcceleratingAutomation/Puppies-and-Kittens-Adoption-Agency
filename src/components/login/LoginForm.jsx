@@ -79,6 +79,7 @@ function LoginForm({ isSubmitting }) {
             style={{ color: "red" }}
           />
         </Grid>
+        <ErrorMessage name="login" component="div" style={{ color: "red" }} />
         <Grid item style={{ marginBottom: "2vh" }}>
           <Button
             style={{ margin: "0.625rem" }}
@@ -92,7 +93,6 @@ function LoginForm({ isSubmitting }) {
             {loginText}
           </Button>
         </Grid>
-        <ErrorMessage name="login" component="div" style={{ color: "red" }} />
         <Grid
           container
           style={{ margin: "0 auto", maxWidth: "80%" }}

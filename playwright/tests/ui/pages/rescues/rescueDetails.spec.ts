@@ -6,5 +6,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Rescue Details Page", () => {
-  visualComparisons("Rescue Details");
+  visualComparisons("Rescue Details", true);
 });

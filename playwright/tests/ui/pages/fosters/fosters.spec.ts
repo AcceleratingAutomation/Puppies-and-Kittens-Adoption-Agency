@@ -7,5 +7,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Fosters Page", () => {
-  visualComparisons("Fosters");
+  visualComparisons("Fosters", true);
 });

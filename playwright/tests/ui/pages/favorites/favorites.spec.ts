@@ -7,5 +7,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Favorites Page", () => {
-  visualComparisons("Favorites");
+  visualComparisons("Favorites", true);
 });

@@ -3,11 +3,12 @@
 exports[`AdopterCard matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation2 rescue makeStyles-summaryCard-1 css-1mbunh-MuiPaper-root"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation2 summaryCard css-1mbunh-MuiPaper-root"
   >
     <img
       alt="John Doe's picture"
-      class="makeStyles-responsiveImage-3"
+      class="responsiveImage"
+      data-testid="display-image"
       src="/images/users/placeholder-image.webp"
       style="border-radius: 25%; width: 15rem; height: 18rem; object-fit: cover;"
     />
@@ -45,7 +46,7 @@ exports[`AdopterCard matches snapshot 1`] = `
         class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary makeStyles-muiButton-2 css-11qr2p8-MuiButtonBase-root-MuiButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary summaryCardButton css-11qr2p8-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
         >

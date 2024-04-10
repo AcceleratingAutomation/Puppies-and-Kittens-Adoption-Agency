@@ -1,14 +1,8 @@
 import React from "react";
 import { Button, Grid } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import PropTypes from "prop-types";
+import "../styles.css";
 import ConfirmationDialog from "./ConfirmationDialog";
-
-const useStyles = makeStyles({
-  muiButton: {
-    margin: "0.625rem",
-  },
-});
 
 function DetailsButtons({
   type,
@@ -19,13 +13,12 @@ function DetailsButtons({
   dispatch,
 }) {
   const { name, id } = type;
-  const classes = useStyles();
 
   return (
     <>
       <Grid item xs={12} container justifyContent="center">
         <Button
-          className={classes.muiButton}
+          className="muiButton"
           variant="contained"
           color="primary"
           onClick={onBack}
@@ -33,7 +26,7 @@ function DetailsButtons({
           Back
         </Button>
         <Button
-          className={classes.muiButton}
+          className="muiButton"
           variant="contained"
           color="primary"
           onClick={() => onEdit(id)}
@@ -43,7 +36,7 @@ function DetailsButtons({
       </Grid>
       <Grid item xs={12} container justifyContent="center">
         <Button
-          className={classes.muiButton}
+          className="muiButton"
           variant="contained"
           color="error"
           onClick={() => dispatch({ type: "openDialog" })}

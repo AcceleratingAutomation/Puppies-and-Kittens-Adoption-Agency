@@ -2,21 +2,61 @@
   text-align: center;
 }
 
+button.muiButton {
+  margin: 0.625rem;
+}
+
+button.summaryCardButton {
+  margin: 0.625rem;
+  width: 65%;
+}
+
+.cancelButton {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.cancelButton:hover {
+  background-color: #00f;
+}
+
 .content {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
-  min-height: 20vh;
   margin-top: 12vh;
+  min-height: 20vh;
 }
 
-.rescue {
-  padding: 2em;
-  margin: 2em;
-  border: 2px solid gray;
+.deleteButton {
+  background-color: red;
+  color: white;
 }
 
-img {
-  max-width: 100%;
+.deleteButton:hover {
+  background-color: #f00;
+}
+
+.dialog {
+  border: 2px solid black;
+}
+
+.dialogTitle {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.responsiveImage {
   height: auto;
+  max-width: 100%;
+}
+
+.summaryCard {
+  border: 2px solid gray;
+  margin: 2em;
+  max-width: 20rem;
+  min-height: 10rem;
+  padding: 2em;
+  width: 100%; /* Full width on mobile devices */
+  word-wrap: break-word;
 }

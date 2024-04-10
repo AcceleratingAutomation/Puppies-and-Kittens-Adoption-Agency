@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
-import { makeStyles } from "@mui/styles";
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Typography } from "@mui/material";
+import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
 import Loading from "../Loading";
 import { rescuesEndpoint, rescuesUrl } from "../../server/apiService/apiConfig";
@@ -17,14 +17,7 @@ import {
 } from "../../utils/componentUtils";
 import { rescuesText } from "../../accessibility/accessibilityText";
 
-const useStyles = makeStyles({
-  muiButton: {
-    margin: "0.625rem",
-  },
-});
-
 export default function RescueDetails() {
-  const classes = useStyles();
   const { id } = useParams();
   const { state, dispatch } = useContext(FavoritesContext);
   const history = useHistory();
@@ -55,7 +48,7 @@ export default function RescueDetails() {
             &apos;s Details
           </Typography>
           <Button
-            className={classes.muiButton}
+            className="muiButton"
             variant="contained"
             color="primary"
             size="large"
