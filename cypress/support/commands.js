@@ -1,6 +1,19 @@
-/// <reference types="cypress" />
+/**
+ * Custom command to select DOM element by `data-testid` attribute. Using data-testid instead of data-cy because it is the default in playwright.
+ *
+ * @name getByTestId
+ * @function
+ * @global
+ * @param {string} testId - The value of the `data-testid` attribute of the element to be selected.
+ * @example
+ * cy.getByTestId('admin-card').click();
+ */
+Cypress.Commands.add("getByTestId", (testId) => {
+  cy.get(`[data-testid=${testId}]`);
+});
+
 // ***********************************************
-// This example commands.ts shows you how to
+// This example commands.js shows you how to
 // create various custom commands and overwrite
 // existing commands.
 //
@@ -9,18 +22,14 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
-//
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
-//
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
-//
 // -- This is a dual command --
 // Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })

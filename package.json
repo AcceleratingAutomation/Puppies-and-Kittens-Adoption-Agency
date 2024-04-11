@@ -33,6 +33,7 @@
   },
   "scripts": {
     "cypress:open": "cypress open",
+    "cypress:run": "npx cypress run-ct",
     "build": "react-scripts build",
     "eslint": "npx eslint .",
     "eslint:fix": "npx eslint --fix .",

@@ -32,11 +32,15 @@ module.exports = {
       "error",
       {
         devDependencies: [
+          // Jest unit tests
           "**/__jest__/**",
-          "**/__tests__/**",
-          "playwright/**/*",
+          // Cypress component test setup
           "cypress/**/*",
           "cypress.config.js",
+          // Jest unit and Cypress component tests
+          "**/__tests__/**",
+          // Playwright integration and e2e tests
+          "playwright/**/*",
         ],
       },
     ],
@@ -50,7 +54,7 @@ module.exports = {
   },
   overrides: [
     {
-      // Playwright
+      // Playwright integration and e2e tests
       files: ["**/*.ts", "**/*.tsx"],
       parser: "@typescript-eslint/parser",
       plugins: ["@typescript-eslint"],
@@ -61,14 +65,14 @@ module.exports = {
       },
     },
     {
-      // Jest
+      // Jest unit tests
       files: ["**/__jest__/**/*.{js,jsx}", "**/__tests__/**/*test.{js,jsx}"],
       env: {
         jest: true,
       },
     },
     {
-      // Cypress
+      // Cypress component tests
       files: ["cypress/**/*", "src/**/*.cy.{js,jsx,ts,tsx}"],
       plugins: ["cypress"],
       env: {

@@ -46,6 +46,10 @@ button.summary-card-button {
   color: white;
 }
 
+.flex-display {
+  display: flex;
+}
+
 .responsive-image {
   height: auto;
   max-width: 100%;

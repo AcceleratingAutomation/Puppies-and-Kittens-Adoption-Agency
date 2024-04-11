@@ -27,34 +27,36 @@ function AdminCard({
   };
 
   return (
-    <SummaryCard
-      directory="users"
-      type="admin"
-      id={admin.id}
-      image={admin.image}
-      name={admin.name}
-      viewComponentDetailsUrl={`${adminsEndpoint}/${admin.id}`}
-    >
-      <Grid item xs={12}>
-        <Typography variant="h4">{admin.name}</Typography>
-      </Grid>
-      <Typography variant="h5" gutterBottom>
-        {admin.email}
-      </Typography>
-      <Typography variant="h5" gutterBottom>
-        Current Rescues: {admin.numCurrentRescues}
-      </Typography>
-      <Typography variant="h5" gutterBottom>
-        Total Rescues: {admin.numTotalRescues}
-      </Typography>
-      <Typography variant="h5" gutterBottom>
-        Household Pets: {admin.numHouseholdPets}
-      </Typography>
-      <Typography variant="h5" gutterBottom>
-        Favorites: {admin.favorite.length}
-      </Typography>
-      <Grid item xs={12} container justifyContent="center" />
-    </SummaryCard>
+    <section data-testid="admin-card" className="flex-display">
+      <SummaryCard
+        directory="users"
+        type="admin"
+        id={admin.id}
+        image={admin.image}
+        name={admin.name}
+        viewComponentDetailsUrl={`${adminsEndpoint}/${admin.id}`}
+      >
+        <Grid item xs={12}>
+          <Typography variant="h4">{admin.name}</Typography>
+        </Grid>
+        <Typography variant="h5" gutterBottom>
+          {admin.email}
+        </Typography>
+        <Typography variant="h5" gutterBottom>
+          Current Rescues: {admin.numCurrentRescues}
+        </Typography>
+        <Typography variant="h5" gutterBottom>
+          Total Rescues: {admin.numTotalRescues}
+        </Typography>
+        <Typography variant="h5" gutterBottom>
+          Household Pets: {admin.numHouseholdPets}
+        </Typography>
+        <Typography variant="h5" gutterBottom>
+          Favorites: {admin.favorite.length}
+        </Typography>
+        <Grid item xs={12} container justifyContent="center" />
+      </SummaryCard>
+    </section>
   );
 }
 
