@@ -12,6 +12,16 @@ Cypress.Commands.add("getByTestId", (testId) => {
   cy.get(`[data-testid=${testId}]`);
 });
 
+Cypress.Commands.add("checkAccessibility", () => {
+  cy.injectAxe();
+  cy.checkA11y(null, {
+    rules: {
+      // Disabled <h1> heading check because these are component tests
+      "page-has-heading-one": { enabled: false },
+    },
+  });
+});
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite

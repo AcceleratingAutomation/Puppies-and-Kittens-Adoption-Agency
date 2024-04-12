@@ -13,4 +13,8 @@ describe(testTitle, () => {
       { overwrite: true },
     );
   });
+
+  it("check for a11y accessability issues", () => {
+    cy.checkAccessibility();
+  });
 });

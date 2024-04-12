@@ -15,6 +15,7 @@
 
 import "./commands";
 import "../../src/index.css";
+import "cypress-axe";
 import { mount } from "cypress/react";
 
 Cypress.Commands.add("mount", mount);

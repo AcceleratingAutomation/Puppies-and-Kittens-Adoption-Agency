@@ -27,7 +27,7 @@ function AdminCard({
   };
 
   return (
-    <section data-testid="admin-card" className="flex-display">
+    <main data-testid="admin-card" className="flex-display">
       <SummaryCard
         directory="users"
         type="admin"
@@ -56,7 +56,7 @@ function AdminCard({
         </Typography>
         <Grid item xs={12} container justifyContent="center" />
       </SummaryCard>
-    </section>
+    </main>
   );
 }
 
