@@ -1,3 +1,5 @@
+name: Manual Automated Checks
+
 on:
   # checkov:skip=CKV_GHA_7
   workflow_dispatch:
@@ -40,7 +42,7 @@ env:
 jobs:
   call-prettier:
     if: github.event.inputs.prettier == 'true'
-    uses: ./.github/workflows/prettier.yml
+    uses: ./.github/workflows/common-jobs/prettier.yml
 
   super-linter:
     name: Super-Linter
