@@ -42,7 +42,7 @@ env:
 jobs:
   call-prettier:
     if: github.event.inputs.prettier == 'true'
-    uses: ./common-workflow-jobs/prettier.yml
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/common-jobs/prettier.yml@main
 
   super-linter:
     name: Super-Linter
