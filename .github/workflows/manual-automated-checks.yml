@@ -40,7 +40,7 @@ env:
 jobs:
   call-prettier:
     if: github.event.inputs.prettier == 'true'
-    uses: ./.github/workflows/common-steps/prettier.yml
+    uses: ./.github/workflows/prettier.yml
 
   super-linter:
     name: Super-Linter
