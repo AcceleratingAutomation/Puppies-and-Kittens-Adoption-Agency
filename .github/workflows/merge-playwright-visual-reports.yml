@@ -1,0 +1,47 @@
+name: Prettier Formatting Checks
+
+on:
+  workflow_call:
+
+jobs:
+  merge-playwright-visual-reports:
+    name: Merge Playwright Visual Reports
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Print Node.js version
+        run: node --version
+
+      - name: Install development dependencies
+        run: npm ci
+
+      - name: Install Playwright dependencies
+        run: npm ci
+        working-directory: playwright
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: playwright/all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+        working-directory: playwright
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report
+          path: playwright/playwright-report
+          retention-days: 30

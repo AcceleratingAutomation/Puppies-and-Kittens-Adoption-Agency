@@ -1,0 +1,55 @@
+name: Playwright Visual Tests
+
+on:
+  workflow_call:
+
+jobs:
+  playwright-visual-tests:
+    name: Playwright Visual Tests
+    timeout-minutes: 60
+    # Running on windows because the OS matters for visual testing comparisons.
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4, 5, 6]
+        shardTotal: [6]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Print Node.js version
+        run: node --version
+
+      - name: Install development dependencies
+        run: npm ci
+
+      - name: Install Playwright dependencies
+        run: npm ci
+        working-directory: playwright
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+        working-directory: playwright
+
+      - name: Print Playwright version
+        run: npx playwright --version
+        working-directory: playwright
+
+      - name: Run Playwright tests
+        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        working-directory: playwright
+
+      - name: Upload Playwright blob report to GitHub Actions Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: blob-report-${{ matrix.shardIndex }}
+          path: playwright/blob-report
+          retention-days: 1
