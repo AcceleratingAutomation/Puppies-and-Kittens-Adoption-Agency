@@ -1,33 +1,9 @@
-name: Manual Automated Checks
+name: Scheduled Automated Checks
 
 on:
-  # checkov:skip=CKV_GHA_7
-  workflow_dispatch:
-    inputs:
-      prettier:
-        description: "Run Prettier job"
-        required: false
-        default: "true"
-      super-linter:
-        description: "Run Super-Linter job"
-        required: false
-        default: "true"
-      jest-unit-tests:
-        description: "Run Jest Unit Tests job"
-        required: false
-        default: "true"
-      playwright-visual-tests:
-        description: "Run Playwright Visual Tests job"
-        required: false
-        default: "true"
-      merge-playwright-visual-reports:
-        description: "Run Merge Playwright Reports job"
-        required: false
-        default: "true"
-      slack-notification:
-        description: "Run Slack Notification job"
-        required: false
-        default: "true"
+  # Run this workflow at 12 PM UTC (which is 5 AM MST) every weekday. Doesn't account for daylight saving time.
+  schedule:
+    - cron: "0 12 * * 1-5"
 
 env:
   REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
@@ -35,7 +11,6 @@ env:
   EXPIRY: ${{ vars.EXPIRY }}
   ISSUER: ${{ vars.ISSUER }}
   SECRET: ${{ secrets.SECRET }}
-  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   TEST_ENV: ${{ vars.TEST_ENV }}
   TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
   TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
@@ -43,12 +18,10 @@ env:
 jobs:
   run-prettier:
     name: Prettier
-    if: github.event.inputs.prettier == 'true'
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/prettier.yml@main
 
   run-super-linter:
     name: Super-Linter
-    if: github.event.inputs.super-linter == 'true'
     permissions:
       contents: read
       packages: read
@@ -57,24 +30,23 @@ jobs:
 
   run-jest-unit-tests:
     name: Jest Unit Tests
-    if: github.event.inputs.jest-unit-tests == 'true'
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
 
   run-playwright-visual-tests:
     name: Playwright Visual Tests
-    if: github.event.inputs.playwright-visual-tests == 'true'
+    needs: [run-prettier, run-super-linter, run-jest-unit-tests]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
     secrets: inherit
 
   run-merge-playwright-visual-reports:
     name: Merge Playwright Visual Reports
-    if: always() && needs.run-playwright-visual-tests.result != 'skipped' && github.event.inputs.merge-playwright-visual-reports == 'true'
+    if: always() && needs.run-playwright-visual-tests.result != 'skipped'
     needs: [run-playwright-visual-tests]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main
 
   slack-notification:
     name: Slack Notification
-    if: always() && github.event.inputs.slack-notification == 'true'
+    if: always()
     needs:
       [
         run-prettier,
