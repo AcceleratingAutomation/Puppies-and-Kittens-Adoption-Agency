@@ -68,13 +68,13 @@ jobs:
 
   run-merge-playwright-visual-reports:
     name: Merge Reports
-    if: always() && needs.run-playwright-visual-tests.result != 'skipped' && github.event.inputs.merge-playwright-visual-reports == 'true'
+    if: always() && needs.run-playwright-visual-tests.result != 'skipped' && needs.run-playwright-visual-tests.result != 'cancelled' && github.event.inputs.merge-playwright-visual-reports == 'true'
     needs: [run-playwright-visual-tests]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main
 
   slack-notification:
     name: Notifications
-    if: always() && github.event.inputs.slack-notification == 'true'
+    if: always() && needs.run-merge-playwright-visual-reports.result != 'cancelled' && github.event.inputs.slack-notification == 'true'
     needs:
       [
         run-prettier,
