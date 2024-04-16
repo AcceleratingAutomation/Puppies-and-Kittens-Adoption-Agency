@@ -44,7 +44,12 @@ jobs:
               run_id: runId,
             });
             const jobStatuses = jobs.jobs.filter(job => job.name !== 'Notifications / Slack Notification').map(job => {
-              const jobName = job.name.split('/')[1];
+              let jobName = '';
+              if (job.steps.length === 0) {
+                jobName = job.name;
+              } else {
+                jobName = job.name.split('/')[1];
+              }
               const status = job.conclusion || job.status;
               const emoji = status === 'success' ? ':white_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
               return `${emoji} *${jobName}:* ${status}`;
