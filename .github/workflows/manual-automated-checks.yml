@@ -65,6 +65,7 @@ jobs:
     if: github.event.inputs.playwright-visual-tests == 'true'
     needs: [run-prettier, run-super-linter, run-jest-unit-tests]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
+    secrets: inherit
 
   run-merge-playwright-visual-reports:
     name: Merge Playwright Visual Reports
