@@ -5,6 +5,7 @@ on:
 
 jobs:
   slack-notification:
+    name: Slack Notification
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
@@ -43,7 +44,7 @@ jobs:
               run_id: runId,
             });
             const jobStatuses = jobs.jobs.filter(job => job.name !== 'Slack Notification / slack-notification').map(job => {
-              const jobName = job.name.split('/')[0];
+              const jobName = job.name.split('/')[1];
               const status = job.conclusion || job.status;
               const emoji = status === 'success' ? ':white_check_mark:' : (status === 'failure' ? ':x:' : ':warning:');
               return `${emoji} *${jobName}:* ${status}`;

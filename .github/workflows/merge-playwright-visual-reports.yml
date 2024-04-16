@@ -5,6 +5,7 @@ on:
 
 jobs:
   merge-playwright-visual-reports:
+    name: Merge Playwright Visual Reports
     timeout-minutes: 10
     runs-on: ubuntu-latest
 

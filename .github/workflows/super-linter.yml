@@ -5,6 +5,7 @@ on:
 
 jobs:
   super-linter:
+    name: Super Linter
     timeout-minutes: 15
     runs-on: ubuntu-latest
 

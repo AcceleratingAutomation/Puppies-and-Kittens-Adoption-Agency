@@ -42,12 +42,12 @@ env:
 
 jobs:
   run-prettier:
-    name: Prettier
+    name: Formatting
     if: github.event.inputs.prettier == 'true'
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/prettier.yml@main
 
   run-super-linter:
-    name: Super-Linter
+    name: Linters
     if: github.event.inputs.super-linter == 'true'
     permissions:
       contents: read
@@ -56,24 +56,24 @@ jobs:
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/super-linter.yml@main
 
   run-jest-unit-tests:
-    name: Jest Unit Tests
+    name: Unit Tests
     if: github.event.inputs.jest-unit-tests == 'true'
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
 
   run-playwright-visual-tests:
-    name: Playwright Visual Tests
+    name: Visual Tests
     if: github.event.inputs.playwright-visual-tests == 'true'
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
     secrets: inherit
 
   run-merge-playwright-visual-reports:
-    name: Merge Playwright Visual Reports
+    name: Merge Reports
     if: always() && needs.run-playwright-visual-tests.result != 'skipped' && github.event.inputs.merge-playwright-visual-reports == 'true'
     needs: [run-playwright-visual-tests]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main
 
   slack-notification:
-    name: Slack Notification
+    name: Notifications
     if: always() && github.event.inputs.slack-notification == 'true'
     needs:
       [
