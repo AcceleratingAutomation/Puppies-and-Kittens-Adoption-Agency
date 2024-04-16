@@ -1,0 +1,22 @@
+name: Cypress Component Tests
+
+on:
+  workflow_call:
+
+jobs:
+  cypress-component-tests:
+    name: Cypress Component Tests
+    timeout-minutes: 60
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          component: true
+          browser: chrome
+        env:
+          REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}

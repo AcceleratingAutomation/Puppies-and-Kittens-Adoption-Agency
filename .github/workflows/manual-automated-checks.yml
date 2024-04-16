@@ -6,28 +6,32 @@ on:
     inputs:
       prettier:
         description: "Run Prettier job"
-        required: false
-        default: "true"
+        type: boolean
+        default: true
       super-linter:
         description: "Run Super-Linter job"
-        required: false
-        default: "true"
+        type: boolean
+        default: true
       jest-unit-tests:
         description: "Run Jest Unit Tests job"
-        required: false
-        default: "true"
+        type: boolean
+        default: true
+      cypress-component-tests:
+        description: "Run Cypress Component Tests job"
+        type: boolean
+        default: true
       playwright-visual-tests:
         description: "Run Playwright Visual Tests job"
-        required: false
-        default: "true"
+        type: boolean
+        default: true
       merge-playwright-visual-reports:
         description: "Run Merge Playwright Reports job"
-        required: false
-        default: "true"
+        type: boolean
+        default: true
       slack-notification:
         description: "Run Slack Notification job"
-        required: false
-        default: "true"
+        type: boolean
+        default: true
 
 env:
   REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
@@ -60,6 +64,11 @@ jobs:
     if: github.event.inputs.jest-unit-tests == 'true'
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
 
+  run-cypress-component-tests:
+    name: Cypress Component Tests
+    if: github.event.inputs.cypress-component-tests == 'true'
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/cypress-component-tests.yml@main
+
   run-playwright-visual-tests:
     name: Visual Tests
     if: github.event.inputs.playwright-visual-tests == 'true'
@@ -80,6 +89,7 @@ jobs:
         run-prettier,
         run-super-linter,
         run-jest-unit-tests,
+        run-cypress-component-tests,
         run-playwright-visual-tests,
         run-merge-playwright-visual-reports,
       ]
