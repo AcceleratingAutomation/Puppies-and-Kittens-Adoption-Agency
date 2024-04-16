@@ -5,7 +5,6 @@ on:
 
 jobs:
   playwright-visual-tests:
-    name: Playwright Visual Tests
     timeout-minutes: 60
     # Running on windows because the OS matters for visual testing comparisons.
     runs-on: windows-latest

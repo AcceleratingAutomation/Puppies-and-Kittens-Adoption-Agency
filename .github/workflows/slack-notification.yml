@@ -1,11 +1,13 @@
-name: Prettier Formatting Checks
+name: Send Slack Notification
 
 on:
   workflow_call:
 
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
 jobs:
   slack-notification:
-    name: Slack Notification
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
