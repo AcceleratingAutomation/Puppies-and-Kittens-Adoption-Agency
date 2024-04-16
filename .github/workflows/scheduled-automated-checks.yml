@@ -6,14 +6,15 @@ on:
     - cron: "0 12 * * 1-5"
 
 env:
-  REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
   ALGORITHM: ${{ vars.ALGORITHM }}
   EXPIRY: ${{ vars.EXPIRY }}
   ISSUER: ${{ vars.ISSUER }}
+  REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
   SECRET: ${{ secrets.SECRET }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   TEST_ENV: ${{ vars.TEST_ENV }}
-  TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
   TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+  TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
 
 jobs:
   run-prettier:
@@ -30,11 +31,17 @@ jobs:
 
   run-jest-unit-tests:
     name: Unit Tests
+    needs: [run-prettier, run-super-linter]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
+
+  run-cypress-component-tests:
+    name: Cypress Component Tests
+    needs: [run-prettier, run-super-linter]
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/cypress-component-tests.yml@main
 
   run-playwright-visual-tests:
     name: Visual Tests
-    needs: [run-prettier, run-super-linter, run-jest-unit-tests]
+    needs: [run-jest-unit-tests, run-cypress-component-tests]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
     secrets: inherit
 
@@ -52,6 +59,7 @@ jobs:
         run-prettier,
         run-super-linter,
         run-jest-unit-tests,
+        run-cypress-component-tests,
         run-playwright-visual-tests,
         run-merge-playwright-visual-reports,
       ]

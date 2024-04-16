@@ -5,44 +5,44 @@ on:
   workflow_dispatch:
     inputs:
       prettier:
-        description: "Run Prettier job"
+        description: "Run Prettier"
         type: boolean
         default: true
       super-linter:
-        description: "Run Super-Linter job"
+        description: "Run Super-Linter"
         type: boolean
         default: true
       jest-unit-tests:
-        description: "Run Jest Unit Tests job"
+        description: "Run Jest Unit Tests"
         type: boolean
         default: true
       cypress-component-tests:
-        description: "Run Cypress Component Tests job"
+        description: "Run Cypress Component Tests"
         type: boolean
         default: true
       playwright-visual-tests:
-        description: "Run Playwright Visual Tests job"
+        description: "Run Playwright Visual Tests"
         type: boolean
         default: true
       merge-playwright-visual-reports:
-        description: "Run Merge Playwright Reports job"
+        description: "Run Merge Playwright Reports"
         type: boolean
         default: true
       slack-notification:
-        description: "Run Slack Notification job"
+        description: "Run Slack Notification"
         type: boolean
         default: true
 
 env:
-  REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
   ALGORITHM: ${{ vars.ALGORITHM }}
   EXPIRY: ${{ vars.EXPIRY }}
   ISSUER: ${{ vars.ISSUER }}
+  REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
   SECRET: ${{ secrets.SECRET }}
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   TEST_ENV: ${{ vars.TEST_ENV }}
-  TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
   TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+  TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
 
 jobs:
   run-prettier:
