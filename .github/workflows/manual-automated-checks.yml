@@ -35,6 +35,7 @@ env:
   EXPIRY: ${{ vars.EXPIRY }}
   ISSUER: ${{ vars.ISSUER }}
   SECRET: ${{ secrets.SECRET }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   TEST_ENV: ${{ vars.TEST_ENV }}
   TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
   TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
@@ -83,3 +84,4 @@ jobs:
         run-merge-playwright-visual-reports,
       ]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/slack-notification.yml@main
+    secrets: inherit
