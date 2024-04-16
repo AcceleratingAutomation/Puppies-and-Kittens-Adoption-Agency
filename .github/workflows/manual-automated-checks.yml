@@ -46,6 +46,8 @@ jobs:
 
   run-super-linter:
     if: github.event.inputs.super-linter == 'true'
+    permissions:
+      statuses: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/super-linter.yml@main
 
   run-jest-unit-tests:
