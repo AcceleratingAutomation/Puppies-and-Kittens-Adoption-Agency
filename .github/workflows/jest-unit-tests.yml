@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Run Jest Tests Summary
-        run: 'npm run test:all:ci | grep -A4 "Test Suites:" >> $GITHUB_STEP_SUMMARY'
+        run: npm run test:all:ci > jest-unit-test-results.txt
 
       - name: Run Jest Tests with Details and Code Coverage
         run: npm run test:all:coverage:ci
@@ -32,3 +32,8 @@ jobs:
         with:
           name: coverage
           path: coverage/
+
+      - name: Create Test Results Job Summary
+        run: |
+          results=$(cat jest-unit-test-results.txt | grep -A4 "Test Suites:")
+          echo "results=$results" >> $GITHUB_STEP_SUMMARY
