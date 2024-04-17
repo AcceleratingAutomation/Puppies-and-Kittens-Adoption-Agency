@@ -35,7 +35,7 @@ jobs:
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
 
   run-cypress-component-tests:
-    name: Cypress Component Tests
+    name: Component Tests
     needs: [run-prettier, run-super-linter]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/cypress-component-tests.yml@main
 

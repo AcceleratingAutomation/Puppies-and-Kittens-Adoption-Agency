@@ -22,10 +22,19 @@ jobs:
         run: npm ci
 
       - name: Run Jest tests
-        run: npm run test:all:coverage:ci
+        run: npm run test:all:coverage:ci -- --json --outputFile=jest-results.json
+
+      - name: Set test results output
+        id: test-results
+        run: |
+          results=$(cat jest-results.json)
+          echo "::set-output name=results::$results"
 
       - name: Upload Jest coverage report
         uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage/
+
+      - name: Create job summary
+        run: echo "::notice file=jest-results.json::$(echo ${{ steps.test-results.outputs.results }})"
