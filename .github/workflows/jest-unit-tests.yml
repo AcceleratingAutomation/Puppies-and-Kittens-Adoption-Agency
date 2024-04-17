@@ -27,8 +27,8 @@ jobs:
       - name: Set test results output
         id: test-results
         run: |
-          results=$(cat jest-results.json)
-          echo "::set-output name=results::$results"
+          results=$(grep -E 'Test Suites|Tests|Snapshots|Time|Ran all test suites' jest-results.json)
+          echo "results=$results" >> $GITHUB_ENV
 
       - name: Upload Jest coverage report
         uses: actions/upload-artifact@v4
@@ -37,4 +37,4 @@ jobs:
           path: coverage/
 
       - name: Create job summary
-        run: echo "::notice file=jest-results.json::$(echo ${{ steps.test-results.outputs.results }})"
+        run: echo "::notice file=jest-results.json::${{ env.results }}"
