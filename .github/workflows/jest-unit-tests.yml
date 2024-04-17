@@ -21,7 +21,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Jest tests
+      - name: Run Jest Tests Summary
+        id: jest-summary
+        run: |
+          SUMMARY=$(npm run test:all:ci)
+          echo "### Unit Test Results: $SUMMARY" >> $GITHUB_STEP_SUMMARY
+
+      - name: Run Jest Tests with Details and Code Coverage
         run: npm run test:all:coverage:ci
 
       - name: Upload Jest coverage report
