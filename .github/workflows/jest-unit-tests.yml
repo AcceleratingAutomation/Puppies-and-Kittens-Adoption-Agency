@@ -24,8 +24,9 @@ jobs:
       - name: Run Jest Tests Summary
         id: jest-summary
         run: |
-          SUMMARY=$(npm run test:all:ci)
-          echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
+          npm run test:all:ci | grep -A4 \"Test Suites:\" > unit-test-summary.txt
+          SUMMARY=$(cat unit-test-summary.txt)
+          echo "\"$SUMMARY\"" >> $GITHUB_STEP_SUMMARY
 
       - name: Run Jest Tests with Details and Code Coverage
         run: npm run test:all:coverage:ci
