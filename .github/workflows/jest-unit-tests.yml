@@ -21,13 +21,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Jest tests
-        run: npm run test:all:coverage:ci -- --json --outputFile=jest-results.json
+      - name: Run Jest Tests Summary
+        run: npm run test:all:ci -- --json --outputFile=jest-results.json
+
+      - name: Run Jest Tests with Details and Code Coverage
+        run: npm run test:all:coverage:ci
 
       - name: Set test results output
         id: test-results
         run: |
-          results=$(grep -E 'Test Suites|Tests|Snapshots|Time|Ran all test suites' jest-results.json)
+          results=$(cat jest-results.json)
           echo "results=$results" >> $GITHUB_ENV
 
       - name: Upload Jest coverage report
@@ -37,4 +40,4 @@ jobs:
           path: coverage/
 
       - name: Create job summary
-        run: echo "::notice file=jest-results.json::${{ env.results }}"
+        run: echo "::notice file=jest-results.json::${{ steps.test-results.outputs.results }}"
