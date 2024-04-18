@@ -6,7 +6,11 @@
 
 ## Build Progress
 
-[![Automated Checks](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/automated-checks.yml/badge.svg)](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/automated-checks.yml)
+[![Manual Automated Checks](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/manual-automated-checks.yml/badge.svg)](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/manual-automated-checks.yml)
+
+[![Push Pull Automated Checks](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/push-pull-automated-checks.yml/badge.svg)](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/push-pull-automated-checks.yml)
+
+[![Scheduled Automated Checks](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/scheduled-automated-checks.yml/badge.svg)](https://github.com/AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/actions/workflows/scheduled-automated-checks.yml)
 
 ### - How do I run the Client application in browser?
 
