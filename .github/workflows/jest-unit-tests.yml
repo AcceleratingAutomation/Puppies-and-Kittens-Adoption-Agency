@@ -27,8 +27,10 @@ jobs:
       - name: Upload Jest coverage report
         uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: unit-test-coverage
           path: coverage/
 
       - name: Test Results Summary
-        run: results=$(grep -A5 "Test Suites:" < jest-unit-test-results.txt) && echo "$results" >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          results=$(grep -A5 "Test Suites:" < jest-unit-test-results.txt)
+          echo "$results" >> "$GITHUB_STEP_SUMMARY"
