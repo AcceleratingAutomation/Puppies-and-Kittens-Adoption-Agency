@@ -21,11 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Jest Tests Summary
-        run: npm run test:all:ci 2>&1 | tee jest-unit-test-results.txt
-
-      - name: Run Jest Tests with Details and Code Coverage
-        run: npm run test:all:coverage:ci
+      - name: Run Unit Tests with Code Coverage
+        run: npm run test:all:coverage:ci 2>&1 | tee jest-unit-test-results.txt
 
       - name: Upload Jest coverage report
         uses: actions/upload-artifact@v4
@@ -33,5 +30,5 @@ jobs:
           name: coverage
           path: coverage/
 
-      - name: Create Test Results Job Summary
-        run: results=$(grep -A4 "Test Suites:" < jest-unit-test-results.txt) && echo "$results" >> $GITHUB_STEP_SUMMARY
+      - name: Test Results Summary
+        run: results=$(grep -A5 "Test Suites:" < jest-unit-test-results.txt) && echo "$results" >> "$GITHUB_STEP_SUMMARY"

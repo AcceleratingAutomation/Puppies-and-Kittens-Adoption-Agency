@@ -48,8 +48,7 @@
     "test:coverage": "react-scripts test --onlyChanged --coverage --verbose",
     "test:all": "react-scripts test --watchAll --verbose",
     "test:all:coverage": "react-scripts test --watchAll --coverage --verbose",
-    "test:all:ci": "react-scripts test --watchAll=false --ci --silent",
-    "test:all:coverage:ci": "react-scripts test --coverage --verbose"
+    "test:all:coverage:ci": "react-scripts test --coverage --watchAll=false --ci --verbose"
   },
   "eslintConfig": {
     "extends": "react-app"
