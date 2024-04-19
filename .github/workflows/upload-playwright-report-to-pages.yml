@@ -16,7 +16,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: playwright-html-report
+          path: playwright/playwright-report/playwright-html-report
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
