@@ -89,6 +89,8 @@ jobs:
     name: Playwright Visual Report On GitHub Pages
     if: always() && needs.run-merge-playwright-visual-reports.result != 'skipped' && needs.run-merge-playwright-visual-reports.result != 'cancelled' && github.event.inputs.upload-playwright-report-to-pages == 'true'
     needs: [run-merge-playwright-visual-reports]
+    permissions:
+      contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/upload-playwright-report-to-pages.yml@main
 
   slack-notification:

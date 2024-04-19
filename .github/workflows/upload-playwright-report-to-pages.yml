@@ -9,6 +9,9 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Deploy Merged Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
