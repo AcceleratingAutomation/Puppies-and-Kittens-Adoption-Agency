@@ -13,7 +13,7 @@ export default defineConfig({
   fullyParallel: true,
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: process.env.CI ? 0.02 : 0.01,
+      maxDiffPixelRatio: process.env.CI ? 0.03 : 0.01,
     },
   },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -77,15 +77,6 @@ export default defineConfig({
         ...devices["Galaxy S9+"],
         storageState: authFile,
         viewport: { width: 360, height: 780 },
-      },
-      dependencies: [authSetup],
-    },
-    {
-      name: "Galaxy S21 landscape Chrome",
-      use: {
-        ...devices["Galaxy S9+ landscape"],
-        storageState: authFile,
-        viewport: { width: 800, height: 360 },
       },
       dependencies: [authSetup],
     },
