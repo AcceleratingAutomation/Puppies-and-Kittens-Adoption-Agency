@@ -9,6 +9,9 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -43,5 +46,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-html-report
-          path: playwright/playwright-report/
+          path: playwright/playwright-report/${{ github.ref_name }}/${{ github.sha }}
           retention-days: 30
+
+      - name: Deploy Merged Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright/playwright-report/${{ github.ref_name }}/${{ github.sha }}
