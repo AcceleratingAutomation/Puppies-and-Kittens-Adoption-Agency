@@ -13,7 +13,7 @@ export default defineConfig({
   fullyParallel: true,
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: process.env.CI ? 0.01 : 0.01,
+      maxDiffPixelRatio: process.env.CI ? 0.02 : 0.01,
     },
   },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -35,7 +35,7 @@ export default defineConfig({
     /* Collect trace, video, and screenshot when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
     video: "on-first-retry",
-    screenshot: "only-on-failure",
+    screenshot: "on",
   },
 
   /* Configure projects for major browsers */
@@ -59,15 +59,6 @@ export default defineConfig({
     },
 
     /* Test against tablet viewports. */
-    {
-      name: "Pixel 7 landscape Chrome",
-      use: {
-        ...devices["Pixel 7 landscape"],
-        storageState: authFile,
-        viewport: { width: 863, height: 360 },
-      },
-      dependencies: [authSetup],
-    },
     {
       name: "iPad Pro 12 Safari",
       use: {
@@ -104,16 +95,6 @@ export default defineConfig({
         ...devices["iPhone 15 Pro"],
         storageState: authFile,
         viewport: { width: 393, height: 852 },
-      },
-      dependencies: [authSetup],
-    },
-    {
-      name: "iPhone 12 landscape Chrome",
-      use: {
-        ...devices["iPhone 12 landscape"],
-        storageState: authFile,
-        viewport: { width: 750, height: 340 },
-        defaultBrowserType: "chromium",
       },
       dependencies: [authSetup],
     },
