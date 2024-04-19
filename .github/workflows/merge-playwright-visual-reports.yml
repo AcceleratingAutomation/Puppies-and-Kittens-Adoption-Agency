@@ -46,11 +46,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-html-report
-          path: playwright/playwright-report/${{ github.ref_name }}/${{ github.sha }}
+          path: playwright/playwright-report/
           retention-days: 30
 
       - name: Deploy Merged Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./playwright/playwright-report/${{ github.ref_name }}/${{ github.sha }}
+          publish_dir: playwright/playwright-report/
+          destination_dir: playwright/visual-report/${{ github.ref_name }}/${{ github.sha }}
