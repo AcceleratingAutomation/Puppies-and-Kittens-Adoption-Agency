@@ -1,0 +1,26 @@
+name: Report Results On GitHub Pages
+
+on:
+  workflow_call:
+
+jobs:
+  upload-playwright-report-to-pages:
+    name: Report Results On GitHub Pages
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Report to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: playwright/playwright-report/
+
+      - name: Deploy Merged Report to GitHub Pages
+        uses: actions/deploy-pages@v4

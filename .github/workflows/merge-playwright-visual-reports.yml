@@ -9,10 +9,6 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
-    permissions:
-      pages: write
-      id-token: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -49,14 +45,3 @@ jobs:
           name: playwright-html-report
           path: playwright/playwright-report/
           retention-days: 30
-
-      - name: Setup Github Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Merged Report to GitHub Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: playwright/playwright-report/
-
-      - name: Deploy Merged Report to Pages
-        uses: actions/deploy-pages@v4
