@@ -43,5 +43,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-html-report
-          path: playwright/playwright-report
+          path: playwright/playwright-report/
           retention-days: 30
+
+      - name: Setup Github Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: playwright/playwright-report/
+
+      - name: Deploy Merged Report to GitHub Pages
+        uses: actions/deploy-pages@v4
