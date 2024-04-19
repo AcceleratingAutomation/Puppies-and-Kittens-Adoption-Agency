@@ -28,10 +28,6 @@ on:
         description: "Run Merge Playwright Reports"
         type: boolean
         default: true
-      upload-playwright-report-to-pages:
-        description: "Run Upload Playwright Report To Github Pages"
-        type: boolean
-        default: true
       slack-notification:
         description: "Run Slack Notification"
         type: boolean
@@ -87,14 +83,6 @@ jobs:
       contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main
 
-  run-upload-playwright-report-to-pages:
-    name: Playwright Visual Report On GitHub Pages
-    if: always() && needs.run-merge-playwright-visual-reports.result != 'skipped' && needs.run-merge-playwright-visual-reports.result != 'cancelled' && github.event.inputs.upload-playwright-report-to-pages == 'true'
-    needs: [run-merge-playwright-visual-reports]
-    permissions:
-      contents: write
-    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/upload-playwright-report-to-pages.yml@main
-
   slack-notification:
     name: Notifications
     if: always() && needs.run-merge-playwright-visual-reports.result != 'cancelled' && github.event.inputs.slack-notification == 'true'
@@ -106,7 +94,6 @@ jobs:
         run-cypress-component-tests,
         run-playwright-visual-tests,
         run-merge-playwright-visual-reports,
-        run-upload-playwright-report-to-pages,
       ]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/slack-notification.yml@main
     secrets: inherit

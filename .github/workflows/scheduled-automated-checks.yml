@@ -49,6 +49,8 @@ jobs:
     name: Merge Reports
     if: always() && needs.run-playwright-visual-tests.result != 'skipped' && needs.run-playwright-visual-tests.result != 'cancelled'
     needs: [run-playwright-visual-tests]
+    permissions:
+      contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main
 
   slack-notification:
