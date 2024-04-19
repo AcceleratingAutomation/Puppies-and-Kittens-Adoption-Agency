@@ -32,6 +32,8 @@ jobs:
   run-jest-unit-tests:
     name: Unit Tests
     needs: [run-prettier, run-super-linter]
+    permissions:
+      contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
 
   run-cypress-component-tests:

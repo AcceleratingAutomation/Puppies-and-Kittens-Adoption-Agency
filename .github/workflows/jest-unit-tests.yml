@@ -9,6 +9,9 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,6 +32,13 @@ jobs:
         with:
           name: unit-test-coverage
           path: coverage/
+
+      - name: Deploy Code Coverage Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: coverage/
+          destination_dir: ${{ github.ref_name }}/unit-test/code-coverage/actions/runs/${{ github.run_id }}
 
       - name: Test Results Summary
         run: |
