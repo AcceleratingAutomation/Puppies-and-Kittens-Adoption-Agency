@@ -43,7 +43,7 @@ jobs:
         working-directory: playwright
 
       - name: Run Playwright tests
-        run: npx playwright test --project chromium --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         working-directory: playwright
         env:
           REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
