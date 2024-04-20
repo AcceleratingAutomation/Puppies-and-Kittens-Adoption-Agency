@@ -12,6 +12,9 @@ jobs:
     permissions:
       contents: write
 
+    env:
+      DESTINATION_DIR_FOR_PAGES: ${{ github.ref_name }}/${{ (github.event_name == 'push' || github.event_name == 'pull_request') && format('commits/{0}', github.sha) || format('runs/{0}', github.run_id) }}/unit-tests
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -38,9 +41,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: coverage/
-          destination_dir: ${{ github.ref_name }}/run-${{ github.run_id }}/unit-tests/lcov-report
+          destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}
 
       - name: Test Results Summary
         run: |
           results=$(grep -A5 "Test Suites:" < jest-unit-test-results.txt)
-          echo "$results" >> "$GITHUB_STEP_SUMMARY"
+          echo "<h2>Test Results</h2><div>$results</div><h3><a href='https://${{ github.repository_owner }}.github.io/${{ github.repository }}/${{ env.DESTINATION_DIR_FOR_PAGES }}/lcov-report'>View Code Coverage Report</a></h3>" >> "$GITHUB_STEP_SUMMARY"
