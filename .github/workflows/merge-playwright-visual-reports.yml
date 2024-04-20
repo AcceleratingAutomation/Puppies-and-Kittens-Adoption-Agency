@@ -60,4 +60,4 @@ jobs:
           destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}
 
       - name: Test Results Summary
-        run: echo "<h2><a href='https://${{ github.repository_owner }}.github.io/${{ github.repository }}/${{ env.DESTINATION_DIR_FOR_PAGES }}'>View Test Report Results</a></h2>" >> "$GITHUB_STEP_SUMMARY"
+        run: echo "<h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}'>View Test Report Results</a></h3>" >> "$GITHUB_STEP_SUMMARY"

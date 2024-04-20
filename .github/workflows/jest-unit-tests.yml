@@ -46,4 +46,4 @@ jobs:
       - name: Test Results Summary
         run: |
           results=$(grep -A5 "Test Suites:" < jest-unit-test-results.txt)
-          echo "<h2>Test Results</h2><div>$results</div><h3><a href='https://${{ github.repository_owner }}.github.io/${{ github.repository }}/${{ env.DESTINATION_DIR_FOR_PAGES }}/lcov-report'>View Code Coverage Report</a></h3>" >> "$GITHUB_STEP_SUMMARY"
+          echo "<h2>Test Results</h2>$results<h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}/lcov-report'>View Code Coverage Report</a></h3>" >> "$GITHUB_STEP_SUMMARY"
