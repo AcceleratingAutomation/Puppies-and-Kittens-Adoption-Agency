@@ -11,7 +11,7 @@ function Loading() {
         height: "100vh",
       }}
     >
-      <main aria-live="polite">
+      <main aria-live="polite" data-testid="loading">
         <h1>Loading...</h1>
         <CircularProgress />
       </main>

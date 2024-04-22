@@ -8,12 +8,15 @@ const atLeastOneSpecialCharacter =
   "Password must contain at least one special character.";
 const atLeastOneUppercaseLetter =
   "Password must contain at least one uppercase letter.";
+const backLabel = "Back";
 const bioLabel = "Bio";
 const bioRequired = "Bio Required";
 const breedLabel = "Breed";
 const breedRequired = "Breed Required - Enter Mix if Unknown";
+const deleteLabel = "Delete";
 const displayNameLabel = "Display Name";
 const displayNameRequired = "Display Name Required";
+const editLabel = "Edit";
 const emailLabel = "Email";
 const emailRequired = "Email Required";
 const errorLoggingIntoApp = "Username or password is incorrect.";
@@ -79,12 +82,15 @@ module.exports = {
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
   atLeastOneUppercaseLetter,
+  backLabel,
   bioLabel,
   bioRequired,
   breedLabel,
   breedRequired,
+  deleteLabel,
   displayNameLabel,
   displayNameRequired,
+  editLabel,
   emailLabel,
   emailRequired,
   errorLoggingIntoApp,

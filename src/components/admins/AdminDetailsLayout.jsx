@@ -19,7 +19,7 @@ function AdminDetailsLayout({ admin }) {
   } = admin;
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" data-testid="admin-details-layout">
       <Grid
         container
         justifyContent="center"
