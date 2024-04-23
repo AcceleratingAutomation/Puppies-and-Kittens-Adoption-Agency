@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Button } from "@mui/material";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
+import { saveLabel, cancelLabel } from "../accessibility/accessibilityText";
 
 function FormButtons({ id, endpoint }) {
   const history = useHistory();
@@ -15,7 +16,7 @@ function FormButtons({ id, endpoint }) {
         color="primary"
         size="large"
       >
-        Save
+        {saveLabel}
       </Button>
       <Button
         style={{ margin: "0.625rem" }}
@@ -24,7 +25,7 @@ function FormButtons({ id, endpoint }) {
         size="large"
         onClick={() => history.push(id ? `${endpoint}/${id}` : endpoint)}
       >
-        Cancel
+        {cancelLabel}
       </Button>
     </Grid>
   );

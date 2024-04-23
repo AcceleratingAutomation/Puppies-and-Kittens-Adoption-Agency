@@ -122,7 +122,7 @@ RescueDetailsLayout.propTypes = {
     isVaccinated: PropTypes.bool.isRequired,
     isAdoptable: PropTypes.bool.isRequired,
     id: PropTypes.string.isRequired,
-    image: PropTypes.number.isRequired,
+    image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     bio: PropTypes.string.isRequired,
   }).isRequired,
 };

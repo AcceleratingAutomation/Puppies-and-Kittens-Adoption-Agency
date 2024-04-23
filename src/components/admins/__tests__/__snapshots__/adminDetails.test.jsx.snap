@@ -300,7 +300,7 @@ exports[`Admin Details matches snapshot comparison 1`] = `
               <div
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
               >
-                No
+                Yes
               </div>
             </div>
           </div>

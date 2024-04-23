@@ -1,0 +1,446 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Admin Details matches snapshot comparison 1`] = `
+<DocumentFragment>
+  <div
+    class="content"
+  >
+    <header
+      style="flex-grow: 1;"
+    >
+      <header
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-11b3ww9-MuiPaper-root-MuiAppBar-root"
+      >
+        <div
+          class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-hyum1k-MuiToolbar-root"
+        >
+          <div
+            class="PrivateHiddenCss-root PrivateHiddenCss-lgUp css-1d08qlc-PrivateHiddenCss-root"
+          >
+            <button
+              aria-label="open drawer"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1d6w9lk-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="MenuIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="PrivateHiddenCss-root PrivateHiddenCss-mdDown css-cy70kq-PrivateHiddenCss-root"
+          >
+            <div
+              class="MuiTabs-root css-1ujnqem-MuiTabs-root"
+            >
+              <div
+                class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+                style="overflow: hidden; margin-bottom: 0px;"
+              >
+                <div
+                  aria-label="Navigation tabs"
+                  class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+                  role="tablist"
+                >
+                  <button
+                    aria-selected="false"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+                    role="tab"
+                    style="color: white;"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    Favorites
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+                    role="tab"
+                    style="color: white;"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    Rescues
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+                    role="tab"
+                    style="color: white;"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    Adopters
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+                    role="tab"
+                    style="color: white;"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    Fosters
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+                    role="tab"
+                    style="color: white;"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    Veterinarians
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <button
+                    aria-selected="true"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+                    role="tab"
+                    style="color: white;"
+                    tabindex="0"
+                    type="button"
+                  >
+                    Admins
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+                <span
+                  class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+                  style="left: 0px; width: 0px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            style="flex-grow: 1;"
+          />
+          <button
+            aria-haspopup="true"
+            aria-label="account of current user"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="AccountCircleIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6m0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </header>
+    </header>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1ewlecp-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        style="margin-bottom: 2vh;"
+      >
+        <h3
+          class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
+        >
+          Add New Admin
+        </h3>
+      </div>
+      <form
+        action="#"
+      >
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container css-ql9ymi-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 css-1b3l6lk-MuiGrid-root"
+              style="text-align: left;"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="firstName"
+                >
+                  <strong>
+                    First Name
+                  </strong>
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    style="margin: 0.625rem;"
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="lastName"
+                >
+                  <strong>
+                    Last Name
+                  </strong>
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    style="margin: 0.625rem;"
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="name"
+                >
+                  <strong>
+                    Display Name
+                  </strong>
+                  <input
+                    id="name"
+                    name="name"
+                    style="margin: 0.625rem;"
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="numHouseholdPeople"
+                >
+                  <strong>
+                    Number of People in Household
+                  </strong>
+                  <input
+                    id="numHouseholdPeople"
+                    name="numHouseholdPeople"
+                    style="margin: 0.625rem;"
+                    type="number"
+                    value="0"
+                  />
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="numHouseholdPets"
+                >
+                  <strong>
+                    Number of Pets in Household
+                  </strong>
+                  <input
+                    id="numHouseholdPets"
+                    name="numHouseholdPets"
+                    style="margin: 0.625rem;"
+                    type="number"
+                    value="0"
+                  />
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="hasBackgroundCheck"
+                >
+                  <strong>
+                    Has Background Check
+                  </strong>
+                  <input
+                    id="hasBackgroundCheck"
+                    name="hasBackgroundCheck"
+                    style="margin: 0.625rem;"
+                    type="checkbox"
+                    value="false"
+                  />
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="image"
+                >
+                  <strong>
+                    Image
+                  </strong>
+                  <input
+                    id="image"
+                    name="image"
+                    style="margin: 0.625rem;"
+                    type="number"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="numCurrentRescues"
+                >
+                  <strong>
+                    Current Number of Rescues
+                  </strong>
+                  <input
+                    id="numCurrentRescues"
+                    name="numCurrentRescues"
+                    style="margin: 0.625rem;"
+                    type="number"
+                    value="0"
+                  />
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="numTotalRescues"
+                >
+                  <strong>
+                    Total Number of Rescues
+                  </strong>
+                  <input
+                    id="numTotalRescues"
+                    name="numTotalRescues"
+                    style="margin: 0.625rem;"
+                    type="number"
+                    value="0"
+                  />
+                </label>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 css-1b3l6lk-MuiGrid-root"
+              style="text-align: left;"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <label
+                  for="bio"
+                >
+                  <strong>
+                    Bio
+                  </strong>
+                  <div
+                    class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+                    style="margin: 0.625rem; width: 100%;"
+                  >
+                    <div
+                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-multiline css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root"
+                    >
+                      <textarea
+                        aria-invalid="false"
+                        class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
+                        id="bio"
+                        name="bio"
+                        rows="10"
+                        style="height: 0px; overflow: hidden;"
+                      />
+                      <textarea
+                        aria-hidden="true"
+                        class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
+                        readonly=""
+                        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding-top: 0px; padding-bottom: 0px; width: 100%;"
+                        tabindex="-1"
+                      />
+                      <fieldset
+                        aria-hidden="true"
+                        class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                      >
+                        <legend
+                          class="css-ihdtdm"
+                        >
+                          <span
+                            class="notranslate"
+                          >
+                            ​
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-item css-1h16bbz-MuiGrid-root"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary css-jh47zj-MuiButtonBase-root-MuiButton-root"
+              style="margin: 0.625rem;"
+              tabindex="0"
+              type="submit"
+            >
+              Save
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary css-jh47zj-MuiButtonBase-root-MuiButton-root"
+              style="margin: 0.625rem;"
+              tabindex="0"
+              type="button"
+            >
+              Cancel
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;

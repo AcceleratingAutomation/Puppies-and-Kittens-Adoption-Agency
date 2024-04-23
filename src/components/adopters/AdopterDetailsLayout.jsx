@@ -124,7 +124,7 @@ AdopterDetailsLayout.propTypes = {
     hasBackgroundCheck: PropTypes.bool.isRequired,
     hasApplication: PropTypes.bool.isRequired,
     bio: PropTypes.string.isRequired,
-    image: PropTypes.number.isRequired,
+    image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   }).isRequired,
 };
 

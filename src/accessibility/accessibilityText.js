@@ -80,6 +80,8 @@ const favoritesLabel = "Favorites:";
 const viewDetailsLabel = "View Details";
 const previousLabel = "Previous";
 const nextLabel = "Next";
+const saveLabel = "Save";
+const cancelLabel = "Cancel";
 
 module.exports = {
   adminsText,
@@ -161,4 +163,6 @@ module.exports = {
   viewDetailsLabel,
   previousLabel,
   nextLabel,
+  saveLabel,
+  cancelLabel,
 };

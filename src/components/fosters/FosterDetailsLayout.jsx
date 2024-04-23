@@ -137,7 +137,7 @@ FosterDetailsLayout.propTypes = {
     numHouseholdPets: PropTypes.number.isRequired,
     hasBackgroundCheck: PropTypes.bool.isRequired,
     bio: PropTypes.string.isRequired,
-    image: PropTypes.number.isRequired,
+    image: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   }).isRequired,
 };
 
