@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../styles.css";
 import DisplayImage from "./DisplayImage";
+import { viewDetailsLabel } from "../accessibility/accessibilityText";
 
 export default function SummaryCard({
   children,
@@ -41,7 +42,7 @@ export default function SummaryCard({
             size="small"
             onClick={onViewDetails}
           >
-            VIEW DETAILS
+            {viewDetailsLabel}
           </Button>
         </Grid>
       </Grid>

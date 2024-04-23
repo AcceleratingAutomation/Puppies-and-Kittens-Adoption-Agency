@@ -4,6 +4,12 @@ import "../../styles.css";
 import PropTypes from "prop-types";
 import SummaryCard from "../SummaryCard";
 import { adminsEndpoint } from "../../server/apiService/apiConfig";
+import {
+  currentRescuesLabel,
+  totalRescuesLabel,
+  householdPetsLabel,
+  favoritesLabel,
+} from "../../accessibility/accessibilityText";
 
 function AdminCard({
   name,
@@ -43,16 +49,16 @@ function AdminCard({
           {admin.email}
         </Typography>
         <Typography variant="h5" gutterBottom>
-          Current Rescues: {admin.numCurrentRescues}
+          {currentRescuesLabel} {admin.numCurrentRescues}
         </Typography>
         <Typography variant="h5" gutterBottom>
-          Total Rescues: {admin.numTotalRescues}
+          {totalRescuesLabel} {admin.numTotalRescues}
         </Typography>
         <Typography variant="h5" gutterBottom>
-          Household Pets: {admin.numHouseholdPets}
+          {householdPetsLabel} {admin.numHouseholdPets}
         </Typography>
         <Typography variant="h5" gutterBottom>
-          Favorites: {admin.favorite.length}
+          {favoritesLabel} {admin.favorite.length}
         </Typography>
         <Grid item xs={12} container justifyContent="center" />
       </SummaryCard>

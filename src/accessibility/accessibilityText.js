@@ -73,6 +73,13 @@ const usernameRequired = "Username Required";
 const userTypeLabel = "Type";
 const userTypeRequired = "Type Required";
 const veterinariansText = "Veterinarians";
+const currentRescuesLabel = "Current Rescues:";
+const totalRescuesLabel = "Total Rescues:";
+const householdPetsLabel = "Household Pets:";
+const favoritesLabel = "Favorites:";
+const viewDetailsLabel = "View Details";
+const previousLabel = "Previous";
+const nextLabel = "Next";
 
 module.exports = {
   adminsText,
@@ -147,4 +154,11 @@ module.exports = {
   userTypeLabel,
   userTypeRequired,
   veterinariansText,
+  currentRescuesLabel,
+  totalRescuesLabel,
+  householdPetsLabel,
+  favoritesLabel,
+  viewDetailsLabel,
+  previousLabel,
+  nextLabel,
 };

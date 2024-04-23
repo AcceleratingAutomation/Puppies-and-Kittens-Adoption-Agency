@@ -10,7 +10,7 @@ exports[`Admin Card matches snapshot comparison 1`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation2 summary-card css-1mbunh-MuiPaper-root"
     >
       <img
-        alt="John Doe's picture"
+        alt="Adam Administrator's picture"
         class="responsive-image"
         data-testid="display-image"
         src="/images/users/placeholder-users.webp"
@@ -25,13 +25,13 @@ exports[`Admin Card matches snapshot comparison 1`] = `
           <h4
             class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
           >
-            John Doe
+            Adam Administrator
           </h4>
         </div>
         <h5
           class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
         >
-          john.doe@example.com
+          admin.administrator@example.com
         </h5>
         <h5
           class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
@@ -64,7 +64,7 @@ exports[`Admin Card matches snapshot comparison 1`] = `
             tabindex="0"
             type="button"
           >
-            VIEW DETAILS
+            View Details
             <span
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />

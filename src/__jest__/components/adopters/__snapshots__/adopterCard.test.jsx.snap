@@ -50,7 +50,7 @@ exports[`AdopterCard matches snapshot 1`] = `
           tabindex="0"
           type="button"
         >
-          VIEW DETAILS
+          View Details
           <span
             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
           />

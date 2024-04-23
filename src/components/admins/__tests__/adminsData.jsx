@@ -3,13 +3,19 @@ import AdminCard from "../AdminCard";
 
 export const adminProps = {
   id: "1",
-  name: "John Doe",
-  email: "john.doe@example.com",
+  username: "admin",
+  name: "Adam Administrator",
+  firstName: "Adam",
+  lastName: "Administrator",
+  email: "admin.administrator@example.com",
   numCurrentRescues: 5,
   numTotalRescues: 10,
   numHouseholdPets: 3,
   favorite: ["1", "2", "3"],
+  type: "Admin",
+  role: "admin",
   image: "placeholder-users",
+  bio: "Adam is an administrator.",
 };
 
 export function getAdminCard() {

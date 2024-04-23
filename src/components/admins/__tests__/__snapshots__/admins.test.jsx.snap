@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Admin Details matches snapshot comparison 1`] = `
+exports[`Admins matches snapshot comparison 1`] = `
 <DocumentFragment>
   <div
     class="content"
@@ -169,144 +169,17 @@ exports[`Admin Details matches snapshot comparison 1`] = `
       </header>
     </header>
     <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1ewlecp-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
     >
       <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        class="MuiGrid-root MuiGrid-container MuiGrid-item css-1h16bbz-MuiGrid-root"
       >
-        <h3
-          class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
-        >
-          Adam Administrator's Details
-        </h3>
-      </div>
-      <div
-        class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
-        data-testid="admin-details-layout"
-      >
-        <div
-          class="MuiGrid-root MuiGrid-container css-1hbmzt3-MuiGrid-root"
+        <main
+          class="flex-display"
+          data-testid="admin-card"
         >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4 MuiGrid-grid-md-3 css-6w982j-MuiGrid-root"
-            style="text-align: center;"
-          >
-            <div
-              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
-            >
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                <strong>
-                  Type
-                </strong>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                Admin
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
-            >
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                <strong>
-                  Username
-                </strong>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                admin
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
-            >
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                <strong>
-                  Email
-                </strong>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                admin.administrator@example.com
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
-            >
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                <strong>
-                  Current Rescues
-                </strong>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                5
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
-            >
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                <strong>
-                  Total Rescues
-                </strong>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                10
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
-            >
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                <strong>
-                  Household Pets
-                </strong>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                3
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
-            >
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                <strong>
-                  Background Check
-                </strong>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              >
-                No
-              </div>
-            </div>
-          </div>
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4 MuiGrid-grid-md-3 css-6w982j-MuiGrid-root"
-            style="text-align: center;"
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation2 summary-card css-1mbunh-MuiPaper-root"
           >
             <img
               alt="Adam Administrator's picture"
@@ -315,59 +188,90 @@ exports[`Admin Details matches snapshot comparison 1`] = `
               src="/images/users/placeholder-users.webp"
               style="border-radius: 25%; width: 15rem; height: 18rem; object-fit: cover;"
             />
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1vpwcmr-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+              >
+                <h4
+                  class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+                >
+                  Adam Administrator
+                </h4>
+              </div>
+              <h5
+                class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
+              >
+                admin.administrator@example.com
+              </h5>
+              <h5
+                class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
+              >
+                Current Rescues: 5
+              </h5>
+              <h5
+                class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
+              >
+                Total Rescues: 10
+              </h5>
+              <h5
+                class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
+              >
+                Household Pets: 3
+              </h5>
+              <h5
+                class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
+              >
+                Favorites: 3
+              </h5>
+              <div
+                class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
+              />
+              <div
+                class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary summary-card-button css-11qr2p8-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  View Details
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
           </div>
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-8 MuiGrid-grid-md-3 css-4iaue6-MuiGrid-root"
-            style="text-align: left;"
-          >
-            <p>
-              Adam is an administrator.
-            </p>
-          </div>
-        </div>
+        </main>
       </div>
-      <main
-        data-testid="details-buttons"
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
       >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container MuiGrid-item css-1h16bbz-MuiGrid-root"
         >
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary mui-button css-sghohy-MuiButtonBase-root-MuiButton-root"
-            tabindex="0"
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary css-jh47zj-MuiButtonBase-root-MuiButton-root"
+            disabled=""
+            style="margin: 0.625rem;"
+            tabindex="-1"
             type="button"
           >
-            Back
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
+            Previous
           </button>
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary mui-button css-sghohy-MuiButtonBase-root-MuiButton-root"
-            tabindex="0"
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary css-jh47zj-MuiButtonBase-root-MuiButton-root"
+            disabled=""
+            style="margin: 0.625rem;"
+            tabindex="-1"
             type="button"
           >
-            Edit Adam Administrator
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
+            Next
           </button>
         </div>
-        <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
-        >
-          <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError mui-button css-1sszw6i-MuiButtonBase-root-MuiButton-root"
-            tabindex="0"
-            type="button"
-          >
-            Delete Adam Administrator
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
-          </button>
-        </div>
-      </main>
+      </div>
     </div>
   </div>
 </DocumentFragment>
