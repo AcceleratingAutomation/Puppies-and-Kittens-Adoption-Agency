@@ -9,7 +9,7 @@ describe(testTitle, () => {
 
   it("visual comparison", () => {
     cy.getByTestId("admin-card").screenshot(
-      `admins/admins.spec.ts-snapshots/components/${testTitle} ${process.env.REACT_APP_ENV} env-Google-Chrome-${Cypress.platform}`,
+      `admins/${Cypress.spec.name}-screenshots/${testTitle} ${process.env.REACT_APP_ENV} env-${Cypress.browser.name}-${Cypress.platform}`,
       { overwrite: true },
     );
   });
