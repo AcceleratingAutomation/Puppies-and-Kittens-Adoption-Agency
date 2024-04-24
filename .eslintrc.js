@@ -34,10 +34,7 @@ module.exports = {
         devDependencies: [
           // Jest unit tests
           "**/__jest__/**",
-          // Cypress component test setup
-          "cypress/**/*",
-          "cypress.config.js",
-          // Jest unit and Cypress component tests
+          // Jest unit tests
           "**/__tests__/**",
           // Playwright integration and e2e tests
           "playwright/**/*",
@@ -69,14 +66,6 @@ module.exports = {
       files: ["**/__jest__/**/*.{js,jsx}", "**/__tests__/**/*test.{js,jsx}"],
       env: {
         jest: true,
-      },
-    },
-    {
-      // Cypress component tests
-      files: ["cypress/**/*", "src/**/*.cy.{js,jsx,ts,tsx}"],
-      plugins: ["cypress"],
-      env: {
-        "cypress/globals": true,
       },
     },
     {

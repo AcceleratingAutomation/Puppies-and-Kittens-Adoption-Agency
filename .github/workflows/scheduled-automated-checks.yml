@@ -36,14 +36,9 @@ jobs:
       contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
 
-  run-cypress-component-tests:
-    name: Component Tests
-    needs: [run-prettier, run-super-linter]
-    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/cypress-component-tests.yml@main
-
   run-playwright-visual-tests:
     name: Visual Tests
-    needs: [run-jest-unit-tests, run-cypress-component-tests]
+    needs: [run-jest-unit-tests]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
     secrets: inherit
 
@@ -63,7 +58,6 @@ jobs:
         run-prettier,
         run-super-linter,
         run-jest-unit-tests,
-        run-cypress-component-tests,
         run-playwright-visual-tests,
         run-merge-playwright-visual-reports,
       ]
