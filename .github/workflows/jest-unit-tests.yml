@@ -40,7 +40,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: coverage/
+          publish_dir: ./coverage
+          destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}
 
       - name: Test Results Summary
         run: |
