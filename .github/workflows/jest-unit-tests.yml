@@ -41,8 +41,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: coverage/
-          destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}
-          keep_files: true
 
       - name: Test Results Summary
         run: |
