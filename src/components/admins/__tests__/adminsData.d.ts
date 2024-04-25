@@ -1,4 +1,4 @@
-export const adminProps: {
+export type AdminProps = {
   id: string;
   username: string;
   name: string;
@@ -18,4 +18,6 @@ export const adminProps: {
   bio: string;
 };
 
-export function getAdminCard(): JSX.Element;
+export const adminProps: AdminProps[];
+
+export function getAdminCards(): JSX.Element;

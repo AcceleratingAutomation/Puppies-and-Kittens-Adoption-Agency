@@ -3,7 +3,7 @@ import AdminCard from "../AdminCard";
 
 export const adminProps = [
   {
-    id: "1",
+    id: "3a1d7e28-e65d-4f4e-bf4f-85aa7d13e99c",
     username: "admin",
     name: "Amanda Smith",
     displayName: "Amanda",
@@ -38,6 +38,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "2",
+    bio: "",
   },
   {
     id: "3",
@@ -56,6 +57,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "23",
+    bio: "",
   },
   {
     id: "4",
@@ -74,6 +76,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "21",
+    bio: "",
   },
   {
     id: "5",
@@ -92,6 +95,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "44",
+    bio: "",
   },
   {
     id: "6",
@@ -110,6 +114,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "54",
+    bio: "",
   },
   {
     id: "7",
@@ -128,6 +133,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "40",
+    bio: "",
   },
   {
     id: "8",
@@ -146,6 +152,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "6",
+    bio: "",
   },
   {
     id: "9",
@@ -164,6 +171,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "25",
+    bio: "",
   },
   {
     id: "10",
@@ -182,6 +190,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "22",
+    bio: "",
   },
   {
     id: "11",
@@ -200,6 +209,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "57",
+    bio: "",
   },
   {
     id: "12",
@@ -218,6 +228,7 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "31",
+    bio: "",
   },
   {
     id: "13",
@@ -236,20 +247,31 @@ export const adminProps = [
     role: "admin",
     hasBackgroundCheck: true,
     image: "9",
+    bio: "",
   },
 ];
 
-export function getAdminCard() {
-  return (
+export function getAdminCards() {
+  return adminProps.map((admin) => (
     <AdminCard
-      id={adminProps.id}
-      name={adminProps.name}
-      email={adminProps.email}
-      numCurrentRescues={adminProps.numCurrentRescues}
-      numTotalRescues={adminProps.numTotalRescues}
-      numHouseholdPets={adminProps.numHouseholdPets}
-      favorite={adminProps.favorite}
-      image={adminProps.image}
+      key={admin.id}
+      id={admin.id}
+      username={admin.username}
+      name={admin.name}
+      displayName={admin.displayName}
+      firstName={admin.firstName}
+      lastName={admin.lastName}
+      email={admin.email}
+      numCurrentRescues={admin.numCurrentRescues}
+      numTotalRescues={admin.numTotalRescues}
+      numHouseholdPets={admin.numHouseholdPets}
+      numHouseholdPeople={admin.numHouseholdPeople}
+      favorite={admin.favorite}
+      type={admin.type}
+      role={admin.role}
+      hasBackgroundCheck={admin.hasBackgroundCheck}
+      image={admin.image}
+      bio={admin.bio}
     />
-  );
+  ));
 }

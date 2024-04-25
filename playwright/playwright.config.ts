@@ -43,7 +43,7 @@ export default defineConfig({
     // Setup project
     { name: authSetup, testMatch: /.*\.setup\.ts/ },
 
-    /* Visual, integration, user acceptance, and regression tests */
+    /* Visual, ui integration, user acceptance, and regression tests */
     {
       name: "desktop view",
       use: {

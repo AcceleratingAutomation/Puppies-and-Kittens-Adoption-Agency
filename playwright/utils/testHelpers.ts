@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, Page } from "@playwright/test";
 
 const visualComparisons = (pageTitle: string, waitForImagesToLoad = false) => {
   test.describe("visual comparison of", () => {
@@ -28,5 +28,27 @@ const visualComparisons = (pageTitle: string, waitForImagesToLoad = false) => {
     });
   });
 };
+
+export async function setupPageRoute(
+  page: Page,
+  url: string,
+  responseBody: any,
+  status = 200,
+  headers = {},
+) {
+  // Intercept the request
+  await page.route(url, async (route, request) => {
+    // Fulfill the request with test data
+    await route.fulfill({
+      status,
+      contentType: "application/json",
+      body: JSON.stringify(responseBody),
+      headers: {
+        ...request.headers(),
+        ...headers,
+      },
+    });
+  });
+}
 
 export default visualComparisons;
