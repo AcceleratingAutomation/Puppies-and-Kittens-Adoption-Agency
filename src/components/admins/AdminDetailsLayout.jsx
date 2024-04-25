@@ -26,7 +26,17 @@ function AdminDetailsLayout({ admin }) {
         alignItems="center"
         direction="row"
       >
-        <Grid item xs={12} sm={4} md={3} style={{ textAlign: "center" }}>
+        <Grid item xs={12} sm={4} style={{ textAlign: "center" }}>
+          <DisplayImage
+            directory="users"
+            id={id}
+            image={image}
+            name={name}
+            width="12rem"
+            height="12rem"
+          />
+        </Grid>
+        <Grid item xs={12} sm={4} style={{ textAlign: "left" }}>
           <Grid container>
             <Grid item xs={6}>
               <strong>Type</strong>
@@ -84,18 +94,15 @@ function AdminDetailsLayout({ admin }) {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={4} md={3} style={{ textAlign: "center" }}>
-          <DisplayImage
-            directory="users"
-            id={id}
-            image={image}
-            name={name}
-            width="15rem"
-            height="18rem"
-          />
-        </Grid>
-        <Grid item xs={12} sm={8} md={3} style={{ textAlign: "left" }}>
-          <p>{bio}</p>
+        <Grid item xs={12} sm={8} style={{ textAlign: "center" }}>
+          <p>
+            {bio.split("\n").map((line) => (
+              <React.Fragment key={`${line}`}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          </p>
         </Grid>
       </Grid>
     </Container>

@@ -38,6 +38,7 @@ function DisplayImage({ directory, image, type, name, width, height }) {
         width,
         height,
         objectFit: "cover",
+        margin: "2vh",
       }}
       data-testid="display-image"
     />
