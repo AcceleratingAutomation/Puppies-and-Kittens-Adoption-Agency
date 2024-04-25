@@ -49,7 +49,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         storageState: authFile,
-        viewport: { width: 1280, height: 720 },
+        viewport: { width: 1920, height: 910 },
         channel: "chrome",
       },
       testDir: "./ui",
