@@ -35,13 +35,36 @@ export default defineConfig({
     /* Collect trace, video, and screenshot when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
     video: "on-first-retry",
-    screenshot: "on",
+    screenshot: "only-on-failure",
   },
 
-  /* Configure projects for major browsers */
+  /* Configure projects for different types of tests and major browsers */
   projects: [
     // Setup project
     { name: authSetup, testMatch: /.*\.setup\.ts/ },
+
+    /* Visual, integration, user acceptance, and regression tests */
+    {
+      name: "desktop view",
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: authFile,
+        viewport: { width: 1280, height: 720 },
+        channel: "chrome",
+      },
+      testDir: "./ui",
+      dependencies: [authSetup],
+    },
+    {
+      name: "mobile view",
+      use: {
+        ...devices["iPhone 12 Pro"],
+        storageState: authFile,
+        viewport: { width: 390, height: 664 },
+      },
+      testDir: "./ui",
+      dependencies: [authSetup],
+    },
 
     /* Test against browser engines. */
     {
