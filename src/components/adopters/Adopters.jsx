@@ -45,7 +45,7 @@ export default function Adopters() {
           wrap="wrap"
           justifyContent="center"
         >
-          {state.adopters.slice(page * 20, (page + 1) * 20).map((adopter) => (
+          {state.adopters.slice(page * 12, (page + 1) * 12).map((adopter) => (
             <AdopterCard
               key={adopter.id}
               id={adopter.id}

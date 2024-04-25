@@ -49,7 +49,7 @@ export default function Veterinarians() {
           justifyContent="center"
         >
           {state.veterinarians
-            .slice(page * 20, (page + 1) * 20)
+            .slice(page * 12, (page + 1) * 12)
             .map((veterinarian) => (
               <VeterinarianCard
                 key={veterinarian.id}

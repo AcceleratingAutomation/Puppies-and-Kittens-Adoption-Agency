@@ -48,7 +48,7 @@ export default function Admins() {
             wrap="wrap"
             justifyContent="center"
           >
-            {state.admins.slice(page * 20, (page + 1) * 20).map((admin) => (
+            {state.admins.slice(page * 12, (page + 1) * 12).map((admin) => (
               <AdminCard
                 key={admin.id}
                 id={admin.id}

@@ -21,7 +21,7 @@ function PaginationButtons({ page, setPage, dataLength }) {
         color="primary"
         size="large"
         onClick={() => setPage(page + 1)}
-        disabled={(page + 1) * 20 >= dataLength}
+        disabled={(page + 1) * 12 >= dataLength}
       >
         Next
       </Button>

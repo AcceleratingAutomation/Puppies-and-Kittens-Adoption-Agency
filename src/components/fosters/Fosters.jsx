@@ -45,7 +45,7 @@ export default function Fosters() {
           wrap="wrap"
           justifyContent="center"
         >
-          {state.fosters.slice(page * 20, (page + 1) * 20).map((foster) => (
+          {state.fosters.slice(page * 12, (page + 1) * 12).map((foster) => (
             <FosterCard
               key={foster.id}
               id={foster.id}

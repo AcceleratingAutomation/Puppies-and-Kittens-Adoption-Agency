@@ -58,7 +58,7 @@ export default function Favorites() {
         >
           {state.rescues
             .filter((rescue) => state.favorites.includes(rescue.id))
-            .slice(page * 20, (page + 1) * 20)
+            .slice(page * 12, (page + 1) * 12)
             .map((rescue) => (
               <RescueCard
                 key={rescue.id}

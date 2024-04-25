@@ -85,7 +85,7 @@ export default function Rescues() {
   const rescues = useMemo(
     () =>
       state.rescues
-        .slice(page * 20, (page + 1) * 20) // Only show the rescues for the current page
+        .slice(page * 12, (page + 1) * 12) // Only show the rescues for the current page
         .map((rescue) => (
           <RescueCard
             key={rescue.id}
@@ -109,7 +109,7 @@ export default function Rescues() {
 
   return (
     <>
-      <div className="content" style={{ minHeight: "100rem" }}>
+      <div className="content">
         <AppHeader tabValue={tabValue} />
         <Grid item container justifyContent="center">
           {rescues}
