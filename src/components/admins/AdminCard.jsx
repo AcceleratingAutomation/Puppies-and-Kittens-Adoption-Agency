@@ -33,36 +33,34 @@ function AdminCard({
   };
 
   return (
-    <main data-testid="admin-card" className="flex-display">
-      <SummaryCard
-        directory="users"
-        type="admin"
-        id={admin.id}
-        image={admin.image}
-        name={admin.name}
-        viewComponentDetailsUrl={`${adminsEndpoint}/${admin.id}`}
-      >
-        <Grid item xs={12}>
-          <Typography variant="h4">{admin.name}</Typography>
-        </Grid>
-        <Typography variant="h5" gutterBottom>
-          {admin.email}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {currentRescuesLabel} {admin.numCurrentRescues}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {totalRescuesLabel} {admin.numTotalRescues}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {householdPetsLabel} {admin.numHouseholdPets}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {favoritesLabel} {admin.favorite.length}
-        </Typography>
-        <Grid item xs={12} container justifyContent="center" />
-      </SummaryCard>
-    </main>
+    <SummaryCard
+      directory="users"
+      type="admin"
+      id={admin.id}
+      image={admin.image}
+      name={admin.name}
+      viewComponentDetailsUrl={`${adminsEndpoint}/${admin.id}`}
+    >
+      <Grid item xs={12}>
+        <Typography variant="h4">{admin.name}</Typography>
+      </Grid>
+      <Typography variant="h5" gutterBottom>
+        {admin.email}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {currentRescuesLabel} {admin.numCurrentRescues}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {totalRescuesLabel} {admin.numTotalRescues}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {householdPetsLabel} {admin.numHouseholdPets}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {favoritesLabel} {admin.favorite.length}
+      </Typography>
+      <Grid item xs={12} container justifyContent="center" />
+    </SummaryCard>
   );
 }
 

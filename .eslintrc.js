@@ -62,6 +62,13 @@ module.exports = {
       },
     },
     {
+      // Allow console statements in the Playwright directory
+      files: ["playwright/**/*"],
+      rules: {
+        "no-console": "off",
+      },
+    },
+    {
       // Jest unit tests
       files: ["**/__jest__/**/*.{js,jsx}", "**/__tests__/**/*test.{js,jsx}"],
       env: {

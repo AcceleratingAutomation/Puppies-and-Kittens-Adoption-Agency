@@ -3,7 +3,10 @@ import {
   adminsEndpoint,
   adminsUrl,
 } from "../../../src/server/apiService/apiConfig";
-import visualComparisons, { setupPageRoute } from "../../utils/testHelpers";
+import visualComparisons, {
+  setupPageRoute,
+  axeAccessibilityChecks,
+} from "../../utils/testHelpers";
 import { adminProps } from "../../../src/components/admins/__tests__/adminsData";
 
 test.beforeEach(async ({ page }) => {
@@ -15,4 +18,5 @@ test.beforeEach(async ({ page }) => {
 
 test.describe("Admin Details Page", () => {
   visualComparisons("Admin Details");
+  axeAccessibilityChecks();
 });

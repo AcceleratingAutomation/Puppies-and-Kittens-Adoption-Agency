@@ -10,6 +10,7 @@
     "start:both": "concurrently \"cd .. && npm run start\" \"cd ../src/server && node startServer.js\""
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.9.0",
     "@playwright/test": "^1.41.2",
     "typescript": "^4.9.5"
   }
