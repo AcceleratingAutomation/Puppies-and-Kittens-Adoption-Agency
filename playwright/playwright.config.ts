@@ -66,6 +66,30 @@ export default defineConfig({
       dependencies: [authSetup],
     },
 
+    /* Lighthouse audit - Performance, accessibility, best practices, and SEO tests */
+    {
+      name: "lighthouse desktop",
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: authFile,
+        viewport: { width: 1920, height: 910 },
+        channel: "chrome",
+      },
+      dependencies: [authSetup],
+      testDir: "./lighthouse",
+    },
+    {
+      name: "lighthouse mobile",
+      use: {
+        ...devices["Galaxy S9+"],
+        storageState: authFile,
+        viewport: { width: 320, height: 658 },
+        channel: "chrome",
+      },
+      dependencies: [authSetup],
+      testDir: "./lighthouse",
+    },
+
     /* Test against browser engines. */
     {
       name: "chromium",

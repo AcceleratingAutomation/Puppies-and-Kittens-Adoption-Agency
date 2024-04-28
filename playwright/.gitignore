@@ -19,3 +19,6 @@ npm-debug.log*
 /blob-report/
 /playwright/.cache/
 .auth
+
+# Lighthouse Audits
+/lighthouse-audit-reports/
