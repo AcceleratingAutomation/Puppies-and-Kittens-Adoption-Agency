@@ -55,7 +55,7 @@
     "testMatch": [
       "**/__jest__/**/*test.[jt]s?(x)",
       "**/__tests__/**/*test.[jt]s?(x)",
-      "!**/__tests__/**/*.cy.[jt]s?(x)"
+      "!**/admins/__tests__/**/*.test.[jt]s?(x)"
     ]
   },
   "lint-staged": {

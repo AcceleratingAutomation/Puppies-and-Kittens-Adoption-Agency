@@ -10,7 +10,7 @@ exports[`Foster Card matches snapshot comparison 1`] = `
       class="responsive-image"
       data-testid="display-image"
       src="/images/users/thumbnail-image.webp"
-      style="border-radius: 25%; width: 15rem; height: 18rem; object-fit: cover;"
+      style="border-radius: 25%; width: 15rem; height: 18rem; object-fit: cover; margin: 2vh;"
     />
     <div
       class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1vpwcmr-MuiGrid-root"

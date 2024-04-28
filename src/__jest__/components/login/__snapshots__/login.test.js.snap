@@ -308,7 +308,7 @@ exports[`Login component should render correctly in snapshot comparison after se
             class="responsive-image"
             data-testid="display-image"
             src="/images/dog/placeholder-puppy.webp"
-            style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover;"
+            style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover; margin: 2vh;"
           />
         </div>
         <div
@@ -319,7 +319,7 @@ exports[`Login component should render correctly in snapshot comparison after se
             class="responsive-image"
             data-testid="display-image"
             src="/images/cat/placeholder-kitten.webp"
-            style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover;"
+            style="border-radius: 25%; width: 15rem; height: 15rem; object-fit: cover; margin: 2vh;"
           />
         </div>
       </div>
