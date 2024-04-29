@@ -38,7 +38,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: playwright/all-blob-reports
-          pattern: blob-report-visual-*
+          pattern: blob-report-*
           merge-multiple: true
 
       - name: Merge into HTML Report
