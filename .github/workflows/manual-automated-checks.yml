@@ -82,14 +82,6 @@ jobs:
       contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main
 
-  run-merge-playwright-lighthouse-reports:
-    name: Playwright Tests
-    if: always() && github.event.inputs.playwright-lighthouse-tests == 'true'
-    needs: [run-playwright-lighthouse-tests]
-    permissions:
-      contents: write
-    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-lighthouse-reports.yml@main
-
   slack-notification:
     name: Notifications
     if: always() && needs.run-merge-playwright-visual-reports.result != 'cancelled' && github.event.inputs.slack-notification == 'true'
