@@ -43,7 +43,7 @@ jobs:
         working-directory: playwright
 
       - name: Run Playwright tests
-        run: npm run lighthouse:ci
+        run: npm run prelighthouse && npx playwright test --project=\"lighthouse desktop\" --project=\"lighthouse mobile\" --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         working-directory: playwright
         env:
           REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
