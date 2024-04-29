@@ -1,11 +1,11 @@
-name: Merge Visual Reports
+name: Merge Lighthouse Reports
 
 on:
   workflow_call:
 
 jobs:
   merge-playwright-visual-reports:
-    name: Merge Visual Reports
+    name: Merge Lighthouse Reports
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
@@ -13,7 +13,7 @@ jobs:
       contents: write
 
     env:
-      DESTINATION_DIR_FOR_PAGES: ${{ github.ref_name }}/${{ (github.event_name == 'push' || github.event_name == 'pull_request') && format('commits/{0}', github.sha) || format('runs/{0}', github.run_id) }}/visual-tests-report
+      DESTINATION_DIR_FOR_PAGES: ${{ github.ref_name }}/${{ (github.event_name == 'push' || github.event_name == 'pull_request') && format('commits/{0}', github.sha) || format('runs/{0}', github.run_id) }}/lighthouse-audit-report
 
     steps:
       - name: Checkout code
@@ -37,18 +37,18 @@ jobs:
       - name: Download blob reports from GitHub Actions Artifacts
         uses: actions/download-artifact@v4
         with:
-          path: playwright/all-blob-reports/visual
-          pattern: blob-report-visual-*
+          path: playwright/all-blob-reports/lighthouse
+          pattern: blob-report-lighthouse-*
           merge-multiple: true
 
       - name: Merge into HTML Report
-        run: npx playwright merge-reports --reporter html ./all-blob-reports/visual
+        run: npx playwright merge-reports --reporter html ./all-blob-reports/lighthouse
         working-directory: playwright
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-visual-html-report
+          name: playwright-lighthouse-html-report
           path: playwright/playwright-report/
           retention-days: 30
 
