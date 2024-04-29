@@ -37,12 +37,12 @@ jobs:
       - name: Download blob reports from GitHub Actions Artifacts
         uses: actions/download-artifact@v4
         with:
-          path: playwright/all-blob-reports/lighthouse
+          path: playwright/all-blob-reports
           pattern: blob-report-lighthouse-*
           merge-multiple: true
 
       - name: Merge into HTML Report
-        run: npx playwright merge-reports --reporter html ./all-blob-reports/lighthouse
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
         working-directory: playwright
 
       - name: Upload HTML report
