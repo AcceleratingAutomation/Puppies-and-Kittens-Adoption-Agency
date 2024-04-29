@@ -96,9 +96,8 @@ function AdminDetailsLayout({ admin }) {
         </Grid>
         <Grid item xs={12} sm={8} style={{ textAlign: "center" }}>
           <p>
-            {bio.split("\n").map((line, i) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <React.Fragment key={`${line}-line-${i}`}>
+            {bio.split("\n").map((line) => (
+              <React.Fragment key={`${line}-${id}`}>
                 {line}
                 <br />
               </React.Fragment>
