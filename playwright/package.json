@@ -9,9 +9,11 @@
   "scripts": {
     "prelighthouse": "rimraf lighthouse-audit-reports && mkdirp lighthouse-audit-reports",
     "lighthouse": "npx playwright test --project=\"lighthouse desktop\" --project=\"lighthouse mobile\"",
+    "lighthouse:ci": "npm run prelighthouse && npx playwright test --project=\"lighthouse desktop\" --project=\"lighthouse mobile\" --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}",
     "show-report": "npx playwright show-report",
     "start:both": "concurrently \"cd .. && npm run start\" \"cd ../src/server && node startServer.js\"",
-    "visual": "npx playwright test --project=\"desktop view\" --project=\"mobile view\""
+    "visual": "npx playwright test --project=\"desktop view\" --project=\"mobile view\"",
+    "visual:ci": "npx playwright test --project=\"desktop view\" --project=\"mobile view\" --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.9.0",

@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2, 3, 4, 5, 6]
-        shardTotal: [6]
+        shardIndex: [1, 2]
+        shardTotal: [2]
 
     steps:
       - name: Checkout code
@@ -43,7 +43,7 @@ jobs:
         working-directory: playwright
 
       - name: Run Playwright tests
-        run: npm run lighthouse --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: npm run lighthouse:ci
         working-directory: playwright
         env:
           REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}

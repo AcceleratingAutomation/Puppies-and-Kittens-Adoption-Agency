@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2, 3, 4, 5, 6]
-        shardTotal: [6]
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
 
     steps:
       - name: Checkout code
@@ -43,7 +43,7 @@ jobs:
         working-directory: playwright
 
       - name: Run Playwright tests
-        run: npm run visual --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: npm run visual:ci
         working-directory: playwright
         env:
           REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
@@ -59,6 +59,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: blob-report-visual-${{ matrix.shardIndex }}
+          name: blob-report-${{ matrix.shardIndex }}
           path: playwright/blob-report
           retention-days: 1
