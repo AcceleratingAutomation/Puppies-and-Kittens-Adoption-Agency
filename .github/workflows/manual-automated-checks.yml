@@ -99,6 +99,7 @@ jobs:
         run-super-linter,
         run-jest-unit-tests,
         run-merge-playwright-visual-reports,
+        run-merge-playwright-lighthouse-reports,
       ]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/slack-notification.yml@main
     secrets: inherit
