@@ -20,10 +20,6 @@ on:
         description: "Run Playwright Visual Tests"
         type: boolean
         default: true
-      playwright-lighthouse-tests:
-        description: "Run Playwright Lighthouse Audit Tests"
-        type: boolean
-        default: true
       slack-notification:
         description: "Run Slack Notification"
         type: boolean
@@ -68,16 +64,10 @@ jobs:
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
     secrets: inherit
 
-  run-playwright-lighthouse-tests:
-    name: Playwright Tests
-    if: github.event.inputs.playwright-lighthouse-tests == 'true'
-    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-lighthouse-tests.yml@main
-    secrets: inherit
-
   run-merge-playwright-visual-reports:
     name: Playwright Tests
-    if: always() && (github.event.inputs.playwright-visual-tests == 'true' || github.event.inputs.playwright-lighthouse-tests == 'true')
-    needs: [run-playwright-visual-tests, run-playwright-lighthouse-tests]
+    if: always() && github.event.inputs.playwright-visual-tests == 'true'
+    needs: [run-playwright-visual-tests]
     permissions:
       contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main
