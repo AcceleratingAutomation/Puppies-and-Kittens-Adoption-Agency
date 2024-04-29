@@ -24,10 +24,6 @@ on:
         description: "Run Playwright Lighthouse Audit Tests"
         type: boolean
         default: true
-      merge-playwright-visual-reports:
-        description: "Run Merge Playwright Reports"
-        type: boolean
-        default: true
       slack-notification:
         description: "Run Slack Notification"
         type: boolean
@@ -80,7 +76,7 @@ jobs:
 
   run-merge-playwright-visual-reports:
     name: Playwright Tests
-    if: always() && (needs.run-playwright-visual-tests.result == 'success' || needs.run-playwright-lighthouse-tests.result == 'success') && github.event.inputs.merge-playwright-visual-reports == 'true'
+    if: always() && (github.event.inputs.playwright-visual-tests == 'true' || github.event.inputs.playwright-lighthouse-tests == 'true')
     needs: [run-playwright-visual-tests, run-playwright-lighthouse-tests]
     permissions:
       contents: write
