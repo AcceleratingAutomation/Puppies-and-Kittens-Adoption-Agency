@@ -80,7 +80,7 @@ jobs:
 
   run-merge-playwright-visual-reports:
     name: Playwright Tests
-    if: always() && needs.run-playwright-visual-tests.result != 'skipped' && needs.run-playwright-visual-tests.result != 'cancelled' && needs.run-playwright-lighthouse-tests.result != 'skipped' && needs.run-playwright-lighthouse-tests.result != 'cancelled' && github.event.inputs.merge-playwright-visual-reports == 'true'
+    if: always() && (needs.run-playwright-visual-tests.result == 'success' || needs.run-playwright-lighthouse-tests.result == 'success') && github.event.inputs.merge-playwright-visual-reports == 'true'
     needs: [run-playwright-visual-tests, run-playwright-lighthouse-tests]
     permissions:
       contents: write

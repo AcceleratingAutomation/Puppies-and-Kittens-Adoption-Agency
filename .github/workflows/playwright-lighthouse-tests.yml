@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2]
+        shardIndex: [5, 6]
         shardTotal: [2]
 
     steps:
@@ -59,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: blob-report-lighthouse-${{ matrix.shardIndex }}
+          name: blob-report-${{ matrix.shardIndex }}
           path: playwright/blob-report
           retention-days: 1
 
