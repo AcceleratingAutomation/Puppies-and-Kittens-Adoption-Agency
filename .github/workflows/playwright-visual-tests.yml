@@ -43,7 +43,7 @@ jobs:
         working-directory: playwright
 
       - name: Run Playwright tests
-        run: npx playwright test --project webkit --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: npx playwright test --project="desktop view" --project="mobile view" --project="lighthouse desktop" --project="lighthouse mobile" --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         working-directory: playwright
         env:
           REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
@@ -55,10 +55,18 @@ jobs:
           TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
           TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
 
-      - name: Upload Playwright blob report to GitHub Actions Artifacts
+      - name: Upload Playwright blob reports to GitHub Actions Artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: blob-report-${{ matrix.shardIndex }}
           path: playwright/blob-report
           retention-days: 1
+
+      - name: Upload Lighthouse Audit reports to GitHub Actions Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-audit-report-${{ matrix.shardIndex }}
+          path: playwright/lighthouse-audit-reports
+          retention-days: 15
