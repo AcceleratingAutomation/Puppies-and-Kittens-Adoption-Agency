@@ -74,7 +74,7 @@ jobs:
 
   run-playwright-lighthouse-tests:
     name: Playwright Tests
-    needs: [run-jest-unit-tests]
+    if: github.event.inputs.playwright-lighthouse-tests == 'true'
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-lighthouse-tests.yml@main
     secrets: inherit
 
