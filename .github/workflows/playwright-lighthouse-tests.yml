@@ -1,13 +1,13 @@
-name: Visual Tests
+name: Lighthouse Tests
 
 on:
   workflow_call:
 
 jobs:
   playwright-visual-tests:
-    name: Visual Tests
+    name: Lighthouse Tests
     timeout-minutes: 60
-    # Running on windows because the OS matters for visual testing comparisons.
+    # Running on windows because the OS matters for performance testing comparisons.
     runs-on: windows-latest
     strategy:
       fail-fast: false
@@ -43,7 +43,7 @@ jobs:
         working-directory: playwright
 
       - name: Run Playwright tests
-        run: npm run visual --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: npm run lighthouse --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         working-directory: playwright
         env:
           REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
@@ -59,6 +59,14 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: blob-report-visual-${{ matrix.shardIndex }}
+          name: blob-report-lighthouse-${{ matrix.shardIndex }}
           path: playwright/blob-report
           retention-days: 1
+
+      - name: Upload Lighthouse Audit reports to GitHub Actions Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-audit-report-${{ matrix.shardIndex }}
+          path: playwright/lighthouse-audit-reports
+          retention-days: 15
