@@ -59,5 +59,19 @@ jobs:
           publish_dir: playwright/playwright-report/
           destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}
 
+      - name: Download lighthouse audit reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: playwright/all-lighthouse-reports
+          pattern: lighthouse-audit-report-*
+          merge-multiple: true
+
+      - name: Deploy Lighthouse Reports to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: playwright/all-lighthouse-reports
+          destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}/lighthouse
+
       - name: Test Results Summary
         run: echo "<h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}'>View Test Report Results</a></h3>" >> "$GITHUB_STEP_SUMMARY"
