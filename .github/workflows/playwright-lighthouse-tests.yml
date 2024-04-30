@@ -60,7 +60,7 @@ jobs:
         if: always()
         with:
           name: blob-report-lighthouse-${{ matrix.shardIndex }}
-          path: playwright/blob-report
+          path: playwright/blob-report/lighthouse
           retention-days: 1
 
       - name: Upload Lighthouse Audit reports to GitHub Actions Artifacts

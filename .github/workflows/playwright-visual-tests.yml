@@ -60,5 +60,5 @@ jobs:
         if: always()
         with:
           name: blob-report-visual-${{ matrix.shardIndex }}
-          path: playwright/blob-report
+          path: playwright/blob-report/visual
           retention-days: 1

@@ -39,9 +39,10 @@ jobs:
         with:
           path: playwright/all-blob-reports
           pattern: blob-report-*
+          merge-multiple: true
 
       - name: Merge into HTML Report
-        run: npx playwright merge-reports --reporter html ./all-blob-reports
+        run: npx playwright merge-reports --reporter html ./all-blob-reports/visual ./all-blob-reports/lighthouse
         working-directory: playwright
 
       - name: Upload HTML report
