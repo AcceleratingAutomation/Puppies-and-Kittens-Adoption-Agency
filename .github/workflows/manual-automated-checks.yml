@@ -71,6 +71,8 @@ jobs:
   run-playwright-lighthouse-tests:
     name: Playwright Tests
     if: github.event.inputs.playwright-lighthouse-tests == 'true'
+    permissions:
+      contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-lighthouse-tests.yml@main
     secrets: inherit
 

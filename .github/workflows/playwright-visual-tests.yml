@@ -15,6 +15,12 @@ jobs:
         shardIndex: [1, 2, 3, 4, 5, 6]
         shardTotal: [6]
 
+    permissions:
+      contents: write
+
+    env:
+      DESTINATION_DIR_FOR_PAGES: ${{ github.ref_name }}/${{ (github.event_name == 'push' || github.event_name == 'pull_request') && format('commits/{0}', github.sha) || format('runs/{0}', github.run_id) }}/visual-tests-report
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -91,3 +97,31 @@ jobs:
           name: lighthouse-audit-report-${{ matrix.shardIndex }}
           path: playwright/lighthouse-audit-reports
           retention-days: 15
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: playwright/all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+        working-directory: playwright
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-visual-html-report
+          path: playwright/playwright-report/
+          retention-days: 30
+
+      - name: Deploy Merged Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: playwright/playwright-report/
+          destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}
+
+      - name: Test Results Summary
+        run: echo "<h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}'>View Test Report Results</a></h3>" >> "$GITHUB_STEP_SUMMARY"
