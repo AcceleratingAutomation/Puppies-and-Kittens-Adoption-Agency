@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2, 3, 4]
-        shardTotal: [4]
+        shardIndex: [1, 2, 3, 4, 5, 6]
+        shardTotal: [6]
 
     steps:
       - name: Checkout code
@@ -42,7 +42,7 @@ jobs:
         run: npx playwright --version
         working-directory: playwright
 
-      - name: Run Playwright tests
+      - name: Run visual tests
         run: npm run visual:ci ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         working-directory: playwright
         env:
@@ -62,3 +62,32 @@ jobs:
           name: blob-report-visual-${{ matrix.shardIndex }}
           path: playwright/blob-report
           retention-days: 1
+
+      - name: Run lighthouse audit tests
+        run: npm run lighthouse:ci ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        working-directory: playwright
+        env:
+          REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
+          ALGORITHM: ${{ vars.ALGORITHM }}
+          EXPIRY: ${{ vars.EXPIRY }}
+          ISSUER: ${{ vars.ISSUER }}
+          SECRET: ${{ secrets.SECRET }}
+          TEST_ENV: ${{ vars.TEST_ENV }}
+          TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+
+      - name: Upload Lighthouse blob reports to GitHub Actions Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: blob-report-lighthouse-${{ matrix.shardIndex }}
+          path: playwright/blob-report
+          retention-days: 1
+
+      - name: Upload Lighthouse Audit reports to GitHub Actions Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-audit-report-${{ matrix.shardIndex }}
+          path: playwright/lighthouse-audit-reports
+          retention-days: 15

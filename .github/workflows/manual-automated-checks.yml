@@ -77,7 +77,7 @@ jobs:
   run-merge-playwright-visual-reports:
     name: Playwright Tests
     if: always() && github.event.inputs.playwright-visual-tests == 'true'
-    needs: [run-playwright-visual-tests, run-playwright-lighthouse-tests]
+    needs: [run-playwright-visual-tests]
     permissions:
       contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main
