@@ -12,9 +12,9 @@
     "lighthouse:ci": "npm run prelighthouse && npx playwright test --project=\"lighthouse desktop\" --project=\"lighthouse mobile\" --shard",
     "show-report": "npx playwright show-report",
     "start:both": "concurrently \"cd .. && npm run start\" \"cd ../src/server && node startServer.js\"",
+    "ui:ci": "npm run prelighthouse && npx playwright test --project=\"desktop view\" --project=\"mobile view\" --project=\"lighthouse desktop\" --project=\"lighthouse mobile\" --shard",
     "visual": "npx playwright test --project=\"desktop view\" --project=\"mobile view\"",
-    "visual:ci": "npx playwright test --project=\"desktop view\" --project=\"mobile view\" --shard",
-    "visual:sut": "npm run prelighthouse && npx playwright test --project=\"desktop view\" --project=\"mobile view\" --project=\"lighthouse desktop\" --project=\"lighthouse mobile\" --shard"
+    "visual:ci": "npx playwright test --project=\"desktop view\" --project=\"mobile view\" --shard"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.9.0",

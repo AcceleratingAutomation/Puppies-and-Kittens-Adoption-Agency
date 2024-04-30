@@ -43,16 +43,10 @@ jobs:
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
     secrets: inherit
 
-  run-playwright-lighthouse-tests:
-    name: Playwright Tests
-    needs: [run-jest-unit-tests]
-    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-lighthouse-tests.yml@main
-    secrets: inherit
-
   run-merge-playwright-visual-reports:
     name: Playwright Tests
-    if: always() && needs.run-playwright-visual-tests.result != 'skipped' && needs.run-playwright-visual-tests.result != 'cancelled' && needs.run-playwright-lighthouse-tests.result != 'skipped' && needs.run-playwright-lighthouse-tests.result != 'cancelled'
-    needs: [run-playwright-visual-tests, run-playwright-lighthouse-tests]
+    if: always() && needs.run-playwright-visual-tests.result != 'skipped' && needs.run-playwright-visual-tests.result != 'cancelled'
+    needs: [run-playwright-visual-tests]
     permissions:
       contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main

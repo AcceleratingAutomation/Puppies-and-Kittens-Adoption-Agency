@@ -53,13 +53,6 @@ jobs:
   slack-notification:
     name: Notifications
     if: always() && needs.run-merge-playwright-visual-reports.result != 'cancelled'
-    needs:
-      [
-        run-prettier,
-        run-super-linter,
-        run-jest-unit-tests,
-        run-playwright-visual-tests,
-        run-merge-playwright-visual-reports,
-      ]
+    needs: [run-merge-playwright-visual-reports]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/slack-notification.yml@main
     secrets: inherit
