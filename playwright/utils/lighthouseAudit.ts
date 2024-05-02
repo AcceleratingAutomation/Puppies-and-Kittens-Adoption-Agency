@@ -158,7 +158,7 @@ const runLighthouseAuditReport = (
 
         // Create a link to the report file
         let reportLink;
-        if (process.env.CI_ENV) {
+        if (process.env.CI) {
           // Use github pages URL when running on CI
           reportLink = `https://acceleratingautomation.github.io/Puppies-and-Kittens-Adoption-Agency/${process.env.DESTINATION_DIR_FOR_PAGES}/${lighthouseDir}/${path.basename(reportPath)}`;
         } else {
