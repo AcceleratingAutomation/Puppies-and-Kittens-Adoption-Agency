@@ -65,13 +65,15 @@ jobs:
           path: playwright/all-lighthouse-reports
           pattern: lighthouse-audit-report-*
           merge-multiple: true
+          # These files only exists when certain tests run. There are some outstanding issues with this setting at https://github.com/actions/upload-artifact/pull/348
+          if-no-files-found: ignore
 
       - name: Deploy Lighthouse Reports to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: playwright/all-lighthouse-reports
-          destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}/lighthouse
+          destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}/lighthouse-audit-reports
 
       - name: Test Results Summary
         run: echo "<h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}'>View Test Report Results</a></h3>" >> "$GITHUB_STEP_SUMMARY"

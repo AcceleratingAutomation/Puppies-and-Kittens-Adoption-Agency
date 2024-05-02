@@ -100,14 +100,14 @@ const runLighthouseAuditReport = (
     `Run Lighthouse Audit Report with ${isThrottling ? "4G throttling" : "no throttling"}`,
     {
       tag: [
-        "@performance",
         "@accessibility",
         "@best-practices",
+        "@performance",
         "@SEO",
-        "@ui_",
-        "@api_",
-        "@database_",
-        "@security_",
+        "@_api",
+        "@_database",
+        "@_security",
+        "@_ui",
       ],
     },
     // eslint-disable-next-line no-empty-pattern
@@ -143,9 +143,10 @@ const runLighthouseAuditReport = (
           .replace(/[/: ]/g, "-");
 
         // Save the report to a file
+        const lighthouseDir = "lighthouse-audit-reports";
         const reportPath = path.join(
           process.cwd(),
-          "lighthouse-audit-reports",
+          lighthouseDir,
           `${pageTitle}-${projectName}-report-with-${isThrottling ? "4G-throttling" : "no-throttling"}-${dateTimeString}.html`,
         );
 
@@ -156,7 +157,14 @@ const runLighthouseAuditReport = (
         }
 
         // Create a link to the report file
-        const reportLink = `file://${reportPath}`;
+        let reportLink;
+        if (process.env.CI_ENV) {
+          // Use github pages URL when running on CI
+          reportLink = `https://acceleratingautomation.github.io/Puppies-and-Kittens-Adoption-Agency/${process.env.DESTINATION_DIR_FOR_PAGES}/${lighthouseDir}/${path.basename(reportPath)}`;
+        } else {
+          // Use the local file path when running locally
+          reportLink = `file://${reportPath}`;
+        }
 
         test.info().annotations.push({
           type: "Lighthouse Audit Report",
