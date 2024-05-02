@@ -71,7 +71,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: playwright/all-lighthouse-reports
-          destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}/lighthouse-audit-reports
+          destination_dir: playwright/lighthouse-audit-reports
 
       - name: Test Results Summary
         run: echo "<h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}'>View Test Report Results</a></h3>" >> "$GITHUB_STEP_SUMMARY"
