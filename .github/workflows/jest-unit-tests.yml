@@ -43,7 +43,24 @@ jobs:
           publish_dir: ./coverage
           destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}
 
-      - name: Test Results Summary
+      - name: Set Test Results Summary as env variable
         run: |
           results=$(grep -A5 "Test Suites:" < jest-unit-test-results.txt | sed 's/$/<br>/')
-          echo "<h2>Test Results</h2>$results<h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}/lcov-report'>View Code Coverage Report</a></h3>" >> "$GITHUB_STEP_SUMMARY"
+          echo "TEST_RESULTS_SUMMARY=<div style='margin: 50px; padding: 10px; border: 1px solid black;'><h1>Jest Unit Test Results</h1>$results<h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}/lcov-report'>View Code Coverage Report</a></h3><p>Tests ran $(date)</p><p>By: ${{ github.actor }}</p><p>Branch: ${{ github.ref_name }}</p><p>Event: ${{ github.event_name }}</p></div>" >> "$GITHUB_ENV"
+
+      - name: Display Test Results Summary in GitHub Step Summary
+        run: echo "${{ env.TEST_RESULTS_SUMMARY }}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Write Test Results Summary to HTML file
+        run: |
+          mkdir -p test-results-summary
+          wget -O test-results-summary/old-Test-Summary.html https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/test-results-summary/Test-Summary.html || true
+          echo "${{ env.TEST_RESULTS_SUMMARY }}" > test-results-summary/Test-Summary.html
+          cat test-results-summary/old-Test-Summary.html >> test-results-summary/Test-Summary.html
+
+      - name: Deploy Test Results Summary to homepage on GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: test-results-summary
+          destination_dir: test-results-summary

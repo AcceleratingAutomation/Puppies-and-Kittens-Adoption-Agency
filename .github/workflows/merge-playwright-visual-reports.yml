@@ -74,18 +74,17 @@ jobs:
           destination_dir: playwright/lighthouse-audit-reports
 
       - name: Set Test Results Summary as env variable
-        run: 'echo "TEST_RESULTS_SUMMARY=<div style=''margin: 50px;  border: 1px solid black;''><h1>Playwright Visual Test Results</h1><h3><a href=''https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}''>View Visual Test Report</a></h3><p>Tests ran $(date)</p><p>By ${{ github.actor }}</p><p>Branch ${{ github.ref_name }}</p><p>Event ${{ github.event_name }}</p</div>" >> "$GITHUB_ENV"'
+        run: 'echo "TEST_RESULTS_SUMMARY=<div style=''margin: 50px; padding: 10px; border: 1px solid black;''><h1>Playwright Visual Test Results</h1><h3><a href=''https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}''>View Visual Test Report</a></h3><p>Tests ran $(date)</p><p>By: ${{ github.actor }}</p><p>Branch: ${{ github.ref_name }}</p><p>Event: ${{ github.event_name }}</p></div>" >> "$GITHUB_ENV"'
 
       - name: Display Test Results Summary in GitHub Step Summary
         run: echo "${{ env.TEST_RESULTS_SUMMARY }}" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Write Test Results Summary to HTML file
         run: |
-          mkdir test-results-summary
-          wget -O test-results-summary/Test-Summary.html https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/test-results-summary/Test-Summary.html || true
-          echo "${{ env.TEST_RESULTS_SUMMARY }}" > test-results-summary/temp.html
-          cat test-results-summary/Test-Summary.html >> test-results-summary/temp.html
-          mv test-results-summary/temp.html test-results-summary/Test-Summary.html
+          mkdir -p test-results-summary
+          wget -O test-results-summary/old-Test-Summary.html https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/test-results-summary/Test-Summary.html || true
+          echo "${{ env.TEST_RESULTS_SUMMARY }}" > test-results-summary/Test-Summary.html
+          cat test-results-summary/old-Test-Summary.html >> test-results-summary/Test-Summary.html
 
       - name: Deploy Test Results Summary to homepage on GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
