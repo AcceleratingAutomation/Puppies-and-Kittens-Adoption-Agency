@@ -100,8 +100,19 @@ export default defineConfig({
       dependencies: [authSetup],
     },
     {
+      name: "firefox",
+      use: {
+        ...devices["Desktop Firefox"],
+        storageState: authFile,
+      },
+      dependencies: [authSetup],
+    },
+    {
       name: "webkit",
-      use: { ...devices["Desktop Safari"], storageState: authFile },
+      use: {
+        ...devices["Desktop Safari"],
+        storageState: authFile,
+      },
       dependencies: [authSetup],
     },
 
