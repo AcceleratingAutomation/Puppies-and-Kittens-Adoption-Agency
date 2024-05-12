@@ -143,7 +143,10 @@ const runLighthouseAuditReport = (
           .replace(/[/: ]/g, "-");
 
         // Save the report to a file
-        const lighthouseDir = "lighthouse-audit-reports";
+        const lighthouseDir =
+          process.env.CI && process.env.DESTINATION_DIR_FOR_PAGES
+            ? process.env.DESTINATION_DIR_FOR_PAGES
+            : "lighthouse-audit-reports";
         const reportPath = path.join(
           process.cwd(),
           lighthouseDir,
