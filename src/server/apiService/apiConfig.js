@@ -19,6 +19,7 @@ const fosterEditEndpoint = "/v1/fosters/:id/edit";
 const fostersEndpoint = "/v1/fosters";
 const loginEndpoint = "/v1/login";
 const logoutEndpoint = "/v1/logout";
+const registrationEndpoint = "/v1/registration";
 const rescueAddEndpoint = "/v1/rescues/add";
 const rescueDetailsEndpoint = "/v1/rescues/:id";
 const rescueEditEndpoint = "/v1/rescues/:id/edit";
@@ -53,6 +54,7 @@ module.exports = {
   fostersEndpoint,
   loginEndpoint,
   logoutEndpoint,
+  registrationEndpoint,
   rescueAddEndpoint,
   rescueDetailsEndpoint,
   rescueEditEndpoint,

@@ -10,6 +10,7 @@ import {
   passwordLabel,
   loginText,
 } from "../../accessibility/accessibilityText";
+import { registrationEndpoint } from "../../server/apiService/apiConfig";
 
 function LoginForm({ isSubmitting }) {
   return (
@@ -92,6 +93,9 @@ function LoginForm({ isSubmitting }) {
           >
             {loginText}
           </Button>
+          <p>
+            New user? <a href={registrationEndpoint}>Sign up now</a>.
+          </p>
         </Grid>
         <Grid
           container

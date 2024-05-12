@@ -39,6 +39,14 @@ import {
 const yupValidationSchema = Yup.object({
   bio: Yup.string().required(bioRequired),
   breed: Yup.string().required(breedRequired),
+  confirmPassword: Yup.string()
+    .required(passwordRequired)
+    .min(8, atLeast8Characters)
+    .matches(/[a-z]/, atLeastOneLowercaseLetter)
+    .matches(/[A-Z]/, atLeastOneUppercaseLetter)
+    .matches(/[0-9]/, atLeastOneNumber)
+    .matches(/[\^$*.[\]{}()?\-"!@#%&/,><':;|_~`]/, atLeastOneSpecialCharacter)
+    .oneOf([Yup.ref("password")], "Passwords must match."),
   displayName: Yup.string().required(displayNameRequired),
   email: Yup.string().required(emailRequired).email(),
   firstName: Yup.string().required(firstNameRequired),

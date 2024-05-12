@@ -12,6 +12,15 @@ const rescueInitialValues = {
   image: "",
 };
 
+const registrationInitialValues = {
+  confirmPassword: "",
+  email: "",
+  password: "",
+  role: "",
+  type: "",
+  username: "",
+};
+
 const commonUserInitialValues = {
   firstName: "",
   lastName: "",
@@ -59,6 +68,7 @@ const veterinarianInitialValues = {
 export {
   adminInitialValues,
   adopterInitialValues,
+  registrationInitialValues,
   fosterInitialValues,
   rescueInitialValues,
   veterinarianInitialValues,

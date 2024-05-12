@@ -1,6 +1,15 @@
 import * as Yup from "yup";
 import yupValidationSchema from "./yupValidationSchema";
 
+const registrationValidationSchema = Yup.object().shape({
+  confirmPassword: yupValidationSchema.fields.confirmPassword,
+  email: yupValidationSchema.fields.email,
+  password: yupValidationSchema.fields.password,
+  role: yupValidationSchema.fields.role,
+  type: yupValidationSchema.fields.userType,
+  username: yupValidationSchema.fields.username,
+});
+
 const commonUsersValidationSchema = Yup.object().shape({
   firstName: yupValidationSchema.fields.firstName,
   lastName: yupValidationSchema.fields.lastName,
@@ -52,5 +61,6 @@ export {
   adminsValidationSchema,
   adoptersValidationSchema,
   fostersValidationSchema,
+  registrationValidationSchema,
   veterinariansValidationSchema,
 };

@@ -13,6 +13,7 @@ const bioLabel = "Bio";
 const bioRequired = "Bio Required";
 const breedLabel = "Breed";
 const breedRequired = "Breed Required - Enter Mix if Unknown";
+const confirmPasswordLabel = "Confirm Password";
 const deleteLabel = "Delete";
 const displayNameLabel = "Display Name";
 const displayNameRequired = "Display Name Required";
@@ -96,6 +97,7 @@ module.exports = {
   bioRequired,
   breedLabel,
   breedRequired,
+  confirmPasswordLabel,
   deleteLabel,
   displayNameLabel,
   displayNameRequired,
