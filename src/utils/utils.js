@@ -8,6 +8,10 @@ export const updateAppSettings = (token) => {
   }
 };
 
+export function getToken() {
+  return localStorage.getItem("token");
+}
+
 // export const isMember = () => {
 //   const token = localStorage.getItem('token');
 //   if (token) {

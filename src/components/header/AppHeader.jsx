@@ -5,6 +5,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import DrawerComponent from "./DrawerComponent";
 import TabsComponent from "./TabsComponent";
 import { handleLogout } from "../../server/apiService/authApi";
+import { getToken } from "../../utils/utils";
 import {
   adoptersEndpoint,
   favoritesEndpoint,
@@ -55,7 +56,7 @@ export function AppHeader() {
   const location = useLocation();
   const shouldDisable = false; // Change to shouldHide
   /* Only show menu options when user is logged in. */
-  const showMenuOptions = localStorage.getItem("token");
+  const showMenuOptions = getToken();
   /* Set tab value to 0 if the current route is not in the tabs array. Only use when user is signed in. */
   const tabValue = showMenuOptions
     ? Math.max(

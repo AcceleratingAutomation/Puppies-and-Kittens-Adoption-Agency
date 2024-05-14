@@ -20,6 +20,7 @@ import { FavoritesProvider } from "./contexts/favoritesContext";
 import FosterDetails from "./components/fosters/FosterDetails";
 import Fosters from "./components/fosters/Fosters";
 import Login from "./components/login/Login";
+import NotFound from "./components/NotFound";
 import Registration from "./components/registration/Registration";
 import RescueDetails from "./components/rescues/RescueDetails";
 import Rescues from "./components/rescues/Rescues";
@@ -39,6 +40,7 @@ import {
   fosterDetailsEndpoint,
   fosterEditEndpoint,
   fostersEndpoint,
+  loginEndpoint,
   registrationEndpoint,
   rescueAddEndpoint,
   rescueDetailsEndpoint,
@@ -95,6 +97,12 @@ export default function App() {
             <Route exact path={fostersEndpoint}>
               <Fosters />
             </Route>
+            <Route exact path="/">
+              <Login />
+            </Route>
+            <Route exact path={loginEndpoint}>
+              <Login />
+            </Route>
             <Route exact path={registrationEndpoint}>
               <Registration />
             </Route>
@@ -122,8 +130,8 @@ export default function App() {
             <Route exact path={veterinariansEndpoint}>
               <Veterinarians />
             </Route>
-            <Route path="/">
-              <Login />
+            <Route>
+              <NotFound />
             </Route>
           </Switch>
         </Router>

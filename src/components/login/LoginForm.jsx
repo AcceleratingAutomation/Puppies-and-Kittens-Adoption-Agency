@@ -4,7 +4,7 @@ import Tooltip from "@mui/material/Tooltip";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
-import DisplayImage from "../DisplayImage";
+import PlaceholderRescueImages from "../PlaceholderRescueImages";
 import {
   usernameLabel,
   passwordLabel,
@@ -97,30 +97,7 @@ function LoginForm({ isSubmitting }) {
             New user? <a href={registrationEndpoint}>Sign up now</a>.
           </p>
         </Grid>
-        <Grid
-          container
-          style={{ margin: "0 auto", maxWidth: "80%" }}
-          justifyContent="center"
-        >
-          <Grid item xs={12} sm={4}>
-            <DisplayImage
-              directory="dog"
-              image="placeholder-puppy"
-              name="Playful Puppy"
-              width="15rem"
-              height="15rem"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <DisplayImage
-              directory="cat"
-              image="placeholder-kitten"
-              name="Playful Kitten"
-              width="15rem"
-              height="15rem"
-            />
-          </Grid>
-        </Grid>
+        <PlaceholderRescueImages />
       </Grid>
     </Form>
   );
