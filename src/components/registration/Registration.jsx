@@ -14,6 +14,7 @@ import {
   veterinarianAddEndpoint,
 } from "../../server/apiService/apiConfig";
 import { registrationInitialValues } from "../../utils/formInitialValues";
+import { AppHeader } from "../header/AppHeader";
 
 function RegistrationForm({ errors, touched }) {
   return (
@@ -63,6 +64,7 @@ export default function Registration() {
     >
       {({ errors, touched }) => (
         <div className="content">
+          <AppHeader />
           <Grid
             container
             justifyContent="center"

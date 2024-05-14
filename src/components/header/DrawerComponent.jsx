@@ -36,7 +36,6 @@ function DrawerComponent({
           <List>
             {tabs.map((tab, index) => (
               <ListItem
-                button
                 key={tab.route}
                 onClick={() => handleHamburgerClick(index)}
                 style={{ color: "white" }}

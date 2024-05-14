@@ -1,8 +1,7 @@
 import React, { useReducer, useCallback } from "react";
 import { AppBar, MenuItem, IconButton, Menu, Toolbar } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import PropTypes from "prop-types";
 import DrawerComponent from "./DrawerComponent";
 import TabsComponent from "./TabsComponent";
 import { handleLogout } from "../../server/apiService/authApi";
@@ -49,11 +48,21 @@ export const tabs = [
   { route: adminsEndpoint, label: adminsText },
 ];
 
-export function AppHeader({ tabValue }) {
+export function AppHeader() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const open = Boolean(state.anchorEl);
   const history = useHistory();
+  const location = useLocation();
   const shouldDisable = false; // Change to shouldHide
+  /* Only show menu options when user is logged in. */
+  const showMenuOptions = localStorage.getItem("token");
+  /* Set tab value to 0 if the current route is not in the tabs array. Only use when user is signed in. */
+  const tabValue = showMenuOptions
+    ? Math.max(
+        0,
+        tabs.findIndex((tab) => tab.route === location.pathname),
+      )
+    : false;
 
   const handleHamburgerClick = useCallback(
     (newValue) => {
@@ -97,44 +106,44 @@ export function AppHeader({ tabValue }) {
     <header style={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <DrawerComponent
-            tabs={tabs}
-            handleHamburgerClick={handleHamburgerClick}
-            mobileOpen={state.mobileOpen}
-            handleDrawerToggle={handleDrawerToggle}
-          />
-          <TabsComponent
-            tabs={tabs}
-            tabValue={tabValue}
-            handleTabClick={handleTabClick}
-            shouldDisable={shouldDisable}
-          />
-          <div style={{ flexGrow: 1 }} />
-          <IconButton
-            aria-label="account of current user"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={state.anchorEl}
-            open={open}
-            onClose={handleClose}
-            aria-label="User menu options"
-          >
-            <MenuItem>{localStorage.getItem("displayName")}</MenuItem>
-            <MenuItem onClick={onAddRescue}>Add Rescue</MenuItem>
-            <MenuItem onClick={onClickLogout}>Logout</MenuItem>
-          </Menu>
+          {showMenuOptions && (
+            <>
+              <DrawerComponent
+                tabs={tabs}
+                handleHamburgerClick={handleHamburgerClick}
+                mobileOpen={state.mobileOpen}
+                handleDrawerToggle={handleDrawerToggle}
+              />
+              <TabsComponent
+                tabs={tabs}
+                tabValue={tabValue}
+                handleTabClick={handleTabClick}
+                shouldDisable={shouldDisable}
+              />
+              <div style={{ flexGrow: 1 }} />
+              <IconButton
+                aria-label="account of current user"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={state.anchorEl}
+                open={open}
+                onClose={handleClose}
+                aria-label="User menu options"
+              >
+                <MenuItem>{localStorage.getItem("displayName")}</MenuItem>
+                <MenuItem onClick={onAddRescue}>Add Rescue</MenuItem>
+                <MenuItem onClick={onClickLogout}>Logout</MenuItem>
+              </Menu>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </header>
   );
 }
-
-AppHeader.propTypes = {
-  tabValue: PropTypes.number.isRequired,
-};
