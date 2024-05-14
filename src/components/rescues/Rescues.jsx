@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
@@ -112,7 +112,18 @@ export default function Rescues() {
       <div className="content">
         <AppHeader tabValue={tabValue} />
         <Grid item container justifyContent="center">
-          {rescues}
+          <Grid item>
+            <Typography variant="h3">Available Rescues</Typography>
+          </Grid>
+          <Grid
+            item
+            container
+            direction="row"
+            wrap="wrap"
+            justifyContent="center"
+          >
+            {rescues}
+          </Grid>
         </Grid>
       </div>
       <PaginationButtons

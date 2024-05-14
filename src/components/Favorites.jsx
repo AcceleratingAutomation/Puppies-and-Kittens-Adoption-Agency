@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useCallback, useState } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import "../styles.css";
 import { AppHeader, tabs } from "./header/AppHeader";
 import RescueCard from "./rescues/RescueCard";
@@ -49,6 +49,9 @@ export default function Favorites() {
     <main className="content">
       <AppHeader tabValue={tabValue} />
       <Grid container direction="column" alignItems="center">
+        <Grid item>
+          <Typography variant="h3">User&apos;s Favorites</Typography>
+        </Grid>
         <Grid
           item
           container

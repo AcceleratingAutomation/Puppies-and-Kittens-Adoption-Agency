@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import "../../styles.css";
 import { AppHeader, tabs } from "../header/AppHeader";
 import { updateAppSettings } from "../../utils/utils";
@@ -41,6 +41,9 @@ export default function Admins() {
       {!showPage && <div />}
       {showPage && (
         <Grid container direction="column" alignItems="center">
+          <Grid item>
+            <Typography variant="h3">Site Administrators</Typography>
+          </Grid>
           <Grid
             item
             container
