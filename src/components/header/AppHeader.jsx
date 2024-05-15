@@ -67,13 +67,10 @@ export function AppHeader() {
 
   const handleHamburgerClick = useCallback(
     (newValue) => {
-      if (tabValue === newValue) {
-        dispatch({ type: "setMobileOpen", value: false });
-      } else {
-        history.push(tabs[newValue].route);
-      }
+      history.push(tabs[newValue].route);
+      dispatch({ type: "setMobileOpen", value: false });
     },
-    [tabValue, history],
+    [history],
   );
 
   const handleTabClick = useCallback(

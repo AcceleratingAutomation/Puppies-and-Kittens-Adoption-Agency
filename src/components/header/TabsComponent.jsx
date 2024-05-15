@@ -1,8 +1,11 @@
 import React from "react";
 import { Tab, Tabs, Hidden } from "@mui/material";
 import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 
 function TabsComponent({ tabs, tabValue, handleTabClick, shouldDisable }) {
+  const history = useHistory();
+
   return (
     <Hidden mdDown implementation="css">
       <Tabs
@@ -16,6 +19,7 @@ function TabsComponent({ tabs, tabValue, handleTabClick, shouldDisable }) {
             label={tab.label}
             disabled={index === 5 && shouldDisable}
             style={{ color: "white" }}
+            onClick={() => history.push(tab.route)}
           />
         ))}
       </Tabs>
