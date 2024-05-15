@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Container } from "@mui/material";
 import PropTypes from "prop-types";
+import { uuid } from "uuidv4";
 import DisplayImage from "../DisplayImage";
 
 function AdminDetailsLayout({ admin }) {
@@ -97,7 +98,7 @@ function AdminDetailsLayout({ admin }) {
         <Grid item xs={12} sm={8} style={{ textAlign: "center" }}>
           <p>
             {bio.split("\n").map((line) => (
-              <React.Fragment key={`${line}-${id}`}>
+              <React.Fragment key={uuid()}>
                 {line}
                 <br />
               </React.Fragment>
