@@ -15,6 +15,7 @@ import {
   navigateToEdit,
 } from "../../utils/componentUtils";
 import { fostersText } from "../../accessibility/accessibilityText";
+import NotFound from "../NotFound";
 
 export default function FosterDetails() {
   const { id } = useParams();
@@ -23,8 +24,16 @@ export default function FosterDetails() {
   const tabValue = getTabValue(tabs, fostersText);
 
   useEffect(() => {
-    fetchDetails(fostersUrl, id, dispatch, "setFosterDetails", "fosters");
+    fetchDetails(fostersUrl, id, dispatch, "setFosterDetails", "fosters").catch(
+      (error) => {
+        dispatch({ type: "setError", value: error });
+      },
+    );
   }, [id, dispatch]);
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   if (state.loading || !state.fosterDetails) {
     return <Loading />;

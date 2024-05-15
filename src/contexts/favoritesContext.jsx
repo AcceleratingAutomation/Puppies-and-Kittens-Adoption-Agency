@@ -11,6 +11,7 @@ export const initialState = {
   rescues: [],
   veterinarians: [],
   admins: [],
+  error: null,
 };
 
 export function reducer(state, action) {
@@ -60,6 +61,8 @@ export function reducer(state, action) {
       return { ...state, openDialog: true };
     case "closeDialog":
       return { ...state, openDialog: false };
+    case "setError":
+      return { ...state, error: action.value };
     default:
       throw new Error();
   }

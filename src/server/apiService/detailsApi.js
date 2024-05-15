@@ -6,6 +6,11 @@ export const fetchDetailsApi = async (url, id) => {
   const response = await fetch(constructUrl(url, id), {
     headers: constructHeader(),
   });
+
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+
   return response.json();
 };
 

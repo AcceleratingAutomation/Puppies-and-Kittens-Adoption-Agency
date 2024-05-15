@@ -11,6 +11,7 @@ import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
 import { getTabValue } from "../../utils/componentUtils";
 import { adoptersText } from "../../accessibility/accessibilityText";
+import NotFound from "../NotFound";
 
 export default function Adopters() {
   const { state, dispatch } = useContext(FavoritesContext);
@@ -23,12 +24,17 @@ export default function Adopters() {
         if (json) {
           updateAppSettings(json.token);
           dispatch({ type: "setAdopters", value: [...json.adopters] });
+          dispatch({ type: "setError", value: false });
         }
       })
       .catch((err) => {
-        throw new Error(`Error fetching adopters ${err.message}`);
+        dispatch({ type: "setError", value: err });
       });
   }, [dispatch]);
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   if (state.loading) {
     return <Loading />;

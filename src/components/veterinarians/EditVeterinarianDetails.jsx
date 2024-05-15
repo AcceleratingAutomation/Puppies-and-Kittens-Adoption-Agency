@@ -17,6 +17,7 @@ import { veterinariansValidationSchema } from "../../validations/usersValidation
 import editReducer from "../../reducers/editReducer";
 import EditVeterinarianForm from "./EditVeterinarianForm";
 import { veterinarianInitialValues } from "../../utils/formInitialValues";
+import NotFound from "../NotFound";
 
 export default function EditVeterinarianDetails() {
   const { id } = useParams();
@@ -32,7 +33,9 @@ export default function EditVeterinarianDetails() {
       dispatch,
       "setVeterinarianEdit",
       "veterinarians",
-    );
+    ).catch((error) => {
+      dispatch({ type: "setError", value: error });
+    });
   }, [id]);
 
   const handleSubmit = useCallback(
@@ -41,6 +44,10 @@ export default function EditVeterinarianDetails() {
     },
     [veterinariansUrl, id, history, veterinariansEndpoint],
   );
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   return (
     <Formik

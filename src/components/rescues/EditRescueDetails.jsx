@@ -14,6 +14,7 @@ import rescuesValidationSchema from "../../validations/rescuesValidationSchema";
 import editReducer from "../../reducers/editReducer";
 import EditRescueForm from "./EditRescueForm";
 import { rescueInitialValues } from "../../utils/formInitialValues";
+import NotFound from "../NotFound";
 
 export default function EditRescueDetails() {
   const { id } = useParams();
@@ -23,7 +24,11 @@ export default function EditRescueDetails() {
   const [state, dispatch] = useReducer(editReducer, rescueInitialValues);
 
   useEffect(() => {
-    fetchDetails(rescuesUrl, id, dispatch, "setRescueEdit", "rescues");
+    fetchDetails(rescuesUrl, id, dispatch, "setRescueEdit", "rescues").catch(
+      (error) => {
+        dispatch({ type: "setError", value: error });
+      },
+    );
   }, [id]);
 
   const handleSubmit = useCallback(
@@ -32,6 +37,10 @@ export default function EditRescueDetails() {
     },
     [rescuesUrl, id, history, rescuesEndpoint],
   );
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   return (
     <Formik

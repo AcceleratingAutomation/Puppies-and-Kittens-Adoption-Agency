@@ -17,6 +17,7 @@ import { adoptersValidationSchema } from "../../validations/usersValidationSchem
 import editReducer from "../../reducers/editReducer";
 import EditAdopterForm from "./EditAdopterForm";
 import { adopterInitialValues } from "../../utils/formInitialValues";
+import NotFound from "../NotFound";
 
 export default function EditAdopterDetails() {
   const { id } = useParams();
@@ -26,7 +27,11 @@ export default function EditAdopterDetails() {
   const [state, dispatch] = useReducer(editReducer, adopterInitialValues);
 
   useEffect(() => {
-    fetchDetails(adoptersUrl, id, dispatch, "setAdopterEdit", "adopters");
+    fetchDetails(adoptersUrl, id, dispatch, "setAdopterEdit", "adopters").catch(
+      (error) => {
+        dispatch({ type: "setError", value: error });
+      },
+    );
   }, [id]);
 
   const handleSubmit = useCallback(
@@ -35,6 +40,10 @@ export default function EditAdopterDetails() {
     },
     [adoptersUrl, id, history, adoptersEndpoint],
   );
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   return (
     <Formik

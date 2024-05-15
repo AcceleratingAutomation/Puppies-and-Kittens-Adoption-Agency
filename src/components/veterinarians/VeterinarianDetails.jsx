@@ -18,6 +18,7 @@ import {
   navigateToEdit,
 } from "../../utils/componentUtils";
 import { veterinariansText } from "../../accessibility/accessibilityText";
+import NotFound from "../NotFound";
 
 export default function VeterinarianDetails() {
   const { id } = useParams();
@@ -32,8 +33,14 @@ export default function VeterinarianDetails() {
       dispatch,
       "setVeterinarianDetails",
       "veterinarians",
-    );
+    ).catch((error) => {
+      dispatch({ type: "setError", value: error });
+    });
   }, [id, dispatch]);
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   if (state.loading || !state.veterinarianDetails) {
     return <Loading />;

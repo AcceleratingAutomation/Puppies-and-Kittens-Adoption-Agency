@@ -12,6 +12,7 @@ export const fetchDetails = async (url, id, dispatch, setType, name) => {
       type: setType,
       value: data[name],
     });
+    dispatch({ type: "setError", value: false });
   } catch (err) {
     throw new Error(`Error fetching ${name} ${err.message}`);
   }

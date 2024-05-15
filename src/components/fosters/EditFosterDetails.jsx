@@ -14,6 +14,7 @@ import { fostersValidationSchema } from "../../validations/usersValidationSchema
 import editReducer from "../../reducers/editReducer";
 import EditFosterForm from "./EditFosterForm";
 import { fosterInitialValues } from "../../utils/formInitialValues";
+import NotFound from "../NotFound";
 
 export default function EditFosterDetails() {
   const { id } = useParams();
@@ -23,7 +24,11 @@ export default function EditFosterDetails() {
   const [state, dispatch] = useReducer(editReducer, fosterInitialValues);
 
   useEffect(() => {
-    fetchDetails(fostersUrl, id, dispatch, "setFosterEdit", "fosters");
+    fetchDetails(fostersUrl, id, dispatch, "setFosterEdit", "fosters").catch(
+      (error) => {
+        dispatch({ type: "setError", value: error });
+      },
+    );
   }, [id]);
 
   const handleSubmit = useCallback(
@@ -32,6 +37,10 @@ export default function EditFosterDetails() {
     },
     [fostersUrl, id, history, fostersEndpoint],
   );
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   return (
     <Formik

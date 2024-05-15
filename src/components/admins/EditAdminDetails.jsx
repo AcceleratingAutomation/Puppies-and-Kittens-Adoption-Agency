@@ -14,6 +14,7 @@ import { adminsValidationSchema } from "../../validations/usersValidationSchema"
 import editReducer from "../../reducers/editReducer";
 import EditAdminForm from "./EditAdminForm";
 import { adminInitialValues } from "../../utils/formInitialValues";
+import NotFound from "../NotFound";
 
 export default function EditAdminDetails() {
   const { id } = useParams();
@@ -23,7 +24,11 @@ export default function EditAdminDetails() {
   const [state, dispatch] = useReducer(editReducer, adminInitialValues);
 
   useEffect(() => {
-    fetchDetails(adminsUrl, id, dispatch, "setAdminEdit", "admins");
+    fetchDetails(adminsUrl, id, dispatch, "setAdminEdit", "admins").catch(
+      (error) => {
+        dispatch({ type: "setError", value: error });
+      },
+    );
   }, [id]);
 
   const handleSubmit = useCallback(
@@ -32,6 +37,10 @@ export default function EditAdminDetails() {
     },
     [adminsUrl, id, history, adminsEndpoint],
   );
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   return (
     <Formik

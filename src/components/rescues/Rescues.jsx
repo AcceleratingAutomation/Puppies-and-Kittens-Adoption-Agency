@@ -22,6 +22,7 @@ import fetchData from "../../server/apiService/cardApi";
 import PaginationButtons from "../PaginationButtons";
 import { rescuesText } from "../../accessibility/accessibilityText";
 import { getTabValue } from "../../utils/componentUtils";
+import NotFound from "../NotFound";
 
 export default function Rescues() {
   const { state, dispatch } = useContext(FavoritesContext);
@@ -33,9 +34,10 @@ export default function Rescues() {
       .then((json) => {
         updateAppSettings(json.token);
         dispatch({ type: "setRescues", value: [...json.rescues] });
+        dispatch({ type: "setError", value: false });
       })
       .catch((err) => {
-        throw new Error(`Error fetching rescues: ${err.message}`);
+        dispatch({ type: "setError", value: err });
       });
   }, [dispatch]);
 
@@ -102,6 +104,10 @@ export default function Rescues() {
         )),
     [state.rescues, state.favorites, onAddFavorite, onRemoveFavorite, page],
   );
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   if (state.loading) {
     return <Loading />;

@@ -11,6 +11,7 @@ import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
 import { fostersText } from "../../accessibility/accessibilityText";
 import { getTabValue } from "../../utils/componentUtils";
+import NotFound from "../NotFound";
 
 export default function Fosters() {
   const { state, dispatch } = useContext(FavoritesContext);
@@ -23,12 +24,17 @@ export default function Fosters() {
         if (json) {
           updateAppSettings(json.token);
           dispatch({ type: "setFosters", value: [...json.fosters] });
+          dispatch({ type: "setError", value: false });
         }
       })
       .catch((err) => {
-        throw new Error(`Error fetching fosters: ${err.message}`);
+        dispatch({ type: "setError", value: err });
       });
   }, [dispatch]);
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   if (state.loading) {
     return <Loading />;

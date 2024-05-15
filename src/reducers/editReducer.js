@@ -4,6 +4,8 @@ function editReducer(state, action) {
       return { ...state, ...action.value };
     case "setAdminEdit":
       return { ...state, ...action.value };
+    case "setError":
+      return { ...state, error: action.value };
     case "setFosterEdit":
       return { ...state, ...action.value };
     case "setRescueEdit":

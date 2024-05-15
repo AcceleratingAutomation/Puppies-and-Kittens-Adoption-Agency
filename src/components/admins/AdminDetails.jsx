@@ -15,6 +15,7 @@ import {
   navigateToEdit,
 } from "../../utils/componentUtils";
 import { adminsText } from "../../accessibility/accessibilityText";
+import NotFound from "../NotFound";
 
 export default function AdminDetails() {
   const { id } = useParams();
@@ -23,8 +24,16 @@ export default function AdminDetails() {
   const tabValue = getTabValue(tabs, adminsText);
 
   useEffect(() => {
-    fetchDetails(adminsUrl, id, dispatch, "setAdminDetails", "admins");
+    fetchDetails(adminsUrl, id, dispatch, "setAdminDetails", "admins").catch(
+      (error) => {
+        dispatch({ type: "setError", value: error });
+      },
+    );
   }, [id, dispatch]);
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   if (state.loading || !state.adminDetails) {
     return <Loading />;

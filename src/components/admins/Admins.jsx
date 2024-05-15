@@ -11,6 +11,7 @@ import Loading from "../Loading";
 import PaginationButtons from "../PaginationButtons";
 import { adminsText } from "../../accessibility/accessibilityText";
 import { getTabValue } from "../../utils/componentUtils";
+import NotFound from "../NotFound";
 
 export default function Admins() {
   const { state, dispatch } = useContext(FavoritesContext);
@@ -24,12 +25,17 @@ export default function Admins() {
         if (json) {
           updateAppSettings(json.token);
           dispatch({ type: "setAdmins", value: [...json.admins] });
+          dispatch({ type: "setError", value: false });
         }
       })
       .catch((err) => {
-        throw new Error(`Error fetching admins ${err.message}`);
+        dispatch({ type: "setError", value: err });
       });
   }, [dispatch]);
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   if (state.loading) {
     return <Loading />;

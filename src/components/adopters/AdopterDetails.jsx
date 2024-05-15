@@ -18,6 +18,7 @@ import {
   getTabValue,
 } from "../../utils/componentUtils";
 import { adoptersText } from "../../accessibility/accessibilityText";
+import NotFound from "../NotFound";
 
 export default function AdopterDetails() {
   const { id } = useParams();
@@ -26,8 +27,20 @@ export default function AdopterDetails() {
   const tabValue = getTabValue(tabs, adoptersText);
 
   useEffect(() => {
-    fetchDetails(adoptersUrl, id, dispatch, "setAdopterDetails", "adopters");
+    fetchDetails(
+      adoptersUrl,
+      id,
+      dispatch,
+      "setAdopterDetails",
+      "adopters",
+    ).catch((error) => {
+      dispatch({ type: "setError", value: error });
+    });
   }, [id, dispatch]);
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   if (state.loading || !state.adopterDetails) {
     return <Loading />;

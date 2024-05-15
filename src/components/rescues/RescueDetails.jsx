@@ -8,6 +8,7 @@ import { rescuesEndpoint, rescuesUrl } from "../../server/apiService/apiConfig";
 import { FavoritesContext } from "../../contexts/favoritesContext";
 import DetailsButtons from "../DetailsButtons";
 import RescueDetailsLayout from "./RescueDetailsLayout";
+import NotFound from "../NotFound";
 import {
   deleteDetails,
   fetchDetails,
@@ -24,8 +25,16 @@ export default function RescueDetails() {
   const tabValue = getTabValue(tabs, rescuesText);
 
   useEffect(() => {
-    fetchDetails(rescuesUrl, id, dispatch, "setRescueDetails", "rescues");
+    fetchDetails(rescuesUrl, id, dispatch, "setRescueDetails", "rescues").catch(
+      (error) => {
+        dispatch({ type: "setError", value: error });
+      },
+    );
   }, [id, dispatch]);
+
+  if (state.error) {
+    return <NotFound />;
+  }
 
   if (state.loading || !state.rescueDetails) {
     return <Loading />;
