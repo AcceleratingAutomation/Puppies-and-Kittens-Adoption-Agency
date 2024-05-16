@@ -1,19 +1,22 @@
-name: Visual Tests
+name: Lighthouse Tests
 
 on:
   workflow_call:
 
 jobs:
-  playwright-visual-tests:
-    name: Visual Tests
+  playwright-lighthouse-tests:
+    name: Lighthouse Tests
     timeout-minutes: 60
-    # Running on windows because the OS matters for visual testing comparisons.
+    # Running on windows because the OS matters for non-functional testing comparisons.
     runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
         shardIndex: [1, 2, 3, 4, 5, 6]
         shardTotal: [6]
+
+    env:
+      DESTINATION_DIR_FOR_PAGES: ${{ github.ref_name }}/${{ (github.event_name == 'push' || github.event_name == 'pull_request') && format('commits/{0}', github.sha) || format('runs/{0}', github.run_id) }}/lighthouse-audit-report
 
     steps:
       - name: Checkout code
@@ -42,8 +45,8 @@ jobs:
         run: npx playwright --version
         working-directory: playwright
 
-      - name: Run visual tests
-        run: npm run visual:ci ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+      - name: Run lighthouse tests
+        run: npm run lighthouse:ci ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         working-directory: playwright
         env:
           REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
@@ -55,10 +58,18 @@ jobs:
           TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
           TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
 
-      - name: Upload Visual blob reports to GitHub Actions Artifacts
+      - name: Upload Lighthouse blob reports to GitHub Actions Artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: blob-report-visual-${{ matrix.shardIndex }}
+          name: blob-report-lighthouse-${{ matrix.shardIndex }}
           path: playwright/blob-report
+          retention-days: 1
+
+      - name: Upload Lighthouse Audit reports to GitHub Actions Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-audit-report-${{ matrix.shardIndex }}
+          path: playwright/lighthouse-audit-reports
           retention-days: 1
