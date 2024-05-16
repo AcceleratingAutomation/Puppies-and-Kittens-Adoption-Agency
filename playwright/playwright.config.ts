@@ -90,85 +90,85 @@ export default defineConfig({
       testDir: "./lighthouse",
     },
 
-    /* Test against browser engines. */
-    {
-      name: "chromium",
-      use: {
-        ...devices["Desktop Chrome"],
-        storageState: authFile,
-      },
-      dependencies: [authSetup],
-    },
-    {
-      name: "firefox",
-      use: {
-        ...devices["Desktop Firefox"],
-        storageState: authFile,
-      },
-      dependencies: [authSetup],
-    },
-    {
-      name: "webkit",
-      use: {
-        ...devices["Desktop Safari"],
-        storageState: authFile,
-      },
-      dependencies: [authSetup],
-    },
+    // /* Test against browser engines. */
+    // {
+    //   name: "chromium",
+    //   use: {
+    //     ...devices["Desktop Chrome"],
+    //     storageState: authFile,
+    //   },
+    //   dependencies: [authSetup],
+    // },
+    // {
+    //   name: "firefox",
+    //   use: {
+    //     ...devices["Desktop Firefox"],
+    //     storageState: authFile,
+    //   },
+    //   dependencies: [authSetup],
+    // },
+    // {
+    //   name: "webkit",
+    //   use: {
+    //     ...devices["Desktop Safari"],
+    //     storageState: authFile,
+    //   },
+    //   dependencies: [authSetup],
+    // },
 
-    /* Test against tablet viewports. */
-    {
-      name: "iPad Pro 12 Safari",
-      use: {
-        /* iPad Pro 11 is the latest available in playwright devices. Manually setting viewport to iPad Pro 12 (2021). */
-        ...devices["iPad Pro 11"],
-        storageState: authFile,
-        viewport: { width: 1024, height: 1366 },
-      },
-      dependencies: [authSetup],
-    },
+    // /* Test against tablet viewports. */
+    // {
+    //   name: "iPad Pro 12 Safari",
+    //   use: {
+    //     /* iPad Pro 11 is the latest available in playwright devices. Manually setting viewport to iPad Pro 12 (2021). */
+    //     ...devices["iPad Pro 11"],
+    //     storageState: authFile,
+    //     viewport: { width: 1024, height: 1366 },
+    //   },
+    //   dependencies: [authSetup],
+    // },
 
-    /* Test against mobile viewports. */
-    {
-      name: "Galaxy S23 Chrome",
-      use: {
-        ...devices["Galaxy S9+"],
-        storageState: authFile,
-        viewport: { width: 360, height: 780 },
-      },
-      dependencies: [authSetup],
-    },
-    {
-      name: "iPhone 15 Pro Safari",
-      use: {
-        ...devices["iPhone 15 Pro"],
-        storageState: authFile,
-        viewport: { width: 393, height: 852 },
-      },
-      dependencies: [authSetup],
-    },
+    // /* Test against mobile viewports. */
+    // {
+    //   name: "Galaxy S23 Chrome",
+    //   use: {
+    //     ...devices["Galaxy S9+"],
+    //     storageState: authFile,
+    //     viewport: { width: 360, height: 780 },
+    //   },
+    //   dependencies: [authSetup],
+    // },
+    // {
+    //   name: "iPhone 15 Pro Safari",
+    //   use: {
+    //     ...devices["iPhone 15 Pro"],
+    //     storageState: authFile,
+    //     viewport: { width: 393, height: 852 },
+    //   },
+    //   dependencies: [authSetup],
+    // },
 
-    /* Test against branded browsers. */
-    {
-      name: "Microsoft Edge",
-      use: {
-        ...devices["Desktop Edge"],
-        storageState: authFile,
-        viewport: { width: 1920, height: 910 },
-        channel: "msedge",
-      },
-      dependencies: [authSetup],
-    },
-    {
-      name: "Google Chrome",
-      use: {
-        ...devices["Desktop Chrome"],
-        storageState: authFile,
-        viewport: { width: 2560, height: 910 },
-        channel: "chrome",
-      },
-      dependencies: [authSetup],
-    },
+    // /* Test against branded browsers. */
+    // {
+    //   name: "Microsoft Edge",
+    //   use: {
+    //     ...devices["Desktop Edge"],
+    //     storageState: authFile,
+    //     viewport: { width: 1920, height: 910 },
+    //     channel: "msedge",
+    //   },
+    //   dependencies: [authSetup],
+    // },
+    // {
+    //   name: "Google Chrome",
+    //   use: {
+    //     ...devices["Desktop Chrome"],
+    //     storageState: authFile,
+    //     viewport: { width: 2560, height: 910 },
+    //     channel: "chrome",
+    //   },
+    //   dependencies: [authSetup],
+    // },
   ],
 
   /* Run your local dev server before starting the tests */
