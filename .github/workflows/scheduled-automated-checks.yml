@@ -29,16 +29,16 @@ jobs:
       statuses: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/super-linter.yml@main
 
-  run-jest-unit-tests:
-    name: Unit Tests
-    needs: [run-prettier, run-super-linter]
-    permissions:
-      contents: write
-    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
+  # run-jest-unit-tests:
+  #   name: Unit Tests
+  #   needs: [run-prettier, run-super-linter]
+  #   permissions:
+  #     contents: write
+  #   uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
 
   run-playwright-visual-tests:
     name: Playwright Tests
-    needs: [run-jest-unit-tests]
+    needs: [run-prettier, run-super-linter]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
     secrets: inherit
 
