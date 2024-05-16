@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Container } from "@mui/material";
 import PropTypes from "prop-types";
+import { uuid } from "uuidv4";
 import DisplayImage from "../DisplayImage";
 
 function FosterDetailsLayout({ foster }) {
@@ -21,14 +22,24 @@ function FosterDetailsLayout({ foster }) {
   } = foster;
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" data-testid="foster-details-layout">
       <Grid
         container
         justifyContent="center"
         alignItems="center"
         direction="row"
       >
-        <Grid item xs={12} sm={4} md={3} style={{ textAlign: "center" }}>
+        <Grid item xs={12} sm={4} style={{ textAlign: "center" }}>
+          <DisplayImage
+            directory="users"
+            id={id}
+            image={image}
+            name={name}
+            width="12rem"
+            height="12rem"
+          />
+        </Grid>
+        <Grid item xs={12} sm={4} style={{ textAlign: "left" }}>
           <Grid container>
             <Grid item xs={6}>
               <strong>Type</strong>
@@ -102,18 +113,15 @@ function FosterDetailsLayout({ foster }) {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={4} md={3} style={{ textAlign: "center" }}>
-          <DisplayImage
-            directory="users"
-            id={id}
-            image={image}
-            name={name}
-            width="15rem"
-            height="18rem"
-          />
-        </Grid>
-        <Grid item xs={12} sm={8} md={3} style={{ textAlign: "left" }}>
-          <p>{bio}</p>
+        <Grid item xs={12} sm={8} style={{ textAlign: "center" }}>
+          <p>
+            {bio.split("\n").map((line) => (
+              <React.Fragment key={uuid()}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          </p>
         </Grid>
       </Grid>
     </Container>
