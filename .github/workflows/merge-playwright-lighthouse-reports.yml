@@ -72,6 +72,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: playwright/all-lighthouse-reports
           destination_dir: ${{ env.DESTINATION_DIR_FOR_PAGES }}
+          keep_files: true
 
       - name: Set Test Results Summary as env variable
         run: |
