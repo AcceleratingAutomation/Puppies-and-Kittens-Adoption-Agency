@@ -50,9 +50,23 @@ jobs:
       contents: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-visual-reports.yml@main
 
+  run-playwright-lighthouse-tests:
+    name: Playwright Tests
+    needs: [run-playwright-visual-tests]
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-lighthouse-tests.yml@main
+    secrets: inherit
+
+  run-merge-playwright-lighthouse-reports:
+    name: Playwright Tests
+    if: always() && needs.run-playwright-lighthouse-tests.result != 'skipped' && needs.run-playwright-lighthouse-tests.result != 'cancelled'
+    needs: [run-playwright-lighthouse-tests]
+    permissions:
+      contents: write
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/merge-playwright-lighthouse-reports.yml@main
+
   slack-notification:
     name: Notifications
-    if: always() && needs.run-merge-playwright-visual-reports.result != 'cancelled'
-    needs: [run-merge-playwright-visual-reports]
+    if: always() && needs.run-merge-playwright-lighthouse-reports.result != 'cancelled'
+    needs: [run-merge-playwright-lighthouse-reports]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/slack-notification.yml@main
     secrets: inherit
