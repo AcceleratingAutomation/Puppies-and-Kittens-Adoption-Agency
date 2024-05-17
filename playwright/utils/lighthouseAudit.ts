@@ -143,10 +143,7 @@ const runLighthouseAuditReport = (
           .replace(/[/: ]/g, "-");
 
         // Save the report to a file
-        const lighthouseDir =
-          process.env.CI && process.env.DESTINATION_DIR_FOR_PAGES
-            ? process.env.DESTINATION_DIR_FOR_PAGES
-            : "lighthouse-audit-reports";
+        let lighthouseDir = "lighthouse-audit-reports";
         const reportPath = path.join(
           process.cwd(),
           lighthouseDir,
@@ -163,6 +160,8 @@ const runLighthouseAuditReport = (
         let reportLink;
         if (process.env.CI) {
           // Use github pages URL when running on CI
+          lighthouseDir =
+            process.env.DESTINATION_DIR_FOR_PAGES || lighthouseDir;
           reportLink = `https://acceleratingautomation.github.io/Puppies-and-Kittens-Adoption-Agency/playwright/${lighthouseDir}/${path.basename(reportPath)}`;
         } else {
           // Use the local file path when running locally
