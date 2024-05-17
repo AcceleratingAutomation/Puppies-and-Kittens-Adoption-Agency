@@ -9,9 +9,11 @@ const authSetup = "auth-setup";
  */
 export default defineConfig({
   testDir: "./tests",
+  timeout: 30 * 1000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   expect: {
+    timeout: 5 * 1000,
     toHaveScreenshot: {
       maxDiffPixelRatio: process.env.CI ? 0.04 : 0.01,
     },
