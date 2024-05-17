@@ -162,7 +162,7 @@ const runLighthouseAuditReport = (
           // Use github pages URL when running on CI
           lighthouseDir =
             process.env.DESTINATION_DIR_FOR_PAGES || lighthouseDir;
-          reportLink = `https://acceleratingautomation.github.io/Puppies-and-Kittens-Adoption-Agency/playwright/${lighthouseDir}/${path.basename(reportPath)}`;
+          reportLink = `https://acceleratingautomation.github.io/Puppies-and-Kittens-Adoption-Agency/${lighthouseDir}/${path.basename(reportPath)}`;
         } else {
           // Use the local file path when running locally
           reportLink = `file://${reportPath}`;
