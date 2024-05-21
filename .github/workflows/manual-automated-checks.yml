@@ -12,6 +12,10 @@ on:
         description: "Run Super-Linter"
         type: boolean
         default: true
+      codeql:
+        description: "Run CodeQL Security Analysis"
+        type: boolean
+        default: true
       jest-unit-tests:
         description: "Run Jest Unit Tests"
         type: boolean
@@ -55,6 +59,16 @@ jobs:
       statuses: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/super-linter.yml@main
 
+  run-codeql:
+    name: Security Analysis
+    if: github.event.inputs.codeql == 'true'
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/codeql.yml@main
+
   run-jest-unit-tests:
     name: Unit Tests
     if: github.event.inputs.jest-unit-tests == 'true'
@@ -97,6 +111,7 @@ jobs:
       [
         run-prettier,
         run-super-linter,
+        run-codeql,
         run-jest-unit-tests,
         run-merge-playwright-visual-reports,
         run-merge-playwright-lighthouse-reports,

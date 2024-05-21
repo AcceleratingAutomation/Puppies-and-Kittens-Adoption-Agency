@@ -30,6 +30,15 @@ jobs:
       statuses: write
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/super-linter.yml@main
 
+  run-codeql:
+    name: Security Analysis
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/codeql.yml@main
+
   # run-jest-unit-tests:
   #   name: Unit Tests
   #   needs: [run-prettier, run-super-linter]
@@ -39,7 +48,7 @@ jobs:
 
   run-playwright-visual-tests:
     name: Playwright Tests
-    needs: [run-prettier, run-super-linter]
+    needs: [run-prettier, run-super-linter, run-codeql]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
     secrets: inherit
 
