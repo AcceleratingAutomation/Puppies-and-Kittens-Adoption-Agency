@@ -92,7 +92,7 @@ handlers.forEach(
         test("200 and data if authorized", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
           });
           const res = httpMocks.createResponse();
@@ -115,7 +115,7 @@ handlers.forEach(
         test("500 if data retrieval fails", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
           });
           const res = httpMocks.createResponse();
@@ -129,7 +129,7 @@ handlers.forEach(
         test("500 and empty data if data retrieval is successful but returns an empty array", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
           });
           const res = httpMocks.createResponse();
@@ -145,7 +145,7 @@ handlers.forEach(
         test("403 if not authorized", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
           });
           const res = httpMocks.createResponse();
@@ -160,7 +160,7 @@ handlers.forEach(
         test("200 and data if authorized", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
             params: {
               id: "1",
@@ -182,7 +182,7 @@ handlers.forEach(
         test("404 if not found", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
             params: {
               id: "1",
@@ -202,7 +202,7 @@ handlers.forEach(
         test("403 if not authorized", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
             params: {
               id: "1",
@@ -224,7 +224,7 @@ handlers.forEach(
         test("200 and data if authorized", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
             params: {
               id: "1",
@@ -246,7 +246,7 @@ handlers.forEach(
         test("500 if data retrieval fails", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
             params: {
               id: "1",
@@ -263,7 +263,7 @@ handlers.forEach(
         test("getDetails sends 404 if data retrieval is successful but returns an empty object", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
             params: {
               id: "1",
@@ -280,7 +280,7 @@ handlers.forEach(
         test("403 if not authorized", async () => {
           const req = httpMocks.createRequest({
             headers: {
-              authorization: "Bearer token",
+              authorization: "Sample Test Bearer Token",
             },
             params: {
               id: "1",
