@@ -51,7 +51,7 @@ jobs:
           commit_url="$repo/commit/${{ github.sha }}"
           workflow_url="$repo/actions/runs/${{ github.run_id }}"
           actor_url="https://github.com/${{ github.actor }}"
-          echo "TEST_RESULTS_SUMMARY=<div style='margin: 50px; padding-left: 20px; border: 1px solid black;'><h1>Jest Unit Test Results</h1><h4>$results</h4><h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}/lcov-report'>View Code Coverage Report</a></h3><h4>Latest Commit <a href='$commit_url'>$short_sha</a><br>By <a href='$actor_url'>${{ github.actor }}</a><br>Branch <a href='$repo'>${{ github.ref_name }}</a><br>Workflow <a href='$workflow_url'>${{ github.workflow }}</a><br>Tests completed $(date)</h4></div>" | sed 's/__NEWLINE__/<br>/g' >> "$GITHUB_ENV"
+          echo "TEST_RESULTS_SUMMARY=<div style='margin: 50px; padding-left: 20px; border: 1px solid black;'><h1>Jest Unit Test Results</h1><h4>$results</h4><h3><a href='https://${{ github.repository_owner }}.github.io/Puppies-and-Kittens-Adoption-Agency/${{ env.DESTINATION_DIR_FOR_PAGES }}/lcov-report'>View Code Coverage Report</a></h3><h4>Latest Commit <a href='$commit_url'>$short_sha</a><br>By <a href='$actor_url'>${{ github.actor }}</a><br>Branch <a href='$repo'>${{ github.ref_name }}</a><br>Workflow <a href='$workflow_url'>${{ github.workflow }}</a><br>Tests completed $(TZ='America/Denver' date)</h4></div>" | sed 's/__NEWLINE__/<br>/g' >> "$GITHUB_ENV"
 
       - name: Display Test Results Summary in GitHub Step Summary
         run: echo "$TEST_RESULTS_SUMMARY" >> "$GITHUB_STEP_SUMMARY"
