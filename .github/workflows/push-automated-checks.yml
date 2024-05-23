@@ -1,0 +1,52 @@
+name: Push Automated Checks
+
+on:
+  push:
+    branches: [main]
+
+env:
+  ALGORITHM: ${{ vars.ALGORITHM }}
+  EXPIRY: ${{ vars.EXPIRY }}
+  ISSUER: ${{ vars.ISSUER }}
+  REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
+  SECRET: ${{ secrets.SECRET }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  TEST_ENV: ${{ vars.TEST_ENV }}
+  TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+  TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+
+jobs:
+  run-prettier:
+    name: Formatting
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/prettier.yml@main
+
+  run-super-linter:
+    name: Linters
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/super-linter.yml@main
+
+  run-codeql:
+    name: Security Analysis
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/codeql.yml@main
+
+  # run-jest-unit-tests:
+  #   name: Unit Tests
+  #   needs: [run-prettier, run-super-linter, run-codeql]
+  #   permissions:
+  #     contents: write
+  #   uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
+
+  slack-notification:
+    name: Notifications
+    if: always() && needs.run-codeql.result != 'cancelled'
+    needs: [run-prettier, run-super-linter, run-codeql]
+    uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/slack-notification.yml@main
+    secrets: inherit

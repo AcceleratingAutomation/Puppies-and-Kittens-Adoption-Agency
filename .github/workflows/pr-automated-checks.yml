@@ -1,8 +1,6 @@
-name: Push and Pull Automated Checks
+name: Pull Request Automated Checks
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -41,7 +39,7 @@ jobs:
 
   # run-jest-unit-tests:
   #   name: Unit Tests
-  #   needs: [run-prettier, run-super-linter]
+  #   needs: [run-prettier, run-super-linter, run-codeql]
   #   permissions:
   #     contents: write
   #   uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
