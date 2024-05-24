@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const RateLimit = require("express-rate-limit");
 
 const favoritesRouter = require("./routes/favorites");
 const rescuesRouter = require("./routes/rescues");
@@ -26,6 +27,15 @@ const app = express();
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cors());
+
+// set up rate limiter
+const limiter = RateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10000, // max 10000 requests per windowMs
+});
+
+// Apply the rate limiter to all requests
+app.use(limiter);
 
 const swaggerOptions = {
   swaggerDefinition: {
