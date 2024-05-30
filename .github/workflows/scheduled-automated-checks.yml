@@ -3,7 +3,7 @@ name: Scheduled Automated Checks
 on:
   # Run this workflow at 12 PM UTC (which is 5 AM MST) every weekday. Doesn't account for daylight saving time.
   schedule:
-    - cron: "0 12 * * 1-5"
+    - cron: "0 12 1 * *"
 
 env:
   ALGORITHM: ${{ vars.ALGORITHM }}
@@ -40,14 +40,12 @@ jobs:
 
   # run-jest-unit-tests:
   #   name: Unit Tests
-  #   needs: [run-prettier, run-super-linter]
   #   permissions:
   #     contents: write
   #   uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/jest-unit-tests.yml@main
 
   run-playwright-visual-tests:
     name: Playwright Tests
-    needs: [run-prettier, run-super-linter, run-codeql]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-visual-tests.yml@main
     secrets: inherit
 
@@ -61,7 +59,6 @@ jobs:
 
   run-playwright-lighthouse-tests:
     name: Playwright Tests
-    needs: [run-playwright-visual-tests]
     uses: AcceleratingAutomation/Puppies-and-Kittens-Adoption-Agency/.github/workflows/playwright-lighthouse-tests.yml@main
     secrets: inherit
 
@@ -76,8 +73,11 @@ jobs:
   slack-notification:
     name: Notifications
     if: always() && needs.run-merge-playwright-lighthouse-reports.result != 'cancelled'
-    needs:
-      [
+    needs: [
+        run-prettier,
+        run-super-linter,
+        run-codeql,
+        # run-jest-unit-tests,
         run-merge-playwright-visual-reports,
         run-merge-playwright-lighthouse-reports,
       ]
